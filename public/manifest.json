@@ -1,0 +1,21 @@
+{
+  "short_name": "HyvHub",
+  "name": "HyvHub - Developer Collaboration Platform",
+  "icons": [
+    {
+      "src": "public/assets/images/ChatGPT_Image_Nov_20__2025__12_07_46_PM-1763647303691.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "public/assets/images/ChatGPT_Image_Nov_20__2025__12_07_46_PM-1763647303691.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "description": "HyvHub - The collaborative platform for developers to share, discover, and optimize code snippets"
+}

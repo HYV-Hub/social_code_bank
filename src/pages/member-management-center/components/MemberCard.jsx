@@ -1,0 +1,256 @@
+import React, { useState } from 'react';
+import { User, Mail, Shield, Activity, MoreVertical, Check, X, Users } from 'lucide-react';
+
+export default function MemberCard({
+  member,
+  teams,
+  isSelected,
+  onSelect,
+  onUpdateRole,
+  onUpdateTeam,
+  onDeactivate,
+  onReactivate,
+  onRemove,
+  currentUserId
+}) {
+  const [showActions, setShowActions] = useState(false);
+
+  const getRoleBadgeColor = (role) => {
+    switch (role) {
+      case 'company_admin':
+        return 'bg-purple-100 text-purple-800';
+      case 'team_admin':
+        return 'bg-blue-100 text-blue-800';
+      case 'team_member':
+        return 'bg-green-100 text-green-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getRoleLabel = (role) => {
+    switch (role) {
+      case 'company_admin':
+        return 'Manager / Admin';
+      case 'team_admin':
+        return 'Team Manager';
+      case 'team_member':
+        return 'Team Member';
+      case 'user':
+        return 'Developer';
+      default:
+        return 'User';
+    }
+  };
+
+  const getContributorBadge = (level) => {
+    const badges = {
+      beginner: { color: 'bg-gray-100 text-gray-700', label: 'Beginner' },
+      intermediate: { color: 'bg-blue-100 text-blue-700', label: 'Intermediate' },
+      advanced: { color: 'bg-green-100 text-green-700', label: 'Advanced' },
+      expert: { color: 'bg-purple-100 text-purple-700', label: 'Expert' },
+      master: { color: 'bg-yellow-100 text-yellow-700', label: 'Master' }
+    };
+    return badges?.[level] || badges?.beginner;
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'Never';
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return 'Today';
+    if (diffDays === 1) return 'Yesterday';
+    if (diffDays < 7) return `${diffDays} days ago`;
+    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+    if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+    return `${Math.floor(diffDays / 365)} years ago`;
+  };
+
+  const isCurrentUser = member?.id === currentUserId;
+  const contributorBadge = getContributorBadge(member?.contributorLevel);
+  const teamName = teams?.find(t => t?.id === member?.teamId)?.name || 'No Team';
+
+  return (
+    <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all ${isSelected ? 'ring-2 ring-slate-700' : ''} ${!member?.isActive ? 'opacity-60' : ''}`}>
+      {/* Card Header with Selection */}
+      <div className="p-6">
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex items-start gap-3 flex-1">
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={() => onSelect(member?.id)}
+              disabled={isCurrentUser}
+              className="mt-1 w-5 h-5 text-slate-700 rounded focus:ring-slate-700 disabled:opacity-50"
+            />
+            
+            <div className="flex-1">
+              {/* Avatar and Name */}
+              <div className="flex items-center gap-3 mb-2">
+                {member?.avatarUrl ? (
+                  <img
+                    src={member?.avatarUrl}
+                    alt={member?.fullName || member?.username}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center">
+                    <User className="w-6 h-6 text-white" />
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-gray-900 truncate">
+                    {member?.fullName || member?.username}
+                    {isCurrentUser && (
+                      <span className="ml-2 text-xs text-gray-500">(You)</span>
+                    )}
+                  </h3>
+                  <p className="text-sm text-gray-600">@{member?.username}</p>
+                </div>
+              </div>
+
+              {/* Status and Role Badges */}
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getRoleBadgeColor(member?.role)}`}>
+                  {getRoleLabel(member?.role)}
+                </span>
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${contributorBadge?.color}`}>
+                  {contributorBadge?.label}
+                </span>
+                {!member?.isActive && (
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                    Inactive
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Actions Menu */}
+          {!isCurrentUser && (
+            <div className="relative">
+              <button
+                onClick={() => setShowActions(!showActions)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <MoreVertical className="w-5 h-5 text-gray-600" />
+              </button>
+
+              {showActions && (
+                <>
+                  <div 
+                    className="fixed inset-0 z-10"
+                    onClick={() => setShowActions(false)}
+                  />
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-20">
+                    <button
+                      onClick={() => {
+                        onUpdateRole();
+                        setShowActions(false);
+                      }}
+                      className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                    >
+                      <Shield className="w-4 h-4" />
+                      Change Role
+                    </button>
+                    
+                    {member?.isActive ? (
+                      <button
+                        onClick={() => {
+                          onDeactivate(member?.id);
+                          setShowActions(false);
+                        }}
+                        className="w-full px-4 py-2 text-left text-sm text-orange-600 hover:bg-orange-50 flex items-center gap-2"
+                      >
+                        <X className="w-4 h-4" />
+                        Deactivate
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          onReactivate(member?.id);
+                          setShowActions(false);
+                        }}
+                        className="w-full px-4 py-2 text-left text-sm text-green-600 hover:bg-green-50 flex items-center gap-2"
+                      >
+                        <Check className="w-4 h-4" />
+                        Reactivate
+                      </button>
+                    )}
+                    
+                    <div className="border-t border-gray-200 my-2" />
+                    
+                    <button
+                      onClick={() => {
+                        onRemove(member?.id);
+                        setShowActions(false);
+                      }}
+                      className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                    >
+                      <X className="w-4 h-4" />
+                      Remove from Company
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Contact Information */}
+        <div className="space-y-2 mb-4">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <Mail className="w-4 h-4" />
+            <span className="truncate">{member?.email}</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <Users className="w-4 h-4" />
+            <span>{teamName}</span>
+          </div>
+        </div>
+
+        {/* Activity Stats */}
+        <div className="grid grid-cols-3 gap-4 py-3 border-t border-gray-200">
+          <div className="text-center">
+            <div className="text-lg font-semibold text-gray-900">{member?.snippetsCount || 0}</div>
+            <div className="text-xs text-gray-500">Snippets</div>
+          </div>
+          <div className="text-center">
+            <div className="text-lg font-semibold text-gray-900">{member?.bugsFixedCount || 0}</div>
+            <div className="text-xs text-gray-500">Bugs Fixed</div>
+          </div>
+          <div className="text-center">
+            <div className="text-lg font-semibold text-gray-900">
+              {formatDate(member?.lastLoginAt)}
+            </div>
+            <div className="text-xs text-gray-500">Last Active</div>
+          </div>
+        </div>
+
+        {/* Team Assignment */}
+        {!isCurrentUser && (
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Team Assignment
+            </label>
+            <select
+              value={member?.teamId || ''}
+              onChange={(e) => onUpdateTeam(member?.id, e?.target?.value || null)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent text-sm"
+            >
+              <option value="">No Team</option>
+              {teams?.map(team => (
+                <option key={team?.id} value={team?.id}>
+                  {team?.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

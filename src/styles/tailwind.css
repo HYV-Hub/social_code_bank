@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #1e40af; /* blue-800 */
+    --color-primary-foreground: #ffffff; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #64748b; /* slate-500 */
+    --color-secondary-foreground: #ffffff; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #0ea5e9; /* sky-500 */
+    --color-accent-foreground: #ffffff; /* white */
+    
+    /* Background Colors */
+    --color-background: #fafafa; /* gray-50 */
+    --color-foreground: #1e293b; /* slate-800 */
+    
+    /* Surface Colors */
+    --color-card: #ffffff; /* white */
+    --color-card-foreground: #1e293b; /* slate-800 */
+    --color-popover: #ffffff; /* white */
+    --color-popover-foreground: #1e293b; /* slate-800 */
+    
+    /* Muted Colors */
+    --color-muted: #f1f5f9; /* slate-100 */
+    --color-muted-foreground: #64748b; /* slate-500 */
+    
+    /* Border & Input */
+    --color-border: #e2e8f0; /* slate-200 */
+    --color-input: #e2e8f0; /* slate-200 */
+    --color-ring: #1e40af; /* blue-800 */
+    
+    /* Status Colors */
+    --color-success: #059669; /* emerald-600 */
+    --color-success-foreground: #ffffff; /* white */
+    --color-warning: #d97706; /* amber-600 */
+    --color-warning-foreground: #ffffff; /* white */
+    --color-error: #dc2626; /* red-600 */
+    --color-error-foreground: #ffffff; /* white */
+    --color-destructive: #dc2626; /* red-600 */
+    --color-destructive-foreground: #ffffff; /* white */
+    
+    /* Radius */
+    --radius: 6px;
+  }
+
+  .dark {
+    /* Primary Colors */
+    --color-primary: #3b82f6; /* blue-500 */
+    --color-primary-foreground: #ffffff; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #475569; /* slate-600 */
+    --color-secondary-foreground: #f1f5f9; /* slate-100 */
+    
+    /* Accent Colors */
+    --color-accent: #0ea5e9; /* sky-500 */
+    --color-accent-foreground: #ffffff; /* white */
+    
+    /* Background Colors */
+    --color-background: #0f172a; /* slate-900 */
+    --color-foreground: #f1f5f9; /* slate-100 */
+    
+    /* Surface Colors */
+    --color-card: #1e293b; /* slate-800 */
+    --color-card-foreground: #f1f5f9; /* slate-100 */
+    --color-popover: #1e293b; /* slate-800 */
+    --color-popover-foreground: #f1f5f9; /* slate-100 */
+    
+    /* Muted Colors */
+    --color-muted: #334155; /* slate-700 */
+    --color-muted-foreground: #94a3b8; /* slate-400 */
+    
+    /* Border & Input */
+    --color-border: #334155; /* slate-700 */
+    --color-input: #334155; /* slate-700 */
+    --color-ring: #3b82f6; /* blue-500 */
+    
+    /* Status Colors */
+    --color-success: #10b981; /* emerald-500 */
+    --color-success-foreground: #ffffff; /* white */
+    --color-warning: #f59e0b; /* amber-500 */
+    --color-warning-foreground: #ffffff; /* white */
+    --color-error: #ef4444; /* red-500 */
+    --color-error-foreground: #ffffff; /* white */
+    --color-destructive: #ef4444; /* red-500 */
+    --color-destructive-foreground: #ffffff; /* white */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
