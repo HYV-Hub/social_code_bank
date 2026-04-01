@@ -118,10 +118,10 @@ const HiveCollectionDetail = () => {
         <div className="pt-16 flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative w-16 h-16 mx-auto mb-6">
-              <div className="absolute inset-0 border-4 border-blue-200 rounded-full"></div>
+              <div className="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
               <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
             </div>
-            <p className="text-gray-700 font-medium text-lg">Loading collection...</p>
+            <p className="text-foreground font-medium text-lg">Loading collection...</p>
           </div>
         </div>
       </div>
@@ -135,13 +135,13 @@ const HiveCollectionDetail = () => {
         <div className="pt-16 flex items-center justify-center min-h-[60vh]">
           <div className="text-center max-w-md mx-auto px-4">
             <div className="w-24 h-24 bg-gradient-to-br from-red-100 to-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <ArrowLeft className="w-12 h-12 text-red-600" />
+              <ArrowLeft className="w-12 h-12 text-error" />
             </div>
-            <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 border-2 border-red-100">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+            <div className="bg-card rounded-xl shadow-xl p-8 mb-6 border-2 border-red-100">
+              <h2 className="text-3xl font-bold text-foreground mb-3">
                 {error ? '⚠️ Error Loading Collection' : '🔍 Collection Not Found'}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-muted-foreground text-lg leading-relaxed">
                 {error || 'The collection you are looking for could not be found.'}
               </p>
             </div>
@@ -166,7 +166,7 @@ const HiveCollectionDetail = () => {
           {/* Enhanced Back Button */}
           <button
             onClick={() => navigate(`/hives/${collection?.hive?.id}`)}
-            className="group flex items-center gap-3 text-gray-700 hover:text-blue-600 mb-8 transition-all font-medium bg-white px-5 py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105"
+            className="group flex items-center gap-3 text-foreground hover:text-primary mb-8 transition-all font-medium bg-card px-5 py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Hive</span>
@@ -183,7 +183,7 @@ const HiveCollectionDetail = () => {
           />
 
           {/* Enhanced Filter Panel and Add Button with better visual design */}
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-8 bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-8 bg-card rounded-xl p-6 shadow-xl border border-border">
             <FilterPanel
               filters={filters}
               onFilterChange={setFilters}
@@ -204,20 +204,20 @@ const HiveCollectionDetail = () => {
           {snippetsLoading ? (
             <div className="flex items-center justify-center py-20">
               <div className="relative w-16 h-16">
-                <div className="absolute inset-0 border-4 border-blue-200 rounded-full"></div>
+                <div className="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
                 <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
               </div>
             </div>
           ) : snippets?.length === 0 ? (
-            <div className="text-center py-20 bg-white rounded-2xl border-2 border-dashed border-gray-200 shadow-lg">
+            <div className="text-center py-20 bg-card rounded-xl border-2 border-dashed border-border shadow-lg">
               <div className="max-w-md mx-auto px-4">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Plus className="w-12 h-12 text-blue-600" />
+                  <Plus className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-2xl font-bold text-foreground mb-3">
                   {filters?.search || filters?.language !== 'all' ? '🔍 No snippets match your filters' : '📦 This collection is empty'}
                 </h3>
-                <p className="text-gray-600 mb-6 text-lg">
+                <p className="text-muted-foreground mb-6 text-lg">
                   {filters?.search || filters?.language !== 'all' ?'Try adjusting your search criteria' :'Start building your collection by adding snippets'}
                 </p>
                 {isOwner && !filters?.search && filters?.language === 'all' && (

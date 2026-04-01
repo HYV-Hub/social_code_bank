@@ -16,8 +16,8 @@ const ActivityItem = ({ activity }) => {
 
   const getActivityColor = (type) => {
     switch(type) {
-      case 'like': return 'text-red-500';
-      case 'comment': return 'text-blue-500';
+      case 'like': return 'text-error';
+      case 'comment': return 'text-primary';
       case 'follow': return 'text-green-500';
       case 'share': return 'text-purple-500';
       case 'save': return 'text-yellow-500';

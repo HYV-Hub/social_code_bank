@@ -193,10 +193,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
   if (!isOpen) return null;
 
   return (
-    <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg border border-gray-300 p-4 space-y-4">
-      <div className="flex items-center justify-between pb-2 border-b border-gray-300">
-        <h3 className="text-base font-semibold text-gray-900 flex items-center gap-2">
-          <Icon name="Filter" size={18} className="text-blue-600" />
+    <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg border border-border p-4 space-y-4">
+      <div className="flex items-center justify-between pb-2 border-b border-border">
+        <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+          <Icon name="Filter" size={18} className="text-primary" />
           Filter Options
         </h3>
         <Button
@@ -204,7 +204,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
           size="sm"
           onClick={onClear}
           iconName="X"
-          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+          className="text-error hover:text-error hover:bg-error/10"
         >
           Clear Filters
         </Button>
@@ -214,7 +214,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {/* Sort By */}
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">
+          <label className="block text-xs font-medium text-foreground mb-1">
             Sort By
           </label>
           <Select
@@ -226,7 +226,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
 
         {/* Content Type */}
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">
+          <label className="block text-xs font-medium text-foreground mb-1">
             Content Type
           </label>
           <Select
@@ -238,7 +238,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
 
         {/* Language Filter */}
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">
+          <label className="block text-xs font-medium text-foreground mb-1">
             Language
           </label>
           <Select
@@ -250,7 +250,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
 
         {/* Date Range Quick Filters */}
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">
+          <label className="block text-xs font-medium text-foreground mb-1">
             📅 Date Range
           </label>
           <Select
@@ -272,10 +272,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
         {/* AI TAG FILTERS - SOFTWARE CATEGORIES */}
 
         {/* Frameworks & Libraries */}
-        <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-border overflow-hidden">
           <button
             onClick={() => toggleCategory('frameworks')}
-            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-foreground hover:bg-background transition-colors"
           >
             <span>🔧 Frameworks & Libraries</span>
             <span className={`transform transition-transform ${expandedCategories?.frameworks ? 'rotate-180' : ''}`}>
@@ -284,10 +284,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
           </button>
           
           {expandedCategories?.frameworks && (
-            <div className="px-3 pb-2 space-y-2 bg-gray-50">
+            <div className="px-3 pb-2 space-y-2 bg-background">
               {/* Frontend Frameworks */}
               <div>
-                <p className="text-xs font-medium text-gray-600 mb-1">Frontend</p>
+                <p className="text-xs font-medium text-muted-foreground mb-1">Frontend</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                   {frameworkOptions?.frontend?.map((option) => (
                     <Checkbox
@@ -302,7 +302,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
 
               {/* Backend Frameworks */}
               <div>
-                <p className="text-xs font-medium text-gray-600 mb-1">Backend</p>
+                <p className="text-xs font-medium text-muted-foreground mb-1">Backend</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                   {frameworkOptions?.backend?.map((option) => (
                     <Checkbox
@@ -317,7 +317,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
 
               {/* Styling Libraries */}
               <div>
-                <p className="text-xs font-medium text-gray-600 mb-1">Styling</p>
+                <p className="text-xs font-medium text-muted-foreground mb-1">Styling</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                   {frameworkOptions?.styling?.map((option) => (
                     <Checkbox
@@ -332,7 +332,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
 
               {/* State Management */}
               <div>
-                <p className="text-xs font-medium text-gray-600 mb-1">State Management</p>
+                <p className="text-xs font-medium text-muted-foreground mb-1">State Management</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                   {frameworkOptions?.state?.map((option) => (
                     <Checkbox
@@ -349,10 +349,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
         </div>
 
         {/* UX/UI Components */}
-        <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-border overflow-hidden">
           <button
             onClick={() => toggleCategory('ux')}
-            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-foreground hover:bg-background transition-colors"
           >
             <span>🎨 UX/UI Components</span>
             <span className={`transform transition-transform ${expandedCategories?.ux ? 'rotate-180' : ''}`}>
@@ -361,7 +361,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
           </button>
           
           {expandedCategories?.ux && (
-            <div className="px-3 pb-2 bg-gray-50">
+            <div className="px-3 pb-2 bg-background">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                 {uxComponentOptions?.map((option) => (
                   <Checkbox
@@ -377,10 +377,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
         </div>
 
         {/* Purpose/Functionality */}
-        <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-border overflow-hidden">
           <button
             onClick={() => toggleCategory('purpose')}
-            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-foreground hover:bg-background transition-colors"
           >
             <span>🎯 Purpose/Functionality</span>
             <span className={`transform transition-transform ${expandedCategories?.purpose ? 'rotate-180' : ''}`}>
@@ -389,7 +389,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
           </button>
           
           {expandedCategories?.purpose && (
-            <div className="px-3 pb-2 bg-gray-50">
+            <div className="px-3 pb-2 bg-background">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                 {purposeOptions?.map((option) => (
                   <Checkbox
@@ -405,10 +405,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
         </div>
 
         {/* Behavioral Patterns */}
-        <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-border overflow-hidden">
           <button
             onClick={() => toggleCategory('behavioral')}
-            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-foreground hover:bg-background transition-colors"
           >
             <span>⚡ Behavioral Patterns</span>
             <span className={`transform transition-transform ${expandedCategories?.behavioral ? 'rotate-180' : ''}`}>
@@ -417,7 +417,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
           </button>
           
           {expandedCategories?.behavioral && (
-            <div className="px-3 pb-2 bg-gray-50">
+            <div className="px-3 pb-2 bg-background">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                 {behavioralOptions?.map((option) => (
                   <Checkbox
@@ -433,10 +433,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
         </div>
 
         {/* Database */}
-        <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-border overflow-hidden">
           <button
             onClick={() => toggleCategory('database')}
-            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-foreground hover:bg-background transition-colors"
           >
             <span>🗄️ Database</span>
             <span className={`transform transition-transform ${expandedCategories?.database ? 'rotate-180' : ''}`}>
@@ -445,7 +445,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
           </button>
           
           {expandedCategories?.database && (
-            <div className="px-3 pb-2 bg-gray-50">
+            <div className="px-3 pb-2 bg-background">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                 {databaseOptions?.map((option) => (
                   <Checkbox
@@ -461,10 +461,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
         </div>
 
         {/* Security */}
-        <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-border overflow-hidden">
           <button
             onClick={() => toggleCategory('security')}
-            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-foreground hover:bg-background transition-colors"
           >
             <span>🔒 Security</span>
             <span className={`transform transition-transform ${expandedCategories?.security ? 'rotate-180' : ''}`}>
@@ -473,7 +473,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
           </button>
           
           {expandedCategories?.security && (
-            <div className="px-3 pb-2 bg-gray-50">
+            <div className="px-3 pb-2 bg-background">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                 {securityOptions?.map((option) => (
                   <Checkbox
@@ -489,10 +489,10 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
         </div>
 
         {/* Performance */}
-        <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-border overflow-hidden">
           <button
             onClick={() => toggleCategory('performance')}
-            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-foreground hover:bg-background transition-colors"
           >
             <span>⚡ Performance</span>
             <span className={`transform transition-transform ${expandedCategories?.performance ? 'rotate-180' : ''}`}>
@@ -501,7 +501,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
           </button>
           
           {expandedCategories?.performance && (
-            <div className="px-3 pb-2 bg-gray-50">
+            <div className="px-3 pb-2 bg-background">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                 {performanceOptions?.map((option) => (
                   <Checkbox
@@ -517,8 +517,8 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
         </div>
 
         {/* Difficulty Level */}
-        <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
-          <label className="block text-xs font-medium text-gray-700 mb-2 px-3 py-2">
+        <div className="bg-card rounded-md border border-border overflow-hidden">
+          <label className="block text-xs font-medium text-foreground mb-2 px-3 py-2">
             📊 Difficulty Level
           </label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-1 px-3 pb-2">
@@ -535,8 +535,8 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
 
         {/* Bug Status (only for bugs) */}
         {(filters?.contentType === 'bugs' || filters?.contentType === 'all') && (
-          <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
-            <label className="block text-xs font-medium text-gray-700 mb-2 px-3 py-2">
+          <div className="bg-card rounded-md border border-border overflow-hidden">
+            <label className="block text-xs font-medium text-foreground mb-2 px-3 py-2">
               Bug Status
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-1 px-3 pb-2">
@@ -559,8 +559,8 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
 
         {/* Bug Priority (only for bugs) */}
         {(filters?.contentType === 'bugs' || filters?.contentType === 'all') && (
-          <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
-            <label className="block text-xs font-medium text-gray-700 mb-2 px-3 py-2">
+          <div className="bg-card rounded-md border border-border overflow-hidden">
+            <label className="block text-xs font-medium text-foreground mb-2 px-3 py-2">
               Bug Priority
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-1 px-3 pb-2">
@@ -585,19 +585,19 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
       {/* Selected Tags Summary */}
       {filters?.aiTags?.length > 0 && (
         <div className="border-t pt-3">
-          <p className="text-xs font-medium text-gray-700 mb-2">
+          <p className="text-xs font-medium text-foreground mb-2">
             Selected Tags ({filters?.aiTags?.length})
           </p>
           <div className="flex flex-wrap gap-1">
             {filters?.aiTags?.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                className="inline-flex items-center gap-1 px-2 py-1 bg-primary/15 text-foreground text-xs rounded-full"
               >
                 {tag}
                 <button
                   onClick={() => handleTagToggle(tag)}
-                  className="hover:text-blue-900 font-bold"
+                  className="hover:text-foreground font-bold"
                 >
                   ×
                 </button>

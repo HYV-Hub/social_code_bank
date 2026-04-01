@@ -23,10 +23,10 @@ const BugResultCard = ({ bug, searchQuery }) => {
 
   const getStatusColor = (status) => {
     const colors = {
-      open: 'bg-red-500/10 text-red-700 border-red-500/30',
-      'in-review': 'bg-yellow-500/10 text-yellow-700 border-yellow-500/30',
-      'fix-submitted': 'bg-blue-500/10 text-blue-700 border-blue-500/30',
-      resolved: 'bg-green-500/10 text-green-700 border-green-500/30'
+      open: 'bg-error/100/10 text-error border-error/30',
+      'in-review': 'bg-warning/100/10 text-warning border-yellow-500/30',
+      'fix-submitted': 'bg-primary/10 text-primary border-blue-500/30',
+      resolved: 'bg-success/100/10 text-success border-green-500/30'
     };
     return colors?.[status] || colors?.open;
   };
@@ -43,10 +43,10 @@ const BugResultCard = ({ bug, searchQuery }) => {
 
   const getPriorityColor = (priority) => {
     const colors = {
-      critical: 'text-red-600 bg-red-500/10',
+      critical: 'text-error bg-error/100/10',
       high: 'text-orange-600 bg-orange-500/10',
-      medium: 'text-yellow-600 bg-yellow-500/10',
-      low: 'text-gray-600 bg-gray-500/10'
+      medium: 'text-warning bg-warning/100/10',
+      low: 'text-muted-foreground bg-background0/10'
     };
     return colors?.[priority] || colors?.medium;
   };
@@ -74,8 +74,8 @@ const BugResultCard = ({ bug, searchQuery }) => {
       <div className="p-6 pb-4">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/10 to-red-600/10 border border-red-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Icon name="Bug" size={24} className="text-red-600" />
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/10 to-red-600/10 border border-error/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Icon name="Bug" size={24} className="text-error" />
             </div>
           </div>
 
@@ -140,11 +140,11 @@ const BugResultCard = ({ bug, searchQuery }) => {
           </div>
 
           {errorLines?.length > 0 && (
-            <div className="relative bg-gray-900 overflow-x-auto">
+            <div className="relative bg-card overflow-x-auto">
               <pre className="p-4 text-xs">
-                <code className="text-red-400 font-mono leading-relaxed">
+                <code className="text-error font-mono leading-relaxed">
                   {errorLines?.map((line, index) => (
-                    <div key={index} className="hover:bg-gray-800/50 transition-colors">
+                    <div key={index} className="hover:bg-card/50 transition-colors">
                       {line || '\n'}
                     </div>
                   ))}
@@ -233,12 +233,12 @@ const BugResultCard = ({ bug, searchQuery }) => {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-blue-500 transition-colors">
+            <span className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors">
               <Icon name="MessageSquare" size={16} />
               <span className="font-medium">{bug?.comments_count || bug?.comments || 0}</span>
             </span>
             {(bug?.fix_submitted || bug?.fixSubmitted) && (
-              <span className="flex items-center gap-1.5 text-sm text-green-600 font-medium">
+              <span className="flex items-center gap-1.5 text-sm text-success font-medium">
                 <Icon name="CheckCircle2" size={16} />
                 Fix Available
               </span>
@@ -258,7 +258,7 @@ const BugResultCard = ({ bug, searchQuery }) => {
             {bug?.tags?.map((tag, index) => (
               <span
                 key={index}
-                className="px-2.5 py-1 bg-red-500/5 hover:bg-red-500/10 border border-red-500/10 rounded-full text-xs text-red-600 font-medium transition-colors cursor-pointer"
+                className="px-2.5 py-1 bg-error/100/5 hover:bg-error/100/10 border border-error/10 rounded-full text-xs text-error font-medium transition-colors cursor-pointer"
               >
                 #{tag}
               </span>

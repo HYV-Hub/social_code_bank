@@ -70,10 +70,10 @@ const ForgotPassword = () => {
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
           <div className="w-full max-w-md">
             {/* Success Card */}
-            <div className="bg-white rounded-lg shadow-xl border border-slate-200 p-8">
+            <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
               {/* Success Icon */}
               <div className="flex justify-center mb-6">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center">
                   <Icon name="MailCheck" size={32} color="#16a34a" />
                 </div>
               </div>
@@ -85,27 +85,27 @@ const ForgotPassword = () => {
               <p className="text-slate-600 text-center mb-6">
                 We've sent password reset instructions to:
               </p>
-              <p className="text-blue-800 font-semibold text-center mb-6 bg-blue-50 py-3 px-4 rounded-lg">
+              <p className="text-foreground font-semibold text-center mb-6 bg-primary/10 py-3 px-4 rounded-lg">
                 {email}
               </p>
 
               {/* Instructions */}
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-blue-800 text-xs font-bold">1</span>
+                  <div className="w-6 h-6 bg-primary/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-foreground text-xs font-bold">1</span>
                   </div>
                   <p className="text-sm text-slate-700">Check your email inbox (and spam folder)</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-blue-800 text-xs font-bold">2</span>
+                  <div className="w-6 h-6 bg-primary/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-foreground text-xs font-bold">2</span>
                   </div>
                   <p className="text-sm text-slate-700">Click the password reset link in the email</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-blue-800 text-xs font-bold">3</span>
+                  <div className="w-6 h-6 bg-primary/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-foreground text-xs font-bold">3</span>
                   </div>
                   <p className="text-sm text-slate-700">Set your new password</p>
                 </div>
@@ -171,10 +171,10 @@ const ForgotPassword = () => {
           </div>
 
           {/* Main Card */}
-          <div className="bg-white rounded-lg shadow-xl border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
             {/* Header */}
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-primary/15 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Icon name="KeyRound" size={32} color="#1e40af" />
               </div>
               <h1 className="text-2xl font-bold text-slate-900 mb-2">
@@ -189,11 +189,11 @@ const ForgotPassword = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Error Message */}
               {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+                <div className="bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
                   <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <p className="text-sm text-red-800 font-medium">Error</p>
-                    <p className="text-sm text-red-700 mt-1">{error}</p>
+                    <p className="text-sm text-error mt-1">{error}</p>
                   </div>
                 </div>
               )}

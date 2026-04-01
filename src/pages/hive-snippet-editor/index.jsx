@@ -211,10 +211,10 @@ const HiveSnippetEditor = () => {
 
       setAiResults({
         tags: result?.tags || [],
-        qualityScore: result?.optimizationScore || 0,
+        qualityScore: result?.qualityScore || 0,
         detectedLanguage: result?.detectedLanguage || 'unknown',
         languageConfidence: result?.languageConfidence || 'low',
-        aiAnalysisData: result?.analysis || null
+        aiAnalysisData: { summary: result?.summary || '', strengths: result?.strengths || [], weaknesses: result?.weaknesses || [], improvements: result?.improvements || [], categories: result?.categories || [], recommendations: result?.recommendations || { quick: [], detailed: [] }, metrics: result?.metrics || {}, purposeTags: result?.purposeTags || [], functionalityTags: result?.functionalityTags || [], searchAliases: result?.searchAliases || [], readabilityScore: result?.readabilityScore || 0, bugRisk: result?.bugRisk || 'unknown', requestId: result?.requestId, analysisVersion: result?.analysisVersion || 'v2' }
       });
 
       if (result?.detectedLanguage) {
@@ -587,17 +587,17 @@ const HiveSnippetEditor = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <AppNavigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-card rounded-lg shadow-lg p-8">
           {/* Hive Context Indicator */}
           {hiveDetails && (
-            <div className="mb-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="mb-6 bg-primary/10 border border-border rounded-lg p-4">
               <div className="flex items-start gap-3">
-                <Icon name="Hexagon" className="text-purple-600 mt-0.5" size={20} />
+                <Icon name="Hexagon" className="text-primary mt-0.5" size={20} />
                 <div className="flex-1">
                   <p className="text-purple-900 font-semibold">
                     Creating for Hive: {hiveDetails?.name}
                   </p>
-                  <p className="text-purple-700 text-sm">
+                  <p className="text-primary text-sm">
                     This snippet will be automatically shared with all hive members
                   </p>
                 </div>
@@ -606,7 +606,7 @@ const HiveSnippetEditor = () => {
           )}
 
           {/* Header */}
-          <header className="bg-white border-b border-slate-200 sticky top-0 z-50 -mx-8 -mt-8 px-8 py-4 mb-6">
+          <header className="bg-card border-b border-slate-200 sticky top-0 z-50 -mx-8 -mt-8 px-8 py-4 mb-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Button
@@ -663,7 +663,7 @@ const HiveSnippetEditor = () => {
             </div>
 
             {errors?.submit && (
-              <div className="mt-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+              <div className="mt-4 bg-error/10 border border-error/20 text-error px-4 py-3 rounded-lg">
                 <div className="flex items-start gap-2">
                   <Icon name="AlertCircle" size={20} className="flex-shrink-0 mt-0.5" />
                   <div>
@@ -697,7 +697,7 @@ const HiveSnippetEditor = () => {
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
                 {/* AI Analysis */}
-                <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+                <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <h2 className="text-lg font-semibold text-slate-900">
@@ -710,7 +710,7 @@ const HiveSnippetEditor = () => {
                   </div>
 
                   {errors?.success && (
-                    <div className="mb-4 bg-green-50 border border-green-200 text-green-700 px-3 py-2 rounded-lg">
+                    <div className="mb-4 bg-success/10 border border-success/20 text-success px-3 py-2 rounded-lg">
                       <div className="flex items-start gap-2">
                         <Icon name="CheckCircle" size={16} className="flex-shrink-0 mt-0.5" />
                         <p className="text-sm">{errors?.success}</p>
@@ -719,7 +719,7 @@ const HiveSnippetEditor = () => {
                   )}
 
                   {errors?.code && (
-                    <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg">
+                    <div className="mb-4 bg-error/10 border border-error/20 text-error px-3 py-2 rounded-lg">
                       <div className="flex items-start gap-2">
                         <Icon name="AlertCircle" size={16} className="flex-shrink-0 mt-0.5" />
                         <p className="text-sm">{errors?.code}</p>
@@ -741,19 +741,19 @@ const HiveSnippetEditor = () => {
                   {aiResults && (
                     <div className="space-y-4 mt-6">
                       {aiResults?.detectedLanguage && (
-                        <div className="bg-blue-50 rounded-lg p-3">
+                        <div className="bg-primary/10 rounded-lg p-3">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-blue-900">
+                            <span className="text-sm font-medium text-foreground">
                               Detected Language
                             </span>
                             <div className="flex items-center gap-2">
-                              <span className="text-sm font-bold text-blue-700 uppercase">
+                              <span className="text-sm font-bold text-primary uppercase">
                                 {aiResults?.detectedLanguage}
                               </span>
                               <span
                                 className={`text-xs px-2 py-1 rounded-full ${
-                                  aiResults?.languageConfidence === 'high' ?'bg-green-100 text-green-700'
-                                    : aiResults?.languageConfidence === 'medium' ?'bg-yellow-100 text-yellow-700' :'bg-red-100 text-red-700'
+                                  aiResults?.languageConfidence === 'high' ?'bg-success/15 text-success'
+                                    : aiResults?.languageConfidence === 'medium' ?'bg-warning/15 text-warning' :'bg-error/15 text-error'
                                 }`}
                               >
                                 {aiResults?.languageConfidence} confidence
@@ -768,13 +768,13 @@ const HiveSnippetEditor = () => {
                           <span className="text-sm font-medium text-slate-700">
                             Code Quality
                           </span>
-                          <span className="text-2xl font-bold text-purple-600">
+                          <span className="text-2xl font-bold text-primary">
                             {aiResults?.qualityScore}/100
                           </span>
                         </div>
                         <div className="w-full bg-slate-200 rounded-full h-2">
                           <div
-                            className="bg-purple-600 h-2 rounded-full transition-all duration-500"
+                            className="bg-primary h-2 rounded-full transition-all duration-500"
                             style={{ width: `${aiResults?.qualityScore}%` }}
                           ></div>
                         </div>
@@ -789,7 +789,7 @@ const HiveSnippetEditor = () => {
                             {aiResults?.tags?.map((tag, index) => (
                               <span
                                 key={index}
-                                className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
+                                className="px-3 py-1 bg-purple-100 text-primary rounded-full text-sm"
                               >
                                 {tag}
                               </span>
@@ -816,7 +816,7 @@ const HiveSnippetEditor = () => {
       {/* Preview Modal */}
       {showPreview && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-6">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+          <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
             <div className="flex items-center justify-between p-6 border-b border-slate-200">
               <h2 className="text-xl font-semibold text-slate-800">Preview</h2>
               <Button
@@ -846,8 +846,8 @@ const HiveSnippetEditor = () => {
                     </span>
                     <span
                       className={`text-xs px-2 py-1 rounded-full ${
-                        aiResults?.languageConfidence === 'high' ?'bg-green-100 text-green-700'
-                          : aiResults?.languageConfidence === 'medium' ?'bg-yellow-100 text-yellow-700' :'bg-gray-100 text-gray-700'
+                        aiResults?.languageConfidence === 'high' ?'bg-success/15 text-success'
+                          : aiResults?.languageConfidence === 'medium' ?'bg-warning/15 text-warning' :'bg-muted text-foreground'
                       }`}
                     >
                       AI detected
@@ -860,7 +860,7 @@ const HiveSnippetEditor = () => {
                     {tags?.split(',')?.map((tag, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full"
+                        className="px-3 py-1 text-xs font-medium bg-primary/15 text-primary rounded-full"
                       >
                         {tag?.trim()}
                       </span>
@@ -880,7 +880,7 @@ const HiveSnippetEditor = () => {
       )}
 
       {/* Mobile Bottom Actions */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 flex gap-3">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-card border-t border-slate-200 p-4 flex gap-3">
         <Button
           variant="outline"
           size="default"

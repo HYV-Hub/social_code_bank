@@ -61,11 +61,11 @@ export default function LoginForm() {
     <div className="w-full">
       {/* Global Error Message */}
       {error && (
-        <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+        <div className="mb-6 bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
           <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
           <div className="flex-1">
             <p className="text-sm text-red-800 font-medium">Authentication Failed</p>
-            <p className="text-sm text-red-700 mt-1">{error}</p>
+            <p className="text-sm text-error mt-1">{error}</p>
           </div>
         </div>
       )}
@@ -138,7 +138,7 @@ export default function LoginForm() {
       </form>
 
       {/* Help Text */}
-      <div className="mt-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
+      <div className="mt-6 p-4 bg-primary/10 border border-blue-100 rounded-lg">
         <div className="flex items-start gap-2">
           <Icon name="Info" size={18} color="#3b82f6" className="flex-shrink-0 mt-0.5" />
           <div className="text-xs text-slate-700">

@@ -101,13 +101,13 @@ const HelpCenterPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <AppNavigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Help Center</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold text-foreground mb-4">Help Center</h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Find answers to common questions and learn how to make the most of HyvHub
           </p>
         </div>
@@ -118,7 +118,7 @@ const HelpCenterPage = () => {
             <Icon 
               name="Search" 
               size={20} 
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground"
             />
             <Input
               type="text"
@@ -132,25 +132,25 @@ const HelpCenterPage = () => {
 
         {/* Quick Links */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Links</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">Quick Links</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {quickLinks?.map((link, index) => (
               <Link
                 key={index}
                 to={link?.link}
-                className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow group"
+                className="bg-card rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                    <Icon name={link?.icon} size={24} className="text-blue-600" />
+                  <div className="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                    <Icon name={link?.icon} size={24} className="text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
+                    <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                       {link?.title}
                     </h3>
-                    <p className="text-sm text-gray-600">{link?.description}</p>
+                    <p className="text-sm text-muted-foreground">{link?.description}</p>
                   </div>
-                  <Icon name="ChevronRight" size={20} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
+                  <Icon name="ChevronRight" size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
                 </div>
               </Link>
             ))}
@@ -166,7 +166,7 @@ const HelpCenterPage = () => {
                 onClick={() => setSelectedCategory(category?.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                   selectedCategory === category?.id
-                    ? 'bg-blue-600 text-white' :'bg-white text-gray-700 hover:bg-gray-50'
+                    ? 'bg-primary text-white' :'bg-card text-foreground hover:bg-background'
                 }`}
               >
                 <Icon name={category?.icon} size={18} />
@@ -178,34 +178,34 @@ const HelpCenterPage = () => {
 
         {/* FAQs */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl font-bold text-foreground mb-6">
             Frequently Asked Questions
             {searchQuery && ` (${filteredFAQs?.length} results)`}
           </h2>
           <div className="space-y-4">
             {filteredFAQs?.length === 0 ? (
-              <div className="bg-white rounded-lg shadow-sm p-8 text-center">
-                <Icon name="Search" size={48} className="text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No results found</h3>
-                <p className="text-gray-600">Try adjusting your search or browse by category</p>
+              <div className="bg-card rounded-lg shadow-sm p-8 text-center">
+                <Icon name="Search" size={48} className="text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">No results found</h3>
+                <p className="text-muted-foreground">Try adjusting your search or browse by category</p>
               </div>
             ) : (
               filteredFAQs?.map((faq, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div key={index} className="bg-card rounded-lg shadow-sm overflow-hidden">
                   <button
                     onClick={() => setExpandedFAQ(expandedFAQ === index ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
+                    className="w-full flex items-center justify-between p-6 text-left hover:bg-background transition-colors"
                   >
-                    <span className="font-semibold text-gray-900 pr-4">{faq?.question}</span>
+                    <span className="font-semibold text-foreground pr-4">{faq?.question}</span>
                     <Icon 
                       name={expandedFAQ === index ? 'ChevronUp' : 'ChevronDown'} 
                       size={20} 
-                      className="text-gray-400 flex-shrink-0"
+                      className="text-muted-foreground flex-shrink-0"
                     />
                   </button>
                   {expandedFAQ === index && (
                     <div className="px-6 pb-6">
-                      <p className="text-gray-600 leading-relaxed">{faq?.answer}</p>
+                      <p className="text-muted-foreground leading-relaxed">{faq?.answer}</p>
                     </div>
                   )}
                 </div>
@@ -226,7 +226,7 @@ const HelpCenterPage = () => {
                 Contact Support
               </Button>
             </Link>
-            <Button variant="outline" iconName="MessageCircle" iconPosition="left" className="bg-white text-blue-600 hover:bg-blue-50">
+            <Button variant="outline" iconName="MessageCircle" iconPosition="left" className="bg-card text-primary hover:bg-primary/10">
               Start Live Chat
             </Button>
           </div>

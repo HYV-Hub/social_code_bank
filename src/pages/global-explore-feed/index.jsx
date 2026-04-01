@@ -104,10 +104,10 @@ export default function GlobalExploreFeed() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Header */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-foreground mb-2">
                 Global Explore Feed
               </h1>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Discover trending snippets, popular discussions, and community highlights
               </p>
             </div>
@@ -120,11 +120,11 @@ export default function GlobalExploreFeed() {
 
             {/* Error Message */}
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-                <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+              <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+                <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <p className="text-sm font-medium text-red-900">Error</p>
-                  <p className="text-sm text-red-700 mt-1">{error}</p>
+                  <p className="text-sm text-error mt-1">{error}</p>
                 </div>
               </div>
             )}
@@ -134,18 +134,18 @@ export default function GlobalExploreFeed() {
               <div className="flex items-center justify-center py-16">
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
-                  <p className="text-gray-600">Loading feed...</p>
+                  <p className="text-muted-foreground">Loading feed...</p>
                 </div>
               </div>
             ) : feedItems?.length === 0 ? (
               <div className="text-center py-16">
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-purple-100 mb-6">
-                  <Icon name="Search" size={40} className="text-purple-600" />
+                  <Icon name="Search" size={40} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-xl font-semibold text-foreground mb-2">
                   No content found
                 </h3>
-                <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                   Try adjusting your filters to discover more content
                 </p>
               </div>

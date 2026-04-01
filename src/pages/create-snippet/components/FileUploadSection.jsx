@@ -87,11 +87,11 @@ const FileUploadSection = ({ files, setFiles }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-slate-200 p-6 mb-6">
+    <div className="bg-card rounded-lg border border-slate-200 p-6 mb-6">
       <h2 className="text-lg font-semibold text-slate-800 mb-4">Attachments</h2>
       <div
         className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-          dragActive ? 'border-blue-500 bg-blue-50' : 'border-slate-300 bg-slate-50'
+          dragActive ? 'border-blue-500 bg-primary/10' : 'border-slate-300 bg-slate-50'
         }`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -107,8 +107,8 @@ const FileUploadSection = ({ files, setFiles }) => {
         />
         
         <div className="flex flex-col items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-            <Icon name="Upload" size={24} className="text-blue-600" />
+          <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center">
+            <Icon name="Upload" size={24} className="text-primary" />
           </div>
           
           <div>
@@ -138,8 +138,8 @@ const FileUploadSection = ({ files, setFiles }) => {
               className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200"
             >
               <div className="flex items-center gap-3 flex-1 min-w-0">
-                <div className="w-10 h-10 rounded bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <Icon name={getFileIcon(file?.name)} size={20} className="text-blue-600" />
+                <div className="w-10 h-10 rounded bg-primary/15 flex items-center justify-center flex-shrink-0">
+                  <Icon name={getFileIcon(file?.name)} size={20} className="text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-slate-700 truncate">

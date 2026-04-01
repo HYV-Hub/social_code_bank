@@ -186,7 +186,7 @@ const Features = () => {
         </section>
 
         {/* Category Navigation */}
-        <section className="bg-white border-b border-slate-200 sticky top-16 z-40">
+        <section className="bg-card border-b border-slate-200 sticky top-16 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex overflow-x-auto gap-2 py-4 scrollbar-hide">
               {categories?.map((category) => (
@@ -195,7 +195,7 @@ const Features = () => {
                   onClick={() => setActiveCategory(category?.id)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all whitespace-nowrap ${
                     activeCategory === category?.id
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-primary text-white shadow-md'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
@@ -219,7 +219,7 @@ const Features = () => {
                   }`}
                 >
                   <div className="flex-1">
-                    <div className="bg-white rounded-xl shadow-lg p-8">
+                    <div className="bg-card rounded-xl shadow-lg p-8">
                       <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
                         {feature?.title}
                       </h3>
@@ -228,7 +228,7 @@ const Features = () => {
                       </p>
                       
                       {feature?.accuracy && (
-                        <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full font-semibold mb-6">
+                        <div className="inline-block bg-success/15 text-success px-4 py-2 rounded-full font-semibold mb-6">
                           {feature?.accuracy}
                         </div>
                       )}
@@ -236,7 +236,7 @@ const Features = () => {
                       <div className="space-y-3 mb-6">
                         {feature?.benefits?.map((benefit, idx) => (
                           <div key={idx} className="flex items-start gap-3">
-                            <Icon name="Check" className="text-green-600 flex-shrink-0 mt-1" size={20} />
+                            <Icon name="Check" className="text-success flex-shrink-0 mt-1" size={20} />
                             <span className="text-slate-700">{benefit}</span>
                           </div>
                         ))}
@@ -265,7 +265,7 @@ const Features = () => {
         </section>
 
         {/* Integrations Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-card">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
@@ -282,8 +282,8 @@ const Features = () => {
                   key={index}
                   className="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
                 >
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name={integration?.icon} className="text-blue-600" size={32} />
+                  <div className="w-16 h-16 bg-primary/15 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name={integration?.icon} className="text-primary" size={32} />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-2">
                     {integration?.name}
@@ -313,7 +313,7 @@ const Features = () => {
               {pricingTiers?.map((plan, index) => (
                 <div 
                   key={index}
-                  className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow"
+                  className="bg-card rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow"
                 >
                   <h3 className="text-2xl font-bold text-slate-900 mb-6">
                     {plan?.tier}
@@ -321,7 +321,7 @@ const Features = () => {
                   <ul className="space-y-4 mb-8">
                     {plan?.features?.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <Icon name="Check" className="text-green-600 flex-shrink-0 mt-1" size={20} />
+                        <Icon name="Check" className="text-success flex-shrink-0 mt-1" size={20} />
                         <span className="text-slate-700">{feature}</span>
                       </li>
                     ))}
@@ -361,7 +361,7 @@ const Features = () => {
               <Button 
                 variant="outline"
                 size="lg"
-                className="bg-white/10 border-white/30 text-white hover:bg-white/20"
+                className="bg-card/10 border-white/30 text-white hover:bg-card/20"
                 onClick={() => navigate('/team-chat')}
               >
                 Schedule Demo

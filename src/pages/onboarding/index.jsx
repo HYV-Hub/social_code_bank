@@ -140,8 +140,8 @@ const OnboardingPage = () => {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to HyvHub!</h2>
-              <p className="text-gray-600">Let's set up your profile to get started</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Welcome to HyvHub!</h2>
+              <p className="text-muted-foreground">Let's set up your profile to get started</p>
             </div>
             <div className="space-y-4">
               <Input
@@ -154,7 +154,7 @@ const OnboardingPage = () => {
               />
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Bio
                 </label>
                 <textarea
@@ -162,7 +162,7 @@ const OnboardingPage = () => {
                   value={formData?.bio}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
                   placeholder="Tell us about yourself..."
                 />
               </div>
@@ -198,12 +198,12 @@ const OnboardingPage = () => {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Skills & Interests</h2>
-              <p className="text-gray-600">Help us personalize your experience</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Your Skills & Interests</h2>
+              <p className="text-muted-foreground">Help us personalize your experience</p>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Skills
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -226,12 +226,12 @@ const OnboardingPage = () => {
                   {formData?.skills?.map((skill, index) => (
                     <span
                       key={index}
-                      className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-primary/15 text-foreground rounded-full text-sm"
                     >
                       {skill}
                       <button
                         onClick={() => handleRemoveItem('skills', skill)}
-                        className="hover:text-blue-900"
+                        className="hover:text-foreground"
                       >
                         <Icon name="X" size={14} />
                       </button>
@@ -241,7 +241,7 @@ const OnboardingPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Interests
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -264,7 +264,7 @@ const OnboardingPage = () => {
                   {formData?.interests?.map((interest, index) => (
                     <span
                       key={index}
-                      className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-success/15 text-success rounded-full text-sm"
                     >
                       {interest}
                       <button
@@ -279,7 +279,7 @@ const OnboardingPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Preferred Programming Languages
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -323,77 +323,77 @@ const OnboardingPage = () => {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Notification Preferences</h2>
-              <p className="text-gray-600">Choose how you want to be notified</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Notification Preferences</h2>
+              <p className="text-muted-foreground">Choose how you want to be notified</p>
             </div>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-background rounded-lg">
                 <div>
-                  <h3 className="font-medium text-gray-900">Email Notifications</h3>
-                  <p className="text-sm text-gray-600">Receive notifications via email</p>
+                  <h3 className="font-medium text-foreground">Email Notifications</h3>
+                  <p className="text-sm text-muted-foreground">Receive notifications via email</p>
                 </div>
                 <input
                   type="checkbox"
                   name="notification_email"
                   checked={formData?.notification_email}
                   onChange={handleInputChange}
-                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                  className="w-5 h-5 text-primary rounded focus:ring-ring"
                 />
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-background rounded-lg">
                 <div>
-                  <h3 className="font-medium text-gray-900">Push Notifications</h3>
-                  <p className="text-sm text-gray-600">Receive push notifications in browser</p>
+                  <h3 className="font-medium text-foreground">Push Notifications</h3>
+                  <p className="text-sm text-muted-foreground">Receive push notifications in browser</p>
                 </div>
                 <input
                   type="checkbox"
                   name="notification_push"
                   checked={formData?.notification_push}
                   onChange={handleInputChange}
-                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                  className="w-5 h-5 text-primary rounded focus:ring-ring"
                 />
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-background rounded-lg">
                 <div>
-                  <h3 className="font-medium text-gray-900">Snippet Likes</h3>
-                  <p className="text-sm text-gray-600">When someone likes your snippets</p>
+                  <h3 className="font-medium text-foreground">Snippet Likes</h3>
+                  <p className="text-sm text-muted-foreground">When someone likes your snippets</p>
                 </div>
                 <input
                   type="checkbox"
                   name="notification_snippet_likes"
                   checked={formData?.notification_snippet_likes}
                   onChange={handleInputChange}
-                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                  className="w-5 h-5 text-primary rounded focus:ring-ring"
                 />
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-background rounded-lg">
                 <div>
-                  <h3 className="font-medium text-gray-900">Comments</h3>
-                  <p className="text-sm text-gray-600">When someone comments on your snippets</p>
+                  <h3 className="font-medium text-foreground">Comments</h3>
+                  <p className="text-sm text-muted-foreground">When someone comments on your snippets</p>
                 </div>
                 <input
                   type="checkbox"
                   name="notification_comments"
                   checked={formData?.notification_comments}
                   onChange={handleInputChange}
-                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                  className="w-5 h-5 text-primary rounded focus:ring-ring"
                 />
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-background rounded-lg">
                 <div>
-                  <h3 className="font-medium text-gray-900">Team Invites</h3>
-                  <p className="text-sm text-gray-600">When you're invited to join a team</p>
+                  <h3 className="font-medium text-foreground">Team Invites</h3>
+                  <p className="text-sm text-muted-foreground">When you're invited to join a team</p>
                 </div>
                 <input
                   type="checkbox"
                   name="notification_team_invites"
                   checked={formData?.notification_team_invites}
                   onChange={handleInputChange}
-                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                  className="w-5 h-5 text-primary rounded focus:ring-ring"
                 />
               </div>
             </div>
@@ -403,30 +403,30 @@ const OnboardingPage = () => {
       case 4:
         return (
           <div className="space-y-6 text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-              <Icon name="CheckCircle" size={48} className="text-green-600" />
+            <div className="w-20 h-20 bg-success/15 rounded-full flex items-center justify-center mx-auto">
+              <Icon name="CheckCircle" size={48} className="text-success" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">You're All Set!</h2>
-              <p className="text-gray-600">Your profile is ready. Let's start coding!</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">You're All Set!</h2>
+              <p className="text-muted-foreground">Your profile is ready. Let's start coding!</p>
             </div>
-            <div className="bg-blue-50 rounded-lg p-6 text-left">
-              <h3 className="font-semibold text-blue-900 mb-3">What's Next?</h3>
-              <ul className="space-y-2 text-blue-800">
+            <div className="bg-primary/10 rounded-lg p-6 text-left">
+              <h3 className="font-semibold text-foreground mb-3">What's Next?</h3>
+              <ul className="space-y-2 text-foreground">
                 <li className="flex items-start gap-2">
-                  <Icon name="CheckCircle" size={20} className="text-blue-600 mt-0.5" />
+                  <Icon name="CheckCircle" size={20} className="text-primary mt-0.5" />
                   <span>Create your first code snippet</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Icon name="CheckCircle" size={20} className="text-blue-600 mt-0.5" />
+                  <Icon name="CheckCircle" size={20} className="text-primary mt-0.5" />
                   <span>Explore trending snippets from the community</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Icon name="CheckCircle" size={20} className="text-blue-600 mt-0.5" />
+                  <Icon name="CheckCircle" size={20} className="text-primary mt-0.5" />
                   <span>Join teams and collaborate with others</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Icon name="CheckCircle" size={20} className="text-blue-600 mt-0.5" />
+                  <Icon name="CheckCircle" size={20} className="text-primary mt-0.5" />
                   <span>Get AI-powered insights on your code</span>
                 </li>
               </ul>
@@ -443,7 +443,7 @@ const OnboardingPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
       <div className="max-w-3xl mx-auto">
         {/* Progress Bar */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-6">
+        <div className="bg-card rounded-lg shadow-lg p-8 mb-6">
           <div className="flex items-center justify-between mb-8">
             {steps?.map((step, index) => (
               <React.Fragment key={step?.id}>
@@ -451,17 +451,17 @@ const OnboardingPage = () => {
                   <div
                     className={`w-12 h-12 rounded-full flex items-center justify-center ${
                       currentStep >= step?.id
-                        ? 'bg-blue-600 text-white' :'bg-gray-200 text-gray-500'
+                        ? 'bg-primary text-white' :'bg-muted text-muted-foreground'
                     }`}
                   >
                     <Icon name={step?.icon} size={24} />
                   </div>
-                  <span className="text-xs mt-2 text-gray-600">{step?.name}</span>
+                  <span className="text-xs mt-2 text-muted-foreground">{step?.name}</span>
                 </div>
                 {index < steps?.length - 1 && (
                   <div
                     className={`flex-1 h-1 mx-2 ${
-                      currentStep > step?.id ? 'bg-blue-600' : 'bg-gray-200'
+                      currentStep > step?.id ? 'bg-primary' : 'bg-muted'
                     }`}
                   />
                 )}
@@ -471,9 +471,9 @@ const OnboardingPage = () => {
         </div>
 
         {/* Main Content */}
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-card rounded-lg shadow-lg p-8">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg">
               <p className="text-red-800 text-sm">{error}</p>
             </div>
           )}

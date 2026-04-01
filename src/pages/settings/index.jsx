@@ -272,7 +272,7 @@ const SettingsPage = () => {
         return (
           <form onSubmit={handleProfileUpdate} className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Profile Information</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-4">Profile Information</h3>
               <div className="space-y-4">
                 <Input
                   label="Username"
@@ -287,12 +287,12 @@ const SettingsPage = () => {
                   helperText="Contact support to change your email"
                 />
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+                  <label className="block text-sm font-medium text-foreground mb-2">Bio</label>
                   <textarea
                     value={profileData?.bio}
                     onChange={(e) => setProfileData({ ...profileData, bio: e?.target?.value })}
                     rows={4}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
                     placeholder="Tell us about yourself..."
                   />
                 </div>
@@ -331,15 +331,15 @@ const SettingsPage = () => {
       case 'notifications':
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Notification Preferences</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Notification Preferences</h3>
             <div className="space-y-4">
               {Object.entries(notifications)?.map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div key={key} className="flex items-center justify-between p-4 bg-background rounded-lg">
                   <div>
-                    <h4 className="font-medium text-gray-900 capitalize">
+                    <h4 className="font-medium text-foreground capitalize">
                       {key?.replace(/_/g, ' ')}
                     </h4>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       Receive notifications for {key?.replace(/_/g, ' ')}
                     </p>
                   </div>
@@ -347,7 +347,7 @@ const SettingsPage = () => {
                     type="checkbox"
                     checked={value}
                     onChange={(e) => setNotifications({ ...notifications, [key]: e?.target?.checked })}
-                    className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                    className="w-5 h-5 text-primary rounded focus:ring-ring"
                   />
                 </div>
               ))}
@@ -361,16 +361,16 @@ const SettingsPage = () => {
       case 'privacy':
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Privacy Settings</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Privacy Settings</h3>
             <div className="space-y-4">
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="p-4 bg-background rounded-lg">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Profile Visibility
                 </label>
                 <select
                   value={privacy?.profile_visibility}
                   onChange={(e) => setPrivacy({ ...privacy, profile_visibility: e?.target?.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
                 >
                   <option value="public">Public</option>
                   <option value="private">Private</option>
@@ -378,29 +378,29 @@ const SettingsPage = () => {
                 </select>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-background rounded-lg">
                 <div>
-                  <h4 className="font-medium text-gray-900">Show Email</h4>
-                  <p className="text-sm text-gray-600">Display your email on your profile</p>
+                  <h4 className="font-medium text-foreground">Show Email</h4>
+                  <p className="text-sm text-muted-foreground">Display your email on your profile</p>
                 </div>
                 <input
                   type="checkbox"
                   checked={privacy?.show_email}
                   onChange={(e) => setPrivacy({ ...privacy, show_email: e?.target?.checked })}
-                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                  className="w-5 h-5 text-primary rounded focus:ring-ring"
                 />
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-background rounded-lg">
                 <div>
-                  <h4 className="font-medium text-gray-900">Show Activity</h4>
-                  <p className="text-sm text-gray-600">Display your recent activity</p>
+                  <h4 className="font-medium text-foreground">Show Activity</h4>
+                  <p className="text-sm text-muted-foreground">Display your recent activity</p>
                 </div>
                 <input
                   type="checkbox"
                   checked={privacy?.show_activity}
                   onChange={(e) => setPrivacy({ ...privacy, show_activity: e?.target?.checked })}
-                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                  className="w-5 h-5 text-primary rounded focus:ring-ring"
                 />
               </div>
             </div>
@@ -413,8 +413,8 @@ const SettingsPage = () => {
       case 'hives':
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Hive Privacy Settings</h3>
-            <p className="text-sm text-gray-600 mb-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">Hive Privacy Settings</h3>
+            <p className="text-sm text-muted-foreground mb-6">
               Manage privacy settings for hives you own. Control who can view and join your hives.
             </p>
 
@@ -423,29 +423,29 @@ const SettingsPage = () => {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
               </div>
             ) : userHives?.length === 0 ? (
-              <div className="text-center py-12 bg-gray-50 rounded-lg border border-gray-200">
-                <Icon name="Layers" size={48} className="mx-auto text-gray-400 mb-4" />
-                <p className="text-gray-600 mb-2">You don't own any hives yet</p>
-                <p className="text-sm text-gray-500">Create a hive to manage its privacy settings</p>
+              <div className="text-center py-12 bg-background rounded-lg border border-border">
+                <Icon name="Layers" size={48} className="mx-auto text-muted-foreground mb-4" />
+                <p className="text-muted-foreground mb-2">You don't own any hives yet</p>
+                <p className="text-sm text-muted-foreground">Create a hive to manage its privacy settings</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {userHives?.map((hive) => (
-                  <div key={hive?.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+                  <div key={hive?.id} className="p-4 bg-background rounded-lg border border-border hover:border-border transition-colors">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2">
                           <Icon 
                             name={hive?.privacy === 'public' ? 'Globe' : 'Lock'} 
                             size={20} 
-                            className={hive?.privacy === 'public' ? 'text-green-600' : 'text-orange-600'}
+                            className={hive?.privacy === 'public' ? 'text-success' : 'text-orange-600'}
                           />
-                          <h4 className="font-semibold text-gray-900 truncate">{hive?.name}</h4>
+                          <h4 className="font-semibold text-foreground truncate">{hive?.name}</h4>
                         </div>
-                        <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
                           {hive?.description || 'No description'}
                         </p>
-                        <div className="flex items-center gap-4 text-xs text-gray-500">
+                        <div className="flex items-center gap-4 text-xs text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <Icon name="Users" size={14} />
                             {hive?.member_count || 0} members
@@ -462,7 +462,7 @@ const SettingsPage = () => {
                           value={hive?.privacy}
                           onChange={(e) => handleHivePrivacyUpdate(hive?.id, e?.target?.value)}
                           disabled={loading}
-                          className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                          className="px-3 py-2 text-sm border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-card"
                         >
                           <option value="public">🌍 Public</option>
                           <option value="private">🔒 Private</option>
@@ -470,8 +470,8 @@ const SettingsPage = () => {
                       </div>
                     </div>
 
-                    <div className="mt-3 pt-3 border-t border-gray-200">
-                      <div className="flex items-center gap-2 text-xs text-gray-600">
+                    <div className="mt-3 pt-3 border-t border-border">
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <Icon name="Info" size={14} />
                         {hive?.privacy === 'public' ? (
                           <span>Anyone can view and join this hive</span>
@@ -490,7 +490,7 @@ const SettingsPage = () => {
       case 'security':
         return (
           <form onSubmit={handlePasswordChange} className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Password</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Change Password</h3>
             <div className="space-y-4">
               <Input
                 label="Current Password"
@@ -524,11 +524,11 @@ const SettingsPage = () => {
       case 'account':
         return (
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Management</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Account Management</h3>
             
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <div className="bg-error/10 border border-error/20 rounded-lg p-6">
               <h4 className="text-lg font-semibold text-red-900 mb-2">Danger Zone</h4>
-              <p className="text-red-700 mb-4">
+              <p className="text-error mb-4">
                 Once you delete your account, there is no going back. Please be certain.
               </p>
               <Button
@@ -548,17 +548,17 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <AppNavigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-          <p className="text-gray-600 mt-2">Manage your account settings and preferences</p>
+          <h1 className="text-3xl font-bold text-foreground">Settings</h1>
+          <p className="text-muted-foreground mt-2">Manage your account settings and preferences</p>
         </div>
 
         {message?.text && (
           <div className={`mb-6 p-4 rounded-lg ${
-            message?.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
+            message?.type === 'success' ? 'bg-success/10 text-success' : 'bg-error/10 text-red-800'
           }`}>
             {message?.text}
           </div>
@@ -567,7 +567,7 @@ const SettingsPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="bg-card rounded-lg shadow-sm p-4">
               <nav className="space-y-1">
                 {tabs?.map((tab) => (
                   <button
@@ -575,7 +575,7 @@ const SettingsPage = () => {
                     onClick={() => setActiveTab(tab?.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
                       activeTab === tab?.id
-                        ? 'bg-blue-50 text-blue-600' :'text-gray-700 hover:bg-gray-50'
+                        ? 'bg-primary/10 text-primary' :'text-foreground hover:bg-background'
                     }`}
                   >
                     <Icon name={tab?.icon} size={20} />
@@ -588,7 +588,7 @@ const SettingsPage = () => {
 
           {/* Content */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-card rounded-lg shadow-sm p-6">
               {renderTabContent()}
             </div>
           </div>

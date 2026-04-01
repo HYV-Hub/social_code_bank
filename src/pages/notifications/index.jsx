@@ -162,10 +162,10 @@ export default function NotificationsPage() {
   // Show loading state during authentication check
   if (authLoading || loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="flex items-center justify-center min-h-screen bg-background">
         <div className="text-center">
-          <Loader className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600">Loading notifications...</p>
+          <Loader className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
+          <p className="text-muted-foreground">Loading notifications...</p>
         </div>
       </div>
     );
@@ -185,23 +185,23 @@ export default function NotificationsPage() {
       {/* Add Navigation */}
       <AppNavigation />
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <div className="bg-card border-b border-border sticky top-0 z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <Bell className="w-8 h-8 text-blue-600" />
+                <Bell className="w-8 h-8 text-primary" />
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900">Notifications</h1>
-                  <p className="text-gray-600 mt-1">
+                  <h1 className="text-3xl font-bold text-foreground">Notifications</h1>
+                  <p className="text-muted-foreground mt-1">
                     {unreadCount > 0 ? `${unreadCount} unread notification${unreadCount !== 1 ? 's' : ''}` : 'All caught up!'}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setShowPreferences(true)}
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-foreground hover:bg-muted rounded-lg transition-colors"
               >
                 <Settings className="w-5 h-5" />
                 <span>Preferences</span>
@@ -212,7 +212,7 @@ export default function NotificationsPage() {
 
         {/* Main Content - Added mt-6 to create space below sticky header */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 mt-6">
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div className="bg-card rounded-lg shadow-sm overflow-hidden">
             {/* Search Panel */}
             <SearchPanel
               onSearch={handleSearch}
@@ -236,22 +236,22 @@ export default function NotificationsPage() {
             />
 
             {/* Notifications List */}
-            <div className="divide-y divide-gray-200">
+            <div className="divide-y divide-border">
               {error ? (
                 <div className="p-8 text-center">
-                  <p className="text-red-600 mb-4">{error}</p>
+                  <p className="text-error mb-4">{error}</p>
                   <button
                     onClick={loadNotifications}
-                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors"
                   >
                     Retry
                   </button>
                 </div>
               ) : filteredNotifications?.length === 0 ? (
                 <div className="p-12 text-center">
-                  <Bell className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">No notifications</h3>
-                  <p className="text-gray-600">
+                  <Bell className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-foreground mb-2">No notifications</h3>
+                  <p className="text-muted-foreground">
                     {searchTerm || dateRange
                       ? 'No notifications match your search criteria'
                       : showUnreadOnly
@@ -267,7 +267,7 @@ export default function NotificationsPage() {
                         type="checkbox"
                         checked={selectedIds?.includes(notification?.id)}
                         onChange={() => handleToggleSelection(notification?.id)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-primary border-border rounded focus:ring-ring"
                       />
                     </label>
                     <div className="pl-12">

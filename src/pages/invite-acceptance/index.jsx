@@ -175,10 +175,10 @@ const InviteAcceptance = () => {
   if (error || inviteData?.inviteDetails?.isExpired) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
-          <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Invalid Invite</h2>
-          <p className="text-gray-600 mb-6">
+        <div className="max-w-md w-full bg-card rounded-lg shadow-lg p-8 text-center">
+          <XCircle className="w-16 h-16 text-error mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-foreground mb-2">Invalid Invite</h2>
+          <p className="text-muted-foreground mb-6">
             {error || 'This invite link has expired. Please request a new invite from your team admin.'}
           </p>
           <Button onClick={() => navigate('/')} className="w-full">
@@ -198,7 +198,7 @@ const InviteAcceptance = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Company Information Card */}
-          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-6">
+          <div className="bg-card rounded-lg shadow-lg p-6 sm:p-8 mb-6">
             <div className="flex items-start space-x-4 mb-6">
               <img
                 src={inviteData?.company?.logo}
@@ -206,10 +206,10 @@ const InviteAcceptance = () => {
                 className="w-16 h-16 rounded-lg object-cover" />
 
               <div className="flex-1">
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+                <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
                   Join {inviteData?.company?.name}
                 </h1>
-                <div className="flex items-center text-gray-600 space-x-2">
+                <div className="flex items-center text-muted-foreground space-x-2">
                   <img
                     src={inviteData?.invitedBy?.avatar}
                     alt={inviteData?.invitedBy?.avatarAlt}
@@ -217,15 +217,15 @@ const InviteAcceptance = () => {
 
                   <span>
                     Invited by <strong>{inviteData?.invitedBy?.name}</strong>
-                    <span className="text-gray-500"> · {inviteData?.invitedBy?.role}</span>
+                    <span className="text-muted-foreground"> · {inviteData?.invitedBy?.role}</span>
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Invite Expiry Warning */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start space-x-3">
-              <Clock className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+            <div className="bg-warning/10 border border-warning/20 rounded-lg p-4 flex items-start space-x-3">
+              <Clock className="w-5 h-5 text-warning flex-shrink-0 mt-0.5" />
               <div className="flex-1">
                 <p className="text-sm text-yellow-800">
                   <strong>This invite expires on:</strong> {new Date(inviteData?.inviteDetails?.expiresAt)?.toLocaleDateString('en-US', {
@@ -242,12 +242,12 @@ const InviteAcceptance = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column - Form */}
-            <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-6 sm:p-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Complete Your Profile</h2>
+            <div className="lg:col-span-2 bg-card rounded-lg shadow-lg p-6 sm:p-8">
+              <h2 className="text-xl font-bold text-foreground mb-6">Complete Your Profile</h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-2">
                     Full Name *
                   </label>
                   <Input
@@ -262,7 +262,7 @@ const InviteAcceptance = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                     Email Address *
                   </label>
                   <Input
@@ -274,13 +274,13 @@ const InviteAcceptance = () => {
                     onChange={handleInputChange}
                     error={formErrors?.email}
                     disabled
-                    className="bg-gray-50" />
+                    className="bg-background" />
 
-                  <p className="mt-1 text-xs text-gray-500">Email is pre-filled from your invite</p>
+                  <p className="mt-1 text-xs text-muted-foreground">Email is pre-filled from your invite</p>
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
                     Password *
                   </label>
                   <Input
@@ -293,20 +293,20 @@ const InviteAcceptance = () => {
                     error={formErrors?.password} />
 
                   <div className="mt-2 space-y-1">
-                    <p className={`text-xs ${formData?.password?.length >= 8 ? 'text-green-600' : 'text-gray-500'}`}>
+                    <p className={`text-xs ${formData?.password?.length >= 8 ? 'text-success' : 'text-muted-foreground'}`}>
                       {formData?.password?.length >= 8 ? '✓' : '○'} At least 8 characters
                     </p>
-                    <p className={`text-xs ${/(?=.*[a-z])(?=.*[A-Z])/?.test(formData?.password) ? 'text-green-600' : 'text-gray-500'}`}>
+                    <p className={`text-xs ${/(?=.*[a-z])(?=.*[A-Z])/?.test(formData?.password) ? 'text-success' : 'text-muted-foreground'}`}>
                       {/(?=.*[a-z])(?=.*[A-Z])/?.test(formData?.password) ? '✓' : '○'} Uppercase and lowercase letters
                     </p>
-                    <p className={`text-xs ${/(?=.*\d)/?.test(formData?.password) ? 'text-green-600' : 'text-gray-500'}`}>
+                    <p className={`text-xs ${/(?=.*\d)/?.test(formData?.password) ? 'text-success' : 'text-muted-foreground'}`}>
                       {/(?=.*\d)/?.test(formData?.password) ? '✓' : '○'} At least one number
                     </p>
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground mb-2">
                     Confirm Password *
                   </label>
                   <Input
@@ -328,21 +328,21 @@ const InviteAcceptance = () => {
                       type="checkbox"
                       checked={formData?.acceptTerms}
                       onChange={handleInputChange}
-                      className="mt-1 h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary" />
+                      className="mt-1 h-4 w-4 text-primary border-border rounded focus:ring-primary" />
 
-                    <label htmlFor="acceptTerms" className="text-sm text-gray-700">
+                    <label htmlFor="acceptTerms" className="text-sm text-foreground">
                       I agree to the <a href="/terms" className="text-primary hover:underline">Terms of Service</a> and{' '}
                       <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>
                     </label>
                   </div>
                   {formErrors?.acceptTerms &&
-                  <p className="mt-1 text-sm text-red-600">{formErrors?.acceptTerms}</p>
+                  <p className="mt-1 text-sm text-error">{formErrors?.acceptTerms}</p>
                   }
                 </div>
 
                 {formErrors?.submit &&
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
-                    <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <div className="bg-error/10 border border-error/20 rounded-lg p-4 flex items-start space-x-3">
+                    <AlertCircle className="w-5 h-5 text-error flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-red-800">{formErrors?.submit}</p>
                   </div>
                 }
@@ -370,21 +370,21 @@ const InviteAcceptance = () => {
             {/* Right Column - Role & Context */}
             <div className="space-y-6">
               {/* Role Information */}
-              <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="bg-card rounded-lg shadow-lg p-6">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="bg-primary/10 p-2 rounded-lg">
                     <Briefcase className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-gray-900">Your Role</h3>
+                  <h3 className="font-semibold text-foreground">Your Role</h3>
                 </div>
-                <p className="text-lg font-medium text-gray-900 mb-3">
+                <p className="text-lg font-medium text-foreground mb-3">
                   {inviteData?.role?.title}
                 </p>
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-700">Permissions:</p>
+                  <p className="text-sm font-medium text-foreground">Permissions:</p>
                   <ul className="space-y-2">
                     {inviteData?.role?.permissions?.map((permission, index) =>
-                    <li key={index} className="flex items-start space-x-2 text-sm text-gray-600">
+                    <li key={index} className="flex items-start space-x-2 text-sm text-muted-foreground">
                         <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                         <span>{permission}</span>
                       </li>
@@ -394,25 +394,25 @@ const InviteAcceptance = () => {
               </div>
 
               {/* Company Context */}
-              <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="bg-card rounded-lg shadow-lg p-6">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="bg-purple-100 p-2 rounded-lg">
-                    <Building2 className="w-5 h-5 text-purple-600" />
+                    <Building2 className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-gray-900">Company Overview</h3>
+                  <h3 className="font-semibold text-foreground">Company Overview</h3>
                 </div>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-sm text-gray-600">Team Members</span>
-                    <span className="font-semibold text-gray-900">{inviteData?.companyContext?.teamSize}</span>
+                    <span className="text-sm text-muted-foreground">Team Members</span>
+                    <span className="font-semibold text-foreground">{inviteData?.companyContext?.teamSize}</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-sm text-gray-600">Active Projects</span>
-                    <span className="font-semibold text-gray-900">{inviteData?.companyContext?.activeProjects}</span>
+                    <span className="text-sm text-muted-foreground">Active Projects</span>
+                    <span className="font-semibold text-foreground">{inviteData?.companyContext?.activeProjects}</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-sm text-gray-600">Code Snippets</span>
-                    <span className="font-semibold text-gray-900">{inviteData?.companyContext?.snippetsLibrary?.toLocaleString()}</span>
+                    <span className="text-sm text-muted-foreground">Code Snippets</span>
+                    <span className="font-semibold text-foreground">{inviteData?.companyContext?.snippetsLibrary?.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -420,10 +420,10 @@ const InviteAcceptance = () => {
               {/* Security Badge */}
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg shadow p-6">
                 <div className="flex items-center space-x-3 mb-3">
-                  <Shield className="w-6 h-6 text-green-600" />
-                  <h3 className="font-semibold text-gray-900">Secure Invite</h3>
+                  <Shield className="w-6 h-6 text-success" />
+                  <h3 className="font-semibold text-foreground">Secure Invite</h3>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   This invitation is verified and secure. Your data is encrypted and protected.
                 </p>
               </div>

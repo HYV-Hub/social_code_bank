@@ -416,12 +416,12 @@ const TeamDashboard = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Error Display */}
         {error && (
-          <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="mb-6 bg-error/10 border border-error/20 rounded-lg p-4">
             <div className="flex items-start gap-2">
-              <Icon name="AlertCircle" size={20} className="text-red-600 mt-0.5" />
+              <Icon name="AlertCircle" size={20} className="text-error mt-0.5" />
               <div>
                 <p className="font-medium text-red-900">Failed to load team snippets</p>
-                <p className="text-sm text-red-700 mt-1">{error}</p>
+                <p className="text-sm text-error mt-1">{error}</p>
               </div>
             </div>
           </div>
@@ -456,7 +456,7 @@ const TeamDashboard = () => {
               ))}
             </div>
           ) : (
-            <div className="bg-white rounded-lg border border-slate-200 p-12 text-center">
+            <div className="bg-card rounded-lg border border-slate-200 p-12 text-center">
               <div className="flex flex-col items-center">
                 <Icon name="Code2" size={48} className="text-slate-400 mb-4" />
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
@@ -488,10 +488,10 @@ const TeamDashboard = () => {
           <>
             {/* Red Flags Section */}
             {redFlags?.length > 0 && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-8">
+              <div className="bg-error/10 border border-error/20 rounded-lg p-6 mb-8">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <Icon name="AlertTriangle" size={24} className="text-red-600" />
+                    <Icon name="AlertTriangle" size={24} className="text-error" />
                     <h2 className="text-xl font-bold text-red-900">Red Flags ({redFlags?.length})</h2>
                   </div>
                   <Button
@@ -499,7 +499,7 @@ const TeamDashboard = () => {
                     size="sm"
                     iconName="Eye"
                     onClick={() => setActiveTab("bugs")}
-                    className="border-red-300 text-red-700 hover:bg-red-100"
+                    className="border-red-300 text-error hover:bg-error/15"
                   >
                     View All Bugs
                   </Button>
@@ -508,21 +508,21 @@ const TeamDashboard = () => {
                   {redFlags?.slice(0, 3)?.map((bug) => (
                     <div 
                       key={bug?.id}
-                      className="bg-white rounded-lg p-4 border border-red-200 hover:shadow-md transition-shadow cursor-pointer"
+                      className="bg-card rounded-lg p-4 border border-error/20 hover:shadow-md transition-shadow cursor-pointer"
                       onClick={() => handleViewBug(bug?.id)}
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
                             <span className={`px-2 py-1 rounded text-xs font-medium ${
-                              bug?.priority === 'critical' ? 'bg-red-100 text-red-800' : 'bg-orange-100 text-orange-800'
+                              bug?.priority === 'critical' ? 'bg-error/15 text-red-800' : 'bg-orange-100 text-orange-800'
                             }`}>
                               {bug?.priority?.toUpperCase()}
                             </span>
-                            <span className="text-sm text-gray-500">{bug?.bug_status}</span>
+                            <span className="text-sm text-muted-foreground">{bug?.bug_status}</span>
                           </div>
-                          <h3 className="font-medium text-gray-900 mb-1">{bug?.title}</h3>
-                          <p className="text-sm text-gray-600 line-clamp-1">{bug?.description}</p>
+                          <h3 className="font-medium text-foreground mb-1">{bug?.title}</h3>
+                          <p className="text-sm text-muted-foreground line-clamp-1">{bug?.description}</p>
                         </div>
                       </div>
                     </div>
@@ -652,27 +652,27 @@ const TeamDashboard = () => {
                 {teamBugs?.map((bug) => (
                   <div
                     key={bug?.id}
-                    className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer"
+                    className="bg-card border border-border rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer"
                     onClick={() => handleViewBug(bug?.id)}
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <span className={`px-2 py-1 rounded text-xs font-medium ${
-                        bug?.priority === 'critical' ? 'bg-red-100 text-red-800' :
+                        bug?.priority === 'critical' ? 'bg-error/15 text-red-800' :
                         bug?.priority === 'high' ? 'bg-orange-100 text-orange-800' :
-                        bug?.priority === 'medium'? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'
+                        bug?.priority === 'medium'? 'bg-warning/15 text-yellow-800' : 'bg-primary/15 text-foreground'
                       }`}>
                         {bug?.priority?.toUpperCase()}
                       </span>
                       <span className={`px-2 py-1 rounded text-xs font-medium ${
-                        bug?.bug_status === 'resolved' ? 'bg-green-100 text-green-800' :
-                        bug?.bug_status === 'in_progress'? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
+                        bug?.bug_status === 'resolved' ? 'bg-success/15 text-success' :
+                        bug?.bug_status === 'in_progress'? 'bg-primary/15 text-foreground' : 'bg-muted text-foreground'
                       }`}>
                         {bug?.bug_status?.replace('_', ' ')?.toUpperCase()}
                       </span>
                     </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">{bug?.title}</h3>
-                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">{bug?.description}</p>
-                    <div className="flex items-center justify-between text-xs text-gray-500">
+                    <h3 className="font-semibold text-foreground mb-2">{bug?.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{bug?.description}</p>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>By: {bug?.user_profiles?.full_name || 'Unknown'}</span>
                       <span>{new Date(bug?.created_at)?.toLocaleDateString()}</span>
                     </div>
@@ -680,7 +680,7 @@ const TeamDashboard = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+              <div className="text-center py-12 bg-card rounded-lg border border-border">
                 <Icon name="CheckCircle" size={48} className="mx-auto mb-4 text-green-500" />
                 <h3 className="text-lg font-semibold text-foreground mb-2">No Bugs Reported</h3>
                 <p className="text-muted-foreground mb-4">
@@ -711,22 +711,22 @@ const TeamDashboard = () => {
 const SnippetCard = ({ snippet, onClick }) => {
   return (
     <div
-      className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+      className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
       onClick={onClick}
     >
       <div className="p-5">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg font-semibold text-foreground">
                 {snippet?.title || 'Untitled Snippet'}
               </h3>
-              <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full font-medium">
+              <span className="px-2 py-1 bg-purple-100 text-primary text-xs rounded-full font-medium">
                 Team Snippet
               </span>
             </div>
             {snippet?.description && (
-              <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+              <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
                 {snippet?.description}
               </p>
             )}
@@ -745,21 +745,21 @@ const SnippetCard = ({ snippet, onClick }) => {
                     </span>
                   </div>
                 )}
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-foreground">
                   {snippet?.user_profiles?.full_name || snippet?.user_full_name || 
                    snippet?.user_profiles?.username || snippet?.user_username || 'Unknown User'}
                 </span>
               </div>
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-muted-foreground">
                 {new Date(snippet?.created_at)?.toLocaleDateString()}
               </span>
               {snippet?.language && (
-                <span className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full font-medium">
+                <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">
                   {snippet?.language}
                 </span>
               )}
               {snippet?.snippet_type && (
-                <span className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded-full font-medium">
+                <span className="px-2 py-1 bg-success/10 text-success text-xs rounded-full font-medium">
                   {snippet?.snippet_type}
                 </span>
               )}
@@ -768,13 +768,13 @@ const SnippetCard = ({ snippet, onClick }) => {
         </div>
         
         {snippet?.code && (
-          <div className="border-t border-gray-200 bg-gray-50 p-4">
-            <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
-              <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+          <div className="border-t border-border bg-background p-4">
+            <div className="bg-card rounded-lg overflow-hidden border border-border">
+              <div className="flex items-center justify-between px-4 py-2 bg-card border-b border-border">
                 <div className="flex items-center gap-2">
-                  <Icon name="Code2" size={14} className="text-gray-400" />
-                  <span className="text-xs text-gray-400 font-medium">Code Preview</span>
-                  <span className="text-xs text-gray-500">
+                  <Icon name="Code2" size={14} className="text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground font-medium">Code Preview</span>
+                  <span className="text-xs text-muted-foreground">
                     ({snippet?.code?.split('\n')?.length || 0} lines)
                   </span>
                 </div>
@@ -783,7 +783,7 @@ const SnippetCard = ({ snippet, onClick }) => {
                     e?.stopPropagation();
                     handleViewSnippet(snippet?.id);
                   }}
-                  className="text-xs text-gray-400 hover:text-gray-200 transition-colors flex items-center gap-1 px-2 py-1 bg-gray-700/50 rounded hover:bg-gray-700"
+                  className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors flex items-center gap-1 px-2 py-1 bg-muted/50 rounded hover:bg-muted"
                 >
                   View Full Code
                   <Icon name="ExternalLink" size={12} />
@@ -792,17 +792,17 @@ const SnippetCard = ({ snippet, onClick }) => {
               
               <div className="overflow-x-auto">
                 <pre className="p-4 text-sm" style={{ maxHeight: '300px', minHeight: '150px' }}>
-                  <code className="text-gray-100 font-mono leading-relaxed">
+                  <code className="text-foreground font-mono leading-relaxed">
                     {snippet?.code?.split('\n')?.slice(0, 10)?.map((line, lineIndex) => (
-                      <div key={lineIndex} className="flex hover:bg-gray-800/50 transition-colors">
-                        <span className="text-gray-500 select-none pr-4 text-right min-w-[3rem]">
+                      <div key={lineIndex} className="flex hover:bg-card/50 transition-colors">
+                        <span className="text-muted-foreground select-none pr-4 text-right min-w-[3rem]">
                           {lineIndex + 1}
                         </span>
                         <span className="flex-1 whitespace-pre-wrap break-all">{line || ' '}</span>
                       </div>
                     ))}
                     {snippet?.code?.split('\n')?.length > 10 && (
-                      <div className="text-gray-500 text-center py-2 italic">
+                      <div className="text-muted-foreground text-center py-2 italic">
                         ... {snippet?.code?.split('\n')?.length - 10} more lines ...
                       </div>
                     )}
@@ -813,7 +813,7 @@ const SnippetCard = ({ snippet, onClick }) => {
           </div>
         )}
         
-        <div className="flex items-center gap-4 text-sm text-gray-500 p-5 pt-3 border-t border-gray-100 bg-gray-50/50">
+        <div className="flex items-center gap-4 text-sm text-muted-foreground p-5 pt-3 border-t border-border bg-background/50">
           <div className="flex items-center gap-1">
             <Icon name="Heart" size={16} />
             <span>{snippet?.likes_count || 0}</span>

@@ -136,17 +136,17 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-card rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-border">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Add Snippet to Company</h2>
-            <p className="text-sm text-gray-600 mt-1">Quick snippet creation for your company</p>
+            <h2 className="text-2xl font-bold text-foreground">Add Snippet to Company</h2>
+            <p className="text-sm text-muted-foreground mt-1">Quick snippet creation for your company</p>
           </div>
           <button
             onClick={onClose}
             disabled={loading}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
+            className="text-muted-foreground hover:text-muted-foreground transition-colors"
           >
             <Icon name="X" size={24} />
           </button>
@@ -154,12 +154,12 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
 
         {/* Success Message */}
         {success && (
-          <div className="mx-6 mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="mx-6 mt-6 bg-success/10 border border-success/20 rounded-lg p-4">
             <div className="flex items-center gap-3">
-              <Icon name="CheckCircle" className="text-green-600" size={24} />
+              <Icon name="CheckCircle" className="text-success" size={24} />
               <div>
                 <p className="text-green-900 font-semibold">Snippet created successfully!</p>
-                <p className="text-green-700 text-sm">Redirecting to snippet details...</p>
+                <p className="text-success text-sm">Redirecting to snippet details...</p>
               </div>
             </div>
           </div>
@@ -167,12 +167,12 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
 
         {/* Error Message */}
         {error && (
-          <div className="mx-6 mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="mx-6 mt-6 bg-error/10 border border-error/20 rounded-lg p-4">
             <div className="flex items-center gap-3">
-              <Icon name="AlertCircle" className="text-red-600" size={24} />
+              <Icon name="AlertCircle" className="text-error" size={24} />
               <div className="flex-1">
                 <p className="text-red-900 font-semibold">Error</p>
-                <p className="text-red-700 text-sm">{error}</p>
+                <p className="text-error text-sm">{error}</p>
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Title *
             </label>
             <input
@@ -190,7 +190,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               value={formData?.title}
               onChange={(e) => handleChange('title', e?.target?.value)}
               placeholder="Enter snippet title"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
               disabled={loading || success}
               required
             />
@@ -198,7 +198,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Description
             </label>
             <textarea
@@ -206,7 +206,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               onChange={(e) => handleChange('description', e?.target?.value)}
               placeholder="Brief description of the snippet"
               rows={2}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
               disabled={loading || success}
             />
           </div>
@@ -214,13 +214,13 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
           {/* Language & Type Row */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Language *
               </label>
               <select
                 value={formData?.language}
                 onChange={(e) => handleChange('language', e?.target?.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
                 disabled={loading || success}
               >
                 <option value="javascript">JavaScript</option>
@@ -236,13 +236,13 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Type *
               </label>
               <select
                 value={formData?.snippetType}
                 onChange={(e) => handleChange('snippetType', e?.target?.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
                 disabled={loading || success}
               >
                 <option value="code">Code</option>
@@ -257,11 +257,11 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
 
           {/* Team Selection */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Assign to Team (Optional)
             </label>
             {loadingTeams ? (
-              <div className="flex items-center gap-2 text-gray-600">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
                 <span className="text-sm">Loading teams...</span>
               </div>
@@ -269,7 +269,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               <select
                 value={formData?.teamId}
                 onChange={(e) => handleChange('teamId', e?.target?.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
                 disabled={loading || success}
               >
                 <option value="">No specific team (Company-wide)</option>
@@ -280,13 +280,13 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
                 ))}
               </select>
             ) : (
-              <p className="text-sm text-gray-500">No teams available</p>
+              <p className="text-sm text-muted-foreground">No teams available</p>
             )}
           </div>
 
           {/* Code Editor */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Code *
             </label>
             <textarea
@@ -294,19 +294,19 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               onChange={(e) => handleChange('code', e?.target?.value)}
               placeholder="Paste your code here..."
               rows={8}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-mono text-sm"
+              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500 font-mono text-sm"
               disabled={loading || success}
               required
             />
           </div>
 
           {/* Visibility Note */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
             <div className="flex items-start gap-3">
-              <Icon name="Info" className="text-blue-600 mt-0.5" size={20} />
+              <Icon name="Info" className="text-primary mt-0.5" size={20} />
               <div className="flex-1 text-sm">
-                <p className="text-blue-900 font-semibold mb-1">Visibility: Company Only</p>
-                <p className="text-blue-700">
+                <p className="text-foreground font-semibold mb-1">Visibility: Company Only</p>
+                <p className="text-primary">
                   This snippet will be visible only to members of your company
                   {formData?.teamId && teams?.find(t => t?.id === formData?.teamId) 
                     ? ` and specifically assigned to the "${teams?.find(t => t?.id === formData?.teamId)?.name}" team`
@@ -318,7 +318,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-between gap-4 pt-4 border-t border-gray-200">
+          <div className="flex items-center justify-between gap-4 pt-4 border-t border-border">
             <Button
               type="button"
               variant="outline"

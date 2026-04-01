@@ -24,7 +24,7 @@ const FilterToolbar = ({ filters, onFilterChange, onClearFilters, teamMembers, o
   ];
 
   return (
-    <div className="bg-white rounded-lg border border-slate-200 p-4 mb-6">
+    <div className="bg-card rounded-lg border border-slate-200 p-4 mb-6">
       <div className="flex flex-col lg:flex-row gap-4">
         {/* Search Bar */}
         <div className="flex-1">
@@ -39,7 +39,7 @@ const FilterToolbar = ({ filters, onFilterChange, onClearFilters, teamMembers, o
               placeholder="Search bugs..."
               value={filters?.search || ''}
               onChange={(e) => onFilterChange('search', e?.target?.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
             />
           </div>
         </div>
@@ -49,7 +49,7 @@ const FilterToolbar = ({ filters, onFilterChange, onClearFilters, teamMembers, o
           <select
             value={filters?.priority || 'all'}
             onChange={(e) => onFilterChange('priority', e?.target?.value)}
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
           >
             {priorities?.map((priority) => (
               <option key={priority?.value} value={priority?.value}>
@@ -64,7 +64,7 @@ const FilterToolbar = ({ filters, onFilterChange, onClearFilters, teamMembers, o
           <select
             value={filters?.language || 'all'}
             onChange={(e) => onFilterChange('language', e?.target?.value)}
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
           >
             {languages?.map((lang) => (
               <option key={lang?.value} value={lang?.value}>
@@ -85,7 +85,7 @@ const FilterToolbar = ({ filters, onFilterChange, onClearFilters, teamMembers, o
           </button>
           <button
             onClick={onCreateBug}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors flex items-center gap-2"
           >
             <Icon name="Plus" size={18} />
             New Bug

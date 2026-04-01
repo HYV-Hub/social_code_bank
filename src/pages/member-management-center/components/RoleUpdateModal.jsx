@@ -57,43 +57,43 @@ export default function RoleUpdateModal({ member, onUpdate, onClose }) {
 
   const getRoleColor = (color) => {
     const colors = {
-      gray: 'bg-gray-100 text-gray-800 border-gray-300',
-      green: 'bg-green-100 text-green-800 border-green-300',
-      blue: 'bg-blue-100 text-blue-800 border-blue-300',
-      purple: 'bg-purple-100 text-purple-800 border-purple-300'
+      gray: 'bg-muted text-foreground border-border',
+      green: 'bg-success/15 text-success border-green-300',
+      blue: 'bg-primary/15 text-foreground border-blue-300',
+      purple: 'bg-purple-100 text-purple-800 border-border'
     };
     return colors?.[color] || colors?.gray;
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200">
+      <div className="bg-card rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-blue-100">
-              <Shield className="w-6 h-6 text-blue-600" />
+            <div className="p-2 rounded-lg bg-primary/15">
+              <Shield className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Update Member Role</h2>
-              <p className="text-sm text-gray-600 mt-1">
+              <h2 className="text-xl font-bold text-foreground">Update Member Role</h2>
+              <p className="text-sm text-muted-foreground mt-1">
                 Change role for {member?.fullName || member?.username}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-muted rounded-lg transition-colors"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5 text-gray-500" />
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
 
         {/* Info Banner */}
-        <div className="p-4 mx-6 mt-6 bg-blue-50 border border-blue-200 rounded-lg flex items-start gap-3">
-          <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-          <div className="flex-1 text-sm text-blue-800">
+        <div className="p-4 mx-6 mt-6 bg-primary/10 border border-primary/20 rounded-lg flex items-start gap-3">
+          <Info className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+          <div className="flex-1 text-sm text-foreground">
             <p className="font-medium mb-1">Role & Permission System</p>
             <p>
               Select the appropriate role based on the user's responsibilities. Higher roles have access to more features and management capabilities.
@@ -108,8 +108,8 @@ export default function RoleUpdateModal({ member, onUpdate, onClose }) {
               key={role?.value}
               className={`block p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 hover:shadow-md ${
                 selectedRole === role?.value
-                  ? 'border-blue-500 bg-blue-50 shadow-lg'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-blue-500 bg-primary/10 shadow-lg'
+                  : 'border-border hover:border-border'
               }`}
             >
               <div className="flex items-start gap-4">
@@ -119,7 +119,7 @@ export default function RoleUpdateModal({ member, onUpdate, onClose }) {
                   value={role?.value}
                   checked={selectedRole === role?.value}
                   onChange={(e) => setSelectedRole(e?.target?.value)}
-                  className="mt-1 w-5 h-5 text-blue-600 focus:ring-blue-500"
+                  className="mt-1 w-5 h-5 text-primary focus:ring-ring"
                 />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
@@ -127,12 +127,12 @@ export default function RoleUpdateModal({ member, onUpdate, onClose }) {
                       {role?.label}
                     </span>
                     {selectedRole === role?.value && (
-                      <span className="text-xs text-blue-600 font-medium">
+                      <span className="text-xs text-primary font-medium">
                         Selected
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p className="text-sm text-foreground leading-relaxed">
                     {role?.description}
                   </p>
                 </div>
@@ -141,18 +141,18 @@ export default function RoleUpdateModal({ member, onUpdate, onClose }) {
           ))}
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+          <div className="flex items-center gap-3 pt-4 border-t border-border">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+              className="flex-1 px-4 py-2.5 text-sm font-medium text-foreground bg-muted hover:bg-muted rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isUpdating || selectedRole === member?.role}
-              className="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isUpdating ? (
                 <>

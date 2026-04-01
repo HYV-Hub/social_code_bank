@@ -49,7 +49,7 @@ const TrendingSnippetsSection = () => {
           {capabilities?.map((capability, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-800 rounded-2xl border border-[var(--color-border)] overflow-hidden hover:shadow-xl transition-all duration-300"
+              className="bg-card dark:bg-slate-800 rounded-xl border border-[var(--color-border)] overflow-hidden hover:shadow-xl transition-all duration-300"
             >
               {/* Card Header */}
               <div className="p-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-800 border-b border-[var(--color-border)]">
@@ -69,7 +69,7 @@ const TrendingSnippetsSection = () => {
                 <ul className="space-y-3">
                   {capability?.features?.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                      <div className="w-5 h-5 rounded-full bg-success/15 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
                         <Icon name="Check" size={14} color="var(--color-success)" />
                       </div>
                       <span className="text-[var(--color-foreground)]">{feature}</span>
@@ -82,7 +82,7 @@ const TrendingSnippetsSection = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-12 border border-[var(--color-border)]">
+        <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-700 rounded-xl p-12 border border-[var(--color-border)]">
           <h3 className="text-2xl font-bold text-[var(--color-foreground)] mb-4">
             Ready to Transform Your Workflow?
           </h3>

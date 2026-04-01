@@ -191,13 +191,13 @@ export default function MemberInvitationSystem() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <AppNavigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center py-12">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">Loading invitation system...</p>
+              <p className="mt-4 text-muted-foreground">Loading invitation system...</p>
             </div>
           </div>
         </div>
@@ -207,12 +207,12 @@ export default function MemberInvitationSystem() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <AppNavigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-error/10 border border-error/20 rounded-lg p-4">
             <div className="flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-red-600" />
+              <AlertCircle className="w-5 h-5 text-error" />
               <p className="text-red-800">{error}</p>
             </div>
           </div>
@@ -222,29 +222,29 @@ export default function MemberInvitationSystem() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <AppNavigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => navigate('/company-management-dashboard')}
-            className="text-blue-600 hover:text-blue-700 mb-4 inline-flex items-center"
+            className="text-primary hover:text-primary mb-4 inline-flex items-center"
           >
             ← Back to Dashboard
           </button>
-          <h1 className="text-3xl font-bold text-gray-900">Member Invitation System</h1>
-          <p className="text-gray-600 mt-2">Invite new members to join {company?.name || 'your company'}</p>
+          <h1 className="text-3xl font-bold text-foreground">Member Invitation System</h1>
+          <p className="text-muted-foreground mt-2">Invite new members to join {company?.name || 'your company'}</p>
         </div>
 
         {/* User Limit Warning */}
         {userLimitInfo && !userLimitInfo?.canAdd && (
-          <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mb-6 bg-warning/10 border border-warning/20 rounded-lg p-4">
             <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-warning mt-0.5" />
               <div className="flex-1">
                 <p className="text-yellow-900 font-medium">User limit reached</p>
-                <p className="text-yellow-700 text-sm mt-1">
+                <p className="text-warning text-sm mt-1">
                   You have reached the maximum of {userLimitInfo?.limit} users. Contact support to increase your limit.
                 </p>
               </div>
@@ -255,105 +255,105 @@ export default function MemberInvitationSystem() {
         {/* Invitation Stats */}
         {invitationStats && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="bg-card rounded-lg shadow-sm p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Pending</p>
-                  <p className="text-2xl font-bold text-yellow-600">{invitationStats?.pending}</p>
+                  <p className="text-sm text-muted-foreground">Pending</p>
+                  <p className="text-2xl font-bold text-warning">{invitationStats?.pending}</p>
                 </div>
-                <Clock className="w-8 h-8 text-yellow-600" />
+                <Clock className="w-8 h-8 text-warning" />
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="bg-card rounded-lg shadow-sm p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Accepted</p>
-                  <p className="text-2xl font-bold text-green-600">{invitationStats?.accepted}</p>
+                  <p className="text-sm text-muted-foreground">Accepted</p>
+                  <p className="text-2xl font-bold text-success">{invitationStats?.accepted}</p>
                 </div>
-                <CheckCircle className="w-8 h-8 text-green-600" />
+                <CheckCircle className="w-8 h-8 text-success" />
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="bg-card rounded-lg shadow-sm p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Rejected</p>
-                  <p className="text-2xl font-bold text-red-600">{invitationStats?.rejected}</p>
+                  <p className="text-sm text-muted-foreground">Rejected</p>
+                  <p className="text-2xl font-bold text-error">{invitationStats?.rejected}</p>
                 </div>
-                <XCircle className="w-8 h-8 text-red-600" />
+                <XCircle className="w-8 h-8 text-error" />
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="bg-card rounded-lg shadow-sm p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Total Sent</p>
-                  <p className="text-2xl font-bold text-blue-600">{invitationStats?.total}</p>
+                  <p className="text-sm text-muted-foreground">Total Sent</p>
+                  <p className="text-2xl font-bold text-primary">{invitationStats?.total}</p>
                 </div>
-                <Send className="w-8 h-8 text-blue-600" />
+                <Send className="w-8 h-8 text-primary" />
               </div>
             </div>
           </div>
         )}
 
         {/* Main Invitation Form */}
-        <div className="bg-white rounded-lg shadow-sm">
-          <div className="p-6 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">Invite New Members</h2>
-            <p className="text-sm text-gray-600 mt-1">Search for users and send them invitations to join your company</p>
+        <div className="bg-card rounded-lg shadow-sm">
+          <div className="p-6 border-b border-border">
+            <h2 className="text-xl font-bold text-foreground">Invite New Members</h2>
+            <p className="text-sm text-muted-foreground mt-1">Search for users and send them invitations to join your company</p>
           </div>
 
           <div className="p-6 space-y-6">
             {/* User Search */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Search Users
               </label>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="Search by name or email..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e?.target?.value)}
                   disabled={!userLimitInfo?.canAdd}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100"
+                  className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent disabled:bg-muted"
                 />
                 {searching && (
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <RefreshCw className="w-5 h-5 text-gray-400 animate-spin" />
+                    <RefreshCw className="w-5 h-5 text-muted-foreground animate-spin" />
                   </div>
                 )}
               </div>
 
               {/* Search Results */}
               {searchResults?.length > 0 && (
-                <div className="mt-4 border border-gray-200 rounded-lg max-h-64 overflow-y-auto">
+                <div className="mt-4 border border-border rounded-lg max-h-64 overflow-y-auto">
                   {searchResults?.map((user) => {
                     const isSelected = selectedUsers?.some(u => u?.id === user?.id);
                     return (
                       <div
                         key={user?.id}
                         onClick={() => toggleUserSelection(user)}
-                        className={`p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50 ${
-                          isSelected ? 'bg-blue-50' : ''
+                        className={`p-4 flex items-center justify-between cursor-pointer hover:bg-background ${
+                          isSelected ? 'bg-primary/10' : ''
                         }`}
                       >
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                          <div className="h-10 w-10 rounded-full bg-primary/15 flex items-center justify-center">
                             {user?.avatarUrl ? (
                               <img src={user?.avatarUrl} alt={user?.fullName} className="h-10 w-10 rounded-full" />
                             ) : (
-                              <span className="text-blue-600 font-medium">
+                              <span className="text-primary font-medium">
                                 {user?.fullName?.charAt(0)?.toUpperCase() || 'U'}
                               </span>
                             )}
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">{user?.fullName || 'Unnamed'}</p>
-                            <p className="text-sm text-gray-500">{user?.email}</p>
+                            <p className="font-medium text-foreground">{user?.fullName || 'Unnamed'}</p>
+                            <p className="text-sm text-muted-foreground">{user?.email}</p>
                           </div>
                         </div>
                         {isSelected && (
-                          <CheckCircle className="w-5 h-5 text-blue-600" />
+                          <CheckCircle className="w-5 h-5 text-primary" />
                         )}
                       </div>
                     );
@@ -365,19 +365,19 @@ export default function MemberInvitationSystem() {
             {/* Selected Users */}
             {selectedUsers?.length > 0 && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Selected Users ({selectedUsers?.length})
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {selectedUsers?.map((user) => (
                     <div
                       key={user?.id}
-                      className="inline-flex items-center gap-2 px-3 py-2 bg-blue-100 text-blue-800 rounded-lg"
+                      className="inline-flex items-center gap-2 px-3 py-2 bg-primary/15 text-foreground rounded-lg"
                     >
                       <span className="text-sm font-medium">{user?.fullName}</span>
                       <button
                         onClick={() => toggleUserSelection(user)}
-                        className="text-blue-600 hover:text-blue-800"
+                        className="text-primary hover:text-foreground"
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -389,13 +389,13 @@ export default function MemberInvitationSystem() {
 
             {/* Team Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Assign to Team (Optional)
               </label>
               <select
                 value={selectedTeam}
                 onChange={(e) => setSelectedTeam(e?.target?.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
               >
                 <option value="">No team (General)</option>
                 {teams?.map((team) => (
@@ -408,7 +408,7 @@ export default function MemberInvitationSystem() {
 
             {/* Custom Message */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Invitation Message (Optional)
               </label>
               <textarea
@@ -416,7 +416,7 @@ export default function MemberInvitationSystem() {
                 onChange={(e) => setInviteMessage(e?.target?.value)}
                 placeholder="Add a personal message to the invitation..."
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
               />
             </div>
 
@@ -425,7 +425,7 @@ export default function MemberInvitationSystem() {
               <button
                 onClick={handleSendInvitations}
                 disabled={selectedUsers?.length === 0 || sending || !userLimitInfo?.canAdd}
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
               >
                 {sending ? (
                   <>
@@ -444,9 +444,9 @@ export default function MemberInvitationSystem() {
         </div>
 
         {/* Help Section */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h3 className="text-lg font-medium text-blue-900 mb-2">How Invitations Work</h3>
-          <ul className="space-y-2 text-sm text-blue-800">
+        <div className="mt-8 bg-primary/10 border border-primary/20 rounded-lg p-6">
+          <h3 className="text-lg font-medium text-foreground mb-2">How Invitations Work</h3>
+          <ul className="space-y-2 text-sm text-foreground">
             <li className="flex items-start gap-2">
               <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" />
               <span>Search for users by name or email address</span>

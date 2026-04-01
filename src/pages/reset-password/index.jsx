@@ -115,9 +115,9 @@ const ResetPassword = () => {
   };
 
   const getStrengthColor = () => {
-    if (passwordStrength >= 80) return "bg-green-500";
-    if (passwordStrength >= 50) return "bg-yellow-500";
-    return "bg-red-500";
+    if (passwordStrength >= 80) return "bg-success/100";
+    if (passwordStrength >= 50) return "bg-warning/100";
+    return "bg-error/100";
   };
 
   const getStrengthText = () => {
@@ -136,10 +136,10 @@ const ResetPassword = () => {
 
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
           <div className="w-full max-w-md">
-            <div className="bg-white rounded-lg shadow-xl border border-slate-200 p-8">
+            <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
               {/* Success Icon */}
               <div className="flex justify-center mb-6">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center">
                   <Icon name="CheckCircle2" size={32} color="#16a34a" />
                 </div>
               </div>
@@ -164,10 +164,10 @@ const ResetPassword = () => {
               </Button>
 
               {/* Security Note */}
-              <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+              <div className="mt-6 p-4 bg-success/10 border border-success/20 rounded-lg">
                 <div className="flex items-start gap-2">
                   <Icon name="ShieldCheck" size={16} color="#16a34a" className="flex-shrink-0 mt-0.5" />
-                  <p className="text-xs text-green-800">
+                  <p className="text-xs text-success">
                     For security reasons, all other sessions have been logged out. Please log in again with your new password.
                   </p>
                 </div>
@@ -201,10 +201,10 @@ const ResetPassword = () => {
           </div>
 
           {/* Main Card */}
-          <div className="bg-white rounded-lg shadow-xl border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
             {/* Header */}
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-primary/15 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Icon name="Lock" size={32} color="#1e40af" />
               </div>
               <h1 className="text-2xl font-bold text-slate-900 mb-2">
@@ -219,11 +219,11 @@ const ResetPassword = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Global Error Message */}
               {globalError && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+                <div className="bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
                   <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <p className="text-sm text-red-800 font-medium">Error</p>
-                    <p className="text-sm text-red-700 mt-1">{globalError}</p>
+                    <p className="text-sm text-error mt-1">{globalError}</p>
                   </div>
                 </div>
               )}
@@ -257,8 +257,8 @@ const ResetPassword = () => {
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-slate-600">Password Strength</span>
                       <span className={`text-xs font-medium ${
-                        passwordStrength >= 80 ? "text-green-600" :
-                        passwordStrength >= 50 ? "text-yellow-600": "text-red-600"
+                        passwordStrength >= 80 ? "text-success" :
+                        passwordStrength >= 50 ? "text-warning": "text-error"
                       }`}>
                         {getStrengthText()}
                       </span>

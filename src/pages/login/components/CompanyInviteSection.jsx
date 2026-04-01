@@ -123,12 +123,12 @@ const CompanyInviteSection = () => {
       </div>
 
       {/* Demo Codes Info */}
-      <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+      <div className="mt-4 p-4 bg-primary/10 border border-primary/20 rounded-lg">
         <div className="flex items-start gap-2">
           <Icon name="Info" size={18} color="#1e40af" className="flex-shrink-0 mt-0.5" />
-          <div className="text-xs text-blue-800">
+          <div className="text-xs text-foreground">
             <p className="font-medium mb-1">Demo Invite Codes</p>
-            <div className="space-y-1 text-blue-700 font-mono">
+            <div className="space-y-1 text-primary font-mono">
               <p>• TECHCORP-2025-ADMIN</p>
               <p>• DEVTEAM-INVITE-001</p>
               <p>• ENTERPRISE-ACCESS-XYZ</p>

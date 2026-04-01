@@ -329,11 +329,11 @@ const CreateSnippet = () => {
       // CRITICAL FIX: Store COMPLETE analysis data structure for full report
       setAiResults({
         tags: result?.tags || [],
-        qualityScore: result?.optimizationScore || 0,
+        qualityScore: result?.qualityScore || 0,
         detectedLanguage: result?.detectedLanguage || 'unknown',
         languageConfidence: result?.languageConfidence || 'low',
         // FULL ANALYSIS DATA - COMPLETE STRUCTURE for optimization report
-        aiAnalysisData: result?.analysis || null // Store the ENTIRE analysis object as-is
+        aiAnalysisData: { summary: result?.summary || '', strengths: result?.strengths || [], weaknesses: result?.weaknesses || [], improvements: result?.improvements || [], complexity: result?.complexityLevel || 'medium', categories: result?.categories || [], recommendations: result?.recommendations || { quick: [], detailed: [] }, metrics: result?.metrics || {}, purposeTags: result?.purposeTags || [], functionalityTags: result?.functionalityTags || [], searchAliases: result?.searchAliases || [], readabilityScore: result?.readabilityScore || 0, bugRisk: result?.bugRisk || 'unknown', requestId: result?.requestId, analysisVersion: result?.analysisVersion || 'v2' }
       });
 
       // Show language detection result
@@ -719,15 +719,15 @@ const CreateSnippet = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <AppNavigation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-card rounded-lg shadow-lg p-8">
           {/* FIXED: Only show company context indicator when explicitly set from company dashboard */}
           {companyContext && !teamIdFromUrl && (
-            <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="mb-6 bg-primary/10 border border-primary/20 rounded-lg p-4">
               <div className="flex items-start gap-3">
-                <Icon name="Building" className="text-blue-600 mt-0.5" size={20} />
+                <Icon name="Building" className="text-primary mt-0.5" size={20} />
                 <div className="flex-1">
-                  <p className="text-blue-900 font-semibold">Creating for Company</p>
-                  <p className="text-blue-700 text-sm">
+                  <p className="text-foreground font-semibold">Creating for Company</p>
+                  <p className="text-primary text-sm">
                     This snippet will be automatically associated with your company and visible to company members.
                   </p>
                 </div>
@@ -736,7 +736,7 @@ const CreateSnippet = () => {
           )}
 
           {/* Header - Fixed width container */}
-          <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+          <header className="bg-card border-b border-slate-200 sticky top-0 z-50">
             <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
@@ -795,7 +795,7 @@ const CreateSnippet = () => {
               
               {/* Error Message Display */}
               {errors?.submit && (
-                <div className="mt-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                <div className="mt-4 bg-error/10 border border-error/20 text-error px-4 py-3 rounded-lg">
                   <div className="flex items-start gap-2">
                     <Icon name="AlertCircle" size={20} className="flex-shrink-0 mt-0.5" />
                     <div>
@@ -845,7 +845,7 @@ const CreateSnippet = () => {
               <div className="lg:col-span-1">
                 <div className="sticky top-24 space-y-6">
                   {/* AI Analysis Button */}
-                  <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+                  <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div>
                         <h2 className="text-lg font-semibold text-slate-900">AI Insights</h2>
@@ -869,16 +869,16 @@ const CreateSnippet = () => {
                       <div className="space-y-4 mt-6">
                         {/* Detected Language Display */}
                         {aiResults?.detectedLanguage && (
-                          <div className="bg-blue-50 rounded-lg p-3">
+                          <div className="bg-primary/10 rounded-lg p-3">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-blue-900">Detected Language</span>
+                              <span className="text-sm font-medium text-foreground">Detected Language</span>
                               <div className="flex items-center gap-2">
-                                <span className="text-sm font-bold text-blue-700 uppercase">
+                                <span className="text-sm font-bold text-primary uppercase">
                                   {aiResults?.detectedLanguage}
                                 </span>
                                 <span className={`text-xs px-2 py-1 rounded-full ${
-                                  aiResults?.languageConfidence === 'high' ? 'bg-green-100 text-green-700' :
-                                  aiResults?.languageConfidence === 'medium'? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                                  aiResults?.languageConfidence === 'high' ? 'bg-success/15 text-success' :
+                                  aiResults?.languageConfidence === 'medium'? 'bg-warning/15 text-warning' : 'bg-error/15 text-error'
                                 }`}>
                                   {aiResults?.languageConfidence} confidence
                                 </span>
@@ -891,13 +891,13 @@ const CreateSnippet = () => {
                         <div className="bg-slate-50 rounded-lg p-4">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-sm font-medium text-slate-700">Code Quality</span>
-                            <span className="text-2xl font-bold text-purple-600">
+                            <span className="text-2xl font-bold text-primary">
                               {aiResults?.qualityScore}/100
                             </span>
                           </div>
                           <div className="w-full bg-slate-200 rounded-full h-2">
                             <div
-                              className="bg-purple-600 h-2 rounded-full transition-all duration-500"
+                              className="bg-primary h-2 rounded-full transition-all duration-500"
                               style={{ width: `${aiResults?.qualityScore}%` }}
                             ></div>
                           </div>
@@ -911,7 +911,7 @@ const CreateSnippet = () => {
                               {aiResults?.tags?.map((tag, index) => (
                                 <span
                                   key={index}
-                                  className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
+                                  className="px-3 py-1 bg-purple-100 text-primary rounded-full text-sm"
                                 >
                                   {tag}
                                 </span>
@@ -926,12 +926,12 @@ const CreateSnippet = () => {
                             <h3 className="text-sm font-medium text-slate-700 mb-3">AI Insights Board</h3>
                             <div className="space-y-3">
                               {aiResults?.aiAnalysisData?.categories?.map((category, index) => (
-                                <div key={index} className="bg-white rounded-lg p-3 border border-slate-200">
+                                <div key={index} className="bg-card rounded-lg p-3 border border-slate-200">
                                   <div className="flex items-center justify-between mb-2">
                                     <span className="text-sm font-medium text-slate-900 capitalize">{category?.name || category?.id}</span>
                                     <span className={`text-xs px-2 py-1 rounded-full ${
-                                      category?.score >= 80 ? 'bg-green-100 text-green-700' :
-                                      category?.score >= 60 ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                                      category?.score >= 80 ? 'bg-success/15 text-success' :
+                                      category?.score >= 60 ? 'bg-warning/15 text-warning' : 'bg-error/15 text-error'
                                     }`}>
                                       {category?.score || 0}%
                                     </span>
@@ -941,8 +941,8 @@ const CreateSnippet = () => {
                                       {category?.issues?.slice(0, 3)?.map((issue, idx) => (
                                         <li key={idx} className="text-xs text-slate-600 flex items-start gap-1">
                                           <span className={
-                                            issue?.severity === 'high' ? 'text-red-500' :
-                                            issue?.severity === 'medium' ? 'text-yellow-500' : 'text-blue-500'
+                                            issue?.severity === 'high' ? 'text-error' :
+                                            issue?.severity === 'medium' ? 'text-yellow-500' : 'text-primary'
                                           }>•</span>
                                           <span>{issue?.title}</span>
                                         </li>
@@ -960,11 +960,11 @@ const CreateSnippet = () => {
 
                         {/* Strengths & Weaknesses - Only show if available in simplified format */}
                         {aiResults?.aiAnalysisData?.strengths && aiResults?.aiAnalysisData?.strengths?.length > 0 && (
-                          <div className="bg-green-50 rounded-lg p-4">
+                          <div className="bg-success/10 rounded-lg p-4">
                             <h3 className="text-sm font-medium text-green-900 mb-2 flex items-center">
                               <span className="mr-2">✓</span> Strengths
                             </h3>
-                            <ul className="space-y-1 text-sm text-green-800">
+                            <ul className="space-y-1 text-sm text-success">
                               {aiResults?.aiAnalysisData?.strengths?.map((strength, index) => (
                                 <li key={index}>• {strength}</li>
                               ))}
@@ -973,7 +973,7 @@ const CreateSnippet = () => {
                         )}
 
                         {aiResults?.aiAnalysisData?.weaknesses && aiResults?.aiAnalysisData?.weaknesses?.length > 0 && (
-                          <div className="bg-yellow-50 rounded-lg p-4">
+                          <div className="bg-warning/10 rounded-lg p-4">
                             <h3 className="text-sm font-medium text-yellow-900 mb-2 flex items-center">
                               <span className="mr-2">⚠</span> Areas for Improvement
                             </h3>
@@ -987,11 +987,11 @@ const CreateSnippet = () => {
 
                         {/* Improvement Suggestions */}
                         {aiResults?.aiAnalysisData?.improvements && aiResults?.aiAnalysisData?.improvements?.length > 0 && (
-                          <div className="bg-blue-50 rounded-lg p-4">
-                            <h3 className="text-sm font-medium text-blue-900 mb-2 flex items-center">
+                          <div className="bg-primary/10 rounded-lg p-4">
+                            <h3 className="text-sm font-medium text-foreground mb-2 flex items-center">
                               <span className="mr-2">💡</span> Suggestions
                             </h3>
-                            <ul className="space-y-1 text-sm text-blue-800">
+                            <ul className="space-y-1 text-sm text-foreground">
                               {aiResults?.aiAnalysisData?.improvements?.map((improvement, index) => (
                                 <li key={index}>• {improvement}</li>
                               ))}
@@ -1004,8 +1004,8 @@ const CreateSnippet = () => {
                           <div className="flex items-center space-x-2">
                             <span className="text-sm text-slate-600">Complexity:</span>
                             <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                              aiResults?.aiAnalysisData?.complexity === 'low' ? 'bg-green-100 text-green-700' :
-                              aiResults?.aiAnalysisData?.complexity === 'medium'? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                              aiResults?.aiAnalysisData?.complexity === 'low' ? 'bg-success/15 text-success' :
+                              aiResults?.aiAnalysisData?.complexity === 'medium'? 'bg-warning/15 text-warning' : 'bg-error/15 text-error'
                             }`}>
                               {aiResults?.aiAnalysisData?.complexity?.toUpperCase()}
                             </span>
@@ -1028,16 +1028,16 @@ const CreateSnippet = () => {
             {/* UPDATED: Add Team Selection (only shown if teams available) */}
             {teams?.length > 0 && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Assign to Team (Optional)
                 </label>
                 <div className="flex items-center gap-3">
-                  <Icon name="Users" className="text-gray-500" />
+                  <Icon name="Users" className="text-muted-foreground" />
                   <select
                     value={formData?.teamId || ''}
                     onChange={(e) => setFormData({ ...formData, teamId: e?.target?.value })}
                     disabled={isSubmitting || success || loadingTeams}
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="flex-1 px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
                   >
                     <option value="">No specific team (Company-wide)</option>
                     {teams?.map(team => (
@@ -1055,7 +1055,7 @@ const CreateSnippet = () => {
       {/* Preview Modal */}
       {showPreview && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-6">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+          <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
             <div className="flex items-center justify-between p-6 border-b border-slate-200">
               <h2 className="text-xl font-semibold text-slate-800">Preview</h2>
               <Button
@@ -1081,8 +1081,8 @@ const CreateSnippet = () => {
                       {aiResults?.detectedLanguage}
                     </span>
                     <span className={`text-xs px-2 py-1 rounded-full ${
-                      aiResults?.languageConfidence === 'high' ? 'bg-green-100 text-green-700' :
-                      aiResults?.languageConfidence === 'medium'? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-700'
+                      aiResults?.languageConfidence === 'high' ? 'bg-success/15 text-success' :
+                      aiResults?.languageConfidence === 'medium'? 'bg-warning/15 text-warning' : 'bg-muted text-foreground'
                     }`}>
                       AI detected
                     </span>
@@ -1092,7 +1092,7 @@ const CreateSnippet = () => {
                 {tags && (
                   <div className="flex flex-wrap gap-2">
                     {tags?.split(',')?.map((tag, index) => (
-                      <span key={index} className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">
+                      <span key={index} className="px-3 py-1 text-xs font-medium bg-primary/15 text-primary rounded-full">
                         {tag?.trim()}
                       </span>
                     ))}
@@ -1124,7 +1124,7 @@ const CreateSnippet = () => {
         </div>
       )}
       {/* Mobile Bottom Actions */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 flex gap-3">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-card border-t border-slate-200 p-4 flex gap-3">
         <Button
           variant="outline"
           size="default"

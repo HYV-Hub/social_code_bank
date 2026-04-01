@@ -9,35 +9,35 @@ const AchievementShowcase = () => {
       name: 'Code Master',
       description: '100+ snippets created',
       icon: Crown,
-      color: 'bg-yellow-500',
+      color: 'bg-warning/100',
       requirement: '100 snippets'
     },
     {
       name: 'Bug Terminator',
       description: '50+ bugs fixed',
       icon: Trophy,
-      color: 'bg-red-500',
+      color: 'bg-error/100',
       requirement: '50 bug fixes'
     },
     {
       name: 'Legend Status',
       description: '1000+ points earned',
       icon: Star,
-      color: 'bg-purple-500',
+      color: 'bg-primary/100',
       requirement: '1000 points'
     },
     {
       name: 'Mentor Elite',
       description: '50+ followers',
       icon: Medal,
-      color: 'bg-green-500',
+      color: 'bg-success/100',
       requirement: '50 followers'
     },
     {
       name: 'Code Expert',
       description: '50+ snippets created',
       icon: Award,
-      color: 'bg-blue-500',
+      color: 'bg-primary',
       requirement: '50 snippets'
     },
     {
@@ -50,12 +50,12 @@ const AchievementShowcase = () => {
   ];
 
   return (
-    <div className="mt-12 bg-white rounded-xl shadow-sm p-8">
+    <div className="mt-12 bg-card rounded-xl shadow-sm p-8">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+        <h2 className="text-3xl font-bold text-foreground mb-2">
           Achievement Badges
         </h2>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           Unlock these prestigious badges by contributing to the community
         </p>
       </div>
@@ -78,15 +78,15 @@ const AchievementShowcase = () => {
                 <Icon className="w-10 h-10" />
               </div>
               {/* Badge Name */}
-              <h3 className="font-semibold text-gray-900 mb-1 text-sm">
+              <h3 className="font-semibold text-foreground mb-1 text-sm">
                 {achievement?.name}
               </h3>
               {/* Description */}
-              <p className="text-xs text-gray-600 mb-2">
+              <p className="text-xs text-muted-foreground mb-2">
                 {achievement?.description}
               </p>
               {/* Requirement */}
-              <div className="bg-gray-100 rounded-full px-3 py-1 text-xs text-gray-700 font-medium inline-block">
+              <div className="bg-muted rounded-full px-3 py-1 text-xs text-foreground font-medium inline-block">
                 {achievement?.requirement}
               </div>
             </div>
@@ -95,12 +95,12 @@ const AchievementShowcase = () => {
       </div>
       {/* Call to Action */}
       <div className="mt-10 text-center">
-        <p className="text-gray-600 mb-4">
+        <p className="text-muted-foreground mb-4">
           Start contributing today and earn your place on the leaderboard!
         </p>
         <button 
           onClick={() => window.location.href = '/create-snippet'}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
+          className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary transition-colors duration-200"
         >
           Create Your First Snippet
         </button>

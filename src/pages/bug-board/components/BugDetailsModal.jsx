@@ -59,25 +59,25 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
   };
 
   const priorityColors = {
-    critical: 'bg-red-100 text-red-800',
+    critical: 'bg-error/15 text-red-800',
     high: 'bg-orange-100 text-orange-800',
-    medium: 'bg-yellow-100 text-yellow-800',
-    low: 'bg-blue-100 text-blue-800'
+    medium: 'bg-warning/15 text-yellow-800',
+    low: 'bg-primary/15 text-foreground'
   };
 
   const statusColors = {
-    open: 'bg-red-100 text-red-800',
-    in_progress: 'bg-yellow-100 text-yellow-800',
-    resolved: 'bg-green-100 text-green-800',
+    open: 'bg-error/15 text-red-800',
+    in_progress: 'bg-warning/15 text-yellow-800',
+    resolved: 'bg-success/15 text-success',
     closed: 'bg-slate-100 text-slate-800',
     reopened: 'bg-orange-100 text-orange-800'
   };
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+        <div className="bg-card border-b border-slate-200 px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <h2 className="text-xl font-bold text-slate-800">{bug?.title}</h2>
             <span className={`px-3 py-1 rounded text-xs font-medium ${priorityColors?.[bug?.priority]}`}>
@@ -101,7 +101,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <button
               onClick={() => setActiveTab('details')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'details' ?'border-blue-600 text-blue-600' :'border-transparent text-slate-600 hover:text-slate-800'
+                activeTab === 'details' ?'border-blue-600 text-primary' :'border-transparent text-slate-600 hover:text-slate-800'
               }`}
             >
               <Icon name="FileText" size={16} className="inline mr-2" />
@@ -110,7 +110,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <button
               onClick={() => setActiveTab('comments')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'comments' ?'border-blue-600 text-blue-600' :'border-transparent text-slate-600 hover:text-slate-800'
+                activeTab === 'comments' ?'border-blue-600 text-primary' :'border-transparent text-slate-600 hover:text-slate-800'
               }`}
             >
               <Icon name="MessageSquare" size={16} className="inline mr-2" />
@@ -119,7 +119,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <button
               onClick={() => setActiveTab('history')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'history' ?'border-blue-600 text-blue-600' :'border-transparent text-slate-600 hover:text-slate-800'
+                activeTab === 'history' ?'border-blue-600 text-primary' :'border-transparent text-slate-600 hover:text-slate-800'
               }`}
             >
               <Icon name="Clock" size={16} className="inline mr-2" />
@@ -181,7 +181,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
                   onChange={(e) => setNewComment(e?.target?.value)}
                   placeholder="Add a comment..."
                   rows={3}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                 />
                 <div className="mt-2 flex justify-end">
                   <Button
@@ -204,7 +204,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
               ) : comments?.length > 0 ? (
                 <div className="space-y-4">
                   {comments?.map((comment) => (
-                    <div key={comment?.id} className="bg-white border border-slate-200 rounded-lg p-4">
+                    <div key={comment?.id} className="bg-card border border-slate-200 rounded-lg p-4">
                       <div className="flex items-start gap-3">
                         <img
                           src={comment?.user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(comment?.user?.name || 'User')}&background=random`}
@@ -244,7 +244,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
         </div>
 
         {/* Add AI Report Button before Actions section */}
-        <div className="border-t border-gray-200 pt-4 mb-4">
+        <div className="border-t border-border pt-4 mb-4">
           <AIReportButton 
             entity={bug} 
             entityType="bug"

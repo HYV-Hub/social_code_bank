@@ -147,7 +147,7 @@ export default function OAuthLoginPage() {
         
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 flex items-center justify-center p-4">
           <div className="w-full max-w-md">
-            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 p-8 text-center">
+            <div className="bg-card rounded-xl shadow-2xl border border-slate-200 p-8 text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
               <h2 className="text-xl font-semibold text-slate-800 mb-2">Processing Sign In</h2>
               <p className="text-slate-600">Setting up your account...</p>
@@ -171,17 +171,17 @@ export default function OAuthLoginPage() {
             <p className="text-slate-600">Continue with your preferred provider</p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 p-8">
+          <div className="bg-card rounded-xl shadow-2xl border border-slate-200 p-8">
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg">
                 <div className="flex items-start gap-3">
-                  <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+                  <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-red-600 text-sm font-medium mb-1">Authentication Error</p>
-                    <p className="text-red-500 text-sm">{error}</p>
+                    <p className="text-error text-sm font-medium mb-1">Authentication Error</p>
+                    <p className="text-error text-sm">{error}</p>
                     <button
                       onClick={() => setError("")}
-                      className="mt-2 text-xs text-red-600 hover:text-red-700 underline"
+                      className="mt-2 text-xs text-error hover:text-error underline"
                     >
                       Dismiss
                     </button>
@@ -194,7 +194,7 @@ export default function OAuthLoginPage() {
               <button
                 onClick={handleGoogleSignIn}
                 disabled={loading}
-                className="w-full py-3 px-4 bg-white hover:bg-slate-50 text-slate-900 font-medium rounded-lg flex items-center justify-center gap-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed border-2 border-slate-300 hover:border-slate-400"
+                className="w-full py-3 px-4 bg-card hover:bg-slate-50 text-slate-900 font-medium rounded-lg flex items-center justify-center gap-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed border-2 border-slate-300 hover:border-slate-400"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
@@ -232,11 +232,11 @@ export default function OAuthLoginPage() {
             <div className="mt-6 text-center">
               <p className="text-slate-500 text-sm">
                 By signing in, you agree to our{" "}
-                <a href="/terms-of-service" className="text-blue-600 hover:text-blue-700 underline">
+                <a href="/terms-of-service" className="text-primary hover:text-primary underline">
                   Terms of Service
                 </a>{" "}
                 and{" "}
-                <a href="/privacy-policy" className="text-blue-600 hover:text-blue-700 underline">
+                <a href="/privacy-policy" className="text-primary hover:text-primary underline">
                   Privacy Policy
                 </a>
               </p>
@@ -254,19 +254,19 @@ export default function OAuthLoginPage() {
 
           {/* Setup Instructions */}
           {error && (error?.includes("configured") || error?.includes("setup")) && (
-            <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="mt-6 bg-primary/10 border border-primary/20 rounded-lg p-4">
               <div className="flex items-start gap-3">
-                <Icon name="Info" size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />
+                <Icon name="Info" size={20} className="text-primary flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="text-sm font-medium text-blue-900 mb-1">OAuth Setup Required</h3>
-                  <p className="text-xs text-blue-700">
+                  <h3 className="text-sm font-medium text-foreground mb-1">OAuth Setup Required</h3>
+                  <p className="text-xs text-primary">
                     To enable OAuth sign-in, configure your providers in the Supabase dashboard under Authentication → Providers. 
                     See{" "}
                     <a 
                       href="https://supabase.com/docs/guides/auth/social-login" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="underline hover:text-blue-800"
+                      className="underline hover:text-foreground"
                     >
                       documentation
                     </a>

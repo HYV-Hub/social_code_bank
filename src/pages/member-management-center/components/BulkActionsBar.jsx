@@ -42,7 +42,7 @@ export default function BulkActionsBar({ selectedCount, onRoleUpdate, onDeactiva
                   className="fixed inset-0 z-10"
                   onClick={() => setShowRoleMenu(false)}
                 />
-                <div className="absolute bottom-full left-0 mb-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-20">
+                <div className="absolute bottom-full left-0 mb-2 w-48 bg-card rounded-lg shadow-xl border border-border py-2 z-20">
                   {roles?.map(role => (
                     <button
                       key={role?.value}
@@ -50,7 +50,7 @@ export default function BulkActionsBar({ selectedCount, onRoleUpdate, onDeactiva
                         onRoleUpdate(role?.value);
                         setShowRoleMenu(false);
                       }}
-                      className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                      className="w-full px-4 py-2 text-left text-sm text-foreground hover:bg-muted"
                     >
                       {role?.label}
                     </button>

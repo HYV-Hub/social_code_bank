@@ -144,7 +144,7 @@ const CompanyCreationPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {authLoading ? 'Loading authentication...' : userHasCompany ?'Redirecting to company dashboard...': 'Checking company status...'}
           </p>
         </div>
@@ -320,8 +320,8 @@ const CompanyCreationPage = () => {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Company Information</h2>
-              <p className="text-gray-600">Let's start with the basics about your company</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Company Information</h2>
+              <p className="text-muted-foreground">Let's start with the basics about your company</p>
             </div>
             <Input
               label="Company Name *"
@@ -333,7 +333,7 @@ const CompanyCreationPage = () => {
               required
             />
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Description
               </label>
               <textarea
@@ -341,7 +341,7 @@ const CompanyCreationPage = () => {
                 value={formData?.description}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
                 placeholder="Brief description of your company..."
               />
             </div>
@@ -359,28 +359,28 @@ const CompanyCreationPage = () => {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Invite Team Members (Optional)</h2>
-              <p className="text-gray-600">You can skip this step and invite team members later</p>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Invite Team Members (Optional)</h2>
+              <p className="text-muted-foreground">You can skip this step and invite team members later</p>
             </div>
 
             {/* User Limit Notice */}
-            <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
+            <div className="bg-primary/10 rounded-lg p-6 border border-primary/20">
               <div className="flex items-start gap-3">
-                <AppIcon name="Users" size={24} className="text-blue-600 flex-shrink-0" />
+                <AppIcon name="Users" size={24} className="text-primary flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-blue-900 mb-2">Free Tier - 10 Users Included</h3>
-                  <p className="text-blue-800 mb-3">
+                  <h3 className="font-semibold text-foreground mb-2">Free Tier - 10 Users Included</h3>
+                  <p className="text-foreground mb-3">
                     Your company can add up to <strong>10 team members completely free</strong>. 
                     Need more users? Contact our sales team for custom enterprise solutions.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-primary/15 text-foreground px-3 py-1 rounded-full text-sm font-medium">
                       ✓ 10 Free Users
                     </span>
-                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-primary/15 text-foreground px-3 py-1 rounded-full text-sm font-medium">
                       ✓ All Features Included
                     </span>
-                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-primary/15 text-foreground px-3 py-1 rounded-full text-sm font-medium">
                       ✓ No Credit Card Required
                     </span>
                   </div>
@@ -389,7 +389,7 @@ const CompanyCreationPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Email Addresses (Optional - Up to 9 more users)
               </label>
               <textarea
@@ -397,21 +397,21 @@ const CompanyCreationPage = () => {
                 value={formData?.invite_emails}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
                 placeholder="Enter email addresses separated by commas&#10;john@company.com, jane@company.com"
               />
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-muted-foreground mt-2">
                 Leave empty to skip team invitations. You can invite members later from your company dashboard.
               </p>
             </div>
 
             {/* Need More Users? */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-background rounded-lg p-4 border border-border">
               <div className="flex items-start gap-3">
-                <AppIcon name="HelpCircle" size={20} className="text-gray-600 flex-shrink-0 mt-0.5" />
+                <AppIcon name="HelpCircle" size={20} className="text-muted-foreground flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Need more than 10 users?</h4>
-                  <p className="text-sm text-gray-600 mb-2">
+                  <h4 className="font-semibold text-foreground mb-1">Need more than 10 users?</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
                     Contact our sales team after creating your company to discuss enterprise options for larger teams.
                   </p>
                   <Button
@@ -427,23 +427,23 @@ const CompanyCreationPage = () => {
               </div>
             </div>
 
-            <div className="bg-blue-50 rounded-lg p-6">
-              <h3 className="font-semibold text-blue-900 mb-3">What happens next?</h3>
-              <ul className="space-y-2 text-blue-800">
+            <div className="bg-primary/10 rounded-lg p-6">
+              <h3 className="font-semibold text-foreground mb-3">What happens next?</h3>
+              <ul className="space-y-2 text-foreground">
                 <li className="flex items-start gap-2">
-                  <AppIcon name="Check" size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />
+                  <AppIcon name="Check" size={20} className="text-primary flex-shrink-0 mt-0.5" />
                   <span>Your company workspace will be created with a 10-user limit</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AppIcon name="Check" size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />
+                  <AppIcon name="Check" size={20} className="text-primary flex-shrink-0 mt-0.5" />
                   <span>Invitations will be sent to team members (if provided)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AppIcon name="Check" size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />
+                  <AppIcon name="Check" size={20} className="text-primary flex-shrink-0 mt-0.5" />
                   <span>You'll be taken to your company dashboard</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AppIcon name="Check" size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />
+                  <AppIcon name="Check" size={20} className="text-primary flex-shrink-0 mt-0.5" />
                   <span>Start collaborating with unlimited features!</span>
                 </li>
               </ul>
@@ -461,7 +461,7 @@ const CompanyCreationPage = () => {
       <AppNavigation />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Progress Indicator */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
           <div className="flex items-center justify-between">
             {[1, 2]?.map((num, index) => (
               <React.Fragment key={num}>
@@ -469,19 +469,19 @@ const CompanyCreationPage = () => {
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
                       step >= num
-                        ? 'bg-blue-600 text-white' :'bg-gray-200 text-gray-500'
+                        ? 'bg-primary text-white' :'bg-muted text-muted-foreground'
                     }`}
                   >
                     {num}
                   </div>
-                  <span className="text-xs mt-2 text-gray-600">
+                  <span className="text-xs mt-2 text-muted-foreground">
                     {num === 1 ? 'Company Info' : 'Team (Optional)'}
                   </span>
                 </div>
                 {index < 1 && (
                   <div
                     className={`flex-1 h-1 mx-4 ${
-                      step > num ? 'bg-blue-600' : 'bg-gray-200'
+                      step > num ? 'bg-primary' : 'bg-muted'
                     }`}
                   />
                 )}
@@ -491,11 +491,11 @@ const CompanyCreationPage = () => {
         </div>
 
         {/* Form */}
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-card rounded-lg shadow-lg p-8">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg">
               <div className="flex items-start gap-2">
-                <AppIcon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+                <AppIcon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <p className="text-red-800 text-sm">{error}</p>
               </div>
             </div>

@@ -170,7 +170,7 @@ const MessageThread = ({
                   {message?.is_edited && (
                     <span className="text-xs text-muted-foreground">(edited)</span>
                   )}
-                  <span className="text-xs text-green-600">
+                  <span className="text-xs text-success">
                     <Icon name="CheckCheck" size={14} />
                   </span>
                 </div>

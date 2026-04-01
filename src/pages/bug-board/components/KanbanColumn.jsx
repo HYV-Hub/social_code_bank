@@ -10,19 +10,19 @@ export default function KanbanColumn({ status, title, bugs, onDrop, onDragOver, 
   const getStatusColor = () => {
     if (isBugFix) {
       switch (status) {
-        case 'open': return 'bg-blue-100 text-blue-800';
+        case 'open': return 'bg-primary/15 text-foreground';
         case 'in_progress': return 'bg-purple-100 text-purple-800';
-        case 'resolved': return 'bg-green-100 text-green-800';
-        case 'closed': return 'bg-gray-100 text-gray-800';
+        case 'resolved': return 'bg-success/15 text-success';
+        case 'closed': return 'bg-muted text-foreground';
         default: return 'bg-slate-100 text-slate-800';
       }
     }
     
     switch (status) {
-      case 'open': return 'bg-red-100 text-red-800';
-      case 'in_progress': return 'bg-yellow-100 text-yellow-800';
-      case 'resolved': return 'bg-green-100 text-green-800';
-      case 'closed': return 'bg-gray-100 text-gray-800';
+      case 'open': return 'bg-error/15 text-red-800';
+      case 'in_progress': return 'bg-warning/15 text-yellow-800';
+      case 'resolved': return 'bg-success/15 text-success';
+      case 'closed': return 'bg-muted text-foreground';
       default: return 'bg-slate-100 text-slate-800';
     }
   };
@@ -66,7 +66,7 @@ export default function KanbanColumn({ status, title, bugs, onDrop, onDragOver, 
             {bugs?.length || 0}
           </span>
           {isBugFix && (
-            <span className="px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+            <span className="px-2 py-0.5 rounded text-xs font-medium bg-primary/15 text-foreground">
               Fixes
             </span>
           )}
@@ -79,7 +79,7 @@ export default function KanbanColumn({ status, title, bugs, onDrop, onDragOver, 
             draggable
             onDragStart={(e) => handleDragStart(e, bug)}
             onClick={() => onViewDetails?.(bug)}
-            className="bg-white rounded-lg p-4 shadow-sm border border-slate-200 hover:shadow-md transition-shadow cursor-pointer"
+            className="bg-card rounded-lg p-4 shadow-sm border border-slate-200 hover:shadow-md transition-shadow cursor-pointer"
           >
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">

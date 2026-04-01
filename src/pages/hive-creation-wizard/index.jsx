@@ -67,9 +67,9 @@ export default function HiveCreationWizard() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
         <div className="text-center">
-          <Icon name="Lock" size={64} className="mx-auto text-gray-400 mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Sign in required</h2>
-          <p className="text-gray-600 mb-6">You need to be signed in to create a hive</p>
+          <Icon name="Lock" size={64} className="mx-auto text-muted-foreground mb-4" />
+          <h2 className="text-2xl font-bold text-foreground mb-2">Sign in required</h2>
+          <p className="text-muted-foreground mb-6">You need to be signed in to create a hive</p>
           <Button onClick={() => navigate('/login')}>Sign In</Button>
         </div>
       </div>
@@ -80,10 +80,10 @@ export default function HiveCreationWizard() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
       <AppNavigation />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-xl p-8">
+        <div className="bg-card rounded-lg shadow-xl p-8">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Create a New Hive</h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold text-foreground mb-2">Create a New Hive</h1>
+            <p className="text-muted-foreground">
               Set up your hive to collaborate with developers worldwide
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function HiveCreationWizard() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Hive Name */}
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                 Hive Name *
               </label>
               <Input
@@ -104,14 +104,14 @@ export default function HiveCreationWizard() {
                 required
                 className="w-full"
               />
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 Choose a clear, descriptive name for your hive
               </p>
             </div>
 
             {/* Description */}
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="description" className="block text-sm font-medium text-foreground mb-2">
                 Description
               </label>
               <textarea
@@ -121,16 +121,16 @@ export default function HiveCreationWizard() {
                 onChange={handleInputChange}
                 rows={4}
                 placeholder="Describe the purpose of your hive..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
               />
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 Help others understand what your hive is about
               </p>
             </div>
 
             {/* Privacy */}
             <div>
-              <label htmlFor="privacy" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="privacy" className="block text-sm font-medium text-foreground mb-2">
                 Privacy *
               </label>
               <Select
@@ -143,8 +143,8 @@ export default function HiveCreationWizard() {
                 <option value="public">Public - Anyone can join</option>
                 <option value="private">Private - Requires approval to join</option>
               </Select>
-              <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm text-blue-800">
+              <div className="mt-2 p-3 bg-primary/10 border border-primary/20 rounded-lg">
+                <p className="text-sm text-foreground">
                   {formData?.privacy === 'public' ?'🌍 Public hives are discoverable and anyone can join instantly' :'🔒 Private hives require owner/admin approval for new members'}
                 </p>
               </div>
@@ -152,7 +152,7 @@ export default function HiveCreationWizard() {
 
             {/* Tags */}
             <div>
-              <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="tags" className="block text-sm font-medium text-foreground mb-2">
                 Tags
               </label>
               <Input
@@ -164,18 +164,18 @@ export default function HiveCreationWizard() {
                 placeholder="react, javascript, frontend (comma-separated)"
                 className="w-full"
               />
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 Add tags to help others discover your hive (separate with commas)
               </p>
             </div>
 
             {/* Error Message */}
             {error && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-                <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+              <div className="p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+                <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm font-medium text-red-900">Error creating hive</p>
-                  <p className="text-sm text-red-700 mt-1">{error}</p>
+                  <p className="text-sm text-error mt-1">{error}</p>
                 </div>
               </div>
             )}

@@ -107,9 +107,9 @@ const EmailVerification = () => {
 
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
           <div className="w-full max-w-md">
-            <div className="bg-white rounded-lg shadow-xl border border-slate-200 p-8">
+            <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
               <div className="flex justify-center mb-6">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center">
                   <Icon name="CheckCircle2" size={32} color="#16a34a" />
                 </div>
               </div>
@@ -156,10 +156,10 @@ const EmailVerification = () => {
           </div>
 
           {/* Main Card */}
-          <div className="bg-white rounded-lg shadow-xl border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
             {/* Header */}
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-primary/15 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Icon name="Mail" size={32} color="#1e40af" />
               </div>
               <h1 className="text-2xl font-bold text-slate-900 mb-2">
@@ -172,11 +172,11 @@ const EmailVerification = () => {
 
             {/* Success Message for Resend */}
             {showResendSuccess && (
-              <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
+              <div className="mb-6 bg-success/10 border border-success/20 rounded-lg p-4 flex items-start gap-3">
                 <Icon name="CheckCircle2" size={20} color="#16a34a" className="flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-sm text-green-800 font-medium">Email Sent!</p>
-                  <p className="text-sm text-green-700 mt-1">
+                  <p className="text-sm text-success font-medium">Email Sent!</p>
+                  <p className="text-sm text-success mt-1">
                     A new verification link has been sent to your email.
                   </p>
                 </div>
@@ -185,19 +185,19 @@ const EmailVerification = () => {
 
             {/* Error Message */}
             {errorMessage && (
-              <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+              <div className="mb-6 bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
                 <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <p className="text-sm text-red-800 font-medium">Verification Error</p>
-                  <p className="text-sm text-red-700 mt-1">{errorMessage}</p>
+                  <p className="text-sm text-error mt-1">{errorMessage}</p>
                 </div>
               </div>
             )}
 
             {/* Instructions */}
-            <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-sm font-medium text-blue-900 mb-3">What to do next:</p>
-              <ol className="space-y-2 text-sm text-blue-800">
+            <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+              <p className="text-sm font-medium text-foreground mb-3">What to do next:</p>
+              <ol className="space-y-2 text-sm text-foreground">
                 <li className="flex items-start gap-2">
                   <span className="font-semibold mt-0.5">1.</span>
                   <span>Open your email inbox</span>
@@ -224,7 +224,7 @@ const EmailVerification = () => {
                   <div className="w-full border-t border-slate-200"></div>
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-white px-2 text-slate-500">Didn't receive the email?</span>
+                  <span className="bg-card px-2 text-slate-500">Didn't receive the email?</span>
                 </div>
               </div>
 

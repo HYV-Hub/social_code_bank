@@ -9,31 +9,31 @@ const TestimonialsSection = () => {
       icon: 'Code2',
       title: 'Smart Code Organization',
       description: 'Organize your code snippets with AI-powered tagging and intelligent search capabilities.',
-      color: 'text-blue-600'
+      color: 'text-primary'
     },
     {
       icon: 'Users',
       title: 'Team Collaboration',
       description: 'Collaborate seamlessly with your team through shared workspaces and real-time updates.',
-      color: 'text-purple-600'
+      color: 'text-primary'
     },
     {
       icon: 'Bug',
       title: 'Bug Tracking',
       description: 'Track and resolve bugs efficiently with our integrated kanban-style bug board.',
-      color: 'text-red-600'
+      color: 'text-error'
     },
     {
       icon: 'Sparkles',
       title: 'AI Code Analysis',
       description: 'Get intelligent insights and suggestions powered by advanced AI technology.',
-      color: 'text-yellow-600'
+      color: 'text-warning'
     },
     {
       icon: 'Lock',
       title: 'Privacy Controls',
       description: 'Full control over snippet visibility - keep them private, share with team, or make public.',
-      color: 'text-green-600'
+      color: 'text-success'
     },
     {
       icon: 'Zap',
@@ -67,7 +67,7 @@ const TestimonialsSection = () => {
           {features?.map((feature, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-[var(--color-border)] hover:shadow-xl transition-all duration-300 group"
+              className="bg-card dark:bg-slate-800 rounded-xl p-8 border border-[var(--color-border)] hover:shadow-xl transition-all duration-300 group"
             >
               <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${feature?.color?.replace('text-', 'bg-')}/10 mb-4 group-hover:scale-110 transition-transform`}>
                 <Icon name={feature?.icon} size={24} color={`var(--color-${feature?.color?.replace('text-', '')})`} />
@@ -85,7 +85,7 @@ const TestimonialsSection = () => {
         {/* Beta Call to Action */}
         <div className="bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] rounded-3xl p-12 text-center text-white">
           <div className="max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/20 backdrop-blur-sm mb-6">
               <Icon name="Users" size={16} />
               <span className="text-sm font-medium">
                 Join the Beta Program
@@ -104,7 +104,7 @@ const TestimonialsSection = () => {
                 </Button>
               </Link>
               <Link to="/features">
-                <Button size="lg" variant="ghost" className="text-white border-white hover:bg-white/10" iconName="ArrowRight" iconPosition="right">
+                <Button size="lg" variant="ghost" className="text-white border-white hover:bg-card/10" iconName="ArrowRight" iconPosition="right">
                   Learn More
                 </Button>
               </Link>

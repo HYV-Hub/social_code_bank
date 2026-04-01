@@ -43,10 +43,10 @@ const OfficeLocations = () => {
       {offices?.map((office, index) => (
         <div
           key={index}
-          className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-[var(--color-border)] hover:shadow-xl transition-shadow"
+          className="bg-card dark:bg-slate-800 rounded-xl overflow-hidden border border-[var(--color-border)] hover:shadow-xl transition-shadow"
         >
           {/* Map Embed */}
-          <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
+          <div className="relative h-48 bg-muted dark:bg-muted">
             <iframe
               src={office?.mapEmbed}
               width="100%"
@@ -58,7 +58,7 @@ const OfficeLocations = () => {
               title={`Map of ${office?.city} office location`}
             ></iframe>
             {office?.isHeadquarters && (
-              <div className="absolute top-3 right-3 px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
+              <div className="absolute top-3 right-3 px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
                 Headquarters
               </div>
             )}
@@ -75,7 +75,7 @@ const OfficeLocations = () => {
 
             <div className="space-y-3">
               <div className="flex items-start gap-3">
-                <Icon name="MapPin" size={18} className="text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <Icon name="MapPin" size={18} className="text-primary dark:text-blue-400 mt-0.5 flex-shrink-0" />
                 <div className="text-sm text-[var(--color-foreground)]">
                   <p>{office?.address}</p>
                   <p>{office?.zipCode}</p>
@@ -83,27 +83,27 @@ const OfficeLocations = () => {
               </div>
 
               <div className="flex items-center gap-3">
-                <Icon name="Phone" size={18} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                <Icon name="Phone" size={18} className="text-primary dark:text-blue-400 flex-shrink-0" />
                 <a
                   href={`tel:${office?.phone}`}
-                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-sm text-primary dark:text-blue-400 hover:underline"
                 >
                   {office?.phone}
                 </a>
               </div>
 
               <div className="flex items-center gap-3">
-                <Icon name="Mail" size={18} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                <Icon name="Mail" size={18} className="text-primary dark:text-blue-400 flex-shrink-0" />
                 <a
                   href={`mailto:${office?.email}`}
-                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-sm text-primary dark:text-blue-400 hover:underline"
                 >
                   {office?.email}
                 </a>
               </div>
 
               <div className="flex items-start gap-3 pt-2 border-t border-[var(--color-border)]">
-                <Icon name="Clock" size={18} className="text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <Icon name="Clock" size={18} className="text-primary dark:text-blue-400 mt-0.5 flex-shrink-0" />
                 <p className="text-sm text-[var(--color-muted-foreground)]">
                   {office?.hours}
                 </p>

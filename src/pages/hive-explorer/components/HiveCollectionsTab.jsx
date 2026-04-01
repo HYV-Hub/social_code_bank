@@ -70,20 +70,20 @@ const HiveCollectionsTab = ({ hiveId, hiveRole }) => {
       {/* Header with Search and Create Button */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
           <input
             type="text"
             placeholder="Search collections..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e?.target?.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
           />
         </div>
 
         {canCreateCollection && (
           <button
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors"
           >
             <Plus className="w-5 h-5" />
             <span>New Collection</span>
@@ -93,11 +93,11 @@ const HiveCollectionsTab = ({ hiveId, hiveRole }) => {
       {/* Collections Grid */}
       {filteredCollections?.length === 0 ? (
         <div className="text-center py-12">
-          <FolderOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <FolderOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-foreground mb-2">
             {searchQuery ? 'No collections found' : 'No collections yet'}
           </h3>
-          <p className="text-gray-500 mb-6">
+          <p className="text-muted-foreground mb-6">
             {searchQuery 
               ? 'Try adjusting your search terms'
               : canCreateCollection
@@ -107,7 +107,7 @@ const HiveCollectionsTab = ({ hiveId, hiveRole }) => {
           {canCreateCollection && !searchQuery && (
             <button
               onClick={() => setShowCreateModal(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary transition-colors"
             >
               <Plus className="w-5 h-5" />
               <span>Create Collection</span>
@@ -124,23 +124,23 @@ const HiveCollectionsTab = ({ hiveId, hiveRole }) => {
               <div
                 key={collection?.id}
                 onClick={() => handleCollectionClick(collection?.id)}
-                className="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                className="bg-card rounded-lg shadow-md border border-border p-6 hover:shadow-lg transition-shadow cursor-pointer"
               >
                 {/* Collection Header */}
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <FolderOpen className="w-5 h-5 text-blue-600" />
+                    <FolderOpen className="w-5 h-5 text-primary" />
                     {collection?.is_public ? (
-                      <Globe className="w-4 h-4 text-green-600" title="Public" />
+                      <Globe className="w-4 h-4 text-success" title="Public" />
                     ) : (
-                      <Lock className="w-4 h-4 text-gray-500" title="Private" />
+                      <Lock className="w-4 h-4 text-muted-foreground" title="Private" />
                     )}
                   </div>
                   
                   {canDelete && (
                     <button
                       onClick={(e) => handleDeleteCollection(collection?.id, e)}
-                      className="text-gray-400 hover:text-red-600 transition-colors"
+                      className="text-muted-foreground hover:text-error transition-colors"
                       title="Delete collection"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -148,17 +148,17 @@ const HiveCollectionsTab = ({ hiveId, hiveRole }) => {
                   )}
                 </div>
                 {/* Collection Info */}
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1">
+                <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-1">
                   {collection?.name}
                 </h3>
                 {collection?.description && (
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
                     {collection?.description}
                   </p>
                 )}
                 {/* Collection Stats */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div className="flex items-center gap-4 text-sm text-gray-500">
+                <div className="flex items-center justify-between pt-4 border-t border-border">
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <span>{collection?.snippet_count || 0} snippets</span>
                   </div>
                   
@@ -171,13 +171,13 @@ const HiveCollectionsTab = ({ hiveId, hiveRole }) => {
                           className="w-6 h-6 rounded-full"
                         />
                       ) : (
-                        <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
-                          <span className="text-xs font-medium text-blue-600">
+                        <div className="w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center">
+                          <span className="text-xs font-medium text-primary">
                             {collection?.created_by_profile?.username?.charAt(0)?.toUpperCase()}
                           </span>
                         </div>
                       )}
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-muted-foreground">
                         {collection?.created_by_profile?.username}
                       </span>
                     </div>
@@ -243,25 +243,25 @@ const CreateCollectionModal = ({ hiveId, onClose, onSuccess }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-md w-full p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Create Collection</h2>
+      <div className="bg-card rounded-lg max-w-md w-full p-6">
+        <h2 className="text-2xl font-bold text-foreground mb-4">Create Collection</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+            <div className="p-3 bg-error/10 border border-error/20 rounded-lg text-sm text-error">
               {error}
             </div>
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Collection Name *
             </label>
             <input
               type="text"
               value={formData?.name}
               onChange={(e) => setFormData({ ...formData, name: e?.target?.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
               placeholder="e.g., React Best Practices"
               maxLength={255}
               required
@@ -269,13 +269,13 @@ const CreateCollectionModal = ({ hiveId, onClose, onSuccess }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Description
             </label>
             <textarea
               value={formData?.description}
               onChange={(e) => setFormData({ ...formData, description: e?.target?.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
               placeholder="Describe what this collection is about..."
               rows={3}
             />
@@ -287,9 +287,9 @@ const CreateCollectionModal = ({ hiveId, onClose, onSuccess }) => {
               id="isPublic"
               checked={formData?.isPublic}
               onChange={(e) => setFormData({ ...formData, isPublic: e?.target?.checked })}
-              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              className="w-4 h-4 text-primary border-border rounded focus:ring-ring"
             />
-            <label htmlFor="isPublic" className="text-sm text-gray-700">
+            <label htmlFor="isPublic" className="text-sm text-foreground">
               Make this collection public
             </label>
           </div>
@@ -298,14 +298,14 @@ const CreateCollectionModal = ({ hiveId, onClose, onSuccess }) => {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex-1 px-4 py-2 border border-border text-foreground rounded-lg hover:bg-background transition-colors"
               disabled={loading}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors disabled:opacity-50"
               disabled={loading}
             >
               {loading ? 'Creating...' : 'Create Collection'}

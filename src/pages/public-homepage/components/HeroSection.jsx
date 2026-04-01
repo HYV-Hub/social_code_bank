@@ -23,7 +23,7 @@ const HeroSection = () => {
             />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-            Welcome to <span className="text-blue-600">HyvHub</span>
+            Welcome to <span className="text-primary">HyvHub</span>
           </h1>
         </div>
 
@@ -68,7 +68,7 @@ const HeroSection = () => {
             </div>
 
             {/* Beta Launch Message */}
-            <div className="inline-flex items-center gap-2 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <div className="inline-flex items-center gap-2 px-4 py-3 bg-primary/10 dark:bg-blue-900/20 rounded-lg border border-primary/20 dark:border-blue-800">
               <Icon name="Sparkles" size={18} color="var(--color-primary)" />
               <p className="text-sm text-[var(--color-foreground)]">
                 <span className="font-semibold">Fresh Launch:</span> Be among the first to shape HyvHub's future
@@ -78,35 +78,35 @@ const HeroSection = () => {
 
           {/* Right Content - Visual */}
           <div className="relative">
-            <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-[var(--color-border)] p-6">
+            <div className="relative bg-card dark:bg-slate-800 rounded-xl shadow-2xl border border-[var(--color-border)] p-6">
               {/* Code Editor Mock */}
               <div className="space-y-4">
                 <div className="flex items-center gap-2 pb-4 border-b border-[var(--color-border)]">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                  <div className="w-3 h-3 rounded-full bg-error/100" />
+                  <div className="w-3 h-3 rounded-full bg-warning/100" />
+                  <div className="w-3 h-3 rounded-full bg-success/100" />
                   <span className="ml-4 text-sm font-mono text-[var(--color-muted-foreground)]">
                     snippet.js
                   </span>
                 </div>
                 
                 <div className="font-mono text-sm space-y-2">
-                  <div className="text-purple-600 dark:text-purple-400">
+                  <div className="text-primary dark:text-purple-400">
                     <span className="text-[var(--color-muted-foreground)]">1</span> 
                     <span className="ml-4">const</span> 
-                    <span className="text-blue-600 dark:text-blue-400"> calculateTotal</span> 
+                    <span className="text-primary dark:text-blue-400"> calculateTotal</span> 
                     <span className="text-[var(--color-foreground)]"> = (items) =&gt; {"{"}</span>
                   </div>
                   <div className="text-[var(--color-foreground)]">
                     <span className="text-[var(--color-muted-foreground)]">2</span>
                     <span className="ml-8">return</span>
-                    <span className="text-blue-600 dark:text-blue-400"> items.reduce</span>
+                    <span className="text-primary dark:text-blue-400"> items.reduce</span>
                     <span>(</span>
                   </div>
                   <div className="text-[var(--color-foreground)]">
                     <span className="text-[var(--color-muted-foreground)]">3</span>
                     <span className="ml-12">(sum, item) =&gt; sum +</span>
-                    <span className="text-blue-600 dark:text-blue-400"> item.price</span>
+                    <span className="text-primary dark:text-blue-400"> item.price</span>
                     <span>, 0</span>
                   </div>
                   <div className="text-[var(--color-foreground)]">
@@ -144,8 +144,8 @@ const HeroSection = () => {
             </div>
 
             {/* Feature Badge */}
-            <div className="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-[var(--color-border)] p-4 flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+            <div className="absolute -bottom-6 -left-6 bg-card dark:bg-slate-800 rounded-xl shadow-lg border border-[var(--color-border)] p-4 flex items-center gap-3">
+              <div className="w-10 h-10 bg-success/15 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
                 <Icon name="Zap" size={20} color="var(--color-success)" />
               </div>
               <div>

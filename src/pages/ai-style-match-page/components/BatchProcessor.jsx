@@ -68,21 +68,21 @@ const BatchProcessor = () => {
   const getStatusConfig = (status) => {
     const configs = {
       success: {
-        color: 'text-green-600',
-        bgColor: 'bg-green-50',
-        borderColor: 'border-green-200',
+        color: 'text-success',
+        bgColor: 'bg-success/10',
+        borderColor: 'border-success/20',
         icon: CheckCircle
       },
       warning: {
-        color: 'text-yellow-600',
-        bgColor: 'bg-yellow-50',
-        borderColor: 'border-yellow-200',
+        color: 'text-warning',
+        bgColor: 'bg-warning/10',
+        borderColor: 'border-warning/20',
         icon: XCircle
       },
       error: {
-        color: 'text-red-600',
-        bgColor: 'bg-red-50',
-        borderColor: 'border-red-200',
+        color: 'text-error',
+        bgColor: 'bg-error/10',
+        borderColor: 'border-error/20',
         icon: XCircle
       }
     };
@@ -92,7 +92,7 @@ const BatchProcessor = () => {
   return (
     <div className="space-y-6">
       {/* Upload Section */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-8">
         <h3 className="text-xl font-semibold text-slate-900 mb-6">
           Batch Style Analysis
         </h3>
@@ -110,8 +110,8 @@ const BatchProcessor = () => {
             htmlFor="file-upload"
             className="cursor-pointer flex flex-col items-center gap-4"
           >
-            <div className="p-4 bg-blue-50 rounded-full">
-              <Upload className="w-8 h-8 text-blue-600" />
+            <div className="p-4 bg-primary/10 rounded-full">
+              <Upload className="w-8 h-8 text-primary" />
             </div>
             <div>
               <p className="text-lg font-medium text-slate-900 mb-1">
@@ -136,7 +136,7 @@ const BatchProcessor = () => {
                   key={index}
                   className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200"
                 >
-                  <FileCode className="w-5 h-5 text-blue-600" />
+                  <FileCode className="w-5 h-5 text-primary" />
                   <span className="flex-1 text-sm text-slate-700">{file?.name}</span>
                   <span className="text-xs text-slate-500">
                     {(file?.size / 1024)?.toFixed(2)} KB
@@ -171,34 +171,34 @@ const BatchProcessor = () => {
         <>
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
               <div className="text-3xl font-bold text-slate-900">{results?.length}</div>
               <div className="text-sm text-slate-600 mt-1">Files Analyzed</div>
             </div>
-            <div className="bg-green-50 rounded-xl border border-green-200 p-6">
-              <div className="text-3xl font-bold text-green-600">
+            <div className="bg-success/10 rounded-xl border border-success/20 p-6">
+              <div className="text-3xl font-bold text-success">
                 {Math.round(
                   results?.reduce((sum, r) => sum + r?.score, 0) / results?.length
                 )}%
               </div>
-              <div className="text-sm text-green-700 mt-1">Average Score</div>
+              <div className="text-sm text-success mt-1">Average Score</div>
             </div>
-            <div className="bg-yellow-50 rounded-xl border border-yellow-200 p-6">
-              <div className="text-3xl font-bold text-yellow-600">
+            <div className="bg-warning/10 rounded-xl border border-warning/20 p-6">
+              <div className="text-3xl font-bold text-warning">
                 {results?.reduce((sum, r) => sum + r?.issues, 0)}
               </div>
-              <div className="text-sm text-yellow-700 mt-1">Total Issues</div>
+              <div className="text-sm text-warning mt-1">Total Issues</div>
             </div>
-            <div className="bg-blue-50 rounded-xl border border-blue-200 p-6">
-              <div className="text-3xl font-bold text-blue-600">
+            <div className="bg-primary/10 rounded-xl border border-primary/20 p-6">
+              <div className="text-3xl font-bold text-primary">
                 {results?.reduce((sum, r) => sum + r?.fixable, 0)}
               </div>
-              <div className="text-sm text-blue-700 mt-1">Auto-Fixable</div>
+              <div className="text-sm text-primary mt-1">Auto-Fixable</div>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="font-semibold text-slate-900">Batch Actions</h4>
@@ -226,7 +226,7 @@ const BatchProcessor = () => {
           </div>
 
           {/* Results Table */}
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-card rounded-xl shadow-sm border border-slate-200 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-slate-50 border-b border-slate-200">
@@ -287,12 +287,12 @@ const BatchProcessor = () => {
                           </span>
                         </td>
                         <td className="px-6 py-4">
-                          <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+                          <span className="px-3 py-1 bg-success/15 text-success rounded-full text-sm font-medium">
                             {result?.fixable}
                           </span>
                         </td>
                         <td className="px-6 py-4">
-                          <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                          <button className="text-primary hover:text-primary font-medium text-sm">
                             View Details
                           </button>
                         </td>

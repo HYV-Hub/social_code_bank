@@ -324,7 +324,7 @@ const SearchResultsPage = () => {
         <title>{query ? `Search: ${query}` : viewMode === 'bug-board' ? 'Global Bug Board' : 'Explore'} - HyvHub</title>
       </Helmet>
       <AppNavigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         {/* Search Header */}
         <SearchHeader
           query={query}
@@ -341,18 +341,18 @@ const SearchResultsPage = () => {
         />
 
         {/* 🎯 FILTERS MOVED DIRECTLY BELOW SEARCH BAR */}
-        <div className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="bg-card border-b border-border shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             {/* View Mode Toggle */}
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+              <div className="flex items-center gap-2 bg-muted rounded-lg p-1">
                 <button
                   onClick={() => {
                     setViewMode('all');
                     setCurrentPage(1);
                   }}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    viewMode === 'all' ?'bg-blue-600 text-white' :'text-gray-600 hover:bg-gray-200'
+                    viewMode === 'all' ?'bg-primary text-white' :'text-muted-foreground hover:bg-muted'
                   }`}
                 >
                   All Content
@@ -363,7 +363,7 @@ const SearchResultsPage = () => {
                     setCurrentPage(1);
                   }}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    viewMode === 'bug-board' ?'bg-blue-600 text-white' :'text-gray-600 hover:bg-gray-200'
+                    viewMode === 'bug-board' ?'bg-primary text-white' :'text-muted-foreground hover:bg-muted'
                   }`}
                 >
                   <Icon name="Bug" size={16} className="inline mr-2" />
@@ -373,7 +373,7 @@ const SearchResultsPage = () => {
 
               {/* Sort Controls & Filter Toggle */}
               <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-600">Sort by:</span>
+                <span className="text-sm text-muted-foreground">Sort by:</span>
                 <SortControls sortBy={sortBy} setSortBy={setSortBy} />
                 
                 {/* Filter Toggle Button */}
@@ -390,7 +390,7 @@ const SearchResultsPage = () => {
                     advancedFilters?.bugPriority?.length > 0 ||
                     advancedFilters?.contentType !== 'all' ||
                     advancedFilters?.language !== 'all') && (
-                    <span className="ml-2 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-blue-600 rounded-full">
+                    <span className="ml-2 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-primary rounded-full">
                       {(advancedFilters?.aiTags?.length || 0) + 
                        (advancedFilters?.bugStatus?.length || 0) + 
                        (advancedFilters?.bugPriority?.length || 0) +
@@ -418,22 +418,22 @@ const SearchResultsPage = () => {
             /* Bug Board View */
             <div className="space-y-6">
               {/* Bug Board Header */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="bg-card rounded-lg shadow-sm p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Global Bug Board</h2>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <h2 className="text-2xl font-bold text-foreground">Global Bug Board</h2>
+                    <p className="text-sm text-muted-foreground mt-1">
                       Open bug cases from the community - No team or company bugs
                     </p>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
-                      <Icon name="AlertCircle" size={16} className="text-red-500" />
+                      <Icon name="AlertCircle" size={16} className="text-error" />
                       <span className="font-medium">{globalBugs?.length} Open Bugs</span>
                     </div>
                     {user && userGlobalBugs?.length > 0 && (
                       <div className="flex items-center gap-2">
-                        <Icon name="User" size={16} className="text-blue-500" />
+                        <Icon name="User" size={16} className="text-primary" />
                         <span className="font-medium">{userGlobalBugs?.length} Your Bugs</span>
                       </div>
                     )}
@@ -443,8 +443,8 @@ const SearchResultsPage = () => {
                 {/* User's Global Bugs Section */}
                 {user && userGlobalBugs?.length > 0 && (
                   <div className="mt-6 border-t pt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <Icon name="User" size={20} className="text-blue-600" />
+                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                      <Icon name="User" size={20} className="text-primary" />
                       Your Global Bugs
                     </h3>
                     <div className="grid grid-cols-1 gap-4">
@@ -461,7 +461,7 @@ const SearchResultsPage = () => {
                         onClick={() => {
                           setAllResults(userGlobalBugs);
                         }}
-                        className="mt-4 text-blue-600 hover:text-blue-700 text-sm font-medium"
+                        className="mt-4 text-primary hover:text-primary text-sm font-medium"
                       >
                         View all {userGlobalBugs?.length} of your global bugs →
                       </button>
@@ -475,14 +475,14 @@ const SearchResultsPage = () => {
                 <LoadingState />
               ) : error ? (
                 <div className="text-center py-12">
-                  <p className="text-red-600 mb-4">{error}</p>
+                  <p className="text-error mb-4">{error}</p>
                   <Button onClick={loadGlobalBugBoard}>Try Again</Button>
                 </div>
               ) : globalBugs?.length === 0 ? (
-                <div className="text-center py-12 bg-white rounded-lg shadow-sm">
-                  <Icon name="Bug" size={48} className="mx-auto text-gray-400 mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No Open Global Bugs</h3>
-                  <p className="text-gray-600">
+                <div className="text-center py-12 bg-card rounded-lg shadow-sm">
+                  <Icon name="Bug" size={48} className="mx-auto text-muted-foreground mb-4" />
+                  <h3 className="text-lg font-semibold text-foreground mb-2">No Open Global Bugs</h3>
+                  <p className="text-muted-foreground">
                     There are no open bugs in the global community at the moment.
                   </p>
                 </div>
@@ -518,7 +518,7 @@ const SearchResultsPage = () => {
                   <LoadingState />
                 ) : error ? (
                   <div className="text-center py-12">
-                    <p className="text-red-600 mb-4">{error}</p>
+                    <p className="text-error mb-4">{error}</p>
                     <Button onClick={searchAllContent}>Try Again</Button>
                   </div>
                 ) : sortedResults?.length === 0 ? (

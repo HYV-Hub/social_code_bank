@@ -43,12 +43,12 @@ const FeaturesSection = () => {
 
   const getColorClasses = (color) => {
     const colors = {
-      blue: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
-      red: 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400',
-      green: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400',
-      purple: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400',
+      blue: 'bg-primary/15 dark:bg-blue-900/30 text-primary dark:text-blue-400',
+      red: 'bg-error/15 dark:bg-red-900/30 text-error dark:text-error',
+      green: 'bg-success/15 dark:bg-green-900/30 text-success dark:text-green-400',
+      purple: 'bg-purple-100 dark:bg-purple-900/30 text-primary dark:text-purple-400',
       orange: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400',
-      indigo: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
+      indigo: 'bg-indigo-100 dark:bg-indigo-900/30 text-secondary dark:text-indigo-400'
     };
     return colors?.[color] || colors?.blue;
   };
@@ -82,7 +82,7 @@ const FeaturesSection = () => {
           {features?.map((feature, index) => (
             <div
               key={index}
-              className="group bg-white dark:bg-slate-800 rounded-2xl p-8 border border-[var(--color-border)] hover:shadow-xl hover:border-[var(--color-primary)]/50 transition-all duration-300"
+              className="group bg-card dark:bg-slate-800 rounded-xl p-8 border border-[var(--color-border)] hover:shadow-xl hover:border-[var(--color-primary)]/50 transition-all duration-300"
             >
               <div className={`w-14 h-14 rounded-xl ${getColorClasses(feature?.color)} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                 <Icon name={feature?.icon} size={28} />

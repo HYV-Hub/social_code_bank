@@ -9,23 +9,23 @@ const TeamStyleGuide = ({ rules }) => {
     const configs = {
       pass: {
         icon: CheckCircle,
-        color: 'text-green-600',
-        bgColor: 'bg-green-50',
-        borderColor: 'border-green-200',
+        color: 'text-success',
+        bgColor: 'bg-success/10',
+        borderColor: 'border-success/20',
         label: 'Passing'
       },
       partial: {
         icon: AlertCircle,
-        color: 'text-yellow-600',
-        bgColor: 'bg-yellow-50',
-        borderColor: 'border-yellow-200',
+        color: 'text-warning',
+        bgColor: 'bg-warning/10',
+        borderColor: 'border-warning/20',
         label: 'Partial'
       },
       fail: {
         icon: XCircle,
-        color: 'text-red-600',
-        bgColor: 'bg-red-50',
-        borderColor: 'border-red-200',
+        color: 'text-error',
+        bgColor: 'bg-error/10',
+        borderColor: 'border-error/20',
         label: 'Failing'
       }
     };
@@ -50,7 +50,7 @@ const TeamStyleGuide = ({ rules }) => {
           </div>
           <button
             onClick={() => setEditMode(!editMode)}
-            className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium"
+            className="px-4 py-2 bg-card/10 hover:bg-card/20 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium"
           >
             {editMode ? (
               <>
@@ -67,15 +67,15 @@ const TeamStyleGuide = ({ rules }) => {
         </div>
         
         <div className="grid grid-cols-3 gap-4 mt-6">
-          <div className="bg-white/10 rounded-lg p-4">
+          <div className="bg-card/10 rounded-lg p-4">
             <div className="text-2xl font-bold">{rules?.length}</div>
             <div className="text-indigo-100 text-sm mt-1">Style Categories</div>
           </div>
-          <div className="bg-white/10 rounded-lg p-4">
+          <div className="bg-card/10 rounded-lg p-4">
             <div className="text-2xl font-bold">{totalWeight}%</div>
             <div className="text-indigo-100 text-sm mt-1">Total Weight</div>
           </div>
-          <div className="bg-white/10 rounded-lg p-4">
+          <div className="bg-card/10 rounded-lg p-4">
             <div className="text-2xl font-bold">
               {rules?.filter((r) => r?.status === 'pass')?.length}
             </div>
@@ -85,7 +85,7 @@ const TeamStyleGuide = ({ rules }) => {
       </div>
 
       {/* Rules List */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
         <h3 className="text-xl font-semibold text-slate-900 mb-6">Style Rules & Weights</h3>
         <div className="space-y-4">
           {rules?.map((rule, index) => {
@@ -98,7 +98,7 @@ const TeamStyleGuide = ({ rules }) => {
                 className={`border ${statusConfig?.borderColor} rounded-xl p-6 ${statusConfig?.bgColor} transition-all hover:shadow-md`}
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white rounded-lg shadow-sm">
+                  <div className="p-3 bg-card rounded-lg shadow-sm">
                     <StatusIcon className={`w-6 h-6 ${statusConfig?.color}`} />
                   </div>
 
@@ -108,7 +108,7 @@ const TeamStyleGuide = ({ rules }) => {
                         <h4 className="text-lg font-semibold text-slate-900 mb-1">
                           {rule?.category}
                         </h4>
-                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${statusConfig?.color} bg-white`}>
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${statusConfig?.color} bg-card`}>
                           {statusConfig?.label}
                         </span>
                       </div>
@@ -166,31 +166,31 @@ const TeamStyleGuide = ({ rules }) => {
                         onClick={() =>
                           setSelectedRule(selectedRule === index ? null : index)
                         }
-                        className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                        className="text-sm text-primary hover:text-primary font-medium"
                       >
                         {selectedRule === index ? 'Hide details' : 'Show details'}
                       </button>
 
                       {selectedRule === index && (
-                        <div className="mt-4 p-4 bg-white rounded-lg border border-slate-200">
+                        <div className="mt-4 p-4 bg-card rounded-lg border border-slate-200">
                           <h5 className="font-medium text-slate-900 mb-3">
                             Rule Guidelines
                           </h5>
                           <ul className="space-y-2 text-sm text-slate-700">
                             <li className="flex items-start gap-2">
-                              <span className="text-blue-600">✓</span>
+                              <span className="text-primary">✓</span>
                               <span>Follow team-approved naming patterns</span>
                             </li>
                             <li className="flex items-start gap-2">
-                              <span className="text-blue-600">✓</span>
+                              <span className="text-primary">✓</span>
                               <span>Use consistent formatting across files</span>
                             </li>
                             <li className="flex items-start gap-2">
-                              <span className="text-blue-600">✓</span>
+                              <span className="text-primary">✓</span>
                               <span>Document public APIs and complex logic</span>
                             </li>
                             <li className="flex items-start gap-2">
-                              <span className="text-blue-600">✓</span>
+                              <span className="text-primary">✓</span>
                               <span>Handle errors gracefully with proper logging</span>
                             </li>
                           </ul>
@@ -207,7 +207,7 @@ const TeamStyleGuide = ({ rules }) => {
 
       {/* Save Button */}
       {editMode && (
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
           <div className="flex items-center justify-between">
             <p className="text-slate-600">
               Adjust category weights to match your team's priorities

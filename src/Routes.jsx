@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes as RouterRoutes, Route } from "react-router-dom";
 import ScrollToTop from "components/ScrollToTop";
 import ErrorBoundary from "components/ErrorBoundary";
+import ProtectedRoute from "components/ProtectedRoute";
 import NotFound from "pages/NotFound";
 import SearchResults from './pages/search-results';
 import CreateSnippet from './pages/create-snippet';
@@ -37,6 +38,7 @@ import EnterpriseSignup from './pages/enterprise-signup';
 import OnboardingPage from 'pages/onboarding';
 import SettingsPage from 'pages/settings';
 import HelpCenterPage from 'pages/help-center';
+import Features from './pages/features';
 
 import HiveCreationWizard from './pages/hive-creation-wizard';
 import HiveExplorer from './pages/hive-explorer';
@@ -55,8 +57,12 @@ import HiveCollectionDetail from './pages/hive-collection-detail';
 import GlobalHivesLanding from './pages/global-hives-landing';
 import HiveCollectionsGallery from "pages/hive-collections-gallery";
 import HiveSnippetEditor from './pages/hive-snippet-editor';
+import CompanyCreation from './pages/company-creation';
+import SessionManagement from './pages/session-management';
 
 const BillingSubscriptionPage = React.lazy(() => import("pages/billing-subscription"));
+
+const P = ({ children }) => <ProtectedRoute>{children}</ProtectedRoute>;
 
 export default function AppRoutes() {
   return (
@@ -75,57 +81,59 @@ export default function AppRoutes() {
           <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/features" element={<Features />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/enterprise-signup" element={<EnterpriseSignup />} />
-          
-          {/* Protected/App routes */}
-          <Route path="/search-results" element={<SearchResults />} />
-          <Route path="/create-snippet" element={<CreateSnippet />} />
-          <Route path="/company-dashboard" element={<CompanyDashboard />} />
-          <Route path="/company-teams-page" element={<CompanyTeamsPage />} />
-          <Route path="/company-feed" element={<CompanyFeed />} />
-          <Route path="/company-management-dashboard" element={<CompanyManagementDashboard />} />
-          <Route path="/member-invitation-system" element={<MemberInvitationSystem />} />
-          <Route path="/bug-board" element={<BugBoard />} />
-          <Route path="/team-chat" element={<TeamChat />} />
-          <Route path="/user-dashboard" element={<UserDashboard />} />
-          <Route path="/snippet-details" element={<SnippetDetails />} />
-          <Route path="/user-profile" element={<UserProfile />} />
-          <Route path="/profile-editor" element={<ProfileEditor />} />
-          <Route path="/notifications" element={<Notifications />} />
           <Route path="/invite-acceptance" element={<InviteAcceptance />} />
-          <Route path="/ai-optimization-report" element={<AIOptimizationReport />} />
-          <Route path="/ai-style-match-page" element={<AIStyleMatchPage />} />
-          <Route path="/snippet-collections" element={<SnippetCollections />} />
-          <Route path="/collection-details" element={<CollectionDetails />} />
-          <Route path="/code-review-workflow" element={<CodeReviewWorkflow />} />
-          <Route path="/billing" element={<BillingSubscriptionPage />} />
-          <Route path="/onboarding" element={<OnboardingPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/help-center" element={<HelpCenterPage />} />
-          <Route path="/user-preferences" element={<UserPreferences />} />
-          <Route path="/documentation-hub" element={<DocumentationHub />} />
-          <Route path="/member-management-center" element={<MemberManagementCenter />} />
-          <Route path="/teams-landing-page" element={<TeamsLandingPage />} />
-          <Route path="/team-dashboard" element={<TeamDashboard />} />
-          
-          {/* Global Hives Routes (transformed from teams) */}
-          <Route path="/hives" element={<TeamsLandingPage />} />
-          <Route path="/hives/:hiveId" element={<HiveExplorer />} />
-          <Route path="/hive-creation-wizard" element={<HiveCreationWizard />} />
-          <Route path="/hive-explorer" element={<HiveExplorer />} />
-          <Route path="/global-explore-feed" element={<GlobalExploreFeed />} />
-          <Route path="/advanced-search-interface" element={<AdvancedSearchInterface />} />
-          
-          <Route path="/community-leaderboards" element={<CommunityLeaderboards />} />
-          <Route path="/hive-collection/:collectionId" element={<HiveCollectionDetail />} />
-          <Route path="/hive-explorer/:hiveId" element={<HiveExplorer />} />
-          <Route path="/hive-collection-detail/:collectionId" element={<HiveCollectionDetail />} />
-          <Route path="/hive-collections-gallery/:hiveId" element={<HiveCollectionsGallery />} />
-          <Route path="/global-hives-landing" element={<GlobalHivesLanding />} />
-          <Route path="/hive-snippet-editor" element={<HiveSnippetEditor />} />
-          
+
+          {/* Protected routes */}
+          <Route path="/search-results" element={<P><SearchResults /></P>} />
+          <Route path="/create-snippet" element={<P><CreateSnippet /></P>} />
+          <Route path="/company-dashboard" element={<P><CompanyDashboard /></P>} />
+          <Route path="/company-teams-page" element={<P><CompanyTeamsPage /></P>} />
+          <Route path="/company-feed" element={<P><CompanyFeed /></P>} />
+          <Route path="/company-management-dashboard" element={<P><CompanyManagementDashboard /></P>} />
+          <Route path="/member-invitation-system" element={<P><MemberInvitationSystem /></P>} />
+          <Route path="/bug-board" element={<P><BugBoard /></P>} />
+          <Route path="/team-chat" element={<P><TeamChat /></P>} />
+          <Route path="/user-dashboard" element={<P><UserDashboard /></P>} />
+          <Route path="/snippet-details" element={<P><SnippetDetails /></P>} />
+          <Route path="/user-profile" element={<P><UserProfile /></P>} />
+          <Route path="/profile-editor" element={<P><ProfileEditor /></P>} />
+          <Route path="/notifications" element={<P><Notifications /></P>} />
+          <Route path="/ai-optimization-report" element={<P><AIOptimizationReport /></P>} />
+          <Route path="/ai-style-match-page" element={<P><AIStyleMatchPage /></P>} />
+          <Route path="/snippet-collections" element={<P><SnippetCollections /></P>} />
+          <Route path="/collection-details" element={<P><CollectionDetails /></P>} />
+          <Route path="/code-review-workflow" element={<P><CodeReviewWorkflow /></P>} />
+          <Route path="/billing" element={<P><React.Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}><BillingSubscriptionPage /></React.Suspense></P>} />
+          <Route path="/onboarding" element={<P><OnboardingPage /></P>} />
+          <Route path="/settings" element={<P><SettingsPage /></P>} />
+          <Route path="/help-center" element={<P><HelpCenterPage /></P>} />
+          <Route path="/user-preferences" element={<P><UserPreferences /></P>} />
+          <Route path="/documentation-hub" element={<P><DocumentationHub /></P>} />
+          <Route path="/member-management-center" element={<P><MemberManagementCenter /></P>} />
+          <Route path="/teams-landing-page" element={<P><TeamsLandingPage /></P>} />
+          <Route path="/team-dashboard" element={<P><TeamDashboard /></P>} />
+          <Route path="/company-creation" element={<P><CompanyCreation /></P>} />
+          <Route path="/session-management" element={<P><SessionManagement /></P>} />
+
+          {/* Global Hives Routes */}
+          <Route path="/hives" element={<P><TeamsLandingPage /></P>} />
+          <Route path="/hives/:hiveId" element={<P><HiveExplorer /></P>} />
+          <Route path="/hive-creation-wizard" element={<P><HiveCreationWizard /></P>} />
+          <Route path="/hive-explorer" element={<P><HiveExplorer /></P>} />
+          <Route path="/global-explore-feed" element={<P><GlobalExploreFeed /></P>} />
+          <Route path="/advanced-search-interface" element={<P><AdvancedSearchInterface /></P>} />
+          <Route path="/community-leaderboards" element={<P><CommunityLeaderboards /></P>} />
+          <Route path="/hive-collection/:collectionId" element={<P><HiveCollectionDetail /></P>} />
+          <Route path="/hive-explorer/:hiveId" element={<P><HiveExplorer /></P>} />
+          <Route path="/hive-collection-detail/:collectionId" element={<P><HiveCollectionDetail /></P>} />
+          <Route path="/hive-collections-gallery/:hiveId" element={<P><HiveCollectionsGallery /></P>} />
+          <Route path="/global-hives-landing" element={<P><GlobalHivesLanding /></P>} />
+          <Route path="/hive-snippet-editor" element={<P><HiveSnippetEditor /></P>} />
+
           {/* Catch-all route - MUST be last */}
           <Route path="*" element={<NotFound />} />
         </RouterRoutes>

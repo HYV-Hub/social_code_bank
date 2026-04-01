@@ -25,12 +25,12 @@ export function FilterControls({ activeFilter, onFilterChange, notifications, sh
   };
 
   return (
-    <div className="bg-white border-b border-gray-200 p-4">
+    <div className="bg-card border-b border-border p-4">
       {/* Filter Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Filter className="w-5 h-5 text-gray-600" />
-          <h3 className="text-lg font-semibold text-gray-900">Filter Notifications</h3>
+          <Filter className="w-5 h-5 text-muted-foreground" />
+          <h3 className="text-lg font-semibold text-foreground">Filter Notifications</h3>
         </div>
         
         {/* Unread Toggle */}
@@ -39,9 +39,9 @@ export function FilterControls({ activeFilter, onFilterChange, notifications, sh
             type="checkbox"
             checked={showUnreadOnly}
             onChange={(e) => onToggleUnreadOnly(e?.target?.checked)}
-            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            className="w-4 h-4 text-primary border-border rounded focus:ring-ring"
           />
-          <span className="text-sm text-gray-700">
+          <span className="text-sm text-foreground">
             Unread only ({getUnreadCount()})
           </span>
         </label>
@@ -58,13 +58,13 @@ export function FilterControls({ activeFilter, onFilterChange, notifications, sh
               onClick={() => onFilterChange(type?.value)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 isActive
-                  ? 'bg-blue-600 text-white' :'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-primary text-white' :'bg-muted text-foreground hover:bg-muted'
               }`}
             >
               {type?.label}
               {count > 0 && (
                 <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                  isActive ? 'bg-blue-500' : 'bg-gray-300'
+                  isActive ? 'bg-primary' : 'bg-gray-300'
                 }`}>
                   {count}
                 </span>

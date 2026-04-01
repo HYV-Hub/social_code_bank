@@ -377,10 +377,10 @@ const TeamChat = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <AppNavigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         {/* Error display */}
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <div className="bg-error/10 border border-error/20 text-error px-4 py-3 rounded relative" role="alert">
             <span className="block sm:inline">{error}</span>
           </div>
         )}
@@ -461,9 +461,9 @@ const TeamChat = () => {
         {/* Create Channel Modal */}
         {showCreateChannelModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+            <div className="bg-card rounded-lg shadow-xl max-w-md w-full p-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Create New Channel</h3>
+                <h3 className="text-lg font-semibold text-foreground">Create New Channel</h3>
                 <button
                   onClick={() => {
                     setShowCreateChannelModal(false);
@@ -472,21 +472,21 @@ const TeamChat = () => {
                     setIsPrivateChannel(false);
                     setCreateChannelError('');
                   }}
-                  className="p-1 hover:bg-gray-100 rounded-md transition-colors"
+                  className="p-1 hover:bg-muted rounded-md transition-colors"
                 >
-                  <Icon name="X" size={20} className="text-gray-500" />
+                  <Icon name="X" size={20} className="text-muted-foreground" />
                 </button>
               </div>
 
               {createChannelError && (
-                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
-                  <p className="text-sm text-red-700">{createChannelError}</p>
+                <div className="mb-4 p-3 bg-error/10 border border-error/20 rounded-md">
+                  <p className="text-sm text-error">{createChannelError}</p>
                 </div>
               )}
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-foreground mb-1">
                     Channel Name *
                   </label>
                   <input
@@ -494,13 +494,13 @@ const TeamChat = () => {
                     value={newChannelName}
                     onChange={(e) => setNewChannelName(e?.target?.value)}
                     placeholder="e.g. engineering-team"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                     autoFocus
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-foreground mb-1">
                     Description (Optional)
                   </label>
                   <textarea
@@ -508,7 +508,7 @@ const TeamChat = () => {
                     onChange={(e) => setNewChannelDescription(e?.target?.value)}
                     placeholder="What is this channel about?"
                     rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
 
@@ -518,9 +518,9 @@ const TeamChat = () => {
                     id="private-channel"
                     checked={isPrivateChannel}
                     onChange={(e) => setIsPrivateChannel(e?.target?.checked)}
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    className="w-4 h-4 text-primary border-border rounded focus:ring-ring"
                   />
-                  <label htmlFor="private-channel" className="text-sm text-gray-700">
+                  <label htmlFor="private-channel" className="text-sm text-foreground">
                     Make this channel private
                   </label>
                 </div>
@@ -534,14 +534,14 @@ const TeamChat = () => {
                       setIsPrivateChannel(false);
                       setCreateChannelError('');
                     }}
-                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                    className="flex-1 px-4 py-2 border border-border text-foreground rounded-md hover:bg-background transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleCreateChannelSubmit}
                     disabled={loading || !newChannelName?.trim()}
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Creating...' : 'Create Channel'}
                   </button>

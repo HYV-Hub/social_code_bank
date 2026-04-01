@@ -9,7 +9,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
   const renderSnippetCard = () => {
     const snippet = item?.data;
     return (
-      <div className="bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-shadow p-6">
+      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-6">
         <div className="flex items-start gap-4 mb-4">
           <img
             src={snippet?.author?.avatar_url || '/assets/images/no_image.png'}
@@ -20,35 +20,35 @@ export default function FeedItemCard({ item, onLike, onSave }) {
             <div className="flex items-center gap-2 mb-1">
               <button
                 onClick={() => navigate(`/user-profile?id=${snippet?.author?.id}`)}
-                className="font-semibold text-gray-900 hover:text-purple-600"
+                className="font-semibold text-foreground hover:text-primary"
               >
                 {snippet?.author?.full_name || snippet?.author?.username}
               </button>
-              <span className="text-sm text-gray-500">•</span>
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-muted-foreground">•</span>
+              <span className="text-sm text-muted-foreground">
                 {new Date(snippet?.created_at)?.toLocaleDateString()}
               </span>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               {snippet?.author?.username && `@${snippet?.author?.username}`}
             </p>
           </div>
-          <span className="px-3 py-1 text-xs font-medium bg-purple-100 text-purple-700 rounded-full">
+          <span className="px-3 py-1 text-xs font-medium bg-purple-100 text-primary rounded-full">
             Snippet
           </span>
         </div>
 
         <h3
           onClick={() => navigate(`/snippet-details?id=${snippet?.id}`)}
-          className="text-lg font-semibold text-gray-900 mb-2 cursor-pointer hover:text-purple-600"
+          className="text-lg font-semibold text-foreground mb-2 cursor-pointer hover:text-primary"
         >
           {snippet?.title}
         </h3>
-        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
           {snippet?.description}
         </p>
 
-        <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+        <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
           <span className="flex items-center gap-1">
             <Icon name="Code" size={16} />
             {snippet?.language}
@@ -68,7 +68,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
             {snippet?.ai_tags?.slice(0, 5)?.map((tag, idx) => (
               <span
                 key={idx}
-                className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded"
+                className="px-2 py-1 text-xs bg-muted text-foreground rounded"
               >
                 {tag}
               </span>
@@ -109,7 +109,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
   const renderDiscussionCard = () => {
     const bug = item?.data;
     return (
-      <div className="bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-shadow p-6">
+      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-6">
         <div className="flex items-start gap-4 mb-4">
           <img
             src={bug?.reporter?.avatar_url || '/assets/images/no_image.png'}
@@ -120,44 +120,44 @@ export default function FeedItemCard({ item, onLike, onSave }) {
             <div className="flex items-center gap-2 mb-1">
               <button
                 onClick={() => navigate(`/user-profile?id=${bug?.reporter?.id}`)}
-                className="font-semibold text-gray-900 hover:text-purple-600"
+                className="font-semibold text-foreground hover:text-primary"
               >
                 {bug?.reporter?.full_name || bug?.reporter?.username}
               </button>
-              <span className="text-sm text-gray-500">•</span>
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-muted-foreground">•</span>
+              <span className="text-sm text-muted-foreground">
                 {new Date(bug?.created_at)?.toLocaleDateString()}
               </span>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               {bug?.reporter?.username && `@${bug?.reporter?.username}`}
             </p>
           </div>
-          <span className="px-3 py-1 text-xs font-medium bg-yellow-100 text-yellow-700 rounded-full">
+          <span className="px-3 py-1 text-xs font-medium bg-warning/15 text-warning rounded-full">
             Discussion
           </span>
         </div>
 
         <h3
           onClick={() => navigate(`/bug-board?id=${bug?.id}`)}
-          className="text-lg font-semibold text-gray-900 mb-2 cursor-pointer hover:text-purple-600"
+          className="text-lg font-semibold text-foreground mb-2 cursor-pointer hover:text-primary"
         >
           {bug?.title}
         </h3>
-        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
           {bug?.description}
         </p>
 
         <div className="flex items-center gap-4 mb-4">
           <span className={`px-2 py-1 text-xs font-medium rounded ${
-            bug?.status === 'resolved' ? 'bg-green-100 text-green-700' :
-            bug?.status === 'in_progress'? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'
+            bug?.status === 'resolved' ? 'bg-success/15 text-success' :
+            bug?.status === 'in_progress'? 'bg-primary/15 text-primary' : 'bg-muted text-foreground'
           }`}>
             {bug?.status?.replace('_', ' ')}
           </span>
           <span className={`px-2 py-1 text-xs font-medium rounded ${
-            bug?.priority === 'high' ? 'bg-red-100 text-red-700' :
-            bug?.priority === 'medium'? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-700'
+            bug?.priority === 'high' ? 'bg-error/15 text-error' :
+            bug?.priority === 'medium'? 'bg-warning/15 text-warning' : 'bg-muted text-foreground'
           }`}>
             {bug?.priority} priority
           </span>
@@ -180,7 +180,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
   const renderCollectionCard = () => {
     const collection = item?.data;
     return (
-      <div className="bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-shadow p-6">
+      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-6">
         <div className="flex items-start gap-4 mb-4">
           <img
             src={collection?.creator?.avatar_url || '/assets/images/no_image.png'}
@@ -191,31 +191,31 @@ export default function FeedItemCard({ item, onLike, onSave }) {
             <div className="flex items-center gap-2 mb-1">
               <button
                 onClick={() => navigate(`/user-profile?id=${collection?.creator?.id}`)}
-                className="font-semibold text-gray-900 hover:text-purple-600"
+                className="font-semibold text-foreground hover:text-primary"
               >
                 {collection?.creator?.full_name || collection?.creator?.username}
               </button>
-              <span className="text-sm text-gray-500">•</span>
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-muted-foreground">•</span>
+              <span className="text-sm text-muted-foreground">
                 {new Date(collection?.created_at)?.toLocaleDateString()}
               </span>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               From {collection?.hive?.name}
             </p>
           </div>
-          <span className="px-3 py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full">
+          <span className="px-3 py-1 text-xs font-medium bg-success/15 text-success rounded-full">
             Collection
           </span>
         </div>
 
         <h3
           onClick={() => navigate(`/collection-details?id=${collection?.id}`)}
-          className="text-lg font-semibold text-gray-900 mb-2 cursor-pointer hover:text-purple-600"
+          className="text-lg font-semibold text-foreground mb-2 cursor-pointer hover:text-primary"
         >
           {collection?.name}
         </h3>
-        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
           {collection?.description}
         </p>
 

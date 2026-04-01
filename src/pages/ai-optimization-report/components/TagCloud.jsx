@@ -107,13 +107,13 @@ export default function TagCloud({ tags }) {
 
   const getCategoryColor = (category) => {
     const colorMap = {
-      language: 'from-blue-50 to-blue-100 text-blue-700 border-blue-200',
-      framework: 'from-purple-50 to-purple-100 text-purple-700 border-purple-200',
-      purpose: 'from-green-50 to-green-100 text-green-700 border-green-200',
+      language: 'from-blue-50 to-blue-100 text-primary border-primary/20',
+      framework: 'from-purple-50 to-purple-100 text-primary border-border',
+      purpose: 'from-green-50 to-green-100 text-success border-success/20',
       behavioral: 'from-orange-50 to-orange-100 text-orange-700 border-orange-200',
-      difficulty: 'from-yellow-50 to-yellow-100 text-yellow-700 border-yellow-200',
+      difficulty: 'from-yellow-50 to-yellow-100 text-warning border-warning/20',
       ui: 'from-pink-50 to-pink-100 text-pink-700 border-pink-200',
-      security: 'from-red-50 to-red-100 text-red-700 border-red-200',
+      security: 'from-red-50 to-red-100 text-error border-error/20',
       performance: 'from-indigo-50 to-indigo-100 text-indigo-700 border-indigo-200',
       database: 'from-teal-50 to-teal-100 text-teal-700 border-teal-200'
     };
@@ -136,16 +136,16 @@ export default function TagCloud({ tags }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-5 mb-6">
+    <div className="bg-card rounded-lg shadow-lg p-5 mb-6">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-2">
-          <Tag className="w-4 h-4 text-blue-600" />
-          <h2 className="text-lg font-bold text-gray-900">AI-Generated Tags</h2>
+          <Tag className="w-4 h-4 text-primary" />
+          <h2 className="text-lg font-bold text-foreground">AI-Generated Tags</h2>
         </div>
         {hasMoreTags && (
           <button
             onClick={() => setShowAllTags(!showAllTags)}
-            className="flex items-center space-x-1 text-xs text-blue-600 hover:text-blue-800 transition-colors"
+            className="flex items-center space-x-1 text-xs text-primary hover:text-foreground transition-colors"
           >
             <span>{showAllTags ? 'Show Less' : `Show All (${filteredTags?.length})`}</span>
             {showAllTags ? (
@@ -158,8 +158,8 @@ export default function TagCloud({ tags }) {
       </div>
       
       {/* Compact Tag Categories Legend */}
-      <div className="mb-3 p-2 bg-gray-50 rounded-lg">
-        <p className="text-xs font-medium text-gray-700 mb-1">Categories:</p>
+      <div className="mb-3 p-2 bg-background rounded-lg">
+        <p className="text-xs font-medium text-foreground mb-1">Categories:</p>
         <div className="flex flex-wrap gap-1.5 text-xs">
           {Object.entries(categorizedTags)?.map(([category, tags]) => 
             tags?.length > 0 ? (
@@ -167,7 +167,7 @@ export default function TagCloud({ tags }) {
                 <span className={`px-2 py-0.5 rounded bg-gradient-to-r ${getCategoryColor(category)} border font-medium capitalize text-xs`}>
                   {category}
                 </span>
-                <span className="text-gray-500">({tags?.length})</span>
+                <span className="text-muted-foreground">({tags?.length})</span>
               </span>
             ) : null
           )}
@@ -191,10 +191,10 @@ export default function TagCloud({ tags }) {
       </div>
       
       <div className="mt-3 flex items-center justify-between text-xs">
-        <p className="text-gray-500">
+        <p className="text-muted-foreground">
           {filteredTags?.length} tag{filteredTags?.length !== 1 ? 's' : ''} identified
         </p>
-        <p className="text-gray-500">
+        <p className="text-muted-foreground">
           {Object.values(categorizedTags)?.filter(arr => arr?.length > 0)?.length} categories
         </p>
       </div>

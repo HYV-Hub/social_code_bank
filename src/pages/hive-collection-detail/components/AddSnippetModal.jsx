@@ -150,7 +150,7 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-gray-100 animate-slide-in-up">
+      <div className="bg-card rounded-xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-border animate-slide-in-up">
         {/* Enhanced Header with gradient */}
         <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white p-8 rounded-t-2xl">
           <div className="flex items-center justify-between">
@@ -160,26 +160,26 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-white/20 rounded-xl transition-all"
+              className="p-2 hover:bg-card/20 rounded-xl transition-all"
             >
               <X className="w-6 h-6" />
             </button>
           </div>
           {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-card/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-card/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
         </div>
 
         {/* Enhanced Search Bar */}
-        <div className="p-6 bg-gray-50 border-b-2 border-gray-100">
+        <div className="p-6 bg-background border-b-2 border-border">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <input
               type="text"
               placeholder="🔍 Search snippets by title, description, or language..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e?.target?.value)}
-              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 shadow-inner text-gray-900 font-medium"
+              className="w-full pl-12 pr-4 py-4 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-blue-500 shadow-inner text-foreground font-medium"
             />
           </div>
         </div>
@@ -187,13 +187,13 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
         {/* Enhanced Snippets List */}
         <div className="flex-1 overflow-y-auto p-6">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg flex items-start gap-3">
-              <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div className="mb-6 p-4 bg-error/10 border-l-4 border-error rounded-lg flex items-start gap-3">
+              <div className="w-6 h-6 bg-error/100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                 <X className="w-4 h-4 text-white" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-red-900">Error</p>
-                <p className="text-sm text-red-700">{error}</p>
+                <p className="text-sm text-error">{error}</p>
               </div>
             </div>
           )}
@@ -201,18 +201,18 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20">
               <div className="relative w-16 h-16 mb-6">
-                <div className="absolute inset-0 border-4 border-blue-200 rounded-full"></div>
+                <div className="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
                 <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
               </div>
-              <p className="text-gray-600 font-medium">Loading snippets...</p>
+              <p className="text-muted-foreground font-medium">Loading snippets...</p>
             </div>
           ) : filteredSnippets?.length === 0 ? (
             <div className="text-center py-20">
               <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Code className="w-12 h-12 text-gray-400" />
+                <Code className="w-12 h-12 text-muted-foreground" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">No snippets available</h3>
-              <p className="text-gray-600 text-lg">
+              <h3 className="text-2xl font-bold text-foreground mb-3">No snippets available</h3>
+              <p className="text-muted-foreground text-lg">
                 {searchQuery
                   ? '🔍 No snippets found matching your search' :'📦 All hive snippets are already in this collection'}
               </p>
@@ -223,10 +223,10 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
                 <div
                   key={snippet?.id}
                   onClick={() => handleToggleSnippet(snippet?.id)}
-                  className={`group p-5 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${
+                  className={`group p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
                     selectedSnippets?.has(snippet?.id)
                       ? 'border-blue-500 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg scale-[1.02]' 
-                      : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
+                      : 'border-border hover:border-border hover:shadow-md'
                   }`}
                 >
                   <div className="flex items-start gap-4">
@@ -235,28 +235,28 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
                         type="checkbox"
                         checked={selectedSnippets?.has(snippet?.id)}
                         onChange={() => handleToggleSnippet(snippet?.id)}
-                        className="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-4 focus:ring-blue-500/20 cursor-pointer"
+                        className="w-5 h-5 text-primary border-2 border-border rounded focus:ring-4 focus:ring-ring/20 cursor-pointer"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-bold text-lg text-gray-900 group-hover:text-blue-600 transition-colors">
+                        <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
                           {snippet?.title}
                         </h3>
                         {snippet?.language && (
-                          <span className="ml-3 px-3 py-1 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 text-xs font-bold rounded-lg whitespace-nowrap">
+                          <span className="ml-3 px-3 py-1 bg-gradient-to-r from-blue-100 to-indigo-100 text-primary text-xs font-bold rounded-lg whitespace-nowrap">
                             {snippet?.language}
                           </span>
                         )}
                       </div>
                       {snippet?.description && (
-                        <p className="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2 leading-relaxed">
                           {snippet?.description}
                         </p>
                       )}
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
                         {snippet?.author && (
-                          <span className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg group-hover:bg-white transition-colors">
+                          <span className="flex items-center gap-2 px-3 py-1.5 bg-background rounded-lg group-hover:bg-card transition-colors">
                             <User className="w-4 h-4" />
                             <span className="font-medium">by @{snippet?.author?.username}</span>
                           </span>
@@ -271,17 +271,17 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
         </div>
 
         {/* Enhanced Footer */}
-        <div className="p-6 border-t-2 border-gray-100 bg-gray-50 flex items-center justify-between rounded-b-2xl">
+        <div className="p-6 border-t-2 border-border bg-background flex items-center justify-between rounded-b-2xl">
           <div className="flex items-center gap-3">
-            <div className={`w-3 h-3 rounded-full ${selectedSnippets?.size > 0 ? 'bg-green-500 animate-pulse' : 'bg-gray-300'}`}></div>
-            <span className="text-sm font-semibold text-gray-700">
+            <div className={`w-3 h-3 rounded-full ${selectedSnippets?.size > 0 ? 'bg-success/100 animate-pulse' : 'bg-gray-300'}`}></div>
+            <span className="text-sm font-semibold text-foreground">
               {selectedSnippets?.size} snippet{selectedSnippets?.size !== 1 ? 's' : ''} selected
             </span>
           </div>
           <div className="flex gap-3">
             <button
               onClick={onClose}
-              className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-100 transition-all font-semibold"
+              className="px-6 py-3 border-2 border-border text-foreground rounded-xl hover:bg-muted transition-all font-semibold"
               disabled={adding}
             >
               Cancel

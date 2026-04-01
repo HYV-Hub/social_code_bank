@@ -104,11 +104,11 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
   // NEW: If in hive context, show hive indicator instead of visibility controls
   if (isHiveContext) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+      <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-4">Posting to Hive</h2>
         
-        <div className="p-4 bg-purple-50 rounded-lg flex items-start gap-3 border-2 border-purple-200">
-          <Icon name="Layers" size={20} className="text-purple-600 flex-shrink-0 mt-0.5" />
+        <div className="p-4 bg-primary/10 rounded-lg flex items-start gap-3 border-2 border-border">
+          <Icon name="Layers" size={20} className="text-primary flex-shrink-0 mt-0.5" />
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <span className="font-semibold text-purple-900">{hiveName}</span>
@@ -122,9 +122,9 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
           </div>
         </div>
 
-        <div className="mt-4 p-3 bg-blue-50 rounded-lg flex items-start gap-2">
-          <Icon name="Info" size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-blue-800">
+        <div className="mt-4 p-3 bg-primary/10 rounded-lg flex items-start gap-2">
+          <Icon name="Info" size={16} className="text-primary flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-foreground">
             Hive snippets are shared with all members of this hive. No additional visibility settings needed.
           </p>
         </div>
@@ -133,7 +133,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+    <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
       <h2 className="text-lg font-semibold text-slate-900 mb-4">Visibility & Sharing</h2>
       
       {/* FIXED: Context-aware visibility options */}
@@ -143,7 +143,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
             key={option?.value}
             className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all ${
               visibility === option?.value
-                ? 'border-blue-500 bg-blue-50' :'border-slate-200 hover:border-slate-300'
+                ? 'border-blue-500 bg-primary/10' :'border-slate-200 hover:border-slate-300'
             }`}
           >
             <input
@@ -161,7 +161,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
             />
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <Icon name={option?.icon} size={18} className={visibility === option?.value ? 'text-blue-600' : 'text-slate-600'} />
+                <Icon name={option?.icon} size={18} className={visibility === option?.value ? 'text-primary' : 'text-slate-600'} />
                 <span className="font-medium text-slate-900">{option?.label}</span>
               </div>
               <p className="text-sm text-slate-600">{option?.description}</p>
@@ -192,7 +192,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
                 }
               }}
               disabled={loadingTeams}
-              className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
             >
               <option value="">
                 {isTeamContext ? 'Select team' : 'No specific team (Company-wide)'}
@@ -205,7 +205,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
             </select>
           </div>
           {isCompanyContext && team && (
-            <p className="mt-2 text-xs text-blue-600">
+            <p className="mt-2 text-xs text-primary">
               This will post to the selected team instead of company-wide
             </p>
           )}
@@ -214,17 +214,17 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
 
       {/* Context indicator */}
       {isCompanyContext && (
-        <div className="mt-4 p-3 bg-blue-50 rounded-lg flex items-start gap-2">
-          <Icon name="Info" size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-blue-800">
+        <div className="mt-4 p-3 bg-primary/10 rounded-lg flex items-start gap-2">
+          <Icon name="Info" size={16} className="text-primary flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-foreground">
             This snippet will be posted to your company feed. Select a team above to post to a specific team instead.
           </p>
         </div>
       )}
 
       {isTeamContext && (
-        <div className="mt-4 p-3 bg-purple-50 rounded-lg flex items-start gap-2">
-          <Icon name="Info" size={16} className="text-purple-600 flex-shrink-0 mt-0.5" />
+        <div className="mt-4 p-3 bg-primary/10 rounded-lg flex items-start gap-2">
+          <Icon name="Info" size={16} className="text-primary flex-shrink-0 mt-0.5" />
           <p className="text-xs text-purple-800">
             This snippet will be automatically posted to the team feed.
           </p>

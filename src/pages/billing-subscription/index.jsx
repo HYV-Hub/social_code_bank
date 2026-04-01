@@ -13,12 +13,12 @@ const BillingSubscriptionPage = () => {
       <Helmet>
         <title>Subscription - HyvHub</title>
       </Helmet>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <AppNavigation />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Your Subscription</h1>
-            <p className="mt-2 text-gray-600">Currently enjoying full access to HyvHub</p>
+            <h1 className="text-3xl font-bold text-foreground">Your Subscription</h1>
+            <p className="mt-2 text-muted-foreground">Currently enjoying full access to HyvHub</p>
           </div>
 
           {/* Current Plan Status */}
@@ -30,7 +30,7 @@ const BillingSubscriptionPage = () => {
                 <p className="text-green-100">All features included</p>
               </div>
             </div>
-            <div className="bg-white/20 rounded-lg p-4 backdrop-blur-sm">
+            <div className="bg-card/20 rounded-lg p-4 backdrop-blur-sm">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
                   <div className="text-3xl font-bold mb-1">∞</div>
@@ -49,54 +49,54 @@ const BillingSubscriptionPage = () => {
           </div>
 
           {/* Features Card */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-8 mb-8">
+            <h2 className="text-xl font-semibold text-foreground mb-6">
               What You Get
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <Sparkles size={20} className="text-blue-600 flex-shrink-0 mt-1" />
+                  <Sparkles size={20} className="text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">Unlimited Snippets</h3>
-                    <p className="text-sm text-gray-600">Create and save as many code snippets as you need</p>
+                    <h3 className="font-semibold text-foreground">Unlimited Snippets</h3>
+                    <p className="text-sm text-muted-foreground">Create and save as many code snippets as you need</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Sparkles size={20} className="text-blue-600 flex-shrink-0 mt-1" />
+                  <Sparkles size={20} className="text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">AI-Powered Analysis</h3>
-                    <p className="text-sm text-gray-600">Get intelligent code insights and suggestions</p>
+                    <h3 className="font-semibold text-foreground">AI-Powered Analysis</h3>
+                    <p className="text-sm text-muted-foreground">Get intelligent code insights and suggestions</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Sparkles size={20} className="text-blue-600 flex-shrink-0 mt-1" />
+                  <Sparkles size={20} className="text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">Team Collaboration</h3>
-                    <p className="text-sm text-gray-600">Work together with your team seamlessly</p>
+                    <h3 className="font-semibold text-foreground">Team Collaboration</h3>
+                    <p className="text-sm text-muted-foreground">Work together with your team seamlessly</p>
                   </div>
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <Sparkles size={20} className="text-blue-600 flex-shrink-0 mt-1" />
+                  <Sparkles size={20} className="text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">Unlimited Storage</h3>
-                    <p className="text-sm text-gray-600">No limits on what you can store</p>
+                    <h3 className="font-semibold text-foreground">Unlimited Storage</h3>
+                    <p className="text-sm text-muted-foreground">No limits on what you can store</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Sparkles size={20} className="text-blue-600 flex-shrink-0 mt-1" />
+                  <Sparkles size={20} className="text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">Version History</h3>
-                    <p className="text-sm text-gray-600">Track and restore previous versions</p>
+                    <h3 className="font-semibold text-foreground">Version History</h3>
+                    <p className="text-sm text-muted-foreground">Track and restore previous versions</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Sparkles size={20} className="text-blue-600 flex-shrink-0 mt-1" />
+                  <Sparkles size={20} className="text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">Advanced Search</h3>
-                    <p className="text-sm text-gray-600">Find anything instantly with powerful search</p>
+                    <h3 className="font-semibold text-foreground">Advanced Search</h3>
+                    <p className="text-sm text-muted-foreground">Find anything instantly with powerful search</p>
                   </div>
                 </div>
               </div>
@@ -104,12 +104,12 @@ const BillingSubscriptionPage = () => {
           </div>
 
           {/* Company Limits */}
-          <div className="bg-blue-50 rounded-lg border border-blue-200 p-6 mb-8">
+          <div className="bg-primary/10 rounded-lg border border-primary/20 p-6 mb-8">
             <div className="flex items-start gap-4">
-              <Users size={24} className="text-blue-600 flex-shrink-0 mt-1" />
+              <Users size={24} className="text-primary flex-shrink-0 mt-1" />
               <div>
-                <h3 className="font-semibold text-blue-900 mb-2">Company Plan Information</h3>
-                <p className="text-blue-800 mb-3">
+                <h3 className="font-semibold text-foreground mb-2">Company Plan Information</h3>
+                <p className="text-foreground mb-3">
                   Companies can add up to <strong>10 team members for free</strong>. Need to add more users to your team?
                 </p>
                 <Button
@@ -125,15 +125,15 @@ const BillingSubscriptionPage = () => {
           </div>
 
           {/* Future Plans Notice */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          <div className="bg-card rounded-lg shadow-sm border border-border p-8">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
               About Future Premium Features
             </h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               HyvHub is currently free for all users as we continue to develop and improve the platform. 
               When we introduce premium features in the future, you'll be notified well in advance.
             </p>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               As an early user, you'll receive special benefits and exclusive offers when premium tiers become available.
             </p>
           </div>

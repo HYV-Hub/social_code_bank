@@ -78,7 +78,7 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+    <div className="bg-card rounded-xl shadow-lg border border-border p-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* Enhanced Like Button */}
@@ -88,7 +88,7 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
             className={`group relative flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 ${
               liked
                 ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg shadow-red-500/30' 
-                : 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 hover:from-red-50 hover:to-pink-50 hover:text-red-600 shadow-md'
+                : 'bg-gradient-to-r from-gray-100 to-gray-200 text-foreground hover:from-red-50 hover:to-pink-50 hover:text-error shadow-md'
             }`}
           >
             <Icon 
@@ -98,7 +98,7 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
             />
             <span className="text-sm font-bold">{likeCount?.toLocaleString()}</span>
             {/* Tooltip */}
-            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-card text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
               {liked ? 'Unlike' : 'Like this snippet'}
             </div>
           </button>
@@ -109,7 +109,7 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
             className={`group relative flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
               saved
                 ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/30' 
-                : 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 hover:from-blue-50 hover:to-cyan-50 hover:text-blue-600 shadow-md'
+                : 'bg-gradient-to-r from-gray-100 to-gray-200 text-foreground hover:from-blue-50 hover:to-cyan-50 hover:text-primary shadow-md'
             }`}
           >
             <Icon 
@@ -119,7 +119,7 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
             />
             <span className="text-sm font-bold">Save</span>
             {/* Tooltip */}
-            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-card text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
               {saved ? 'Unsave' : 'Save for later'}
             </div>
           </button>
@@ -128,12 +128,12 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
           <div className="relative">
             <button
               onClick={() => setShowShareMenu(!showShareMenu)}
-              className="group relative flex items-center gap-2 px-5 py-3 rounded-xl font-medium bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg shadow-purple-500/30 transition-all transform hover:scale-105"
+              className="group relative flex items-center gap-2 px-5 py-3 rounded-xl font-medium bg-gradient-to-r from-primary to-secondary hover:from-purple-700 hover:to-blue-700 text-white shadow-lg shadow-purple-500/30 transition-all transform hover:scale-105"
             >
               <Icon name="Share2" size={20} className="group-hover:rotate-12 transition-transform" />
               <span className="text-sm font-bold">Share</span>
               {/* Tooltip */}
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-card text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                 Share snippet
               </div>
             </button>
@@ -148,40 +148,40 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
                 />
                 
                 {/* Menu */}
-                <div className="absolute top-full left-0 mt-3 bg-white border-2 border-gray-200 rounded-xl shadow-2xl p-2 z-50 min-w-[240px] transform origin-top animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-0 mt-3 bg-card border-2 border-border rounded-xl shadow-2xl p-2 z-50 min-w-[240px] transform origin-top animate-in fade-in slide-in-from-top-2 duration-200">
                   {/* Social Share Options */}
                   <div className="space-y-1">
                     <button
                       onClick={() => handleShare('twitter')}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 rounded-lg transition-colors group"
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-lg transition-colors group"
                     >
-                      <div className="p-2 bg-blue-500 rounded-lg group-hover:scale-110 transition-transform">
+                      <div className="p-2 bg-primary rounded-lg group-hover:scale-110 transition-transform">
                         <Icon name="Twitter" size={18} className="text-white" />
                       </div>
-                      <span className="text-sm font-medium text-gray-900">Share on Twitter</span>
+                      <span className="text-sm font-medium text-foreground">Share on Twitter</span>
                     </button>
 
                     <button
                       onClick={() => handleShare('linkedin')}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 rounded-lg transition-colors group"
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-lg transition-colors group"
                     >
-                      <div className="p-2 bg-blue-700 rounded-lg group-hover:scale-110 transition-transform">
+                      <div className="p-2 bg-primary rounded-lg group-hover:scale-110 transition-transform">
                         <Icon name="Linkedin" size={18} className="text-white" />
                       </div>
-                      <span className="text-sm font-medium text-gray-900">Share on LinkedIn</span>
+                      <span className="text-sm font-medium text-foreground">Share on LinkedIn</span>
                     </button>
 
                     <button
                       onClick={() => handleShare('facebook')}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 rounded-lg transition-colors group"
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-lg transition-colors group"
                     >
-                      <div className="p-2 bg-blue-600 rounded-lg group-hover:scale-110 transition-transform">
+                      <div className="p-2 bg-primary rounded-lg group-hover:scale-110 transition-transform">
                         <Icon name="Facebook" size={18} className="text-white" />
                       </div>
-                      <span className="text-sm font-medium text-gray-900">Share on Facebook</span>
+                      <span className="text-sm font-medium text-foreground">Share on Facebook</span>
                     </button>
 
-                    <div className="border-t border-gray-200 my-2"></div>
+                    <div className="border-t border-border my-2"></div>
 
                     <button
                       onClick={() => {
@@ -189,12 +189,12 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
                         setCopiedLink(true);
                         setTimeout(() => setCopiedLink(false), 2000);
                       }}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-purple-50 rounded-lg transition-colors group"
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-lg transition-colors group"
                     >
-                      <div className="p-2 bg-purple-600 rounded-lg group-hover:scale-110 transition-transform">
+                      <div className="p-2 bg-primary rounded-lg group-hover:scale-110 transition-transform">
                         <Icon name={copiedLink ? "Check" : "Link"} size={18} className="text-white" />
                       </div>
-                      <span className="text-sm font-medium text-gray-900">
+                      <span className="text-sm font-medium text-foreground">
                         {copiedLink ? 'Link Copied!' : 'Copy Link'}
                       </span>
                     </button>
@@ -206,11 +206,11 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
         </div>
 
         {/* Enhanced Comments Badge */}
-        <div className="flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl border border-gray-300 shadow-md">
-          <Icon name="MessageSquare" size={20} className="text-gray-600" />
+        <div className="flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl border border-border shadow-md">
+          <Icon name="MessageSquare" size={20} className="text-muted-foreground" />
           <div className="flex items-center gap-2">
-            <span className="text-lg font-bold text-gray-900">{snippet?.commentsCount || 0}</span>
-            <span className="text-sm text-gray-600 font-medium">comments</span>
+            <span className="text-lg font-bold text-foreground">{snippet?.commentsCount || 0}</span>
+            <span className="text-sm text-muted-foreground font-medium">comments</span>
           </div>
         </div>
       </div>

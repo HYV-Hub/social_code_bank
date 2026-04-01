@@ -19,8 +19,8 @@ const Contact = () => {
         {/* Minimal Contact Section */}
         <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full mb-8">
-              <Icon name="Mail" size={40} className="text-blue-600 dark:text-blue-400" />
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-primary/15 dark:bg-blue-900/30 rounded-full mb-8">
+              <Icon name="Mail" size={40} className="text-primary dark:text-blue-400" />
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-foreground)] mb-6">
@@ -32,10 +32,10 @@ const Contact = () => {
             </p>
 
             {/* Email Display */}
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-12 border border-slate-200 dark:border-slate-700">
+            <div className="bg-card dark:bg-slate-800 rounded-xl shadow-lg p-12 border border-slate-200 dark:border-slate-700">
               <a 
                 href="mailto:contact@hyvhub.com" 
-                className="group inline-flex items-center gap-4 text-2xl md:text-3xl font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                className="group inline-flex items-center gap-4 text-2xl md:text-3xl font-semibold text-primary dark:text-blue-400 hover:text-primary dark:hover:text-blue-300 transition-colors"
               >
                 <Icon 
                   name="Mail" 

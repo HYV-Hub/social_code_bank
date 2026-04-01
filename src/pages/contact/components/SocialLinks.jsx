@@ -58,7 +58,7 @@ const SocialLinks = () => {
             href={platform?.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-white dark:bg-slate-800 rounded-xl p-6 border border-[var(--color-border)] hover:shadow-lg transition-all hover:-translate-y-1"
+            className="group bg-card dark:bg-slate-800 rounded-xl p-6 border border-[var(--color-border)] hover:shadow-lg transition-all hover:-translate-y-1"
           >
             <div className="flex items-start gap-4">
               <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${platform?.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
@@ -67,13 +67,13 @@ const SocialLinks = () => {
               
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-semibold text-[var(--color-foreground)] group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h3 className="font-semibold text-[var(--color-foreground)] group-hover:text-primary dark:group-hover:text-blue-400 transition-colors">
                     {platform?.name}
                   </h3>
                   <Icon 
                     name="ExternalLink" 
                     size={14} 
-                    className="text-[var(--color-muted-foreground)] group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+                    className="text-[var(--color-muted-foreground)] group-hover:text-primary dark:group-hover:text-blue-400 transition-colors"
                   />
                 </div>
                 
@@ -95,9 +95,9 @@ const SocialLinks = () => {
         ))}
       </div>
       {/* Newsletter Signup */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-8 border border-blue-200 dark:border-blue-800">
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-8 border border-primary/20 dark:border-blue-800">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full mb-4">
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-primary rounded-full mb-4">
             <Icon name="Mail" size={24} color="white" />
           </div>
           
@@ -113,9 +113,9 @@ const SocialLinks = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-2 bg-white dark:bg-slate-800 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-[var(--color-foreground)]"
+              className="flex-1 px-4 py-2 bg-card dark:bg-slate-800 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-ring text-[var(--color-foreground)]"
             />
-            <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors whitespace-nowrap">
+            <button className="px-6 py-2 bg-primary hover:bg-primary text-white font-medium rounded-lg transition-colors whitespace-nowrap">
               Subscribe
             </button>
           </div>

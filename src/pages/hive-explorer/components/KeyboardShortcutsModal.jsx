@@ -36,14 +36,14 @@ export default function KeyboardShortcutsModal({ isOpen, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={onClose}>
       <div 
-        className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden transform transition-all"
+        className="bg-card rounded-xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden transform transition-all"
         onClick={(e) => e?.stopPropagation()}
       >
         {/* Header */}
         <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-card/20 rounded-lg flex items-center justify-center">
                 <Icon name="Keyboard" size={20} className="text-white" />
               </div>
               <div>
@@ -65,7 +65,7 @@ export default function KeyboardShortcutsModal({ isOpen, onClose }) {
           <div className="space-y-8">
             {shortcuts?.map((section, idx) => (
               <div key={idx}>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                   <div className="w-1 h-6 bg-gradient-to-b from-purple-600 to-indigo-600 rounded-full"></div>
                   {section?.category}
                 </h3>
@@ -73,17 +73,17 @@ export default function KeyboardShortcutsModal({ isOpen, onClose }) {
                   {section?.items?.map((item, itemIdx) => (
                     <div
                       key={itemIdx}
-                      className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="flex items-center justify-between p-3 rounded-lg hover:bg-background transition-colors"
                     >
-                      <span className="text-gray-700">{item?.description}</span>
+                      <span className="text-foreground">{item?.description}</span>
                       <div className="flex items-center gap-1">
                         {item?.keys?.map((key, keyIdx) => (
                           <React.Fragment key={keyIdx}>
-                            <kbd className="px-3 py-1.5 text-sm font-semibold bg-gray-100 border-2 border-gray-300 rounded-lg shadow-sm">
+                            <kbd className="px-3 py-1.5 text-sm font-semibold bg-muted border-2 border-border rounded-lg shadow-sm">
                               {key}
                             </kbd>
                             {keyIdx < item?.keys?.length - 1 && (
-                              <span className="text-gray-400 mx-1">+</span>
+                              <span className="text-muted-foreground mx-1">+</span>
                             )}
                           </React.Fragment>
                         ))}
@@ -97,10 +97,10 @@ export default function KeyboardShortcutsModal({ isOpen, onClose }) {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+        <div className="border-t border-border px-6 py-4 bg-background">
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-600">
-              Press <kbd className="px-2 py-1 text-xs bg-white border border-gray-300 rounded shadow-sm">?</kbd> anytime to view shortcuts
+            <p className="text-sm text-muted-foreground">
+              Press <kbd className="px-2 py-1 text-xs bg-card border border-border rounded shadow-sm">?</kbd> anytime to view shortcuts
             </p>
             <Button
               onClick={onClose}

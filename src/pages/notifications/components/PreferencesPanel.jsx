@@ -74,16 +74,16 @@ export function PreferencesPanel({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+      <div className="bg-card rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-border">
           <div className="flex items-center gap-3">
-            <Settings className="w-6 h-6 text-blue-600" />
-            <h2 className="text-xl font-bold text-gray-900">Notification Preferences</h2>
+            <Settings className="w-6 h-6 text-primary" />
+            <h2 className="text-xl font-bold text-foreground">Notification Preferences</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 text-muted-foreground hover:text-muted-foreground hover:bg-muted rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -94,14 +94,14 @@ export function PreferencesPanel({ isOpen, onClose }) {
           {loading ? (
             <div className="text-center py-8">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">Loading preferences...</p>
+              <p className="mt-4 text-muted-foreground">Loading preferences...</p>
             </div>
           ) : error ? (
             <div className="text-center py-8">
-              <p className="text-red-600">{error}</p>
+              <p className="text-error">{error}</p>
               <button
                 onClick={loadPreferences}
-                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors"
               >
                 Retry
               </button>
@@ -110,7 +110,7 @@ export function PreferencesPanel({ isOpen, onClose }) {
             <div className="space-y-6">
               {/* Email Notifications */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Email Notifications</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">Email Notifications</h3>
                 <div className="space-y-3">
                   {[
                     { key: 'emailComments', label: 'Comments on your snippets' },
@@ -125,9 +125,9 @@ export function PreferencesPanel({ isOpen, onClose }) {
                         type="checkbox"
                         checked={preferences?.[key] || false}
                         onChange={(e) => updatePreference(key, e?.target?.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-primary border-border rounded focus:ring-ring"
                       />
-                      <span className="text-sm text-gray-700">{label}</span>
+                      <span className="text-sm text-foreground">{label}</span>
                     </label>
                   ))}
                 </div>
@@ -135,7 +135,7 @@ export function PreferencesPanel({ isOpen, onClose }) {
 
               {/* Push Notifications */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Push Notifications</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">Push Notifications</h3>
                 <div className="space-y-3">
                   {[
                     { key: 'pushComments', label: 'Comments on your snippets' },
@@ -150,9 +150,9 @@ export function PreferencesPanel({ isOpen, onClose }) {
                         type="checkbox"
                         checked={preferences?.[key] || false}
                         onChange={(e) => updatePreference(key, e?.target?.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-primary border-border rounded focus:ring-ring"
                       />
-                      <span className="text-sm text-gray-700">{label}</span>
+                      <span className="text-sm text-foreground">{label}</span>
                     </label>
                   ))}
                 </div>
@@ -160,7 +160,7 @@ export function PreferencesPanel({ isOpen, onClose }) {
 
               {/* In-App Notifications */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">In-App Notifications</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">In-App Notifications</h3>
                 <div className="space-y-3">
                   {[
                     { key: 'inAppComments', label: 'Comments on your snippets' },
@@ -175,9 +175,9 @@ export function PreferencesPanel({ isOpen, onClose }) {
                         type="checkbox"
                         checked={preferences?.[key] || false}
                         onChange={(e) => updatePreference(key, e?.target?.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-primary border-border rounded focus:ring-ring"
                       />
-                      <span className="text-sm text-gray-700">{label}</span>
+                      <span className="text-sm text-foreground">{label}</span>
                     </label>
                   ))}
                 </div>
@@ -187,10 +187,10 @@ export function PreferencesPanel({ isOpen, onClose }) {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200">
+        <div className="flex items-center justify-end gap-3 p-6 border-t border-border">
           <button
             onClick={onClose}
-            className="px-6 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            className="px-6 py-2 text-foreground hover:bg-muted rounded-lg transition-colors"
             disabled={saving}
           >
             Cancel
@@ -198,7 +198,7 @@ export function PreferencesPanel({ isOpen, onClose }) {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             {saving ? 'Saving...' : 'Save Preferences'}

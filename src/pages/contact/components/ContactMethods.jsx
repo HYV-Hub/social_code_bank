@@ -50,10 +50,10 @@ const ContactMethods = () => {
       {contactMethods?.map((method, index) => (
         <div
           key={index}
-          className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow"
+          className="bg-card dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow"
         >
-          <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
-            <Icon name={method?.icon} size={24} className="text-blue-600 dark:text-blue-400" />
+          <div className="w-12 h-12 bg-primary/15 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+            <Icon name={method?.icon} size={24} className="text-primary dark:text-blue-400" />
           </div>
           <h3 className="text-lg font-semibold text-[var(--color-foreground)] mb-2">
             {method?.title}
@@ -61,12 +61,12 @@ const ContactMethods = () => {
           <p className="text-sm text-[var(--color-muted-foreground)] mb-3">
             {method?.description}
           </p>
-          <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-4">
+          <p className="text-sm font-medium text-primary dark:text-blue-400 mb-4">
             {method?.contact}
           </p>
           <button
             onClick={() => handleAction(method)}
-            className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium"
+            className="w-full px-4 py-2 bg-primary hover:bg-primary text-white rounded-lg transition-colors text-sm font-medium"
           >
             {method?.action}
           </button>

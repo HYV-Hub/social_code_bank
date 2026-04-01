@@ -212,8 +212,8 @@ const EnterpriseSignup = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-8">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <AppIcon name="CheckCircle" size={48} className="text-green-600" />
+          <div className="w-20 h-20 bg-success/15 rounded-full flex items-center justify-center mx-auto mb-6">
+            <AppIcon name="CheckCircle" size={48} className="text-success" />
           </div>
           <h2 className="text-3xl font-bold text-foreground mb-4">
             Thank You for Your Interest!

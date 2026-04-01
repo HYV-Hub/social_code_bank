@@ -28,17 +28,17 @@ export default function FilterControls({ activeFilters, onFilterChange }) {
   ];
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+    <div className="bg-card rounded-lg border border-border p-4 mb-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Content Type Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Content Type
           </label>
           <select
             value={activeFilters?.contentType}
             onChange={(e) => onFilterChange('contentType', e?.target?.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
             {contentTypes?.map((type) => (
               <option key={type?.value} value={type?.value}>
@@ -50,13 +50,13 @@ export default function FilterControls({ activeFilters, onFilterChange }) {
 
         {/* Language Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Programming Language
           </label>
           <select
             value={activeFilters?.language}
             onChange={(e) => onFilterChange('language', e?.target?.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
             {languages?.map((lang) => (
               <option key={lang?.value} value={lang?.value}>
@@ -68,13 +68,13 @@ export default function FilterControls({ activeFilters, onFilterChange }) {
 
         {/* Recency Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Recency
           </label>
           <select
             value={activeFilters?.recency}
             onChange={(e) => onFilterChange('recency', e?.target?.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
             {recencyOptions?.map((option) => (
               <option key={option?.value} value={option?.value}>

@@ -337,8 +337,8 @@ const BugBoardPage = () => {
         <title>{getContextTitle()} - HyvHub</title>
       </Helmet>
       <AppNavigation />
-      <div className="min-h-screen bg-gray-50">
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+      <div className="min-h-screen bg-background">
+        <header className="bg-card border-b border-border sticky top-0 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center gap-4">
@@ -349,16 +349,16 @@ const BugBoardPage = () => {
                       else if (companyId) navigate(`/company-dashboard?company=${companyId}`);
                       else navigate('/user-dashboard');
                     }}
-                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    className="p-2 hover:bg-muted rounded-lg transition-colors"
                   >
                     <Icon name="ArrowLeft" size={20} />
                   </button>
                 )}
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
+                  <h1 className="text-2xl font-bold text-foreground">
                     {getContextTitle()}
                   </h1>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     {getContextDescription()}
                   </p>
                 </div>
@@ -379,15 +379,15 @@ const BugBoardPage = () => {
         <main className="max-w-[1920px] mx-auto px-6 py-6">
           {/* Error Display */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <div className="bg-error/10 border border-error/20 rounded-lg p-4 mb-6">
               <div className="flex items-start gap-3">
-                <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+                <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <h3 className="font-semibold text-red-900 mb-1">Error Loading Bugs</h3>
                   <p className="text-sm text-red-800">{error}</p>
                   <button
                     onClick={() => window.location?.reload()}
-                    className="mt-2 text-sm text-red-700 underline hover:text-red-800"
+                    className="mt-2 text-sm text-error underline hover:text-red-800"
                   >
                     Retry
                   </button>
@@ -398,46 +398,46 @@ const BugBoardPage = () => {
 
           {/* Stats Overview */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-            <div className="bg-white rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-slate-200 p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-slate-600">Total Bugs</span>
                 <Icon name="Bug" size={20} className="text-slate-400" />
               </div>
               <div className="text-2xl font-bold text-slate-800">{bugs?.length}</div>
             </div>
-            <div className="bg-white rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-slate-200 p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-slate-600">Open</span>
-                <Icon name="AlertCircle" size={20} className="text-red-500" />
+                <Icon name="AlertCircle" size={20} className="text-error" />
               </div>
-              <div className="text-2xl font-bold text-red-600">
+              <div className="text-2xl font-bold text-error">
                 {getBugsByStatus('open')?.length}
               </div>
             </div>
-            <div className="bg-white rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-slate-200 p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-slate-600">In Progress</span>
                 <Icon name="Clock" size={20} className="text-yellow-500" />
               </div>
-              <div className="text-2xl font-bold text-yellow-600">
+              <div className="text-2xl font-bold text-warning">
                 {getBugsByStatus('in_progress')?.length}
               </div>
             </div>
-            <div className="bg-white rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-slate-200 p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-slate-600">Resolved</span>
                 <Icon name="CheckCircle" size={20} className="text-green-500" />
               </div>
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-success">
                 {getBugsByStatus('resolved')?.length}
               </div>
             </div>
-            <div className="bg-white rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-slate-200 p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-slate-600">Bug Fixes</span>
-                <Icon name="Wrench" size={20} className="text-blue-500" />
+                <Icon name="Wrench" size={20} className="text-primary" />
               </div>
-              <div className="text-2xl font-bold text-blue-600">
+              <div className="text-2xl font-bold text-primary">
                 {bugFixes?.length}
               </div>
             </div>
@@ -478,7 +478,7 @@ const BugBoardPage = () => {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <h2 className="text-xl font-bold text-slate-800">Bug Fixes</h2>
-                <div className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                <div className="bg-primary/15 text-foreground text-xs font-semibold px-2.5 py-0.5 rounded">
                   {bugFixes?.length} fixes
                 </div>
               </div>

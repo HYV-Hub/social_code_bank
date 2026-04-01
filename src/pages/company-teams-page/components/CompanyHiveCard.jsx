@@ -8,21 +8,21 @@ const CompanyHiveCard = ({ hive, onClick, userRole }) => {
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-xl border border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all duration-200 cursor-pointer group"
+      className="bg-card rounded-xl border border-border hover:border-blue-400 hover:shadow-lg transition-all duration-200 cursor-pointer group"
     >
       {/* Card Header */}
-      <div className="p-6 border-b border-gray-100">
+      <div className="p-6 border-b border-border">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
-            <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
+            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
               {hive?.name}
             </h3>
           </div>
           <div className="flex items-center gap-2">
             {isPrivate ? (
-              <Lock className="w-4 h-4 text-gray-400" />
+              <Lock className="w-4 h-4 text-muted-foreground" />
             ) : (
-              <Globe className="w-4 h-4 text-gray-400" />
+              <Globe className="w-4 h-4 text-muted-foreground" />
             )}
             {canManage && (
               <button
@@ -30,14 +30,14 @@ const CompanyHiveCard = ({ hive, onClick, userRole }) => {
                   e?.stopPropagation();
                   // Handle menu click
                 }}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-muted-foreground hover:text-muted-foreground transition-colors"
               >
                 <MoreVertical className="w-4 h-4" />
               </button>
             )}
           </div>
         </div>
-        <p className="text-sm text-gray-600 line-clamp-2">
+        <p className="text-sm text-muted-foreground line-clamp-2">
           {hive?.description || 'No description provided'}
         </p>
       </div>
@@ -46,24 +46,24 @@ const CompanyHiveCard = ({ hive, onClick, userRole }) => {
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
-              <Users className="w-4 h-4 text-blue-600" />
+              <Users className="w-4 h-4 text-primary" />
             </div>
-            <p className="text-2xl font-bold text-gray-900">{hive?.member_count || 0}</p>
-            <p className="text-xs text-gray-500">Members</p>
+            <p className="text-2xl font-bold text-foreground">{hive?.member_count || 0}</p>
+            <p className="text-xs text-muted-foreground">Members</p>
           </div>
-          <div className="text-center border-l border-r border-gray-200">
+          <div className="text-center border-l border-r border-border">
             <div className="flex items-center justify-center mb-1">
-              <FileCode className="w-4 h-4 text-green-600" />
+              <FileCode className="w-4 h-4 text-success" />
             </div>
-            <p className="text-2xl font-bold text-gray-900">{hive?.snippet_count || 0}</p>
-            <p className="text-xs text-gray-500">Snippets</p>
+            <p className="text-2xl font-bold text-foreground">{hive?.snippet_count || 0}</p>
+            <p className="text-xs text-muted-foreground">Snippets</p>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
-              <TrendingUp className="w-4 h-4 text-purple-600" />
+              <TrendingUp className="w-4 h-4 text-primary" />
             </div>
-            <p className="text-2xl font-bold text-gray-900">{hive?.collection_count || 0}</p>
-            <p className="text-xs text-gray-500">Collections</p>
+            <p className="text-2xl font-bold text-foreground">{hive?.collection_count || 0}</p>
+            <p className="text-xs text-muted-foreground">Collections</p>
           </div>
         </div>
 
@@ -71,7 +71,7 @@ const CompanyHiveCard = ({ hive, onClick, userRole }) => {
         <div className="mt-4 flex items-center justify-between">
           <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
             isPrivate 
-              ? 'bg-gray-100 text-gray-700' :'bg-blue-50 text-blue-700'
+              ? 'bg-muted text-foreground' :'bg-primary/10 text-primary'
           }`}>
             {isPrivate ? (
               <>
@@ -86,7 +86,7 @@ const CompanyHiveCard = ({ hive, onClick, userRole }) => {
             )}
           </span>
           {hive?.is_owner && (
-            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-50 text-purple-700">
+            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
               Owner
             </span>
           )}

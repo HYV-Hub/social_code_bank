@@ -5,12 +5,12 @@ import Icon from "../../../components/AppIcon";
 const TrendingSnippetCard = ({ snippet, onView }) => {
   const getLanguageColor = (language) => {
     const colors = {
-      JavaScript: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
-      Python: "bg-blue-500/10 text-blue-600 border-blue-500/20",
-      Java: "bg-red-500/10 text-red-600 border-red-500/20",
-      TypeScript: "bg-blue-600/10 text-blue-700 border-blue-600/20",
+      JavaScript: "bg-warning/100/10 text-warning border-yellow-500/20",
+      Python: "bg-primary/10 text-primary border-blue-500/20",
+      Java: "bg-error/100/10 text-error border-error/20",
+      TypeScript: "bg-primary/10 text-primary border-blue-600/20",
       React: "bg-cyan-500/10 text-cyan-600 border-cyan-500/20",
-      "C++": "bg-purple-500/10 text-purple-600 border-purple-500/20"
+      "C++": "bg-primary/100/10 text-primary border-purple-500/20"
     };
     return colors?.[language] || "bg-muted text-muted-foreground border-border";
   };

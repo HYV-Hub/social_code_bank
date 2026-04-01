@@ -52,7 +52,7 @@ const SocialProofSection = () => {
           {benefits?.map((benefit, index) => (
             <div
               key={index}
-              className="text-center p-6 bg-white dark:bg-slate-800 rounded-2xl border border-[var(--color-border)] hover:shadow-lg transition-all duration-300"
+              className="text-center p-6 bg-card dark:bg-slate-800 rounded-xl border border-[var(--color-border)] hover:shadow-lg transition-all duration-300"
             >
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] mb-4">
                 <Icon name={benefit?.icon} size={24} color="white" />
@@ -82,7 +82,7 @@ const SocialProofSection = () => {
             {techStack?.map((tech, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-800 rounded-xl border border-[var(--color-border)] hover:shadow-md transition-all duration-300"
+                className="flex flex-col items-center justify-center p-6 bg-card dark:bg-slate-800 rounded-xl border border-[var(--color-border)] hover:shadow-md transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center mb-3">
                   <Icon name={tech?.icon} size={24} color="white" />
@@ -96,7 +96,7 @@ const SocialProofSection = () => {
 
           {/* Beta CTA */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-700/50 backdrop-blur-sm mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/50 dark:bg-slate-700/50 backdrop-blur-sm mb-4">
               <Icon name="Sparkles" size={16} color="var(--color-primary)" />
               <span className="text-sm font-medium text-[var(--color-foreground)]">
                 Now in Beta - Free to Join

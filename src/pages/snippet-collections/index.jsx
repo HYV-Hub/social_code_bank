@@ -292,7 +292,7 @@ export default function MySnippetsPage() {
       case 'company':
         return 'bg-warning/10 text-warning';
       default:
-        return 'bg-gray-100 text-gray-600';
+        return 'bg-muted text-muted-foreground';
     }
   };
 
@@ -302,14 +302,14 @@ export default function MySnippetsPage() {
         <title>My Snippets - HyvHub</title>
       </Helmet>
       <AppNavigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         {/* Header */}
-        <div className="bg-white shadow-sm border-b">
+        <div className="bg-card shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex justify-between items-center">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">My Snippets</h1>
-                <p className="mt-1 text-sm text-gray-500">
+                <h1 className="text-3xl font-bold text-foreground">My Snippets</h1>
+                <p className="mt-1 text-sm text-muted-foreground">
                   View, manage, and organize all your code snippets
                 </p>
               </div>
@@ -317,7 +317,7 @@ export default function MySnippetsPage() {
                 {selectedSnippets?.size > 0 && (
                   <button
                     onClick={() => setShowOrganizeModal(true)}
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                    className="inline-flex items-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-foreground bg-card hover:bg-background"
                   >
                     <FolderPlus className="w-5 h-5 mr-2" />
                     Organize ({selectedSnippets?.size})
@@ -325,7 +325,7 @@ export default function MySnippetsPage() {
                 )}
                 <button
                   onClick={() => navigate('/create-snippet')}
-                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary"
                 >
                   <Plus className="w-5 h-5 mr-2" />
                   Create Snippet
@@ -336,7 +336,7 @@ export default function MySnippetsPage() {
         </div>
 
         {/* Visibility Filter Tabs */}
-        <div className="bg-white border-b">
+        <div className="bg-card border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex overflow-x-auto">
               {visibilityTabs?.map((tab) => {
@@ -351,14 +351,14 @@ export default function MySnippetsPage() {
                     onClick={() => setVisibilityFilter(tab?.id)}
                     className={`flex items-center gap-2 px-4 py-3 font-medium transition-colors whitespace-nowrap border-b-2 ${
                       visibilityFilter === tab?.id
-                        ? 'text-blue-600 border-blue-600' : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
+                        ? 'text-primary border-blue-600' : 'text-muted-foreground border-transparent hover:text-foreground hover:border-border'
                     }`}
                   >
                     <Icon size={16} />
                     <span>{tab?.label}</span>
                     <span className={`px-2 py-0.5 text-xs rounded-full ${
                       visibilityFilter === tab?.id
-                        ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-600'
+                        ? 'bg-primary/15 text-primary' : 'bg-muted text-muted-foreground'
                     }`}>
                       {count}
                     </span>
@@ -373,13 +373,13 @@ export default function MySnippetsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row gap-4 mb-6">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search snippets by title, description, or tags..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e?.target?.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
               />
             </div>
             <div className="md:w-48">
@@ -402,21 +402,21 @@ export default function MySnippetsPage() {
 
           {/* Bulk Selection */}
           {filteredSnippets?.length > 0 && (
-            <div className="mb-4 flex items-center justify-between bg-white rounded-lg border border-gray-200 p-3">
+            <div className="mb-4 flex items-center justify-between bg-card rounded-lg border border-border p-3">
               <label className="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
                   checked={selectedSnippets?.size === filteredSnippets?.length && filteredSnippets?.length > 0}
                   onChange={handleSelectAll}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2"
+                  className="h-4 w-4 text-primary focus:ring-ring border-border rounded mr-2"
                 />
-                <span className="text-sm text-gray-700">
+                <span className="text-sm text-foreground">
                   {selectedSnippets?.size > 0 
                     ? `${selectedSnippets?.size} snippet(s) selected` 
                     : 'Select all snippets'}
                 </span>
               </label>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 Showing {filteredSnippets?.length} {filteredSnippets?.length === 1 ? 'snippet' : 'snippets'}
                 {visibilityFilter !== 'all' && ` (${visibilityFilter})`}
               </p>
@@ -427,7 +427,7 @@ export default function MySnippetsPage() {
         {/* Error Message */}
         {error && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+            <div className="bg-error/10 border border-error/20 text-error px-4 py-3 rounded-lg">
               {error}
             </div>
           </div>
@@ -436,12 +436,12 @@ export default function MySnippetsPage() {
         {/* UPDATED: Collections Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-gray-900">
+            <h2 className="text-xl font-bold text-foreground">
               {collections?.length > 0 ? 'My Collections' : 'Create Your First Collection'}
             </h2>
             <button
               onClick={() => setShowStandaloneCollectionModal(true)}
-              className="inline-flex items-center px-3 py-1.5 text-sm border border-gray-300 rounded-md shadow-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+              className="inline-flex items-center px-3 py-1.5 text-sm border border-border rounded-md shadow-sm font-medium text-foreground bg-card hover:bg-background"
             >
               <FolderPlus className="w-4 h-4 mr-2" />
               New Collection
@@ -453,18 +453,18 @@ export default function MySnippetsPage() {
               {collections?.map((collection) => (
                 <div
                   key={collection?.id}
-                  className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 cursor-pointer"
+                  className="group bg-card border border-border rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 cursor-pointer"
                   onClick={() => navigate(`/collection-details?id=${collection?.id}`)}
                 >
                   <div className="p-4">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1 flex items-center gap-2">
+                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1 flex items-center gap-2">
                           <Icon name="Folder" size={18} className="flex-shrink-0" />
                           {collection?.title}
                         </h3>
                         {collection?.description && (
-                          <p className="text-sm text-gray-600 line-clamp-2 mt-1">
+                          <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
                             {collection?.description}
                           </p>
                         )}
@@ -475,7 +475,7 @@ export default function MySnippetsPage() {
                             e?.stopPropagation();
                             navigate(`/collection-details?id=${collection?.id}&edit=true`);
                           }}
-                          className="p-1.5 text-gray-600 hover:bg-gray-100 rounded transition-colors"
+                          className="p-1.5 text-muted-foreground hover:bg-muted rounded transition-colors"
                           title="Edit collection"
                         >
                           <Edit className="w-4 h-4" />
@@ -485,7 +485,7 @@ export default function MySnippetsPage() {
                             e?.stopPropagation();
                             handleDeleteCollection(collection?.id);
                           }}
-                          className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+                          className="p-1.5 text-error hover:bg-error/10 rounded transition-colors"
                           title="Delete collection"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -494,8 +494,8 @@ export default function MySnippetsPage() {
                     </div>
                     
                     {/* Collection Stats */}
-                    <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
-                      <div className="flex items-center gap-3 text-xs text-gray-500">
+                    <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Icon name="Code" size={14} />
                           {collection?.snippetsCount || 0} snippets
@@ -513,7 +513,7 @@ export default function MySnippetsPage() {
                           </span>
                         )}
                       </div>
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-muted-foreground">
                         {new Date(collection?.created_at)?.toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric'
@@ -527,13 +527,13 @@ export default function MySnippetsPage() {
                         {collection?.tags?.slice(0, 3)?.map((tag, idx) => (
                           <span
                             key={idx}
-                            className="text-xs px-2 py-0.5 bg-purple-50 text-purple-600 rounded-full"
+                            className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full"
                           >
                             {tag}
                           </span>
                         ))}
                         {collection?.tags?.length > 3 && (
-                          <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded-full">
+                          <span className="text-xs px-2 py-0.5 bg-muted text-muted-foreground rounded-full">
                             +{collection?.tags?.length - 3}
                           </span>
                         )}
@@ -544,15 +544,15 @@ export default function MySnippetsPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-8 bg-white rounded-lg shadow-sm border-2 border-dashed border-gray-300">
-              <FolderPlus className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-              <p className="text-gray-600 mb-2">No collections yet</p>
-              <p className="text-sm text-gray-500 mb-4">
+            <div className="text-center py-8 bg-card rounded-lg shadow-sm border-2 border-dashed border-border">
+              <FolderPlus className="w-12 h-12 mx-auto text-muted-foreground mb-3" />
+              <p className="text-muted-foreground mb-2">No collections yet</p>
+              <p className="text-sm text-muted-foreground mb-4">
                 Organize your snippets by creating collections
               </p>
               <button
                 onClick={() => setShowStandaloneCollectionModal(true)}
-                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary"
               >
                 <Plus className="w-5 h-5 mr-2" />
                 Create Your First Collection
@@ -566,28 +566,28 @@ export default function MySnippetsPage() {
           {loading ? (
             <div className="text-center py-12">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-              <p className="mt-2 text-gray-600">Loading snippets...</p>
+              <p className="mt-2 text-muted-foreground">Loading snippets...</p>
             </div>
           ) : filteredSnippets?.length === 0 && collections?.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-lg shadow-sm">
-              <p className="text-gray-500 text-lg mb-2">
+            <div className="text-center py-12 bg-card rounded-lg shadow-sm">
+              <p className="text-muted-foreground text-lg mb-2">
                 {searchQuery 
                   ? 'No snippets or collections found matching your search' :'No snippets or collections yet. Get started!'}
               </p>
-              <p className="text-sm text-gray-400 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
                 Create your first snippet or collection to organize your code
               </p>
               <div className="flex items-center justify-center gap-3">
                 <button
                   onClick={() => navigate('/create-snippet')}
-                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary"
                 >
                   <Plus className="w-5 h-5 mr-2" />
                   Create Snippet
                 </button>
                 <button
                   onClick={() => setShowCreateCollectionForm(true)}
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                  className="inline-flex items-center px-4 py-2 border border-border text-foreground rounded-md hover:bg-background"
                 >
                   <FolderPlus className="w-5 h-5 mr-2" />
                   Create Collection
@@ -599,8 +599,8 @@ export default function MySnippetsPage() {
               {filteredSnippets?.length > 0 && (
                 <>
                   <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-bold text-gray-900">All Snippets</h2>
-                    <p className="text-sm text-gray-500">
+                    <h2 className="text-xl font-bold text-foreground">All Snippets</h2>
+                    <p className="text-sm text-muted-foreground">
                       {filteredSnippets?.length} {filteredSnippets?.length === 1 ? 'snippet' : 'snippets'}
                     </p>
                   </div>
@@ -608,25 +608,25 @@ export default function MySnippetsPage() {
                     {filteredSnippets?.map((snippet) => (
                       <div
                         key={snippet?.id}
-                        className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
+                        className="group bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
                       >
                         {/* Snippet Header with Checkbox */}
-                        <div className="p-4 border-b border-gray-100">
+                        <div className="p-4 border-b border-border">
                           <div className="flex items-start gap-3">
                             <input
                               type="checkbox"
                               checked={selectedSnippets?.has(snippet?.id)}
                               onChange={() => handleSelectSnippet(snippet?.id)}
                               onClick={(e) => e?.stopPropagation()}
-                              className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                              className="mt-1 h-4 w-4 text-primary focus:ring-ring border-border rounded"
                             />
                             <div className="flex-1 min-w-0">
                               <div className="flex items-start justify-between mb-2">
                                 <div className="flex-1">
-                                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1">
                                     {snippet?.title}
                                   </h3>
-                                  <p className="text-xs text-gray-500 mt-1">
+                                  <p className="text-xs text-muted-foreground mt-1">
                                     {new Date(snippet?.created_at)?.toLocaleDateString('en-US', {
                                       month: 'short',
                                       day: 'numeric',
@@ -640,7 +640,7 @@ export default function MySnippetsPage() {
                                 </span>
                               </div>
                               {snippet?.description && (
-                                <p className="text-sm text-gray-600 line-clamp-2 mt-2">
+                                <p className="text-sm text-muted-foreground line-clamp-2 mt-2">
                                   {snippet?.description}
                                 </p>
                               )}
@@ -649,8 +649,8 @@ export default function MySnippetsPage() {
                         </div>
 
                         {/* Code Preview */}
-                        <div className="bg-gray-50 p-4 border-b border-gray-100">
-                          <pre className="text-xs font-mono text-gray-800 line-clamp-3 overflow-hidden">
+                        <div className="bg-background p-4 border-b border-border">
+                          <pre className="text-xs font-mono text-foreground line-clamp-3 overflow-hidden">
                             <code>{snippet?.code?.substring(0, 200)}</code>
                           </pre>
                         </div>
@@ -663,13 +663,13 @@ export default function MySnippetsPage() {
                               {snippet?.ai_tags?.slice(0, 3)?.map((tag, idx) => (
                                 <span
                                   key={idx}
-                                  className="text-xs px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full"
+                                  className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full"
                                 >
                                   {tag}
                                 </span>
                               ))}
                               {snippet?.ai_tags?.length > 3 && (
-                                <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded-full">
+                                <span className="text-xs px-2 py-0.5 bg-muted text-muted-foreground rounded-full">
                                   +{snippet?.ai_tags?.length - 3}
                                 </span>
                               )}
@@ -678,7 +678,7 @@ export default function MySnippetsPage() {
 
                           {/* Stats and Actions */}
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3 text-xs text-gray-500">
+                            <div className="flex items-center gap-3 text-xs text-muted-foreground">
                               <span className="flex items-center gap-1">
                                 ❤️ {snippet?.likes_count || 0}
                               </span>
@@ -690,19 +690,19 @@ export default function MySnippetsPage() {
                               </span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="text-xs px-2 py-1 bg-blue-50 text-blue-600 rounded font-medium">
+                              <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded font-medium">
                                 {snippet?.language}
                               </span>
                               <button
                                 onClick={() => navigate(`/snippet-details?id=${snippet?.id}`)}
-                                className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                                className="p-1.5 text-primary hover:bg-primary/10 rounded transition-colors"
                                 title="View details"
                               >
                                 <Eye className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => navigate(`/create-snippet?edit=${snippet?.id}`)}
-                                className="p-1.5 text-gray-600 hover:bg-gray-100 rounded transition-colors"
+                                className="p-1.5 text-muted-foreground hover:bg-muted rounded transition-colors"
                                 title="Edit"
                               >
                                 <Edit className="w-4 h-4" />
@@ -712,7 +712,7 @@ export default function MySnippetsPage() {
                                   e?.stopPropagation();
                                   handleDeleteSnippet(snippet?.id);
                                 }}
-                                className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+                                className="p-1.5 text-error hover:bg-error/10 rounded transition-colors"
                                 title="Delete"
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -732,22 +732,22 @@ export default function MySnippetsPage() {
         {/* Organize to Collection Modal */}
         {showOrganizeModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-md w-full p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Organize Snippets</h2>
-              <p className="text-sm text-gray-600 mb-4">
+            <div className="bg-card rounded-lg max-w-md w-full p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">Organize Snippets</h2>
+              <p className="text-sm text-muted-foreground mb-4">
                 Add {selectedSnippets?.size} selected snippet(s) to a collection
               </p>
 
               {!showCreateCollectionForm ? (
                 <>
                   <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Select Collection
                     </label>
                     <select
                       value={selectedCollection}
                       onChange={(e) => setSelectedCollection(e?.target?.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-transparent"
                     >
                       <option value="">-- Choose a collection --</option>
                       {collections?.map((collection) => (
@@ -760,7 +760,7 @@ export default function MySnippetsPage() {
 
                   <button
                     onClick={() => setShowCreateCollectionForm(true)}
-                    className="w-full mb-4 px-4 py-2 border-2 border-dashed border-blue-400 text-blue-600 rounded-md hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
+                    className="w-full mb-4 px-4 py-2 border-2 border-dashed border-blue-400 text-primary rounded-md hover:bg-primary/10 transition-colors flex items-center justify-center gap-2"
                   >
                     <Plus className="w-5 h-5" />
                     Create New Collection
@@ -773,14 +773,14 @@ export default function MySnippetsPage() {
                         setShowOrganizeModal(false);
                         setSelectedCollection('');
                       }}
-                      className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                      className="flex-1 px-4 py-2 border border-border rounded-md text-foreground hover:bg-background"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={handleOrganizeToCollection}
                       disabled={!selectedCollection}
-                      className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                      className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed"
                     >
                       Add to Collection
                     </button>
@@ -790,7 +790,7 @@ export default function MySnippetsPage() {
                 <>
                   <div className="space-y-4 mb-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-foreground mb-2">
                         Collection Title *
                       </label>
                       <input
@@ -798,12 +798,12 @@ export default function MySnippetsPage() {
                         value={newCollectionData?.title}
                         onChange={(e) => setNewCollectionData({ ...newCollectionData, title: e?.target?.value })}
                         placeholder="e.g., React Best Practices"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-transparent"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-foreground mb-2">
                         Description
                       </label>
                       <textarea
@@ -811,7 +811,7 @@ export default function MySnippetsPage() {
                         onChange={(e) => setNewCollectionData({ ...newCollectionData, description: e?.target?.value })}
                         placeholder="Describe what this collection is about..."
                         rows={3}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-transparent"
                       />
                     </div>
                     <div className="flex items-center gap-2">
@@ -820,9 +820,9 @@ export default function MySnippetsPage() {
                         id="isPublic"
                         checked={newCollectionData?.isPublic}
                         onChange={(e) => setNewCollectionData({ ...newCollectionData, isPublic: e?.target?.checked })}
-                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                        className="h-4 w-4 text-primary focus:ring-ring border-border rounded"
                       />
-                      <label htmlFor="isPublic" className="text-sm text-gray-700">
+                      <label htmlFor="isPublic" className="text-sm text-foreground">
                         Make this collection public
                       </label>
                     </div>
@@ -835,14 +835,14 @@ export default function MySnippetsPage() {
                         setShowCreateCollectionForm(false);
                         setNewCollectionData({ title: '', description: '', isPublic: false, tags: [] });
                       }}
-                      className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                      className="flex-1 px-4 py-2 border border-border rounded-md text-foreground hover:bg-background"
                     >
                       Back
                     </button>
                     <button
                       onClick={handleCreateAndOrganize}
                       disabled={!newCollectionData?.title?.trim()}
-                      className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                      className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed"
                     >
                       Create &amp; Add Snippets
                     </button>
@@ -856,15 +856,15 @@ export default function MySnippetsPage() {
         {/* NEW: Standalone Collection Creation Modal */}
         {showStandaloneCollectionModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-md w-full p-6">
+            <div className="bg-card rounded-lg max-w-md w-full p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold text-gray-900">Create New Collection</h2>
+                <h2 className="text-2xl font-bold text-foreground">Create New Collection</h2>
                 <button
                   onClick={() => {
                     setShowStandaloneCollectionModal(false);
                     setNewCollectionData({ title: '', description: '', isPublic: false, tags: [] });
                   }}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-muted-foreground hover:text-muted-foreground"
                 >
                   <Icon name="X" size={24} />
                 </button>
@@ -872,7 +872,7 @@ export default function MySnippetsPage() {
               
               <div className="space-y-4 mb-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Collection Title *
                   </label>
                   <input
@@ -880,13 +880,13 @@ export default function MySnippetsPage() {
                     value={newCollectionData?.title}
                     onChange={(e) => setNewCollectionData({ ...newCollectionData, title: e?.target?.value })}
                     placeholder="e.g., React Best Practices"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-transparent"
                     required
                     autoFocus
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Description
                   </label>
                   <textarea
@@ -894,7 +894,7 @@ export default function MySnippetsPage() {
                     onChange={(e) => setNewCollectionData({ ...newCollectionData, description: e?.target?.value })}
                     placeholder="Describe what this collection is about..."
                     rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-transparent"
                   />
                 </div>
                 <div className="flex items-center gap-2">
@@ -903,9 +903,9 @@ export default function MySnippetsPage() {
                     id="isPublicStandalone"
                     checked={newCollectionData?.isPublic}
                     onChange={(e) => setNewCollectionData({ ...newCollectionData, isPublic: e?.target?.checked })}
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-primary focus:ring-ring border-border rounded"
                   />
-                  <label htmlFor="isPublicStandalone" className="text-sm text-gray-700 flex items-center gap-2">
+                  <label htmlFor="isPublicStandalone" className="text-sm text-foreground flex items-center gap-2">
                     <Globe className="w-4 h-4" />
                     Make this collection public
                   </label>
@@ -919,14 +919,14 @@ export default function MySnippetsPage() {
                     setShowStandaloneCollectionModal(false);
                     setNewCollectionData({ title: '', description: '', isPublic: false, tags: [] });
                   }}
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                  className="flex-1 px-4 py-2 border border-border rounded-md text-foreground hover:bg-background"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleCreateStandaloneCollection}
                   disabled={!newCollectionData?.title?.trim()}
-                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <Plus className="w-5 h-5" />
                   Create Collection

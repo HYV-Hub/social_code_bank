@@ -69,12 +69,12 @@ const SearchHeader = ({ query, searchQuery, setSearchQuery, onSearch, resultCoun
               onChange={(e) => setSearchQuery(e?.target?.value)}
               onKeyPress={handleKeyPress}
               placeholder="Search snippets, bugs, users, teams... (e.g., 'bespoke gallery')"
-              className="w-full pl-12 pr-24 py-4 text-lg rounded-xl border-2 border-blue-400 focus:border-white focus:ring-4 focus:ring-blue-300 bg-white/95 text-gray-900 placeholder-gray-500"
+              className="w-full pl-12 pr-24 py-4 text-lg rounded-xl border-2 border-blue-400 focus:border-white focus:ring-4 focus:ring-blue-300 bg-card/95 text-foreground placeholder-muted-foreground"
             />
             <Icon 
               name="Search" 
               size={24} 
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
             />
             <Button
               onClick={() => {
@@ -90,15 +90,15 @@ const SearchHeader = ({ query, searchQuery, setSearchQuery, onSearch, resultCoun
 
           {/* 🎯 TAG SUGGESTIONS DROPDOWN */}
           {showSuggestions && tagSuggestions?.length > 0 && (
-            <div className="absolute z-50 w-full mt-2 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
-              <div className="p-3 bg-gray-50 border-b border-gray-200">
-                <p className="text-sm font-medium text-gray-700">
+            <div className="absolute z-50 w-full mt-2 bg-card rounded-lg shadow-xl border border-border overflow-hidden">
+              <div className="p-3 bg-background border-b border-border">
+                <p className="text-sm font-medium text-foreground">
                   💡 Suggested tags for "{searchQuery}"
                 </p>
               </div>
               <ul className="max-h-64 overflow-y-auto">
                 {isLoadingSuggestions ? (
-                  <li className="px-4 py-3 text-center text-gray-500">
+                  <li className="px-4 py-3 text-center text-muted-foreground">
                     <Icon name="Loader" size={20} className="animate-spin inline mr-2" />
                     Loading suggestions...
                   </li>
@@ -107,26 +107,26 @@ const SearchHeader = ({ query, searchQuery, setSearchQuery, onSearch, resultCoun
                     <li
                       key={index}
                       onClick={() => handleTagClick(suggestion?.tag)}
-                      className="px-4 py-3 hover:bg-blue-50 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0"
+                      className="px-4 py-3 hover:bg-primary/10 cursor-pointer transition-colors border-b border-border last:border-b-0"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Icon 
                             name={suggestion?.isSuggested ? "Sparkles" : "Tag"} 
                             size={16} 
-                            className={suggestion?.isSuggested ? "text-yellow-500" : "text-blue-500"}
+                            className={suggestion?.isSuggested ? "text-yellow-500" : "text-primary"}
                           />
-                          <span className="text-gray-900 font-medium">
+                          <span className="text-foreground font-medium">
                             {suggestion?.tag}
                           </span>
                           {suggestion?.isSuggested && (
-                            <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full">
+                            <span className="text-xs bg-warning/15 text-yellow-800 px-2 py-0.5 rounded-full">
                               AI Suggested
                             </span>
                           )}
                         </div>
                         {suggestion?.count > 0 && (
-                          <span className="text-sm text-gray-500">
+                          <span className="text-sm text-muted-foreground">
                             {suggestion?.count} snippet{suggestion?.count !== 1 ? 's' : ''}
                           </span>
                         )}

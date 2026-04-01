@@ -18,7 +18,7 @@ const PublicNavigation = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-card border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -29,27 +29,27 @@ const PublicNavigation = () => {
                 alt="HYVhub Logo - Technology-themed bee character with hexagonal honeycomb circuit pattern"
                 className="w-10 h-10 object-contain"
               />
-              <span className="text-xl font-bold text-gray-900">HYVhub</span>
+              <span className="text-xl font-bold text-foreground">HYVhub</span>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
-              <Link to="/" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+              <Link to="/" className="text-slate-700 hover:text-primary transition-colors font-medium">
                 Home
               </Link>
-              <Link to="/features" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+              <Link to="/features" className="text-slate-700 hover:text-primary transition-colors font-medium">
                 Features
               </Link>
-              <Link to="/pricing" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+              <Link to="/pricing" className="text-slate-700 hover:text-primary transition-colors font-medium">
                 Pricing
               </Link>
-              <Link to="/documentation-hub" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+              <Link to="/documentation-hub" className="text-slate-700 hover:text-primary transition-colors font-medium">
                 Docs
               </Link>
-              <Link to="/about-us" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+              <Link to="/about-us" className="text-slate-700 hover:text-primary transition-colors font-medium">
                 About
               </Link>
-              <Link to="/contact" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+              <Link to="/contact" className="text-slate-700 hover:text-primary transition-colors font-medium">
                 Contact
               </Link>
             </nav>
@@ -59,13 +59,13 @@ const PublicNavigation = () => {
           <div className="hidden md:flex items-center gap-4">
             <button 
               onClick={() => navigate('/login')}
-              className="px-4 py-2 text-slate-700 hover:text-blue-600 font-medium transition-colors"
+              className="px-4 py-2 text-slate-700 hover:text-primary font-medium transition-colors"
             >
               Sign In
             </button>
             <button 
               onClick={() => navigate('/register')}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors font-medium"
             >
               <Icon name="Rocket" size={18} />
               Get Started Free
@@ -93,7 +93,7 @@ const PublicNavigation = () => {
                     navigate(link?.href);
                     setMobileMenuOpen(false);
                   }}
-                  className="text-slate-700 hover:text-blue-600 font-medium py-2 text-left"
+                  className="text-slate-700 hover:text-primary font-medium py-2 text-left"
                 >
                   {link?.label}
                 </button>
@@ -113,7 +113,7 @@ const PublicNavigation = () => {
                     navigate('/register');
                     setMobileMenuOpen(false);
                   }}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary font-medium"
                 >
                   <Icon name="Rocket" size={18} />
                   Get Started Free

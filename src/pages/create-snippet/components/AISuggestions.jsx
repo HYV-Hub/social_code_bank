@@ -65,19 +65,19 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
   };
 
   const getQualityColor = (score) => {
-    if (score >= 80) return 'text-green-600';
+    if (score >= 80) return 'text-success';
     if (score >= 60) return 'text-amber-600';
-    return 'text-red-600';
+    return 'text-error';
   };
 
   const getQualityBg = (score) => {
-    if (score >= 80) return 'bg-green-100';
+    if (score >= 80) return 'bg-success/15';
     if (score >= 60) return 'bg-amber-100';
-    return 'bg-red-100';
+    return 'bg-error/15';
   };
 
   return (
-    <div className="bg-white rounded-lg border border-slate-200 p-6">
+    <div className="bg-card rounded-lg border border-slate-200 p-6">
       <h2 className="text-lg font-semibold text-slate-800 mb-4">
         AI Suggestions
       </h2>
@@ -88,7 +88,7 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
       {/* AI Analysis Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Icon name="Sparkles" size={20} className="text-purple-600" />
+          <Icon name="Sparkles" size={20} className="text-primary" />
           <h2 className="text-lg font-semibold text-slate-800">AI Insights</h2>
         </div>
         {analyzing && (
@@ -150,7 +150,7 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
               <button
                 key={index}
                 onClick={() => applyTag(tag)}
-                className="px-3 py-1.5 text-xs font-medium bg-blue-50 text-blue-700 rounded-full hover:bg-blue-100 transition-colors flex items-center gap-1"
+                className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full hover:bg-primary/15 transition-colors flex items-center gap-1"
               >
                 {tag}
                 <Icon name="Plus" size={12} />
@@ -164,13 +164,13 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
       {analysis?.improvements?.length > 0 && (
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Icon name="Lightbulb" size={16} className="text-blue-600" />
+            <Icon name="Lightbulb" size={16} className="text-primary" />
             <h3 className="text-sm font-medium text-slate-700">AI-Suggested Improvements</h3>
           </div>
           <div className="space-y-2">
             {analysis?.improvements?.map((improvement, index) => (
-              <div key={index} className="flex items-start gap-2 p-3 bg-blue-50 rounded-lg">
-                <Icon name="CheckCircle2" size={16} className="text-blue-600 mt-0.5 flex-shrink-0" />
+              <div key={index} className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg">
+                <Icon name="CheckCircle2" size={16} className="text-primary mt-0.5 flex-shrink-0" />
                 <p className="text-xs text-slate-700">{improvement}</p>
               </div>
             ))}

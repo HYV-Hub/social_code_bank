@@ -18,10 +18,10 @@ const CommunityLeaderboards = () => {
 
   // Category configurations
   const categories = [
-    { id: 'snippets', label: 'Top Snippet Creators', icon: Code, color: 'bg-blue-500' },
-    { id: 'bugs', label: 'Bug Fix Champions', icon: Bug, color: 'bg-red-500' },
-    { id: 'helpful', label: 'Most Helpful', icon: Star, color: 'bg-yellow-500' },
-    { id: 'mentors', label: 'Community Mentors', icon: Users, color: 'bg-green-500' }
+    { id: 'snippets', label: 'Top Snippet Creators', icon: Code, color: 'bg-primary' },
+    { id: 'bugs', label: 'Bug Fix Champions', icon: Bug, color: 'bg-error/100' },
+    { id: 'helpful', label: 'Most Helpful', icon: Star, color: 'bg-warning/100' },
+    { id: 'mentors', label: 'Community Mentors', icon: Users, color: 'bg-success/100' }
   ];
 
   const timeWindows = [
@@ -102,10 +102,10 @@ const CommunityLeaderboards = () => {
 
   // Get rank badge
   const getRankBadge = (rank) => {
-    if (rank === 1) return { icon: Crown, color: 'text-yellow-500', bg: 'bg-yellow-50' };
-    if (rank === 2) return { icon: Medal, color: 'text-gray-400', bg: 'bg-gray-50' };
+    if (rank === 1) return { icon: Crown, color: 'text-yellow-500', bg: 'bg-warning/10' };
+    if (rank === 2) return { icon: Medal, color: 'text-muted-foreground', bg: 'bg-background' };
     if (rank === 3) return { icon: Award, color: 'text-orange-500', bg: 'bg-orange-50' };
-    return { icon: Trophy, color: 'text-blue-500', bg: 'bg-blue-50' };
+    return { icon: Trophy, color: 'text-primary', bg: 'bg-primary/10' };
   };
 
   const handleUserClick = (userId) => {
@@ -126,7 +126,7 @@ const CommunityLeaderboards = () => {
         <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full backdrop-blur-sm mb-6">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-card/20 rounded-full backdrop-blur-sm mb-6">
                 <Trophy className="w-10 h-10" />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -140,26 +140,26 @@ const CommunityLeaderboards = () => {
 
             {/* Stats Banner */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+              <div className="bg-card/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Code className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">{leaderboardData?.length || 0}</div>
                 <div className="text-sm text-blue-100">Active Contributors</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+              <div className="bg-card/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <TrendingUp className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">
                   {leaderboardData?.[0] ? getScore(leaderboardData?.[0]) : 0}
                 </div>
                 <div className="text-sm text-blue-100">Top Score</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+              <div className="bg-card/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Award className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">
                   {categories?.length}
                 </div>
                 <div className="text-sm text-blue-100">Categories</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+              <div className="bg-card/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Zap className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">Live</div>
                 <div className="text-sm text-blue-100">Updated Daily</div>
@@ -186,14 +186,14 @@ const CommunityLeaderboards = () => {
 
           {/* Error State */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+            <div className="bg-error/10 border border-error/20 rounded-xl p-4 mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-error/15 rounded-full flex items-center justify-center">
                   <span className="text-2xl">⚠️</span>
                 </div>
                 <div>
                   <h3 className="font-semibold text-red-900">Error Loading Leaderboard</h3>
-                  <p className="text-sm text-red-700">{error}</p>
+                  <p className="text-sm text-error">{error}</p>
                 </div>
               </div>
             </div>
@@ -203,14 +203,14 @@ const CommunityLeaderboards = () => {
           {loading ? (
             <div className="space-y-4">
               {[1, 2, 3, 4, 5]?.map((i) => (
-                <div key={i} className="bg-white rounded-xl p-6 animate-pulse">
+                <div key={i} className="bg-card rounded-xl p-6 animate-pulse">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-gray-200 rounded-full" />
+                    <div className="w-16 h-16 bg-muted rounded-full" />
                     <div className="flex-1 space-y-2">
-                      <div className="h-4 bg-gray-200 rounded w-1/4" />
-                      <div className="h-3 bg-gray-200 rounded w-1/3" />
+                      <div className="h-4 bg-muted rounded w-1/4" />
+                      <div className="h-3 bg-muted rounded w-1/3" />
                     </div>
-                    <div className="h-8 w-20 bg-gray-200 rounded" />
+                    <div className="h-8 w-20 bg-muted rounded" />
                   </div>
                 </div>
               ))}
@@ -238,14 +238,14 @@ const CommunityLeaderboards = () => {
               })}
             </div>
           ) : (
-            <div className="bg-white rounded-xl p-12 text-center">
-              <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trophy className="w-10 h-10 text-gray-400" />
+            <div className="bg-card rounded-xl p-12 text-center">
+              <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                <Trophy className="w-10 h-10 text-muted-foreground" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-foreground mb-2">
                 No Data Available
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 No contributors found for this category and time period.
               </p>
             </div>

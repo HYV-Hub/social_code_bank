@@ -121,7 +121,7 @@ const CompanyTeamsPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading company hives...</p>
+          <p className="mt-4 text-muted-foreground">Loading company hives...</p>
         </div>
       </div>
     );
@@ -146,35 +146,35 @@ const CompanyTeamsPage = () => {
         {/* Main Content */}
         <main className="flex-1 overflow-y-auto">
           {/* Breadcrumb Navigation */}
-          <div className="bg-white border-b border-gray-200">
+          <div className="bg-card border-b border-border">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <button
                   onClick={() => navigate('/company-dashboard')}
-                  className="hover:text-blue-600 transition-colors"
+                  className="hover:text-primary transition-colors"
                 >
                   Company
                 </button>
                 <ChevronRight className="w-4 h-4" />
-                <span className="text-gray-900 font-medium">Hive Hub</span>
+                <span className="text-foreground font-medium">Hive Hub</span>
               </div>
             </div>
           </div>
 
           {/* Header Section */}
-          <div className="bg-white border-b border-gray-200 shadow-sm">
+          <div className="bg-card border-b border-border shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900">Company Hive Hub</h1>
-                  <p className="mt-2 text-gray-600">
+                  <h1 className="text-3xl font-bold text-foreground">Company Hive Hub</h1>
+                  <p className="mt-2 text-muted-foreground">
                     {companyInfo?.name ? `${companyInfo?.name}'s collaborative workspace` : 'Manage and organize your company hives'}
                   </p>
                 </div>
                 {canCreateHive && (
                   <button
                     onClick={() => setShowCreateModal(true)}
-                    className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-md lg:hidden"
+                    className="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary text-white font-medium rounded-lg transition-colors shadow-md lg:hidden"
                   >
                     <Plus className="w-5 h-5 mr-2" />
                     Create Hive
@@ -184,35 +184,35 @@ const CompanyTeamsPage = () => {
 
               {/* Stats Section */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border border-primary/20">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-blue-600 font-medium">Total Hives</p>
-                      <p className="text-2xl font-bold text-blue-900">{companyHives?.length}</p>
+                      <p className="text-sm text-primary font-medium">Total Hives</p>
+                      <p className="text-2xl font-bold text-foreground">{companyHives?.length}</p>
                     </div>
-                    <Users className="w-8 h-8 text-blue-600" />
+                    <Users className="w-8 h-8 text-primary" />
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border border-success/20">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-green-600 font-medium">Active Members</p>
+                      <p className="text-sm text-success font-medium">Active Members</p>
                       <p className="text-2xl font-bold text-green-900">
                         {companyHives?.reduce((acc, hive) => acc + (hive?.member_count || 0), 0)}
                       </p>
                     </div>
-                    <TrendingUp className="w-8 h-8 text-green-600" />
+                    <TrendingUp className="w-8 h-8 text-success" />
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border border-border">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-purple-600 font-medium">Total Snippets</p>
+                      <p className="text-sm text-primary font-medium">Total Snippets</p>
                       <p className="text-2xl font-bold text-purple-900">
                         {companyHives?.reduce((acc, hive) => acc + (hive?.snippet_count || 0), 0)}
                       </p>
                     </div>
-                    <Globe className="w-8 h-8 text-purple-600" />
+                    <Globe className="w-8 h-8 text-primary" />
                   </div>
                 </div>
               </div>
@@ -221,23 +221,23 @@ const CompanyTeamsPage = () => {
               <div className="flex flex-col lg:flex-row gap-4">
                 {/* Search Bar */}
                 <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <input
                     type="text"
                     placeholder="Search hives by name or description..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e?.target?.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
                   />
                 </div>
 
                 {/* Privacy Filter */}
                 <div className="flex items-center gap-2">
-                  <Filter className="w-5 h-5 text-gray-400" />
+                  <Filter className="w-5 h-5 text-muted-foreground" />
                   <select
                     value={filterPrivacy}
                     onChange={(e) => setFilterPrivacy(e?.target?.value)}
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
                   >
                     <option value="all">All Privacy</option>
                     <option value="public">Public</option>
@@ -247,11 +247,11 @@ const CompanyTeamsPage = () => {
 
                 {/* Sort Dropdown */}
                 <div className="flex items-center gap-2">
-                  <ArrowUpDown className="w-5 h-5 text-gray-400" />
+                  <ArrowUpDown className="w-5 h-5 text-muted-foreground" />
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e?.target?.value)}
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
                   >
                     <option value="newest">Newest First</option>
                     <option value="oldest">Oldest First</option>
@@ -262,11 +262,11 @@ const CompanyTeamsPage = () => {
                 </div>
 
                 {/* View Toggle */}
-                <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+                <div className="flex items-center gap-1 border border-border rounded-lg p-1">
                   <button
                     onClick={() => setViewMode('grid')}
                     className={`p-2 rounded ${
-                      viewMode === 'grid' ?'bg-blue-600 text-white' :'text-gray-600 hover:bg-gray-100'
+                      viewMode === 'grid' ?'bg-primary text-white' :'text-muted-foreground hover:bg-muted'
                     }`}
                     title="Grid View"
                   >
@@ -275,7 +275,7 @@ const CompanyTeamsPage = () => {
                   <button
                     onClick={() => setViewMode('list')}
                     className={`p-2 rounded ${
-                      viewMode === 'list' ?'bg-blue-600 text-white' :'text-gray-600 hover:bg-gray-100'
+                      viewMode === 'list' ?'bg-primary text-white' :'text-muted-foreground hover:bg-muted'
                     }`}
                     title="List View"
                   >
@@ -289,18 +289,18 @@ const CompanyTeamsPage = () => {
           {/* Hives Content */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {error && (
-              <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+              <div className="mb-6 bg-error/10 border border-error/20 text-error px-4 py-3 rounded-lg">
                 {error}
               </div>
             )}
 
             {filteredAndSortedHives?.length === 0 ? (
               <div className="text-center py-12">
-                <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <Users className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-foreground mb-2">
                   {searchTerm || filterPrivacy !== 'all' || selectedCategory !== 'all' ?'No hives found' :'No company hives yet'}
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-muted-foreground mb-6">
                   {searchTerm || filterPrivacy !== 'all' || selectedCategory !== 'all' ?'Try adjusting your search or filters'
                     : canCreateHive 
                       ? 'Create your first company hive to get started' :'Contact your admin or director to create hives'}
@@ -308,7 +308,7 @@ const CompanyTeamsPage = () => {
                 {canCreateHive && !searchTerm && filterPrivacy === 'all' && selectedCategory === 'all' && (
                   <button
                     onClick={() => setShowCreateModal(true)}
-                    className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+                    className="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary text-white font-medium rounded-lg transition-colors"
                   >
                     <Plus className="w-5 h-5 mr-2" />
                     Create Your First Hive
@@ -334,20 +334,20 @@ const CompanyTeamsPage = () => {
                       <div
                         key={hive?.id}
                         onClick={() => handleHiveClick(hive?.id)}
-                        className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                        className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow cursor-pointer"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
-                              <h3 className="text-lg font-semibold text-gray-900">{hive?.name}</h3>
+                              <h3 className="text-lg font-semibold text-foreground">{hive?.name}</h3>
                               <span className={`px-2 py-1 text-xs font-medium rounded ${
-                                hive?.privacy === 'public' ?'bg-green-100 text-green-700' :'bg-yellow-100 text-yellow-700'
+                                hive?.privacy === 'public' ?'bg-success/15 text-success' :'bg-warning/15 text-warning'
                               }`}>
                                 {hive?.privacy}
                               </span>
                             </div>
-                            <p className="text-sm text-gray-600 mb-3">{hive?.description}</p>
-                            <div className="flex items-center gap-6 text-sm text-gray-500">
+                            <p className="text-sm text-muted-foreground mb-3">{hive?.description}</p>
+                            <div className="flex items-center gap-6 text-sm text-muted-foreground">
                               <span className="flex items-center gap-1">
                                 <Users className="w-4 h-4" />
                                 {hive?.member_count || 0} members
@@ -358,7 +358,7 @@ const CompanyTeamsPage = () => {
                               </span>
                             </div>
                           </div>
-                          <ChevronRight className="w-5 h-5 text-gray-400" />
+                          <ChevronRight className="w-5 h-5 text-muted-foreground" />
                         </div>
                       </div>
                     ))}
@@ -373,7 +373,7 @@ const CompanyTeamsPage = () => {
                       disabled={page === 1}
                       className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                         page === 1
-                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed' :'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
+                          ? 'bg-muted text-muted-foreground cursor-not-allowed' :'bg-card text-foreground hover:bg-background border border-border'
                       }`}
                     >
                       Previous
@@ -385,7 +385,7 @@ const CompanyTeamsPage = () => {
                           onClick={() => setPage(pageNum)}
                           className={`w-10 h-10 rounded-lg font-medium transition-colors ${
                             page === pageNum
-                              ? 'bg-blue-600 text-white' :'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
+                              ? 'bg-primary text-white' :'bg-card text-foreground hover:bg-background border border-border'
                           }`}
                         >
                           {pageNum}
@@ -397,7 +397,7 @@ const CompanyTeamsPage = () => {
                       disabled={page === totalPages}
                       className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                         page === totalPages
-                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed' :'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
+                          ? 'bg-muted text-muted-foreground cursor-not-allowed' :'bg-card text-foreground hover:bg-background border border-border'
                       }`}
                     >
                       Next

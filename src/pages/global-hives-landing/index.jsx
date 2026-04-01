@@ -124,11 +124,11 @@ export default function GlobalHivesLanding() {
       <AppNavigation />
       <div className="flex">
         {/* Persistent Sidebar */}
-        <aside className="hidden lg:block w-80 bg-white border-r border-gray-200 h-screen sticky top-0 overflow-y-auto">
+        <aside className="hidden lg:block w-80 bg-card border-r border-border h-screen sticky top-0 overflow-y-auto">
           <div className="p-6 space-y-6">
             {/* Hive Switcher Dropdown */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">My Hives</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-3">My Hives</h3>
               {user ? (
                 myHives?.length > 0 ? (
                   <div className="space-y-2">
@@ -136,23 +136,23 @@ export default function GlobalHivesLanding() {
                       <button
                         key={hive?.id}
                         onClick={() => navigate(`/hive-explorer?id=${hive?.id}`)}
-                        className="w-full flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg transition-colors group"
+                        className="w-full flex items-center justify-between p-3 hover:bg-background rounded-lg transition-colors group"
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <div className={`w-2 h-2 rounded-full ${
-                            hive?.privacy === 'private' ? 'bg-yellow-500' : 'bg-green-500'
+                            hive?.privacy === 'private' ? 'bg-warning/100' : 'bg-success/100'
                           }`} />
-                          <span className="text-sm font-medium text-gray-900 truncate">{hive?.name}</span>
+                          <span className="text-sm font-medium text-foreground truncate">{hive?.name}</span>
                         </div>
-                        <span className="text-xs text-gray-500 flex-shrink-0">
+                        <span className="text-xs text-muted-foreground flex-shrink-0">
                           {hive?.memberCount} members
                         </span>
                       </button>
                     ))}
                   </div>
                 ) : (
-                  <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-600 text-center mb-3">No hives joined yet</p>
+                  <div className="p-4 bg-background rounded-lg">
+                    <p className="text-sm text-muted-foreground text-center mb-3">No hives joined yet</p>
                     <Button
                       size="sm"
                       className="w-full"
@@ -164,8 +164,8 @@ export default function GlobalHivesLanding() {
                   </div>
                 )
               ) : (
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600 text-center mb-3">Sign in to join hives</p>
+                <div className="p-4 bg-background rounded-lg">
+                  <p className="text-sm text-muted-foreground text-center mb-3">Sign in to join hives</p>
                   <Button
                     size="sm"
                     variant="outline"
@@ -180,7 +180,7 @@ export default function GlobalHivesLanding() {
 
             {/* Global Hive Search */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">Search Hives</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Search Hives</h3>
               <form onSubmit={handleSearch}>
                 <Input
                   type="text"
@@ -218,7 +218,7 @@ export default function GlobalHivesLanding() {
         <main className="flex-1 overflow-y-auto">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Hero Banner */}
-            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl p-8 mb-8 text-white">
+            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl p-8 mb-8 text-white">
               <h1 className="text-4xl font-bold mb-4">Explore Hives</h1>
               <p className="text-lg mb-6 opacity-90">
                 Join communities of developers sharing knowledge, code snippets, and best practices
@@ -229,7 +229,7 @@ export default function GlobalHivesLanding() {
                   placeholder="Search hives by name, description, or tags..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e?.target?.value)}
-                  className="flex-1 bg-white text-gray-900"
+                  className="flex-1 bg-card text-foreground"
                 />
                 <Button type="submit" variant="secondary">
                   <Icon name="Search" size={20} />
@@ -240,14 +240,14 @@ export default function GlobalHivesLanding() {
             {/* Filters */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <div className="flex gap-2">
-                <span className="text-sm font-medium text-gray-700 flex items-center">Filter:</span>
+                <span className="text-sm font-medium text-foreground flex items-center">Filter:</span>
                 {['all', 'public', 'private']?.map((filter) => (
                   <button
                     key={filter}
                     onClick={() => handleFilterChange(filter)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                       activeFilter === filter
-                        ? 'bg-purple-600 text-white' :'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                        ? 'bg-primary text-white' :'bg-card text-foreground hover:bg-background border border-border'
                     }`}
                   >
                     {filter === 'all' ? 'All' : filter?.charAt(0)?.toUpperCase() + filter?.slice(1)}
@@ -256,7 +256,7 @@ export default function GlobalHivesLanding() {
               </div>
 
               <div className="flex gap-2 ml-auto">
-                <span className="text-sm font-medium text-gray-700 flex items-center">Sort:</span>
+                <span className="text-sm font-medium text-foreground flex items-center">Sort:</span>
                 {[
                   { value: 'trending', label: 'Trending' },
                   { value: 'newest', label: 'Newest' },
@@ -268,7 +268,7 @@ export default function GlobalHivesLanding() {
                     onClick={() => handleSortChange(sort?.value)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                       activeSort === sort?.value
-                        ? 'bg-purple-600 text-white' :'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                        ? 'bg-primary text-white' :'bg-card text-foreground hover:bg-background border border-border'
                     }`}
                   >
                     {sort?.label}
@@ -279,11 +279,11 @@ export default function GlobalHivesLanding() {
 
             {/* Error Message */}
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-                <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+              <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+                <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <p className="text-sm font-medium text-red-900">Error</p>
-                  <p className="text-sm text-red-700 mt-1">{error}</p>
+                  <p className="text-sm text-error mt-1">{error}</p>
                 </div>
               </div>
             )}
@@ -293,16 +293,16 @@ export default function GlobalHivesLanding() {
               <div className="flex items-center justify-center py-16">
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
-                  <p className="text-gray-600">Loading hives...</p>
+                  <p className="text-muted-foreground">Loading hives...</p>
                 </div>
               </div>
             ) : hives?.length === 0 ? (
               <div className="text-center py-16">
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-purple-100 mb-6">
-                  <Icon name="Hexagon" size={40} className="text-purple-600" />
+                  <Icon name="Hexagon" size={40} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No hives found</h3>
-                <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                <h3 className="text-xl font-semibold text-foreground mb-2">No hives found</h3>
+                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                   {searchQuery 
                     ? 'Try adjusting your search or filters' :'Be the first to create a hive and start collaborating!'
                   }
@@ -323,20 +323,20 @@ export default function GlobalHivesLanding() {
                   {hives?.map((hive) => (
                     <div
                       key={hive?.id}
-                      className="bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
+                      className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
                       onClick={() => navigate(`/hive-explorer?id=${hive?.id}`)}
                     >
                       <div className="p-6">
                         <div className="flex items-start justify-between mb-3">
-                          <h3 className="text-lg font-semibold text-gray-900 flex-1">{hive?.name}</h3>
+                          <h3 className="text-lg font-semibold text-foreground flex-1">{hive?.name}</h3>
                           <span className={`px-2 py-1 text-xs font-medium rounded ${
-                            hive?.privacy === 'public' ?'bg-green-100 text-green-700' :'bg-yellow-100 text-yellow-700'
+                            hive?.privacy === 'public' ?'bg-success/15 text-success' :'bg-warning/15 text-warning'
                           }`}>
                             {hive?.privacy}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 mb-4 line-clamp-2">{hive?.description}</p>
-                        <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{hive?.description}</p>
+                        <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <Icon name="Users" size={16} />
                             {hive?.memberCount} members
@@ -353,7 +353,7 @@ export default function GlobalHivesLanding() {
                             {hive?.tags?.slice(0, 3)?.map((tag, idx) => (
                               <span
                                 key={idx}
-                                className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded"
+                                className="px-2 py-1 text-xs bg-muted text-foreground rounded"
                               >
                                 {tag}
                               </span>
@@ -407,7 +407,7 @@ export default function GlobalHivesLanding() {
                     >
                       <Icon name="ChevronLeft" size={16} />
                     </Button>
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-muted-foreground">
                       Page {page} of {totalPages}
                     </span>
                     <Button
@@ -431,7 +431,7 @@ export default function GlobalHivesLanding() {
       {/* Create Hive Modal - Placeholder */}
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-md w-full p-6">
+          <div className="bg-card rounded-xl max-w-md w-full p-6">
             <h2 className="text-xl font-bold mb-4">Create New Hive</h2>
             <form onSubmit={(e) => {
               e?.preventDefault();
@@ -444,23 +444,23 @@ export default function GlobalHivesLanding() {
             }}>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Hive Name</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">Hive Name</label>
                   <Input name="name" required placeholder="Enter hive name" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">Description</label>
                   <textarea
                     name="description"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500"
                     rows="3"
                     placeholder="Describe your hive..."
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Privacy</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">Privacy</label>
                   <select
                     name="privacy"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500"
                   >
                     <option value="public">Public</option>
                     <option value="private">Private</option>

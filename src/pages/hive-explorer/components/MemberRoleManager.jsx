@@ -81,7 +81,7 @@ export default function MemberRoleManager({
           member?.role === 'owner' ?'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md cursor-not-allowed'
             : canManageThisRole
             ? `bg-gradient-to-r ${getRoleColor(member?.role)} text-white shadow-md hover:shadow-lg transform hover:scale-105 cursor-pointer`
-            : 'bg-gray-100 text-gray-700 cursor-not-allowed'
+            : 'bg-muted text-foreground cursor-not-allowed'
         }`}
         title={canManageThisRole ? 'Click to change role' : 'Cannot manage this role'}
       >
@@ -92,10 +92,10 @@ export default function MemberRoleManager({
       </button>
       {/* Role Picker Dropdown */}
       {showRolePicker && (
-        <div className="absolute z-50 mt-2 bg-white rounded-xl shadow-2xl border-2 border-purple-200 p-2 min-w-[280px]">
-          <div className="mb-2 px-3 py-2 border-b border-gray-100">
-            <p className="text-sm font-semibold text-gray-900">Change Role</p>
-            <p className="text-xs text-gray-500 mt-0.5">
+        <div className="absolute z-50 mt-2 bg-card rounded-xl shadow-2xl border-2 border-border p-2 min-w-[280px]">
+          <div className="mb-2 px-3 py-2 border-b border-border">
+            <p className="text-sm font-semibold text-foreground">Change Role</p>
+            <p className="text-xs text-muted-foreground mt-0.5">
               Select new role for {member?.user?.username}
             </p>
           </div>
@@ -108,24 +108,24 @@ export default function MemberRoleManager({
                 disabled={isChangingRole || role?.value === member?.role}
                 className={`w-full text-left px-3 py-2.5 rounded-lg transition-all ${
                   role?.value === member?.role
-                    ? 'bg-purple-50 border-2 border-purple-300 cursor-not-allowed' :'hover:bg-gray-50 border-2 border-transparent hover:border-purple-200'
+                    ? 'bg-primary/10 border-2 border-border cursor-not-allowed' :'hover:bg-background border-2 border-transparent hover:border-border'
                 }`}
               >
                 <div className="flex items-start gap-3">
                   <span className="text-2xl">{role?.icon}</span>
                   <div className="flex-1">
-                    <p className="font-semibold text-gray-900 text-sm">
+                    <p className="font-semibold text-foreground text-sm">
                       {role?.label}
                       {role?.value === member?.role && (
-                        <span className="ml-2 text-xs text-purple-600">(Current)</span>
+                        <span className="ml-2 text-xs text-primary">(Current)</span>
                       )}
                     </p>
-                    <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
                       {role?.description}
                     </p>
                   </div>
                   {role?.value === member?.role && (
-                    <Icon name="Check" size={16} className="text-purple-600" />
+                    <Icon name="Check" size={16} className="text-primary" />
                   )}
                 </div>
               </button>
@@ -133,14 +133,14 @@ export default function MemberRoleManager({
           </div>
 
           {error && (
-            <div className="mt-2 px-3 py-2 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-xs text-red-600">{error}</p>
+            <div className="mt-2 px-3 py-2 bg-error/10 border border-error/20 rounded-lg">
+              <p className="text-xs text-error">{error}</p>
             </div>
           )}
 
           <button
             onClick={() => setShowRolePicker(false)}
-            className="w-full mt-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+            className="w-full mt-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-background rounded-lg transition-colors"
           >
             Cancel
           </button>
@@ -151,7 +151,7 @@ export default function MemberRoleManager({
         <>
           <button
             onClick={() => setShowRemoveConfirm(true)}
-            className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+            className="p-1.5 text-error hover:bg-error/10 rounded-lg transition-colors"
             title="Remove member"
           >
             <Icon name="Trash2" size={16} />
@@ -160,16 +160,16 @@ export default function MemberRoleManager({
           {/* Remove Confirmation Modal */}
           {showRemoveConfirm && (
             <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">
-              <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+              <div className="bg-card rounded-xl shadow-2xl max-w-md w-full p-6">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                    <Icon name="AlertTriangle" size={24} className="text-red-600" />
+                  <div className="w-12 h-12 rounded-full bg-error/15 flex items-center justify-center flex-shrink-0">
+                    <Icon name="AlertTriangle" size={24} className="text-error" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-foreground mb-2">
                       Remove Member?
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       Are you sure you want to remove <strong>{member?.user?.username}</strong> from this hive?
                       They will lose access to all hive content and collections.
                     </p>
@@ -177,8 +177,8 @@ export default function MemberRoleManager({
                 </div>
 
                 {error && (
-                  <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-sm text-red-600">{error}</p>
+                  <div className="mb-4 p-3 bg-error/10 border border-error/20 rounded-lg">
+                    <p className="text-sm text-error">{error}</p>
                   </div>
                 )}
 
@@ -186,7 +186,7 @@ export default function MemberRoleManager({
                   <Button
                     onClick={() => setShowRemoveConfirm(false)}
                     disabled={isChangingRole}
-                    className="flex-1 bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    className="flex-1 bg-muted text-foreground hover:bg-muted"
                   >
                     Cancel
                   </Button>

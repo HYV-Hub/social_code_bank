@@ -69,25 +69,25 @@ export default function CreateTeamModal({ isOpen, onClose, onSubmit }) {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-card rounded-xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="p-6 border-b border-gray-200">
+        <div className="p-6 border-b border-border">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-blue-100">
-                <Icon name="Users" size={24} className="text-blue-600" />
+              <div className="p-2 rounded-lg bg-primary/15">
+                <Icon name="Users" size={24} className="text-primary" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">Create New Team</h2>
+              <h2 className="text-2xl font-bold text-foreground">Create New Team</h2>
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-muted rounded-lg transition-colors"
               disabled={loading}
             >
-              <Icon name="X" size={20} className="text-gray-500" />
+              <Icon name="X" size={20} className="text-muted-foreground" />
             </button>
           </div>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-muted-foreground">
             Set up a new team to collaborate with your colleagues
           </p>
         </div>
@@ -96,19 +96,19 @@ export default function CreateTeamModal({ isOpen, onClose, onSubmit }) {
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {/* Error Message */}
           {error && (
-            <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-              <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+            <div className="p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+              <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
               <div className="flex-1">
                 <p className="text-sm font-medium text-red-900">Error</p>
-                <p className="text-sm text-red-700 mt-1">{error}</p>
+                <p className="text-sm text-error mt-1">{error}</p>
               </div>
             </div>
           )}
 
           {/* Team Name */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Team Name <span className="text-red-500">*</span>
+            <label className="block text-sm font-semibold text-foreground mb-2">
+              Team Name <span className="text-error">*</span>
             </label>
             <Input
               type="text"
@@ -119,33 +119,33 @@ export default function CreateTeamModal({ isOpen, onClose, onSubmit }) {
               disabled={loading}
               required
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               Choose a descriptive name for your team
             </p>
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Description <span className="text-gray-400">(Optional)</span>
+            <label className="block text-sm font-semibold text-foreground mb-2">
+              Description <span className="text-muted-foreground">(Optional)</span>
             </label>
             <textarea
               value={formData?.description}
               onChange={(e) => handleChange('description', e?.target?.value)}
               placeholder="What does this team work on?"
               rows={3}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500 transition-colors resize-none"
               disabled={loading}
             />
           </div>
 
           {/* Company Selection */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Company <span className="text-gray-400">(Optional)</span>
+            <label className="block text-sm font-semibold text-foreground mb-2">
+              Company <span className="text-muted-foreground">(Optional)</span>
             </label>
             {loadingCompanies ? (
-              <div className="h-12 bg-gray-100 rounded-lg animate-pulse" />
+              <div className="h-12 bg-muted rounded-lg animate-pulse" />
             ) : companies?.length > 0 ? (
               <Select
                 value={formData?.companyId}
@@ -161,13 +161,13 @@ export default function CreateTeamModal({ isOpen, onClose, onSubmit }) {
                 ))}
               </Select>
             ) : (
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm text-blue-900">
+              <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                <p className="text-sm text-foreground">
                   No companies available. You can create a team without a company.
                 </p>
               </div>
             )}
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               Associate this team with a company for better organization
             </p>
           </div>

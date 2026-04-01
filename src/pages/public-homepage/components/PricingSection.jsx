@@ -62,7 +62,7 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-card">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
@@ -77,7 +77,7 @@ const PricingSection = () => {
           {plans?.map((plan) => (
             <div 
               key={plan?.id}
-              className={`relative bg-white border-2 rounded-2xl p-8 ${
+              className={`relative bg-card border-2 rounded-xl p-8 ${
                 plan?.popular 
                   ? 'border-blue-600 shadow-xl scale-105' 
                   : 'border-slate-200 hover:shadow-lg'
@@ -85,7 +85,7 @@ const PricingSection = () => {
             >
               {plan?.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
                     Most Popular
                   </span>
                 </div>
@@ -117,7 +117,7 @@ const PricingSection = () => {
                     <Icon 
                       name="Check" 
                       size={20} 
-                      className="text-green-600 flex-shrink-0 mt-0.5"
+                      className="text-success flex-shrink-0 mt-0.5"
                     />
                     <span className="text-slate-700">{feature}</span>
                   </li>
@@ -139,19 +139,19 @@ const PricingSection = () => {
 
         <div className="text-center mt-12">
           <p className="text-slate-600 mb-4">
-            Need help choosing? <a href="#" className="text-blue-600 hover:underline">Compare all features</a>
+            Need help choosing? <a href="#" className="text-primary hover:underline">Compare all features</a>
           </p>
           <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-slate-600">
             <div className="flex items-center gap-2">
-              <Icon name="Shield" size={16} className="text-green-600" />
+              <Icon name="Shield" size={16} className="text-success" />
               <span>Secure payments</span>
             </div>
             <div className="flex items-center gap-2">
-              <Icon name="RefreshCw" size={16} className="text-green-600" />
+              <Icon name="RefreshCw" size={16} className="text-success" />
               <span>Cancel anytime</span>
             </div>
             <div className="flex items-center gap-2">
-              <Icon name="CreditCard" size={16} className="text-green-600" />
+              <Icon name="CreditCard" size={16} className="text-success" />
               <span>No hidden fees</span>
             </div>
           </div>

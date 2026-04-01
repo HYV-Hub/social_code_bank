@@ -125,9 +125,9 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
 
       {/* Error Display */}
       {error && (
-        <div className="mt-2 bg-red-50 border border-red-200 rounded-lg p-3">
+        <div className="mt-2 bg-error/10 border border-error/20 rounded-lg p-3">
           <div className="flex items-start gap-2">
-            <Icon name="AlertCircle" size={16} className="text-red-600 flex-shrink-0 mt-0.5" />
+            <Icon name="AlertCircle" size={16} className="text-error flex-shrink-0 mt-0.5" />
             <p className="text-sm text-red-800">{error}</p>
           </div>
         </div>
@@ -135,11 +135,11 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
 
       {/* FIXED: Report automatically displays if exists, no manual toggle needed first time */}
       {showReport && report && (
-        <div className="mt-4 bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-6">
+        <div className="mt-4 bg-gradient-to-br from-purple-50 to-blue-50 border border-border rounded-lg p-6">
           <div className="flex items-center gap-2 mb-4">
-            <Icon name="Brain" size={20} className="text-purple-600" />
+            <Icon name="Brain" size={20} className="text-primary" />
             <h3 className="text-lg font-bold text-purple-900">AI Analysis Report</h3>
-            <span className="ml-auto text-xs text-purple-600">
+            <span className="ml-auto text-xs text-primary">
               Generated: {new Date(report?.generated_at)?.toLocaleDateString()}
             </span>
           </div>
@@ -168,9 +168,9 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                 <div className="mb-4">
                   <h4 className="font-semibold text-purple-900 mb-2">Severity</h4>
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                    report?.analysis?.severity === 'critical' ? 'bg-red-100 text-red-800' :
+                    report?.analysis?.severity === 'critical' ? 'bg-error/15 text-red-800' :
                     report?.analysis?.severity === 'high' ? 'bg-orange-100 text-orange-800' :
-                    report?.analysis?.severity === 'medium'? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'
+                    report?.analysis?.severity === 'medium'? 'bg-warning/15 text-yellow-800' : 'bg-success/15 text-success'
                   }`}>
                     {report?.analysis?.severity?.toUpperCase()}
                   </span>
@@ -183,18 +183,18 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                   <h4 className="font-semibold text-purple-900 mb-2">Recommended Fixes</h4>
                   <div className="space-y-3">
                     {report?.analysis?.recommended_fixes?.map((fix, index) => (
-                      <div key={index} className="bg-white rounded-lg p-3 border border-purple-200">
+                      <div key={index} className="bg-card rounded-lg p-3 border border-border">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-sm font-medium text-purple-900">{fix?.approach}</span>
                           <span className={`text-xs px-2 py-0.5 rounded ${
-                            fix?.complexity === 'simple' ? 'bg-green-100 text-green-700' :
-                            fix?.complexity === 'moderate'? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                            fix?.complexity === 'simple' ? 'bg-success/15 text-success' :
+                            fix?.complexity === 'moderate'? 'bg-warning/15 text-warning' : 'bg-error/15 text-error'
                           }`}>
                             {fix?.complexity}
                           </span>
                         </div>
                         {fix?.code_example && (
-                          <pre className="text-xs bg-gray-50 p-2 rounded overflow-x-auto">
+                          <pre className="text-xs bg-background p-2 rounded overflow-x-auto">
                             <code>{fix?.code_example}</code>
                           </pre>
                         )}
@@ -208,7 +208,7 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
               {report?.analysis?.security_implications?.length > 0 && (
                 <div className="mb-4">
                   <h4 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
-                    <Icon name="Shield" size={16} className="text-red-600" />
+                    <Icon name="Shield" size={16} className="text-error" />
                     Security Implications
                   </h4>
                   <ul className="list-disc list-inside space-y-1">
@@ -228,17 +228,17 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
               {report?.analysis?.code_quality && (
                 <div className="mb-4">
                   <h4 className="font-semibold text-purple-900 mb-2">Code Quality</h4>
-                  <div className="bg-white rounded-lg p-3 border border-purple-200">
+                  <div className="bg-card rounded-lg p-3 border border-border">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl font-bold text-purple-600">
+                      <span className="text-2xl font-bold text-primary">
                         {report?.analysis?.code_quality?.score}/100
                       </span>
                       <div className="flex-1">
-                        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-2 bg-muted rounded-full overflow-hidden">
                           <div 
                             className={`h-full ${
-                              report?.analysis?.code_quality?.score >= 80 ? 'bg-green-500' :
-                              report?.analysis?.code_quality?.score >= 60 ? 'bg-yellow-500': 'bg-red-500'
+                              report?.analysis?.code_quality?.score >= 80 ? 'bg-success/100' :
+                              report?.analysis?.code_quality?.score >= 60 ? 'bg-warning/100': 'bg-error/100'
                             }`}
                             style={{ width: `${report?.analysis?.code_quality?.score}%` }}
                           />
@@ -261,8 +261,8 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                 <div className="mb-4">
                   <h4 className="font-semibold text-purple-900 mb-2">Complexity</h4>
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                    report?.analysis?.complexity?.level === 'low' ? 'bg-green-100 text-green-800' :
-                    report?.analysis?.complexity?.level === 'medium'? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'
+                    report?.analysis?.complexity?.level === 'low' ? 'bg-success/15 text-success' :
+                    report?.analysis?.complexity?.level === 'medium'? 'bg-warning/15 text-yellow-800' : 'bg-error/15 text-red-800'
                   }`}>
                     {report?.analysis?.complexity?.level?.toUpperCase()}
                   </span>
@@ -275,17 +275,17 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                   <h4 className="font-semibold text-purple-900 mb-2">Best Practices</h4>
                   {report?.analysis?.best_practices?.followed?.length > 0 && (
                     <div className="mb-2">
-                      <p className="text-xs font-medium text-green-700 mb-1">✓ Followed:</p>
+                      <p className="text-xs font-medium text-success mb-1">✓ Followed:</p>
                       <ul className="list-disc list-inside space-y-1">
                         {report?.analysis?.best_practices?.followed?.map((item, index) => (
-                          <li key={index} className="text-sm text-green-800">{item}</li>
+                          <li key={index} className="text-sm text-success">{item}</li>
                         ))}
                       </ul>
                     </div>
                   )}
                   {report?.analysis?.best_practices?.violations?.length > 0 && (
                     <div>
-                      <p className="text-xs font-medium text-red-700 mb-1">✗ Violations:</p>
+                      <p className="text-xs font-medium text-error mb-1">✗ Violations:</p>
                       <ul className="list-disc list-inside space-y-1">
                         {report?.analysis?.best_practices?.violations?.map((item, index) => (
                           <li key={index} className="text-sm text-red-800">{item}</li>
@@ -300,12 +300,12 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
               {report?.analysis?.security && (report?.analysis?.security?.vulnerabilities?.length > 0 || report?.analysis?.security?.recommendations?.length > 0) && (
                 <div className="mb-4">
                   <h4 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
-                    <Icon name="Shield" size={16} className="text-red-600" />
+                    <Icon name="Shield" size={16} className="text-error" />
                     Security
                   </h4>
                   {report?.analysis?.security?.vulnerabilities?.length > 0 && (
                     <div className="mb-2">
-                      <p className="text-xs font-medium text-red-700 mb-1">⚠ Vulnerabilities:</p>
+                      <p className="text-xs font-medium text-error mb-1">⚠ Vulnerabilities:</p>
                       <ul className="list-disc list-inside space-y-1">
                         {report?.analysis?.security?.vulnerabilities?.map((item, index) => (
                           <li key={index} className="text-sm text-red-800">{item}</li>
@@ -315,10 +315,10 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                   )}
                   {report?.analysis?.security?.recommendations?.length > 0 && (
                     <div>
-                      <p className="text-xs font-medium text-blue-700 mb-1">💡 Recommendations:</p>
+                      <p className="text-xs font-medium text-primary mb-1">💡 Recommendations:</p>
                       <ul className="list-disc list-inside space-y-1">
                         {report?.analysis?.security?.recommendations?.map((item, index) => (
-                          <li key={index} className="text-sm text-blue-800">{item}</li>
+                          <li key={index} className="text-sm text-foreground">{item}</li>
                         ))}
                       </ul>
                     </div>

@@ -3,21 +3,21 @@ import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 const StyleMetrics = ({ metrics, analysis }) => {
   const getScoreColor = (score) => {
-    if (score >= 80) return 'text-green-600';
-    if (score >= 60) return 'text-yellow-600';
-    return 'text-red-600';
+    if (score >= 80) return 'text-success';
+    if (score >= 60) return 'text-warning';
+    return 'text-error';
   };
 
   const getScoreBgColor = (score) => {
-    if (score >= 80) return 'bg-green-100';
-    if (score >= 60) return 'bg-yellow-100';
-    return 'bg-red-100';
+    if (score >= 80) return 'bg-success/15';
+    if (score >= 60) return 'bg-warning/15';
+    return 'bg-error/15';
   };
 
   const getTrendIcon = (score) => {
-    if (score >= 80) return <TrendingUp className="w-5 h-5 text-green-600" />;
-    if (score >= 60) return <Minus className="w-5 h-5 text-yellow-600" />;
-    return <TrendingDown className="w-5 h-5 text-red-600" />;
+    if (score >= 80) return <TrendingUp className="w-5 h-5 text-success" />;
+    if (score >= 60) return <Minus className="w-5 h-5 text-warning" />;
+    return <TrendingDown className="w-5 h-5 text-error" />;
   };
 
   const categories = [
@@ -47,7 +47,7 @@ const StyleMetrics = ({ metrics, analysis }) => {
       </div>
 
       {/* Category Breakdown */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
         <h3 className="text-xl font-semibold text-slate-900 mb-6">Category Breakdown</h3>
         <div className="space-y-6">
           {categories?.map((category) => {
@@ -97,7 +97,7 @@ const StyleMetrics = ({ metrics, analysis }) => {
       </div>
 
       {/* Comparison Chart */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
         <h3 className="text-xl font-semibold text-slate-900 mb-6">Score Comparison</h3>
         <div className="space-y-4">
           {categories?.map((category) => {
@@ -109,7 +109,7 @@ const StyleMetrics = ({ metrics, analysis }) => {
                 <div className="flex items-center justify-between text-sm">
                   <span className="font-medium text-slate-700">{category?.label}</span>
                   <div className="flex gap-4 text-xs">
-                    <span className="text-blue-600">Your Score: {score}%</span>
+                    <span className="text-primary">Your Score: {score}%</span>
                     <span className="text-slate-500">Team Avg: {teamAverage}%</span>
                   </div>
                 </div>

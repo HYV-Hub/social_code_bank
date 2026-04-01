@@ -35,7 +35,7 @@ const VersionControl = ({ commitMessage, setCommitMessage }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-slate-200 p-6 mb-6">
+    <div className="bg-card rounded-lg border border-slate-200 p-6 mb-6">
       <div className="flex items-center gap-2 mb-4">
         <Icon name="GitBranch" size={20} className="text-slate-600" />
         <h2 className="text-lg font-semibold text-slate-800">Version Control</h2>
@@ -61,7 +61,7 @@ const VersionControl = ({ commitMessage, setCommitMessage }) => {
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-700 rounded">
+                    <span className="px-2 py-1 text-xs font-semibold bg-primary/15 text-primary rounded">
                       {version?.version}
                     </span>
                     <span className="text-xs text-slate-500">{formatDate(version?.date)}</span>

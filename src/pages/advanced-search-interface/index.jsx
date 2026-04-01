@@ -139,10 +139,10 @@ export default function AdvancedSearchInterface() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Header */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-foreground mb-2">
                 Advanced Search
               </h1>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Powerful search with multi-criteria filtering and saved queries
               </p>
             </div>
@@ -172,11 +172,11 @@ export default function AdvancedSearchInterface() {
 
                 {/* Error Message */}
                 {error && (
-                  <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-                    <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+                  <div className="mt-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+                    <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
                       <p className="text-sm font-medium text-red-900">Error</p>
-                      <p className="text-sm text-red-700 mt-1">{error}</p>
+                      <p className="text-sm text-error mt-1">{error}</p>
                     </div>
                   </div>
                 )}
@@ -207,11 +207,11 @@ export default function AdvancedSearchInterface() {
       {/* Save Search Modal */}
       {showSaveModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-md w-full p-6">
+          <div className="bg-card rounded-xl max-w-md w-full p-6">
             <h2 className="text-xl font-bold mb-4">Save Search</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-foreground mb-1">
                   Search Name
                 </label>
                 <Input

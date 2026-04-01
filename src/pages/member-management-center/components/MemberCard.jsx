@@ -20,11 +20,11 @@ export default function MemberCard({
       case 'company_admin':
         return 'bg-purple-100 text-purple-800';
       case 'team_admin':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-primary/15 text-foreground';
       case 'team_member':
-        return 'bg-green-100 text-green-800';
+        return 'bg-success/15 text-success';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-muted text-foreground';
     }
   };
 
@@ -45,11 +45,11 @@ export default function MemberCard({
 
   const getContributorBadge = (level) => {
     const badges = {
-      beginner: { color: 'bg-gray-100 text-gray-700', label: 'Beginner' },
-      intermediate: { color: 'bg-blue-100 text-blue-700', label: 'Intermediate' },
-      advanced: { color: 'bg-green-100 text-green-700', label: 'Advanced' },
-      expert: { color: 'bg-purple-100 text-purple-700', label: 'Expert' },
-      master: { color: 'bg-yellow-100 text-yellow-700', label: 'Master' }
+      beginner: { color: 'bg-muted text-foreground', label: 'Beginner' },
+      intermediate: { color: 'bg-primary/15 text-primary', label: 'Intermediate' },
+      advanced: { color: 'bg-success/15 text-success', label: 'Advanced' },
+      expert: { color: 'bg-purple-100 text-primary', label: 'Expert' },
+      master: { color: 'bg-warning/15 text-warning', label: 'Master' }
     };
     return badges?.[level] || badges?.beginner;
   };
@@ -74,7 +74,7 @@ export default function MemberCard({
   const teamName = teams?.find(t => t?.id === member?.teamId)?.name || 'No Team';
 
   return (
-    <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all ${isSelected ? 'ring-2 ring-slate-700' : ''} ${!member?.isActive ? 'opacity-60' : ''}`}>
+    <div className={`bg-card rounded-lg shadow-md hover:shadow-lg transition-all ${isSelected ? 'ring-2 ring-slate-700' : ''} ${!member?.isActive ? 'opacity-60' : ''}`}>
       {/* Card Header with Selection */}
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
@@ -102,13 +102,13 @@ export default function MemberCard({
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-gray-900 truncate">
+                  <h3 className="font-semibold text-foreground truncate">
                     {member?.fullName || member?.username}
                     {isCurrentUser && (
-                      <span className="ml-2 text-xs text-gray-500">(You)</span>
+                      <span className="ml-2 text-xs text-muted-foreground">(You)</span>
                     )}
                   </h3>
-                  <p className="text-sm text-gray-600">@{member?.username}</p>
+                  <p className="text-sm text-muted-foreground">@{member?.username}</p>
                 </div>
               </div>
 
@@ -121,7 +121,7 @@ export default function MemberCard({
                   {contributorBadge?.label}
                 </span>
                 {!member?.isActive && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-error/15 text-red-800">
                     Inactive
                   </span>
                 )}
@@ -134,9 +134,9 @@ export default function MemberCard({
             <div className="relative">
               <button
                 onClick={() => setShowActions(!showActions)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-2 hover:bg-muted rounded-lg transition-colors"
               >
-                <MoreVertical className="w-5 h-5 text-gray-600" />
+                <MoreVertical className="w-5 h-5 text-muted-foreground" />
               </button>
 
               {showActions && (
@@ -145,13 +145,13 @@ export default function MemberCard({
                     className="fixed inset-0 z-10"
                     onClick={() => setShowActions(false)}
                   />
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-20">
+                  <div className="absolute right-0 mt-2 w-48 bg-card rounded-lg shadow-xl border border-border py-2 z-20">
                     <button
                       onClick={() => {
                         onUpdateRole();
                         setShowActions(false);
                       }}
-                      className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                      className="w-full px-4 py-2 text-left text-sm text-foreground hover:bg-muted flex items-center gap-2"
                     >
                       <Shield className="w-4 h-4" />
                       Change Role
@@ -174,21 +174,21 @@ export default function MemberCard({
                           onReactivate(member?.id);
                           setShowActions(false);
                         }}
-                        className="w-full px-4 py-2 text-left text-sm text-green-600 hover:bg-green-50 flex items-center gap-2"
+                        className="w-full px-4 py-2 text-left text-sm text-success hover:bg-success/10 flex items-center gap-2"
                       >
                         <Check className="w-4 h-4" />
                         Reactivate
                       </button>
                     )}
                     
-                    <div className="border-t border-gray-200 my-2" />
+                    <div className="border-t border-border my-2" />
                     
                     <button
                       onClick={() => {
                         onRemove(member?.id);
                         setShowActions(false);
                       }}
-                      className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                      className="w-full px-4 py-2 text-left text-sm text-error hover:bg-error/10 flex items-center gap-2"
                     >
                       <X className="w-4 h-4" />
                       Remove from Company
@@ -202,44 +202,44 @@ export default function MemberCard({
 
         {/* Contact Information */}
         <div className="space-y-2 mb-4">
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Mail className="w-4 h-4" />
             <span className="truncate">{member?.email}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Users className="w-4 h-4" />
             <span>{teamName}</span>
           </div>
         </div>
 
         {/* Activity Stats */}
-        <div className="grid grid-cols-3 gap-4 py-3 border-t border-gray-200">
+        <div className="grid grid-cols-3 gap-4 py-3 border-t border-border">
           <div className="text-center">
-            <div className="text-lg font-semibold text-gray-900">{member?.snippetsCount || 0}</div>
-            <div className="text-xs text-gray-500">Snippets</div>
+            <div className="text-lg font-semibold text-foreground">{member?.snippetsCount || 0}</div>
+            <div className="text-xs text-muted-foreground">Snippets</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-semibold text-gray-900">{member?.bugsFixedCount || 0}</div>
-            <div className="text-xs text-gray-500">Bugs Fixed</div>
+            <div className="text-lg font-semibold text-foreground">{member?.bugsFixedCount || 0}</div>
+            <div className="text-xs text-muted-foreground">Bugs Fixed</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-semibold text-gray-900">
+            <div className="text-lg font-semibold text-foreground">
               {formatDate(member?.lastLoginAt)}
             </div>
-            <div className="text-xs text-gray-500">Last Active</div>
+            <div className="text-xs text-muted-foreground">Last Active</div>
           </div>
         </div>
 
         {/* Team Assignment */}
         {!isCurrentUser && (
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="mt-4 pt-4 border-t border-border">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Team Assignment
             </label>
             <select
               value={member?.teamId || ''}
               onChange={(e) => onUpdateTeam(member?.id, e?.target?.value || null)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent text-sm"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent text-sm"
             >
               <option value="">No Team</option>
               {teams?.map(team => (

@@ -164,9 +164,9 @@ const SnippetResultCard = ({ snippet }) => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-200">
+    <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-200">
       {/* Header Section */}
-      <div className="p-4 border-b border-gray-200">
+      <div className="p-4 border-b border-border">
         <div className="flex items-start justify-between">
           <div 
             className="flex items-center gap-3 flex-1 cursor-pointer"
@@ -178,10 +178,10 @@ const SnippetResultCard = ({ snippet }) => {
               className="w-10 h-10 rounded-full object-cover"
             />
             <div className="flex-1 min-w-0">
-              <p className="font-medium text-gray-900 truncate">
+              <p className="font-medium text-foreground truncate">
                 {snippet?.user?.full_name || snippet?.user?.username || 'Anonymous'}
               </p>
-              <div className="flex items-center gap-2 text-xs text-gray-500">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span>{new Date(snippet?.created_at)?.toLocaleDateString()}</span>
                 {snippet?.visibility && (
                   <>
@@ -202,7 +202,7 @@ const SnippetResultCard = ({ snippet }) => {
                 e?.stopPropagation();
                 setShowSaveMenu(!showSaveMenu);
               }}
-              className="text-gray-600 hover:text-primary"
+              className="text-muted-foreground hover:text-primary"
             >
               <Icon name="Bookmark" size={16} />
             </Button>
@@ -216,20 +216,20 @@ const SnippetResultCard = ({ snippet }) => {
                   onClick={() => setShowSaveMenu(false)}
                 />
                 
-                <div className="absolute right-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-20 max-h-80 overflow-y-auto">
-                  <div className="p-3 border-b border-gray-200">
-                    <p className="text-sm font-semibold text-gray-900">Save to Collection</p>
+                <div className="absolute right-0 top-full mt-2 w-64 bg-card border border-border rounded-lg shadow-xl z-20 max-h-80 overflow-y-auto">
+                  <div className="p-3 border-b border-border">
+                    <p className="text-sm font-semibold text-foreground">Save to Collection</p>
                   </div>
 
                   {loadingCollections ? (
                     <div className="p-4 text-center">
                       <Icon name="Loader2" size={20} className="animate-spin mx-auto text-primary" />
-                      <p className="text-xs text-gray-500 mt-2">Loading collections...</p>
+                      <p className="text-xs text-muted-foreground mt-2">Loading collections...</p>
                     </div>
                   ) : userCollections?.length === 0 ? (
                     <div className="p-4 text-center">
-                      <Icon name="Folder" size={32} className="mx-auto text-gray-400 mb-2" />
-                      <p className="text-xs text-gray-500 mb-3">No collections yet</p>
+                      <Icon name="Folder" size={32} className="mx-auto text-muted-foreground mb-2" />
+                      <p className="text-xs text-muted-foreground mb-3">No collections yet</p>
                       <Button
                         size="sm"
                         onClick={handleCreateAndSave}
@@ -257,15 +257,15 @@ const SnippetResultCard = ({ snippet }) => {
                             key={collection?.id}
                             onClick={() => handleSaveToCollection(collection?.id)}
                             disabled={isSaving}
-                            className="w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full px-4 py-2 text-left hover:bg-background transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             <div className="flex items-center gap-2">
                               <Icon name="Folder" size={14} className="text-primary" />
                               <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-gray-900 truncate">
+                                <p className="text-sm font-medium text-foreground truncate">
                                   {collection?.title}
                                 </p>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-muted-foreground">
                                   {collection?.snippetsCount} {collection?.snippetsCount === 1 ? 'snippet' : 'snippets'}
                                 </p>
                               </div>
@@ -273,7 +273,7 @@ const SnippetResultCard = ({ snippet }) => {
                           </button>
                         ))}
                       </div>
-                      <div className="p-3 border-t border-gray-200">
+                      <div className="p-3 border-t border-border">
                         <Button
                           size="sm"
                           variant="ghost"
@@ -310,12 +310,12 @@ const SnippetResultCard = ({ snippet }) => {
           className="lg:col-span-2 cursor-pointer"
           onClick={() => navigate(`/snippet-details?id=${snippet?.id}`)}
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+          <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
             {snippet?.title}
           </h3>
 
           {snippet?.description && (
-            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+            <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
               {snippet?.description}
             </p>
           )}
@@ -325,13 +325,13 @@ const SnippetResultCard = ({ snippet }) => {
               {snippet?.ai_tags?.slice(0, 5)?.map((tag, index) => (
                 <span
                   key={index}
-                  className="text-xs px-2 py-1 bg-blue-50 text-blue-600 rounded-full"
+                  className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full"
                 >
                   {tag}
                 </span>
               ))}
               {snippet?.ai_tags?.length > 5 && (
-                <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">
+                <span className="text-xs px-2 py-1 bg-muted text-muted-foreground rounded-full">
                   +{snippet?.ai_tags?.length - 5} more
                 </span>
               )}
@@ -339,8 +339,8 @@ const SnippetResultCard = ({ snippet }) => {
           )}
 
           {snippet?.code && (
-            <div className="bg-gray-50 rounded-lg p-3 mb-3">
-              <pre className="text-xs text-gray-800 overflow-x-auto line-clamp-4">
+            <div className="bg-background rounded-lg p-3 mb-3">
+              <pre className="text-xs text-foreground overflow-x-auto line-clamp-4">
                 <code>{snippet?.code}</code>
               </pre>
             </div>
@@ -356,24 +356,24 @@ const SnippetResultCard = ({ snippet }) => {
         {/* Right Side: AI Overview (1/3 width on large screens) */}
         <div className="lg:col-span-1 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-100">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Icon name="Sparkles" size={16} className="text-white" />
             </div>
-            <h4 className="font-semibold text-gray-900 text-sm">AI Overview</h4>
+            <h4 className="font-semibold text-foreground text-sm">AI Overview</h4>
           </div>
 
           {snippet?.ai_overview ? (
             <div className="space-y-2">
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-sm text-foreground leading-relaxed">
                 {snippet?.ai_overview}
               </p>
               
               {/* AI Confidence Badge (if available) */}
               {snippet?.ai_confidence && (
-                <div className="mt-3 pt-3 border-t border-blue-200">
+                <div className="mt-3 pt-3 border-t border-primary/20">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-600">AI Confidence</span>
-                    <span className="font-medium text-blue-600">
+                    <span className="text-muted-foreground">AI Confidence</span>
+                    <span className="font-medium text-primary">
                       {Math.round(snippet?.ai_confidence * 100)}%
                     </span>
                   </div>
@@ -382,10 +382,10 @@ const SnippetResultCard = ({ snippet }) => {
             </div>
           ) : (
             <div className="space-y-2">
-              <p className="text-sm text-gray-600 italic">
+              <p className="text-sm text-muted-foreground italic">
                 No AI overview available for this snippet.
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-muted-foreground">
                 AI analysis helps you understand what this code does and how it works.
               </p>
             </div>
@@ -395,12 +395,12 @@ const SnippetResultCard = ({ snippet }) => {
 
       {/* Footer: Engagement Bar */}
       <div className="px-4 pb-4">
-        <div className="flex items-center gap-4 pt-3 border-t border-gray-200">
+        <div className="flex items-center gap-4 pt-3 border-t border-border">
           {/* Like Button */}
           <button
             onClick={handleLikeToggle}
             className={`flex items-center gap-1 transition-colors ${
-              isLiked ? 'text-red-500' : 'text-gray-600 hover:text-red-500'
+              isLiked ? 'text-error' : 'text-muted-foreground hover:text-error'
             }`}
           >
             <Icon name={isLiked ? 'Heart' : 'Heart'} size={18} className={isLiked ? 'fill-current' : ''} />
@@ -413,14 +413,14 @@ const SnippetResultCard = ({ snippet }) => {
               e?.stopPropagation();
               setShowCommentInput(!showCommentInput);
             }}
-            className="flex items-center gap-1 text-gray-600 hover:text-primary transition-colors"
+            className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
           >
             <Icon name="MessageCircle" size={18} />
             <span className="text-sm font-medium">{commentsCount}</span>
           </button>
 
           {/* Views */}
-          <div className="flex items-center gap-1 text-gray-600">
+          <div className="flex items-center gap-1 text-muted-foreground">
             <Icon name="Eye" size={18} />
             <span className="text-sm font-medium">{snippet?.views_count || 0}</span>
           </div>
@@ -428,14 +428,14 @@ const SnippetResultCard = ({ snippet }) => {
 
         {/* Inline Comment Input */}
         {showCommentInput && (
-          <form onSubmit={handleCommentSubmit} className="mt-3 pt-3 border-t border-gray-200">
+          <form onSubmit={handleCommentSubmit} className="mt-3 pt-3 border-t border-border">
             <div className="flex gap-2">
               <input
                 type="text"
                 value={commentText}
                 onChange={(e) => setCommentText(e?.target?.value)}
                 placeholder="Write a comment..."
-                className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="flex-1 px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 autoFocus
               />
               <Button

@@ -87,7 +87,7 @@ const PricingTeaser = () => {
           {plans?.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-white dark:bg-slate-800 rounded-2xl p-8 border-2 transition-all duration-300 ${
+              className={`relative bg-card dark:bg-slate-800 rounded-xl p-8 border-2 transition-all duration-300 ${
                 plan?.popular
                   ? 'border-[var(--color-primary)] shadow-2xl scale-105'
                   : 'border-[var(--color-border)] hover:border-[var(--color-primary)]/50 hover:shadow-xl'
@@ -179,7 +179,7 @@ const PricingTeaser = () => {
         </div>
 
         {/* FAQ Snippet */}
-        <div className="mt-20 bg-white dark:bg-slate-800 rounded-2xl p-8 border border-[var(--color-border)]">
+        <div className="mt-20 bg-card dark:bg-slate-800 rounded-xl p-8 border border-[var(--color-border)]">
           <div className="text-center mb-8">
             <Icon name="HelpCircle" size={32} color="var(--color-primary)" className="mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-[var(--color-foreground)] mb-2">

@@ -363,12 +363,20 @@ const SnippetDetails = () => {
       setSnippet(prev => ({
         ...prev,
         tags: analysis?.tags,
-        aiQualityScore: analysis?.optimizationScore,
+        aiQualityScore: analysis?.qualityScore,
         aiAnalysis: {
-          summary: analysis?.analysis?.summary,
-          bug_risk: analysis?.analysis?.bugRisk,
-          style_match_score: analysis?.analysis?.styleMatchScore,
-          metadata: analysis?.analysis?.metadata
+          summary: analysis?.summary,
+          bugRisk: analysis?.bugRisk,
+          complexityLevel: analysis?.complexityLevel,
+          readabilityScore: analysis?.readabilityScore,
+          strengths: analysis?.strengths,
+          weaknesses: analysis?.weaknesses,
+          improvements: analysis?.improvements,
+          recommendations: analysis?.recommendations,
+          categories: analysis?.categories,
+          purposeTags: analysis?.purposeTags,
+          functionalityTags: analysis?.functionalityTags,
+          searchAliases: analysis?.searchAliases,
         }
       }));
 
@@ -534,13 +542,13 @@ const SnippetDetails = () => {
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative">
-              <div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600 mx-auto mb-4"></div>
+              <div className="animate-spin rounded-full h-16 w-16 border-4 border-border border-t-purple-600 mx-auto mb-4"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <Icon name="Code2" size={24} className="text-purple-600 animate-pulse" />
+                <Icon name="Code2" size={24} className="text-primary animate-pulse" />
               </div>
             </div>
-            <p className="text-gray-600 font-medium">Loading snippet...</p>
-            <p className="text-sm text-gray-500 mt-1">Preparing your code experience</p>
+            <p className="text-muted-foreground font-medium">Loading snippet...</p>
+            <p className="text-sm text-muted-foreground mt-1">Preparing your code experience</p>
           </div>
         </div>
       </div>
@@ -552,14 +560,14 @@ const SnippetDetails = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <AppNavigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-white rounded-xl shadow-lg border-l-4 border-red-500 p-6">
+          <div className="bg-card rounded-xl shadow-lg border-l-4 border-error p-6">
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-red-100 rounded-lg">
-                <Icon name="AlertTriangle" size={24} className="text-red-600" />
+              <div className="p-3 bg-error/15 rounded-lg">
+                <Icon name="AlertTriangle" size={24} className="text-error" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Unable to Load Snippet</h3>
-                <p className="text-red-600 mb-4">{error}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Unable to Load Snippet</h3>
+                <p className="text-error mb-4">{error}</p>
                 <Button 
                   onClick={() => navigate(-1)}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
@@ -580,14 +588,14 @@ const SnippetDetails = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <AppNavigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-white rounded-xl shadow-lg border-l-4 border-yellow-500 p-6">
+          <div className="bg-card rounded-xl shadow-lg border-l-4 border-yellow-500 p-6">
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-yellow-100 rounded-lg">
-                <Icon name="Search" size={24} className="text-yellow-600" />
+              <div className="p-3 bg-warning/15 rounded-lg">
+                <Icon name="Search" size={24} className="text-warning" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Snippet Not Found</h3>
-                <p className="text-gray-600 mb-4">The snippet you're looking for doesn't exist or has been removed.</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Snippet Not Found</h3>
+                <p className="text-muted-foreground mb-4">The snippet you're looking for doesn't exist or has been removed.</p>
                 <Button 
                   onClick={() => navigate('/user-dashboard')}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
@@ -607,11 +615,18 @@ const SnippetDetails = () => {
   const aiAnalysis = {
     tags: snippet?.tags || [],
     summary: snippet?.aiAnalysis?.summary || null,
-    optimization_score: snippet?.aiQualityScore || 0,
-    style_match_score: snippet?.aiAnalysis?.style_match_score || null,
-    bug_risk: snippet?.aiAnalysis?.bug_risk || null,
-    // Only include metadata if it actually exists from AI analysis
-    metadata: snippet?.aiAnalysis?.metadata || null
+    qualityScore: snippet?.aiQualityScore || 0,
+    readabilityScore: snippet?.aiAnalysis?.readabilityScore || 0,
+    styleMatchScore: snippet?.aiAnalysis?.styleMatchScore || 0,
+    bugRisk: snippet?.aiAnalysis?.bugRisk || 'low',
+    complexityLevel: snippet?.aiAnalysis?.complexityLevel || 'medium',
+    strengths: snippet?.aiAnalysis?.strengths || [],
+    weaknesses: snippet?.aiAnalysis?.weaknesses || [],
+    improvements: snippet?.aiAnalysis?.improvements || [],
+    recommendations: snippet?.aiAnalysis?.recommendations || { quick: [], detailed: [] },
+    categories: snippet?.aiAnalysis?.categories || [],
+    purposeTags: snippet?.aiAnalysis?.purposeTags || [],
+    metadata: snippet?.aiAnalysis?.metrics || null
   };
 
   // REMOVED: Empty version history - will be loaded from database when feature is implemented
@@ -623,9 +638,9 @@ const SnippetDetails = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Enhanced Hero Header Section */}
-        <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 rounded-2xl shadow-2xl p-8 mb-8 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-xl shadow-2xl p-8 mb-8 relative overflow-hidden">
           {/* Decorative background elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-card/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-400/20 rounded-full blur-2xl"></div>
           
           <div className="relative z-10">
@@ -656,14 +671,14 @@ const SnippetDetails = () => {
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => navigate(`/create-snippet?edit=${snippet?.id}`)}
-                    className="p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl transition-all transform hover:scale-105"
+                    className="p-3 bg-card/20 hover:bg-card/30 backdrop-blur-sm rounded-xl transition-all transform hover:scale-105"
                     title="Edit snippet"
                   >
                     <Icon name="Edit" size={20} className="text-white" />
                   </button>
                   <button 
                     onClick={() => setShowDeleteModal(true)}
-                    className="p-3 bg-red-500/20 hover:bg-red-500/30 backdrop-blur-sm rounded-xl transition-all transform hover:scale-105" 
+                    className="p-3 bg-error/100/20 hover:bg-error/100/30 backdrop-blur-sm rounded-xl transition-all transform hover:scale-105" 
                     title="Delete snippet"
                   >
                     <Icon name="Trash2" size={20} className="text-white" />
@@ -677,7 +692,7 @@ const SnippetDetails = () => {
               {/* Author Info */}
               <Link 
                 to={`/user-profile/${snippet?.author?.id}`} 
-                className="flex items-center gap-3 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-xl px-4 py-2 transition-all transform hover:scale-105"
+                className="flex items-center gap-3 bg-card/10 backdrop-blur-sm hover:bg-card/20 rounded-xl px-4 py-2 transition-all transform hover:scale-105"
               >
                 <Image
                   src={snippet?.author?.avatar}
@@ -692,19 +707,19 @@ const SnippetDetails = () => {
 
               {/* Stats Cards */}
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2">
+                <div className="flex items-center gap-2 bg-card/10 backdrop-blur-sm rounded-xl px-4 py-2">
                   <Icon name="Calendar" size={18} className="text-white/80" />
                   <span className="text-sm text-white font-medium">
                     {new Date(snippet?.createdAt)?.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2">
+                <div className="flex items-center gap-2 bg-card/10 backdrop-blur-sm rounded-xl px-4 py-2">
                   <Icon name="Eye" size={18} className="text-white/80" />
                   <span className="text-sm text-white font-medium">
                     {snippet?.stats?.views?.toLocaleString()} views
                   </span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2">
+                <div className="flex items-center gap-2 bg-card/10 backdrop-blur-sm rounded-xl px-4 py-2">
                   <Icon name="Heart" size={18} className="text-white/80" />
                   <span className="text-sm text-white font-medium">
                     {snippet?.stats?.likes?.toLocaleString()} likes
@@ -713,7 +728,7 @@ const SnippetDetails = () => {
               </div>
 
               {/* Language Badge */}
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/30">
+              <div className="flex items-center gap-2 bg-card/20 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/30">
                 <Icon name="Code2" size={18} className="text-white" />
                 <span className="text-sm font-bold text-white uppercase">
                   {snippet?.language}
@@ -722,7 +737,7 @@ const SnippetDetails = () => {
 
               {/* Visibility Badge */}
               <div className={`flex items-center gap-2 rounded-xl px-4 py-2 border ${
-                snippet?.visibility === 'public' ?'bg-green-500/20 border-green-400/30 backdrop-blur-sm' :'bg-orange-500/20 border-orange-400/30 backdrop-blur-sm'
+                snippet?.visibility === 'public' ?'bg-success/100/20 border-green-400/30 backdrop-blur-sm' :'bg-orange-500/20 border-orange-400/30 backdrop-blur-sm'
               }`}>
                 <Icon 
                   name={snippet?.visibility === 'public' ? 'Globe' : 'Lock'} 
@@ -741,7 +756,7 @@ const SnippetDetails = () => {
                 {snippet?.tags?.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-medium rounded-full hover:bg-white/30 transition-all cursor-pointer transform hover:scale-105"
+                    className="px-4 py-2 bg-card/20 backdrop-blur-sm border border-white/30 text-white text-sm font-medium rounded-full hover:bg-card/30 transition-all cursor-pointer transform hover:scale-105"
                   >
                     #{tag}
                   </span>
@@ -752,10 +767,10 @@ const SnippetDetails = () => {
         </div>
 
         {/* Quick Actions Bar */}
-        <div className="bg-white rounded-xl shadow-lg p-4 mb-8 border border-gray-200">
+        <div className="bg-card rounded-xl shadow-lg p-4 mb-8 border border-border">
           {/* CRITICAL FIX: Add success message display */}
           {errors?.success && (
-            <div className="mb-4 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
+            <div className="mb-4 bg-success/10 border border-success/20 text-success px-4 py-3 rounded-lg">
               <div className="flex items-start gap-2">
                 <Icon name="CheckCircle" size={20} className="flex-shrink-0 mt-0.5" />
                 <div>
@@ -768,7 +783,7 @@ const SnippetDetails = () => {
           
           {/* NEW: Add retry/info message display */}
           {errors?.info && (
-            <div className="mb-4 bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-lg">
+            <div className="mb-4 bg-primary/10 border border-primary/20 text-primary px-4 py-3 rounded-lg">
               <div className="flex items-start gap-2">
                 <Icon name="Info" size={20} className="flex-shrink-0 mt-0.5 animate-pulse" />
                 <div className="flex-1">
@@ -778,7 +793,7 @@ const SnippetDetails = () => {
                     <div className="mt-2">
                       <div className="w-full bg-blue-200 rounded-full h-2">
                         <div 
-                          className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                          className="bg-primary h-2 rounded-full transition-all duration-300"
                           style={{ width: `${(retryAttempt / 3) * 100}%` }}
                         />
                       </div>
@@ -792,7 +807,7 @@ const SnippetDetails = () => {
           
           {/* CRITICAL FIX: Add error message display */}
           {errors?.submit && (
-            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+            <div className="mb-4 bg-error/10 border border-error/20 text-error px-4 py-3 rounded-lg">
               <div className="flex items-start gap-2">
                 <Icon name="AlertCircle" size={20} className="flex-shrink-0 mt-0.5" />
                 <div>
@@ -808,7 +823,7 @@ const SnippetDetails = () => {
               <button
                 onClick={handleReanalyze}
                 disabled={reanalyzing || !snippet?.code || !snippet?.language}
-                className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-medium transition-all transform hover:scale-105 disabled:scale-100 shadow-md disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary hover:from-purple-700 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-medium transition-all transform hover:scale-105 disabled:scale-100 shadow-md disabled:cursor-not-allowed"
               >
                 <Icon name={reanalyzing ? "Loader2" : "Refresh"} size={18} className={reanalyzing ? "animate-spin" : ""} />
                 <span>
@@ -822,7 +837,7 @@ const SnippetDetails = () => {
               
               <button
                 onClick={() => handleAddToCollection()}
-                className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-50 border-2 border-purple-600 text-purple-600 rounded-lg font-medium transition-all transform hover:scale-105 shadow-md"
+                className="flex items-center gap-2 px-5 py-2.5 bg-card hover:bg-background border-2 border-purple-600 text-primary rounded-lg font-medium transition-all transform hover:scale-105 shadow-md"
               >
                 <Icon name="FolderPlus" size={18} />
                 <span>Add to Collection</span>
@@ -837,7 +852,7 @@ const SnippetDetails = () => {
               </button>
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 px-4 py-2 rounded-lg">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground bg-background px-4 py-2 rounded-lg">
               <Icon name="MessageSquare" size={18} />
               <span className="font-semibold">{snippet?.stats?.comments || 0}</span>
               <span>comments</span>
@@ -880,8 +895,8 @@ const SnippetDetails = () => {
           {/* Enhanced Sidebar - Right Column */}
           <div className="space-y-6">
             {/* Author Card with gradient */}
-            <div className="bg-gradient-to-br from-white to-purple-50 rounded-xl shadow-lg border border-purple-200 overflow-hidden">
-              <div className="bg-gradient-to-r from-purple-600 to-blue-600 px-4 py-3">
+            <div className="bg-gradient-to-br from-white to-purple-50 rounded-xl shadow-lg border border-border overflow-hidden">
+              <div className="bg-gradient-to-r from-primary to-secondary px-4 py-3">
                 <h3 className="text-white font-semibold flex items-center gap-2">
                   <Icon name="User" size={18} />
                   Author Information
@@ -899,56 +914,56 @@ const SnippetDetails = () => {
             />
 
             {/* Stats Overview Card */}
-            <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <Icon name="TrendingUp" size={20} className="text-blue-600" />
+            <div className="bg-card rounded-xl shadow-lg border border-border p-6">
+              <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Icon name="TrendingUp" size={20} className="text-primary" />
                 Engagement Stats
               </h3>
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200">
+                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-primary/20">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-500 rounded-lg">
+                    <div className="p-2 bg-primary rounded-lg">
                       <Icon name="Eye" size={18} className="text-white" />
                     </div>
-                    <span className="text-sm font-medium text-gray-700">Total Views</span>
+                    <span className="text-sm font-medium text-foreground">Total Views</span>
                   </div>
-                  <span className="text-lg font-bold text-blue-600">
+                  <span className="text-lg font-bold text-primary">
                     {snippet?.stats?.views?.toLocaleString()}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-red-50 to-pink-50 rounded-lg border border-red-200">
+                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-red-50 to-pink-50 rounded-lg border border-error/20">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-red-500 rounded-lg">
+                    <div className="p-2 bg-error/100 rounded-lg">
                       <Icon name="Heart" size={18} className="text-white" />
                     </div>
-                    <span className="text-sm font-medium text-gray-700">Total Likes</span>
+                    <span className="text-sm font-medium text-foreground">Total Likes</span>
                   </div>
-                  <span className="text-lg font-bold text-red-600">
+                  <span className="text-lg font-bold text-error">
                     {snippet?.stats?.likes?.toLocaleString()}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-success/20">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-green-500 rounded-lg">
+                    <div className="p-2 bg-success/100 rounded-lg">
                       <Icon name="MessageSquare" size={18} className="text-white" />
                     </div>
-                    <span className="text-sm font-medium text-gray-700">Comments</span>
+                    <span className="text-sm font-medium text-foreground">Comments</span>
                   </div>
-                  <span className="text-lg font-bold text-green-600">
+                  <span className="text-lg font-bold text-success">
                     {snippet?.stats?.comments?.toLocaleString()}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg border border-border">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-purple-500 rounded-lg">
+                    <div className="p-2 bg-primary/100 rounded-lg">
                       <Icon name="Bookmark" size={18} className="text-white" />
                     </div>
-                    <span className="text-sm font-medium text-gray-700">Saves</span>
+                    <span className="text-sm font-medium text-foreground">Saves</span>
                   </div>
-                  <span className="text-lg font-bold text-purple-600">
+                  <span className="text-lg font-bold text-primary">
                     {recentSaves?.length?.toLocaleString() || 0}
                   </span>
                 </div>
@@ -969,14 +984,14 @@ const SnippetDetails = () => {
       {/* NEW: Add to Collection Modal */}
       {showCollectionModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[80vh] flex flex-col">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900">Add to Collection</h3>
+          <div className="bg-card rounded-lg shadow-xl max-w-md w-full max-h-[80vh] flex flex-col">
+            <div className="flex items-center justify-between p-6 border-b border-border">
+              <h3 className="text-lg font-semibold text-foreground">Add to Collection</h3>
               <button
                 onClick={() => setShowCollectionModal(false)}
-                className="p-1 hover:bg-gray-100 rounded-md transition-colors"
+                className="p-1 hover:bg-muted rounded-md transition-colors"
               >
-                <Icon name="X" size={20} className="text-gray-500" />
+                <Icon name="X" size={20} className="text-muted-foreground" />
               </button>
             </div>
 
@@ -987,9 +1002,9 @@ const SnippetDetails = () => {
                 </div>
               ) : userCollections?.length === 0 ? (
                 <div className="text-center py-8">
-                  <Icon name="FolderOpen" size={48} className="mx-auto text-gray-400 mb-3" />
-                  <p className="text-gray-600">No collections yet</p>
-                  <p className="text-sm text-gray-500 mt-1">
+                  <Icon name="FolderOpen" size={48} className="mx-auto text-muted-foreground mb-3" />
+                  <p className="text-muted-foreground">No collections yet</p>
+                  <p className="text-sm text-muted-foreground mt-1">
                     Create a collection in your hive first
                   </p>
                 </div>
@@ -1004,29 +1019,29 @@ const SnippetDetails = () => {
                         onClick={() => handleToggleCollection(collection?.id)}
                         className={`w-full flex items-center justify-between p-4 rounded-lg border-2 transition-all ${
                           isSelected
-                            ? 'border-blue-500 bg-blue-50' :'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                            ? 'border-blue-500 bg-primary/10' :'border-border hover:border-border hover:bg-background'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
                             isSelected
-                              ? 'bg-blue-500 border-blue-500' :'border-gray-300'
+                              ? 'bg-primary border-blue-500' :'border-border'
                           }`}>
                             {isSelected && (
                               <Icon name="Check" size={14} className="text-white" />
                             )}
                           </div>
                           <div className="text-left">
-                            <p className="font-medium text-gray-900">{collection?.name}</p>
+                            <p className="font-medium text-foreground">{collection?.name}</p>
                             {collection?.description && (
-                              <p className="text-sm text-gray-500 mt-0.5">{collection?.description}</p>
+                              <p className="text-sm text-muted-foreground mt-0.5">{collection?.description}</p>
                             )}
                           </div>
                         </div>
                         <Icon 
                           name={isSelected ? 'CheckCircle' : 'Circle'} 
                           size={20} 
-                          className={isSelected ? 'text-blue-500' : 'text-gray-400'} 
+                          className={isSelected ? 'text-primary' : 'text-muted-foreground'} 
                         />
                       </button>
                     );
@@ -1035,16 +1050,16 @@ const SnippetDetails = () => {
               )}
             </div>
 
-            <div className="flex gap-3 p-6 border-t border-gray-200">
+            <div className="flex gap-3 p-6 border-t border-border">
               <button
                 onClick={() => setShowCollectionModal(false)}
-                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-2 border border-border text-foreground rounded-lg hover:bg-background transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={() => setShowCollectionModal(false)}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors"
               >
                 Done
               </button>

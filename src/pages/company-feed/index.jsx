@@ -110,11 +110,11 @@ export default function CompanyFeed() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="text-center">
-          <Icon name="Building" size={64} className="mx-auto text-gray-400 mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Sign in to view company feed</h2>
-          <p className="text-gray-600 mb-6">Access your company's code sharing activity</p>
+          <Icon name="Building" size={64} className="mx-auto text-muted-foreground mb-4" />
+          <h2 className="text-2xl font-bold text-foreground mb-2">Sign in to view company feed</h2>
+          <p className="text-muted-foreground mb-6">Access your company's code sharing activity</p>
           <Button onClick={() => navigate('/login')}>Sign In</Button>
         </div>
       </div>
@@ -123,12 +123,12 @@ export default function CompanyFeed() {
 
   if (!userProfile?.company_id) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <AppNavigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+          <div className="bg-warning/10 border border-warning/20 rounded-lg p-6">
             <div className="flex items-start gap-3">
-              <Icon name="AlertCircle" className="text-yellow-600 flex-shrink-0" size={24} />
+              <Icon name="AlertCircle" className="text-warning flex-shrink-0" size={24} />
               <div>
                 <h3 className="text-lg font-semibold text-yellow-900 mb-2">No Company Association</h3>
                 <p className="text-yellow-800">You are not associated with any company. Please join or create a company first.</p>
@@ -164,12 +164,12 @@ export default function CompanyFeed() {
         {/* Main Content */}
         <main className="flex-1 overflow-y-auto">
           {/* Header */}
-          <div className="bg-white border-b border-gray-200 shadow-sm">
+          <div className="bg-card border-b border-border shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Company Feed</h1>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <h1 className="text-2xl font-bold text-foreground">Company Feed</h1>
+                  <p className="text-sm text-muted-foreground mt-1">
                     All posts from company members across all teams
                   </p>
                 </div>
@@ -185,11 +185,11 @@ export default function CompanyFeed() {
               {/* Filters */}
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">Sort by:</span>
+                  <span className="text-sm text-muted-foreground">Sort by:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e?.target?.value)}
-                    className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="px-3 py-1 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-blue-500"
                   >
                     <option value="recent">Most Recent</option>
                     <option value="popular">Most Popular</option>
@@ -198,11 +198,11 @@ export default function CompanyFeed() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">Language:</span>
+                  <span className="text-sm text-muted-foreground">Language:</span>
                   <select
                     value={filterLanguage}
                     onChange={(e) => setFilterLanguage(e?.target?.value)}
-                    className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="px-3 py-1 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-blue-500"
                   >
                     <option value="all">All Languages</option>
                     <option value="javascript">JavaScript</option>
@@ -218,7 +218,7 @@ export default function CompanyFeed() {
                   </select>
                 </div>
 
-                <div className="ml-auto text-sm text-gray-600">
+                <div className="ml-auto text-sm text-muted-foreground">
                   {snippets?.length} {snippets?.length === 1 ? 'post' : 'posts'}
                 </div>
               </div>
@@ -229,15 +229,15 @@ export default function CompanyFeed() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Error Message */}
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-                <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+              <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+                <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <p className="text-sm font-medium text-red-900">Error loading feed</p>
-                  <p className="text-sm text-red-700 mt-1">{error}</p>
+                  <p className="text-sm text-error mt-1">{error}</p>
                 </div>
                 <button
                   onClick={loadCompanyFeed}
-                  className="text-sm font-medium text-red-600 hover:text-red-700"
+                  className="text-sm font-medium text-error hover:text-error"
                 >
                   Retry
                 </button>
@@ -249,15 +249,15 @@ export default function CompanyFeed() {
               <div className="flex items-center justify-center py-16">
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                  <p className="text-gray-600">Loading company feed...</p>
+                  <p className="text-muted-foreground">Loading company feed...</p>
                 </div>
               </div>
             ) : snippets?.length === 0 ? (
               /* Empty State */
               (<div className="text-center py-16">
-                <Icon name="Code" size={48} className="mx-auto text-gray-400 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No company posts yet</h3>
-                <p className="text-gray-600 mb-6">
+                <Icon name="Code" size={48} className="mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">No company posts yet</h3>
+                <p className="text-muted-foreground mb-6">
                   Be the first to share code with your company!
                 </p>
                 <Button onClick={() => navigate('/create-snippet')}>
@@ -272,30 +272,30 @@ export default function CompanyFeed() {
                     <div
                       key={snippet?.id}
                       onClick={() => handleSnippetClick(snippet?.id)}
-                      className="bg-white rounded-lg border border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer overflow-hidden"
+                      className="bg-card rounded-lg border border-border hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer overflow-hidden"
                     >
                       {/* Header */}
-                      <div className="p-4 border-b border-gray-100">
+                      <div className="p-4 border-b border-border">
                         <div className="flex items-start justify-between mb-2">
-                          <h3 className="font-semibold text-gray-900 line-clamp-2 flex-1">
+                          <h3 className="font-semibold text-foreground line-clamp-2 flex-1">
                             {snippet?.title}
                           </h3>
                           {snippet?.visibility === 'company' && (
-                            <span className="ml-2 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full flex-shrink-0">
+                            <span className="ml-2 px-2 py-1 bg-primary/15 text-primary text-xs rounded-full flex-shrink-0">
                               Company
                             </span>
                           )}
                         </div>
                         {snippet?.description && (
-                          <p className="text-sm text-gray-600 line-clamp-2">
+                          <p className="text-sm text-muted-foreground line-clamp-2">
                             {snippet?.description}
                           </p>
                         )}
                       </div>
 
                       {/* Code Preview */}
-                      <div className="bg-gray-900 p-4 max-h-32 overflow-hidden">
-                        <pre className="text-xs text-gray-100 font-mono line-clamp-4">
+                      <div className="bg-card p-4 max-h-32 overflow-hidden">
+                        <pre className="text-xs text-foreground font-mono line-clamp-4">
                           <code>{snippet?.code}</code>
                         </pre>
                       </div>
@@ -303,10 +303,10 @@ export default function CompanyFeed() {
                       {/* Footer */}
                       <div className="p-4">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="text-xs font-medium text-gray-600 uppercase">
+                          <span className="text-xs font-medium text-muted-foreground uppercase">
                             {snippet?.language}
                           </span>
-                          <div className="flex items-center gap-3 text-sm text-gray-600">
+                          <div className="flex items-center gap-3 text-sm text-muted-foreground">
                             <span className="flex items-center gap-1">
                               <Icon name="Heart" size={14} />
                               {snippet?.likes_count || 0}
@@ -327,16 +327,16 @@ export default function CompanyFeed() {
                               className="w-6 h-6 rounded-full"
                             />
                           ) : (
-                            <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center">
-                              <Icon name="User" size={14} className="text-gray-500" />
+                            <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center">
+                              <Icon name="User" size={14} className="text-muted-foreground" />
                             </div>
                           )}
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
+                            <p className="text-sm font-medium text-foreground truncate">
                               {snippet?.user_profiles?.full_name || snippet?.user_profiles?.username}
                             </p>
                             {snippet?.teams && (
-                              <p className="text-xs text-gray-500 truncate">
+                              <p className="text-xs text-muted-foreground truncate">
                                 {snippet?.teams?.name}
                               </p>
                             )}
@@ -349,13 +349,13 @@ export default function CompanyFeed() {
                             {snippet?.ai_tags?.slice(0, 3)?.map((tag, idx) => (
                               <span
                                 key={idx}
-                                className="text-xs px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full"
+                                className="text-xs px-2 py-0.5 bg-purple-100 text-primary rounded-full"
                               >
                                 {tag}
                               </span>
                             ))}
                             {snippet?.ai_tags?.length > 3 && (
-                              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full">
+                              <span className="text-xs px-2 py-0.5 bg-muted text-foreground rounded-full">
                                 +{snippet?.ai_tags?.length - 3}
                               </span>
                             )}
@@ -390,7 +390,7 @@ export default function CompanyFeed() {
                               onClick={() => setCurrentPage(pageNum)}
                               className={`w-10 h-10 rounded-md text-sm font-medium transition-colors ${
                                 currentPage === pageNum
-                                  ? 'bg-blue-600 text-white' :'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                                  ? 'bg-primary text-white' :'bg-card text-foreground hover:bg-muted border border-border'
                               }`}
                             >
                               {pageNum}

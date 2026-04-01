@@ -43,11 +43,11 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-[var(--color-border)] shadow-lg">
+    <div className="bg-card dark:bg-slate-800 rounded-xl p-8 border border-[var(--color-border)] shadow-lg">
       {submitSuccess ? (
         <div className="text-center py-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full mb-4">
-            <Icon name="CheckCircle" size={32} className="text-green-600 dark:text-green-400" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-success/15 dark:bg-green-900/30 rounded-full mb-4">
+            <Icon name="CheckCircle" size={32} className="text-success dark:text-green-400" />
           </div>
           <h3 className="text-2xl font-bold text-[var(--color-foreground)] mb-2">
             Message Sent Successfully!
@@ -151,21 +151,21 @@ const ContactForm = () => {
               id="message"
               rows={6}
               placeholder="Tell us more about your inquiry..."
-              className="w-full px-4 py-3 bg-[var(--color-background)] border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] resize-none"
+              className="w-full px-4 py-3 bg-[var(--color-background)] border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-ring text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] resize-none"
               {...register('message', { 
                 required: 'Message is required',
                 minLength: { value: 10, message: 'Message must be at least 10 characters' }
               })}
             />
             {errors?.message && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+              <p className="mt-1 text-sm text-error dark:text-error">
                 {errors?.message?.message}
               </p>
             )}
           </div>
 
           {/* Privacy Acknowledgment */}
-          <div className="flex items-start gap-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <div className="flex items-start gap-3 p-4 bg-primary/10 dark:bg-blue-900/20 rounded-lg">
             <Checkbox
               id="privacy"
               {...register('privacy', { required: 'You must acknowledge our privacy policy' })}
@@ -173,13 +173,13 @@ const ContactForm = () => {
             <div className="flex-1">
               <label htmlFor="privacy" className="text-sm text-[var(--color-foreground)] cursor-pointer">
                 I acknowledge that HyvHub will process my personal data according to the{' '}
-                <a href="/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <a href="/privacy" className="text-primary dark:text-blue-400 hover:underline">
                   Privacy Policy
                 </a>
                 . My data will be used solely to respond to this inquiry.
               </label>
               {errors?.privacy && (
-                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                <p className="mt-1 text-sm text-error dark:text-error">
                   {errors?.privacy?.message}
                 </p>
               )}

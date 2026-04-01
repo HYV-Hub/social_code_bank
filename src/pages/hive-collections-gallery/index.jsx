@@ -160,10 +160,10 @@ const HiveCollectionsGallery = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading collections...</p>
+          <p className="mt-4 text-muted-foreground">Loading collections...</p>
         </div>
       </div>
     );
@@ -171,12 +171,12 @@ const HiveCollectionsGallery = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-600 mb-4">{error}</p>
+          <p className="text-error mb-4">{error}</p>
           <button
             onClick={loadCollections}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary"
           >
             Retry
           </button>
@@ -193,7 +193,7 @@ const HiveCollectionsGallery = () => {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="text-white">
               <h1 className="text-3xl lg:text-4xl font-bold mb-2 flex items-center gap-3">
-                <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                <div className="p-2 bg-card/20 rounded-lg backdrop-blur-sm">
                   <Grid className="w-8 h-8" />
                 </div>
                 Hive Collections Gallery
@@ -206,23 +206,23 @@ const HiveCollectionsGallery = () => {
             {/* Enhanced Search Bar with glass morphism effect */}
             <div className="flex-1 max-w-xl">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e?.target?.value)}
                   placeholder="🔍 Search collections, descriptions, snippets..."
-                  className="w-full pl-12 pr-4 py-3 bg-white/95 backdrop-blur-sm border-2 border-white/50 rounded-xl shadow-lg focus:ring-4 focus:ring-white/30 focus:border-white transition-all text-gray-900 placeholder-gray-500"
+                  className="w-full pl-12 pr-4 py-3 bg-card/95 backdrop-blur-sm border-2 border-white/50 rounded-xl shadow-lg focus:ring-4 focus:ring-white/30 focus:border-white transition-all text-foreground placeholder-muted-foreground"
                 />
               </div>
             </div>
             
             {/* Enhanced View Toggle with better styling */}
-            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm p-1 rounded-lg">
+            <div className="flex items-center gap-2 bg-card/20 backdrop-blur-sm p-1 rounded-lg">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-3 rounded-lg transition-all ${
-                  viewMode === 'grid' ?'bg-white text-blue-600 shadow-lg scale-105' :'text-white hover:bg-white/20'
+                  viewMode === 'grid' ?'bg-card text-primary shadow-lg scale-105' :'text-white hover:bg-card/20'
                 }`}
                 title="Grid View"
               >
@@ -231,7 +231,7 @@ const HiveCollectionsGallery = () => {
               <button
                 onClick={() => setViewMode('list')}
                 className={`p-3 rounded-lg transition-all ${
-                  viewMode === 'list' ?'bg-white text-blue-600 shadow-lg scale-105' :'text-white hover:bg-white/20'
+                  viewMode === 'list' ?'bg-card text-primary shadow-lg scale-105' :'text-white hover:bg-card/20'
                 }`}
                 title="List View"
               >
@@ -247,7 +247,7 @@ const HiveCollectionsGallery = () => {
         <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white py-12 shadow-2xl">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
+              <div className="p-3 bg-card/20 rounded-xl backdrop-blur-sm">
                 <TrendingUp className="w-8 h-8" />
               </div>
               <div>
@@ -260,7 +260,7 @@ const HiveCollectionsGallery = () => {
                 <div
                   key={collection?.id}
                   onClick={() => handleCollectionClick(collection?.id)}
-                  className="group bg-white/10 backdrop-blur-md rounded-2xl p-6 cursor-pointer hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40 hover:scale-105 hover:shadow-2xl"
+                  className="group bg-card/10 backdrop-blur-md rounded-xl p-6 cursor-pointer hover:bg-card/20 transition-all duration-300 border border-white/20 hover:border-white/40 hover:scale-105 hover:shadow-2xl"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="font-bold text-xl group-hover:text-yellow-300 transition-colors">{collection?.name}</h3>
@@ -272,11 +272,11 @@ const HiveCollectionsGallery = () => {
                     {collection?.description}
                   </p>
                   <div className="flex items-center gap-4 text-sm text-white/80">
-                    <span className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg">
+                    <span className="flex items-center gap-2 bg-card/10 px-3 py-1.5 rounded-lg">
                       <Users className="w-4 h-4" />
                       {collection?.creator_name}
                     </span>
-                    <span className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg">
+                    <span className="flex items-center gap-2 bg-card/10 px-3 py-1.5 rounded-lg">
                       <Eye className="w-4 h-4" />
                       {collection?.view_count || 0} views
                     </span>
@@ -290,7 +290,7 @@ const HiveCollectionsGallery = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Enhanced Filter Controls with better visual hierarchy */}
-        <div className="bg-white rounded-2xl shadow-xl p-6 mb-8 border border-gray-100">
+        <div className="bg-card rounded-xl shadow-xl p-6 mb-8 border border-border">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div className="flex flex-wrap items-center gap-3">
               <button
@@ -306,20 +306,20 @@ const HiveCollectionsGallery = () => {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e?.target?.value)}
-                  className="appearance-none px-5 py-3 pr-10 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 bg-white font-medium text-gray-700 cursor-pointer hover:border-gray-300 transition-all"
+                  className="appearance-none px-5 py-3 pr-10 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-blue-500 bg-card font-medium text-foreground cursor-pointer hover:border-border transition-all"
                 >
                   <option value="recent">🕐 Most Recent</option>
                   <option value="popular">🔥 Most Popular</option>
                   <option value="snippets">📦 Most Snippets</option>
                   <option value="name">🔤 Name (A-Z)</option>
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
               </div>
               
               {(sortBy !== 'recent' || filterLanguage !== 'all') && (
                 <button
                   onClick={clearFilters}
-                  className="flex items-center gap-2 px-4 py-3 text-red-600 bg-red-50 rounded-xl hover:bg-red-100 transition-all font-medium"
+                  className="flex items-center gap-2 px-4 py-3 text-error bg-error/10 rounded-xl hover:bg-error/15 transition-all font-medium"
                 >
                   <X className="w-4 h-4" />
                   Clear Filters
@@ -330,13 +330,13 @@ const HiveCollectionsGallery = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={saveFilterConfiguration}
-                className="px-5 py-3 text-blue-600 bg-blue-50 rounded-xl hover:bg-blue-100 transition-all font-medium"
+                className="px-5 py-3 text-primary bg-primary/10 rounded-xl hover:bg-primary/15 transition-all font-medium"
               >
                 💾 Save Filters
               </button>
               <button
                 onClick={loadSavedFilters}
-                className="px-5 py-3 text-indigo-600 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-all font-medium"
+                className="px-5 py-3 text-secondary bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-all font-medium"
               >
                 📂 Load Saved
               </button>
@@ -344,16 +344,16 @@ const HiveCollectionsGallery = () => {
           </div>
           
           {showFilters && (
-            <div className="mt-6 pt-6 border-t-2 border-gray-100">
+            <div className="mt-6 pt-6 border-t-2 border-border">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-3">
+                  <label className="block text-sm font-bold text-foreground mb-3">
                     🌐 Programming Language
                   </label>
                   <select
                     value={filterLanguage}
                     onChange={(e) => setFilterLanguage(e?.target?.value)}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 font-medium"
+                    className="w-full px-4 py-3 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-blue-500 font-medium"
                   >
                     <option value="all">All Languages</option>
                     {getLanguages()?.map(lang => (
@@ -368,23 +368,23 @@ const HiveCollectionsGallery = () => {
 
         {/* Enhanced Results Count with better visual design */}
         <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl shadow-md border border-gray-100">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <p className="text-gray-700 font-medium">
-              Showing <span className="font-bold text-blue-600">{filteredCollections?.length}</span> of <span className="font-bold">{collections?.length}</span> collections
+          <div className="flex items-center gap-3 bg-card px-6 py-3 rounded-xl shadow-md border border-border">
+            <div className="w-2 h-2 bg-success/100 rounded-full animate-pulse"></div>
+            <p className="text-foreground font-medium">
+              Showing <span className="font-bold text-primary">{filteredCollections?.length}</span> of <span className="font-bold">{collections?.length}</span> collections
             </p>
           </div>
         </div>
 
         {/* Collections Grid/List with enhanced cards */}
         {filteredCollections?.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-xl p-16 text-center border border-gray-100">
+          <div className="bg-card rounded-xl shadow-xl p-16 text-center border border-border">
             <div className="max-w-md mx-auto">
               <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Grid className="w-12 h-12 text-gray-400" />
+                <Grid className="w-12 h-12 text-muted-foreground" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">No collections found</h3>
-              <p className="text-gray-600 text-lg">
+              <h3 className="text-2xl font-bold text-foreground mb-3">No collections found</h3>
+              <p className="text-muted-foreground text-lg">
                 {searchQuery ? '🔍 Try adjusting your search or filters' : '📦 No collections available in this hive yet'}
               </p>
             </div>
@@ -410,10 +410,10 @@ const HiveCollectionsGallery = () => {
       <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-40">
         <button
           onClick={() => navigate(-1)}
-          className="group flex items-center justify-center w-14 h-14 bg-white text-gray-700 rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 border-2 border-gray-200 hover:border-blue-500"
+          className="group flex items-center justify-center w-14 h-14 bg-card text-foreground rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 border-2 border-border hover:border-blue-500"
           title="Go Back"
         >
-          <Icon name="ArrowLeft" size={24} className="group-hover:text-blue-600 transition-colors" />
+          <Icon name="ArrowLeft" size={24} className="group-hover:text-primary transition-colors" />
         </button>
         
         <button
@@ -430,7 +430,7 @@ const HiveCollectionsGallery = () => {
 
 // Enhanced CollectionCard component
 const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onShare }) => {
-  const cardClass = viewMode === 'grid' ?'group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 hover:border-blue-300 hover:scale-105' :'group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden flex border border-gray-100 hover:border-blue-300';
+  const cardClass = viewMode === 'grid' ?'group bg-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-border hover:border-blue-300 hover:scale-105' :'group bg-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden flex border border-border hover:border-blue-300';
 
   return (
     <div className={cardClass} onClick={() => onCollectionClick(collection?.id)}>
@@ -446,14 +446,14 @@ const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onSha
           </div>
           {collection?.primary_language && (
             <div className="absolute top-4 right-4 z-10">
-              <span className="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-gray-900 text-xs font-bold shadow-lg">
+              <span className="px-4 py-2 bg-card/90 backdrop-blur-sm rounded-full text-foreground text-xs font-bold shadow-lg">
                 {collection?.primary_language}
               </span>
             </div>
           )}
           {/* Decorative animated circles */}
-          <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
-          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse delay-75"></div>
+          <div className="absolute -top-10 -right-10 w-32 h-32 bg-card/10 rounded-full animate-pulse"></div>
+          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-card/10 rounded-full animate-pulse delay-75"></div>
         </div>
       )}
       <div className={viewMode === 'grid' ? 'p-6' : 'flex-1 p-6 flex items-center gap-6'}>
@@ -468,34 +468,34 @@ const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onSha
         
         <div className="flex-1">
           <div className="flex items-start justify-between mb-3">
-            <h3 className="text-xl font-bold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
+            <h3 className="text-xl font-bold text-foreground line-clamp-1 group-hover:text-primary transition-colors">
               {collection?.name}
             </h3>
           </div>
           
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2 leading-relaxed">
             {collection?.description || 'No description available'}
           </p>
           
           {/* Enhanced Creator Info */}
-          <div className="flex items-center gap-3 mb-4 p-3 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-colors">
+          <div className="flex items-center gap-3 mb-4 p-3 bg-background rounded-lg group-hover:bg-primary/10 transition-colors">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md">
               {collection?.creator_name?.charAt(0)?.toUpperCase() || 'U'}
             </div>
             <div>
-              <p className="text-xs text-gray-500 font-medium">Created by</p>
-              <p className="text-sm text-gray-900 font-semibold">{collection?.creator_name || 'Unknown'}</p>
+              <p className="text-xs text-muted-foreground font-medium">Created by</p>
+              <p className="text-sm text-foreground font-semibold">{collection?.creator_name || 'Unknown'}</p>
             </div>
           </div>
           
           {/* Enhanced Engagement Metrics */}
-          <div className="flex items-center gap-4 text-sm text-gray-600 mb-4 pb-4 border-b border-gray-100">
-            <span className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-colors">
-              <Eye className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4 pb-4 border-b border-border">
+            <span className="flex items-center gap-2 px-3 py-1.5 bg-background rounded-lg group-hover:bg-primary/10 transition-colors">
+              <Eye className="w-4 h-4 text-primary" />
               <span className="font-semibold">{collection?.view_count || 0}</span>
             </span>
-            <span className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-colors">
-              <Clock className="w-4 h-4 text-indigo-600" />
+            <span className="flex items-center gap-2 px-3 py-1.5 bg-background rounded-lg group-hover:bg-primary/10 transition-colors">
+              <Clock className="w-4 h-4 text-secondary" />
               <span className="font-medium">{new Date(collection.created_at)?.toLocaleDateString()}</span>
             </span>
           </div>
@@ -510,14 +510,14 @@ const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onSha
             </button>
             <button
               onClick={(e) => { e?.stopPropagation(); onSave(collection?.id, e); }}
-              className="p-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all"
+              className="p-2.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-xl transition-all"
               title="Save Collection"
             >
               <Bookmark className="w-5 h-5" />
             </button>
             <button
               onClick={(e) => { e?.stopPropagation(); onShare(collection?.id, e); }}
-              className="p-2.5 text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
+              className="p-2.5 text-muted-foreground hover:text-secondary hover:bg-indigo-50 rounded-xl transition-all"
               title="Share Collection"
             >
               <Share2 className="w-5 h-5" />

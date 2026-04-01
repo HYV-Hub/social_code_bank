@@ -359,7 +359,7 @@ const CodeViewer = ({ snippet }) => {
             {snippet?.code?.split('\n')?.length} lines
           </span>
           {canShowPreview && (
-            <span className="px-2 py-0.5 bg-purple-500/10 border border-purple-500/20 rounded text-xs text-purple-600 font-medium">
+            <span className="px-2 py-0.5 bg-primary/100/10 border border-purple-500/20 rounded text-xs text-primary font-medium">
               UX Component
             </span>
           )}
@@ -393,7 +393,7 @@ const CodeViewer = ({ snippet }) => {
             iconName="Sparkles"
             iconPosition="left"
             onClick={handleViewAIReport}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+            className="bg-gradient-to-r from-primary to-secondary hover:from-purple-700 hover:to-blue-700"
           >
             AI Report
           </Button>
@@ -419,10 +419,10 @@ const CodeViewer = ({ snippet }) => {
       </div>
       {/* Validation Warnings Banner */}
       {validationWarnings?.length > 0 && viewMode === 'preview' && (
-        <div className="border-b border-border bg-yellow-50 dark:bg-yellow-900/10">
+        <div className="border-b border-border bg-warning/10 dark:bg-yellow-900/10">
           <div className="px-4 py-3">
             <div className="flex items-start gap-2 mb-2">
-              <Icon name="AlertTriangle" size={18} className="text-yellow-600 dark:text-yellow-500 mt-0.5 flex-shrink-0" />
+              <Icon name="AlertTriangle" size={18} className="text-warning dark:text-yellow-500 mt-0.5 flex-shrink-0" />
               <div className="flex-1">
                 <h4 className="text-sm font-semibold text-yellow-800 dark:text-yellow-400 mb-2">
                   Preview Visibility Issues Detected ({validationWarnings?.length})
@@ -435,15 +435,15 @@ const CodeViewer = ({ snippet }) => {
                           name={warning?.type === 'error' ? 'XCircle' : warning?.type === 'warning' ? 'AlertCircle' : 'Info'} 
                           size={14} 
                           className={`mt-0.5 flex-shrink-0 ${
-                            warning?.type === 'error' ? 'text-red-600' : 
-                            warning?.type === 'warning'? 'text-yellow-600' : 'text-blue-600'
+                            warning?.type === 'error' ? 'text-error' : 
+                            warning?.type === 'warning'? 'text-warning' : 'text-primary'
                           }`}
                         />
                         <div>
-                          <p className="text-gray-800 dark:text-gray-200 font-medium">
+                          <p className="text-foreground dark:text-muted-foreground font-medium">
                             {warning?.message}
                           </p>
-                          <p className="text-gray-600 dark:text-gray-400 mt-0.5">
+                          <p className="text-muted-foreground dark:text-muted-foreground mt-0.5">
                             💡 {warning?.suggestion}
                           </p>
                         </div>
@@ -473,16 +473,16 @@ const CodeViewer = ({ snippet }) => {
           </pre>)
         ) : (
           // Preview View
-          (<div className="relative bg-white" style={{ minHeight: '400px' }}>
+          (<div className="relative bg-card" style={{ minHeight: '400px' }}>
             {previewError ? (
               <div className="p-8 text-center">
-                <Icon name="AlertCircle" size={48} className="text-red-500 mx-auto mb-4" />
-                <p className="text-red-600 font-medium mb-2">Preview Error</p>
+                <Icon name="AlertCircle" size={48} className="text-error mx-auto mb-4" />
+                <p className="text-error font-medium mb-2">Preview Error</p>
                 <p className="text-sm text-muted-foreground mb-4">{previewError}</p>
                 {validationWarnings?.length > 0 && (
                   <div className="mb-4 text-left max-w-md mx-auto">
-                    <p className="text-xs font-semibold text-gray-700 mb-2">Common causes:</p>
-                    <ul className="text-xs text-gray-600 space-y-1 list-disc list-inside">
+                    <p className="text-xs font-semibold text-foreground mb-2">Common causes:</p>
+                    <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
                       {validationWarnings?.slice(0, 3)?.map((w, i) => (
                         <li key={i}>{w?.message}</li>
                       ))}
@@ -510,8 +510,8 @@ const CodeViewer = ({ snippet }) => {
               />
             ) : (
               <div className="p-8 text-center">
-                <Icon name="Eye" size={48} className="text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 font-medium mb-2">No Preview Available</p>
+                <Icon name="Eye" size={48} className="text-muted-foreground mx-auto mb-4" />
+                <p className="text-muted-foreground font-medium mb-2">No Preview Available</p>
                 <p className="text-sm text-muted-foreground">
                   This code type cannot be previewed in the browser
                 </p>

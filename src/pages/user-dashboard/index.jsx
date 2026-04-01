@@ -231,8 +231,8 @@ const UserDashboard = () => {
       <div className="min-h-screen bg-background">
         <AppNavigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-red-500/10 border border-red-500 rounded-lg p-4">
-            <p className="text-red-400">{error}</p>
+          <div className="bg-error/100/10 border border-error rounded-lg p-4">
+            <p className="text-error">{error}</p>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ const CTASection = ({ onGetStarted }) => {
             iconName="Rocket"
             iconPosition="right"
             onClick={onGetStarted}
-            className="w-full sm:w-auto bg-white text-blue-600 hover:bg-blue-50"
+            className="w-full sm:w-auto bg-card text-primary hover:bg-primary/10"
           >
             Get Started Free
           </Button>
@@ -30,7 +30,7 @@ const CTASection = ({ onGetStarted }) => {
             size="lg"
             iconName="Calendar"
             iconPosition="left"
-            className="w-full sm:w-auto border-white text-white hover:bg-white/10"
+            className="w-full sm:w-auto border-white text-white hover:bg-card/10"
           >
             Schedule Demo
           </Button>

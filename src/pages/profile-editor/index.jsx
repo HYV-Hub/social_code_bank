@@ -204,20 +204,20 @@ export default function ProfileEditor() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Helmet>
           <title>Loading Profile - HYVhub</title>
         </Helmet>
         <AppNavigation />
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
-          <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Helmet>
         <title>Edit Profile - HYVhub</title>
         <meta name="description" content="Edit your profile information and settings" />
@@ -226,40 +226,40 @@ export default function ProfileEditor() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Edit Profile</h1>
-          <p className="mt-2 text-gray-600">Update your personal information and profile settings</p>
+          <h1 className="text-3xl font-bold text-foreground">Edit Profile</h1>
+          <p className="mt-2 text-muted-foreground">Update your personal information and profile settings</p>
         </div>
 
         {/* Error/Success Messages */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-            <X className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+          <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+            <X className="w-5 h-5 text-error flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-red-800 font-medium">Error</p>
-              <p className="text-red-700 text-sm">{error}</p>
+              <p className="text-error text-sm">{error}</p>
             </div>
           </div>
         )}
 
         {successMessage && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
-            <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+          <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg flex items-start gap-3">
+            <Check className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-green-800 font-medium">Success</p>
-              <p className="text-green-700 text-sm">{successMessage}</p>
+              <p className="text-success font-medium">Success</p>
+              <p className="text-success text-sm">{successMessage}</p>
             </div>
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
           {/* Profile Picture Section */}
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Profile Picture</h2>
+          <div className="bg-card rounded-lg shadow-sm p-6 mb-6">
+            <h2 className="text-xl font-semibold text-foreground mb-4">Profile Picture</h2>
             
             <div className="flex items-center gap-6">
               <div className="relative">
                 <div 
-                  className="w-32 h-32 rounded-full overflow-hidden bg-gray-200 border-4 border-white shadow-lg cursor-pointer group"
+                  className="w-32 h-32 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg cursor-pointer group"
                   onClick={handleAvatarClick}
                 >
                   {avatarPreview || avatarUrl ? (
@@ -278,8 +278,8 @@ export default function ProfileEditor() {
                   </div>
                 </div>
                 {uploading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 rounded-full">
-                    <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+                  <div className="absolute inset-0 flex items-center justify-center bg-card bg-opacity-75 rounded-full">
+                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
                   </div>
                 )}
               </div>
@@ -295,16 +295,16 @@ export default function ProfileEditor() {
                 <button
                   type="button"
                   onClick={handleAvatarClick}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors"
                 >
                   <Upload className="w-4 h-4" />
                   Upload New Photo
                 </button>
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 text-sm text-muted-foreground">
                   JPG, PNG, WebP or GIF. Max size 2MB.
                 </p>
                 {avatarFile && (
-                  <p className="mt-1 text-sm text-green-600">
+                  <p className="mt-1 text-sm text-success">
                     ✓ New photo selected: {avatarFile?.name}
                   </p>
                 )}
@@ -313,84 +313,84 @@ export default function ProfileEditor() {
           </div>
 
           {/* Basic Information Section */}
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Basic Information</h2>
+          <div className="bg-card rounded-lg shadow-sm p-6 mb-6">
+            <h2 className="text-xl font-semibold text-foreground mb-4">Basic Information</h2>
 
             <div className="space-y-4">
               {/* Full Name */}
               <div>
-                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-1">
                   Full Name *
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <input
                     type="text"
                     id="fullName"
                     name="fullName"
                     value={formData?.fullName}
                     onChange={handleInputChange}
-                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      fieldErrors?.fullName ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent ${
+                      fieldErrors?.fullName ? 'border-error' : 'border-border'
                     }`}
                     placeholder="Enter your full name"
                   />
                 </div>
                 {fieldErrors?.fullName && (
-                  <p className="mt-1 text-sm text-red-600">{fieldErrors?.fullName}</p>
+                  <p className="mt-1 text-sm text-error">{fieldErrors?.fullName}</p>
                 )}
               </div>
 
               {/* Username */}
               <div>
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="username" className="block text-sm font-medium text-foreground mb-1">
                   Username *
                 </label>
                 <div className="relative">
-                  <AtSign className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <AtSign className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <input
                     type="text"
                     id="username"
                     name="username"
                     value={formData?.username}
                     onChange={handleInputChange}
-                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      fieldErrors?.username ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent ${
+                      fieldErrors?.username ? 'border-error' : 'border-border'
                     }`}
                     placeholder="Choose a username"
                   />
                 </div>
                 {fieldErrors?.username && (
-                  <p className="mt-1 text-sm text-red-600">{fieldErrors?.username}</p>
+                  <p className="mt-1 text-sm text-error">{fieldErrors?.username}</p>
                 )}
               </div>
 
               {/* Email (Read-only) */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
                   Email
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData?.email}
                     disabled
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed"
+                    className="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-background text-muted-foreground cursor-not-allowed"
                   />
                 </div>
-                <p className="mt-1 text-sm text-gray-500">Email cannot be changed</p>
+                <p className="mt-1 text-sm text-muted-foreground">Email cannot be changed</p>
               </div>
 
               {/* Bio */}
               <div>
-                <label htmlFor="bio" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="bio" className="block text-sm font-medium text-foreground mb-1">
                   Bio
                 </label>
                 <div className="relative">
-                  <FileText className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                  <FileText className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
                   <textarea
                     id="bio"
                     name="bio"
@@ -398,17 +398,17 @@ export default function ProfileEditor() {
                     onChange={handleInputChange}
                     rows={4}
                     maxLength={500}
-                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
-                      fieldErrors?.bio ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-none ${
+                      fieldErrors?.bio ? 'border-error' : 'border-border'
                     }`}
                     placeholder="Tell us about yourself..."
                   />
                 </div>
                 <div className="flex justify-between items-center mt-1">
                   {fieldErrors?.bio && (
-                    <p className="text-sm text-red-600">{fieldErrors?.bio}</p>
+                    <p className="text-sm text-error">{fieldErrors?.bio}</p>
                   )}
-                  <p className="text-sm text-gray-500 ml-auto">
+                  <p className="text-sm text-muted-foreground ml-auto">
                     {formData?.bio?.length}/500 characters
                   </p>
                 </div>
@@ -421,7 +421,7 @@ export default function ProfileEditor() {
             <button
               type="submit"
               disabled={saving || !hasChanges}
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               {saving ? (
                 <>
@@ -440,7 +440,7 @@ export default function ProfileEditor() {
               type="button"
               onClick={handleCancel}
               disabled={saving}
-              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-6 py-3 border border-border text-foreground rounded-lg hover:bg-background transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Cancel
             </button>

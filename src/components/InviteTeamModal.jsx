@@ -100,12 +100,12 @@ const InviteTeamModal = ({ isOpen, onClose, teamId, teamName }) => {
 
         {/* Notifications */}
         {error && (
-          <div className="mx-6 mt-4 p-3 bg-red-500/10 border border-red-500 rounded-lg">
-            <p className="text-sm text-red-400">{error}</p>
+          <div className="mx-6 mt-4 p-3 bg-error/100/10 border border-error rounded-lg">
+            <p className="text-sm text-error">{error}</p>
           </div>
         )}
         {success && (
-          <div className="mx-6 mt-4 p-3 bg-green-500/10 border border-green-500 rounded-lg">
+          <div className="mx-6 mt-4 p-3 bg-success/100/10 border border-green-500 rounded-lg">
             <p className="text-sm text-green-400">{success}</p>
           </div>
         )}

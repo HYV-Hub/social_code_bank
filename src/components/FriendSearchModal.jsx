@@ -237,7 +237,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
     const status = getUserStatus(userItem?.id);
 
     return (
-      <div key={userItem?.id} className="flex items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
+      <div key={userItem?.id} className="flex items-center gap-3 p-4 hover:bg-background rounded-lg transition-colors">
         <img
           src={userItem?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(userItem?.full_name || userItem?.username || 'User')}&background=random`}
           alt={userItem?.full_name || userItem?.username}
@@ -245,17 +245,17 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
         />
         
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-gray-900 truncate">
+          <p className="text-sm font-medium text-foreground truncate">
             {userItem?.full_name || userItem?.username}
           </p>
           {userItem?.username && (
-            <p className="text-xs text-gray-500 truncate">@{userItem?.username}</p>
+            <p className="text-xs text-muted-foreground truncate">@{userItem?.username}</p>
           )}
           {userItem?.bio && (
-            <p className="text-xs text-gray-600 truncate mt-1">{userItem?.bio}</p>
+            <p className="text-xs text-muted-foreground truncate mt-1">{userItem?.bio}</p>
           )}
           {userItem?.contributor_level && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 mt-1">
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/15 text-foreground mt-1">
               {userItem?.contributor_level}
             </span>
           )}
@@ -263,7 +263,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
 
         <div className="flex-shrink-0">
           {status === 'friends' && (
-            <Button variant="ghost" size="sm" disabled className="text-green-600">
+            <Button variant="ghost" size="sm" disabled className="text-success">
               <Icon name="Check" size={16} className="mr-1" />
               Friends
             </Button>
@@ -273,14 +273,14 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
               variant="ghost" 
               size="sm"
               onClick={() => handleCancelRequest(userItem?.id)}
-              className="text-gray-600"
+              className="text-muted-foreground"
             >
               <Icon name="Clock" size={16} className="mr-1" />
               Pending
             </Button>
           )}
           {status === 'pending_received' && (
-            <Button variant="ghost" size="sm" disabled className="text-blue-600">
+            <Button variant="ghost" size="sm" disabled className="text-primary">
               <Icon name="Mail" size={16} className="mr-1" />
               Received
             </Button>
@@ -336,7 +336,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
         }}
       >
         <div 
-          className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden my-auto animate-in fade-in slide-in-from-bottom-4 duration-300"
+          className="bg-card rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden my-auto animate-in fade-in slide-in-from-bottom-4 duration-300"
           onClick={(e) => e?.stopPropagation()}
           role="dialog"
           aria-modal="true"
@@ -348,27 +348,27 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
           }}
         >
           {/* Header - FIXED */}
-          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
-            <h2 id="friend-modal-title" className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
-              <Icon name="UserPlus" size={24} className="text-blue-600" />
+          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
+            <h2 id="friend-modal-title" className="text-xl sm:text-2xl font-bold text-foreground flex items-center gap-2">
+              <Icon name="UserPlus" size={24} className="text-primary" />
               <span className="hidden sm:inline">Find Friends</span>
               <span className="sm:hidden">Friends</span>
             </h2>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-white/80 rounded-full transition-all duration-200 group flex-shrink-0"
+              className="p-2 hover:bg-card/80 rounded-full transition-all duration-200 group flex-shrink-0"
               aria-label="Close modal"
             >
-              <Icon name="X" size={20} className="text-gray-600 group-hover:text-gray-900" />
+              <Icon name="X" size={20} className="text-muted-foreground group-hover:text-foreground" />
             </button>
           </div>
 
           {/* NEW: Tab Navigation */}
-          <div className="flex border-b border-gray-200 bg-gray-50">
+          <div className="flex border-b border-border bg-background">
             <button
               onClick={() => setActiveTab('search')}
               className={`flex-1 px-4 py-3 text-sm font-medium transition-all ${
-                activeTab === 'search' ?'text-blue-600 border-b-2 border-blue-600 bg-white' :'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                activeTab === 'search' ?'text-primary border-b-2 border-blue-600 bg-card' :'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
               <div className="flex items-center justify-center gap-2">
@@ -379,14 +379,14 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
             <button
               onClick={() => setActiveTab('requests')}
               className={`flex-1 px-4 py-3 text-sm font-medium transition-all relative ${
-                activeTab === 'requests' ?'text-blue-600 border-b-2 border-blue-600 bg-white' :'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                activeTab === 'requests' ?'text-primary border-b-2 border-blue-600 bg-card' :'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
               <div className="flex items-center justify-center gap-2">
                 <Icon name="Inbox" size={16} />
                 <span>Current Requests</span>
                 {pendingRequests?.length > 0 && (
-                  <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                  <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error/100 text-[10px] font-bold text-white">
                     {pendingRequests?.length}
                   </span>
                 )}
@@ -396,32 +396,32 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
 
           {/* Search Bar - FIXED (only show in search tab) */}
           {activeTab === 'search' && (
-            <div className="p-4 sm:p-6 border-b border-gray-200 bg-gray-50 flex-shrink-0">
+            <div className="p-4 sm:p-6 border-b border-border bg-background flex-shrink-0">
               <div className="relative">
                 <Icon 
                   name="Search" 
                   size={20} 
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none z-10"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground pointer-events-none z-10"
                 />
                 <Input
                   type="text"
                   placeholder="Search by name or username..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e?.target?.value)}
-                  className="pl-12 pr-4 py-3 w-full text-base border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+                  className="pl-12 pr-4 py-3 w-full text-base border-2 border-border focus:border-blue-500 rounded-xl"
                   autoFocus
                 />
               </div>
               
               {/* Messages */}
               {error && (
-                <div className="mt-3 p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg flex items-start gap-2 animate-in slide-in-from-top-2">
+                <div className="mt-3 p-3 bg-error/10 border border-error/20 text-error text-sm rounded-lg flex items-start gap-2 animate-in slide-in-from-top-2">
                   <Icon name="AlertCircle" size={18} className="flex-shrink-0 mt-0.5" />
                   <span className="flex-1">{error}</span>
                 </div>
               )}
               {success && (
-                <div className="mt-3 p-3 bg-green-50 border border-green-200 text-green-700 text-sm rounded-lg flex items-start gap-2 animate-in slide-in-from-top-2">
+                <div className="mt-3 p-3 bg-success/10 border border-success/20 text-success text-sm rounded-lg flex items-start gap-2 animate-in slide-in-from-top-2">
                   <Icon name="CheckCircle" size={18} className="flex-shrink-0 mt-0.5" />
                   <span className="flex-1">{success}</span>
                 </div>
@@ -431,7 +431,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
 
           {/* Content - SCROLLABLE */}
           <div 
-            className="overflow-y-auto bg-white flex-1" 
+            className="overflow-y-auto bg-card flex-1" 
             style={{ 
               maxHeight: 'calc(90vh - 200px)',
               minHeight: '200px',
@@ -445,14 +445,14 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
                 {/* Search Results */}
                 {searchQuery?.trim()?.length >= 2 && (
                   <div className="p-4 sm:p-6">
-                    <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-                      <Icon name="Search" size={16} className="text-blue-600" />
+                    <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
+                      <Icon name="Search" size={16} className="text-primary" />
                       Search Results
                     </h3>
                     {isSearching ? (
                       <div className="flex flex-col items-center justify-center py-12">
-                        <Icon name="Loader2" size={32} className="animate-spin text-blue-600 mb-3" />
-                        <span className="text-gray-600 font-medium">Searching...</span>
+                        <Icon name="Loader2" size={32} className="animate-spin text-primary mb-3" />
+                        <span className="text-muted-foreground font-medium">Searching...</span>
                       </div>
                     ) : searchResults?.length > 0 ? (
                       <div className="space-y-2">
@@ -460,11 +460,11 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
                       </div>
                     ) : (
                       <div className="text-center py-12">
-                        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                          <Icon name="Users" size={32} className="text-gray-400" />
+                        <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
+                          <Icon name="Users" size={32} className="text-muted-foreground" />
                         </div>
-                        <p className="text-gray-600 font-medium">No users found</p>
-                        <p className="text-sm text-gray-500 mt-1">Try a different search term</p>
+                        <p className="text-muted-foreground font-medium">No users found</p>
+                        <p className="text-sm text-muted-foreground mt-1">Try a different search term</p>
                       </div>
                     )}
                   </div>
@@ -473,14 +473,14 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
                 {/* Suggested Users */}
                 {searchQuery?.trim()?.length < 2 && (
                   <div className="p-4 sm:p-6">
-                    <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-                      <Icon name="Sparkles" size={16} className="text-indigo-600" />
+                    <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
+                      <Icon name="Sparkles" size={16} className="text-secondary" />
                       Suggested Users
                     </h3>
                     {isLoading ? (
                       <div className="flex flex-col items-center justify-center py-12">
-                        <Icon name="Loader2" size={32} className="animate-spin text-indigo-600 mb-3" />
-                        <span className="text-gray-600 font-medium">Loading suggestions...</span>
+                        <Icon name="Loader2" size={32} className="animate-spin text-secondary mb-3" />
+                        <span className="text-muted-foreground font-medium">Loading suggestions...</span>
                       </div>
                     ) : suggestedUsers?.length > 0 ? (
                       <div className="space-y-2">
@@ -488,11 +488,11 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
                       </div>
                     ) : (
                       <div className="text-center py-12">
-                        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                          <Icon name="Users" size={32} className="text-gray-400" />
+                        <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
+                          <Icon name="Users" size={32} className="text-muted-foreground" />
                         </div>
-                        <p className="text-gray-600 font-medium">No suggested users available</p>
-                        <p className="text-sm text-gray-500 mt-1">Check back later for recommendations</p>
+                        <p className="text-muted-foreground font-medium">No suggested users available</p>
+                        <p className="text-sm text-muted-foreground mt-1">Check back later for recommendations</p>
                       </div>
                     )}
                   </div>
@@ -505,42 +505,42 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
               <div className="p-4 sm:p-6">
                 {/* Messages for requests tab */}
                 {error && (
-                  <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg flex items-start gap-2">
+                  <div className="mb-4 p-3 bg-error/10 border border-error/20 text-error text-sm rounded-lg flex items-start gap-2">
                     <Icon name="AlertCircle" size={18} className="flex-shrink-0 mt-0.5" />
                     <span className="flex-1">{error}</span>
                   </div>
                 )}
                 {success && (
-                  <div className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 text-sm rounded-lg flex items-start gap-2">
+                  <div className="mb-4 p-3 bg-success/10 border border-success/20 text-success text-sm rounded-lg flex items-start gap-2">
                     <Icon name="CheckCircle" size={18} className="flex-shrink-0 mt-0.5" />
                     <span className="flex-1">{success}</span>
                   </div>
                 )}
 
-                <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <Icon name="Inbox" size={16} className="text-blue-600" />
+                <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
+                  <Icon name="Inbox" size={16} className="text-primary" />
                   Pending Requests ({pendingRequests?.length})
                 </h3>
 
                 {loadingRequests ? (
                   <div className="flex flex-col items-center justify-center py-12">
-                    <Icon name="Loader2" size={32} className="animate-spin text-blue-600 mb-3" />
-                    <span className="text-gray-600 font-medium">Loading requests...</span>
+                    <Icon name="Loader2" size={32} className="animate-spin text-primary mb-3" />
+                    <span className="text-muted-foreground font-medium">Loading requests...</span>
                   </div>
                 ) : pendingRequests?.length === 0 ? (
                   <div className="text-center py-12">
-                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Icon name="Inbox" size={32} className="text-gray-400" />
+                    <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Icon name="Inbox" size={32} className="text-muted-foreground" />
                     </div>
-                    <p className="text-gray-600 font-medium">No pending friend requests</p>
-                    <p className="text-sm text-gray-500 mt-1">New requests will appear here</p>
+                    <p className="text-muted-foreground font-medium">No pending friend requests</p>
+                    <p className="text-sm text-muted-foreground mt-1">New requests will appear here</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
                     {pendingRequests?.map((request) => (
                       <div
                         key={request?.id}
-                        className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50/30 transition-all"
+                        className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-blue-300 hover:bg-primary/10/30 transition-all"
                       >
                         <img
                           src={request?.sender?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(request?.sender?.name || 'User')}&background=random`}
@@ -549,13 +549,13 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
                         />
                         
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 truncate">
+                          <p className="text-sm font-medium text-foreground truncate">
                             {request?.sender?.name}
                           </p>
                           {request?.sender?.username && (
-                            <p className="text-xs text-gray-500 truncate">@{request?.sender?.username}</p>
+                            <p className="text-xs text-muted-foreground truncate">@{request?.sender?.username}</p>
                           )}
-                          <p className="text-xs text-gray-400 mt-1">
+                          <p className="text-xs text-muted-foreground mt-1">
                             {new Date(request?.createdAt)?.toLocaleDateString('en-US', {
                               month: 'short',
                               day: 'numeric',
@@ -570,7 +570,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
                             variant="ghost"
                             onClick={() => handleRejectRequest(request?.id)}
                             disabled={processingRequests?.has(request?.id)}
-                            className="text-gray-600 hover:text-red-600 hover:bg-red-50"
+                            className="text-muted-foreground hover:text-error hover:bg-error/10"
                           >
                             {processingRequests?.has(request?.id) ? (
                               <Icon name="Loader2" size={16} className="animate-spin" />

@@ -213,10 +213,10 @@ export default function MemberManagementCenter() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="flex items-center justify-center min-h-screen bg-background">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-slate-700 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading member data...</p>
+          <p className="text-muted-foreground">Loading member data...</p>
         </div>
       </div>
     );
@@ -224,15 +224,15 @@ export default function MemberManagementCenter() {
 
   if (error && !company) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-          <div className="text-red-500 mb-4">
+      <div className="flex items-center justify-center min-h-screen bg-background">
+        <div className="bg-card p-8 rounded-lg shadow-md max-w-md w-full">
+          <div className="text-error mb-4">
             <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2 text-center">Access Denied</h2>
-          <p className="text-gray-600 text-center mb-4">{error}</p>
+          <h2 className="text-xl font-semibold text-foreground mb-2 text-center">Access Denied</h2>
+          <p className="text-muted-foreground text-center mb-4">{error}</p>
           <button
             onClick={() => window.location.href = '/'}
             className="w-full px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-800 transition-colors"
@@ -252,25 +252,25 @@ export default function MemberManagementCenter() {
         <title>Member Management Center | Social Code Bank</title>
         <meta name="description" content="Manage team members, roles, and permissions with comprehensive administrative controls" />
       </Helmet>
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-background py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="mb-8">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">Member Management Center</h1>
-                <p className="text-gray-600">Manage team members, roles, and access permissions for {company?.name}</p>
+                <h1 className="text-3xl font-bold text-foreground mb-2">Member Management Center</h1>
+                <p className="text-muted-foreground">Manage team members, roles, and access permissions for {company?.name}</p>
               </div>
               
               <div className="flex items-center gap-4">
-                <div className="bg-white px-4 py-3 rounded-lg shadow-sm border border-gray-200">
+                <div className="bg-card px-4 py-3 rounded-lg shadow-sm border border-border">
                   <div className="flex items-center gap-2">
                     <Users className="w-5 h-5 text-slate-700" />
                     <div>
-                      <div className="text-sm font-semibold text-gray-900">
+                      <div className="text-sm font-semibold text-foreground">
                         {userLimitInfo?.current} / {userLimitInfo?.limit}
                       </div>
-                      <div className="text-xs text-gray-500">Members</div>
+                      <div className="text-xs text-muted-foreground">Members</div>
                     </div>
                   </div>
                 </div>
@@ -286,18 +286,18 @@ export default function MemberManagementCenter() {
           </div>
 
           {/* Search and Filter Bar */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="bg-card rounded-lg shadow-md p-6 mb-6">
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Search Input */}
               <div className="flex-1">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <input
                     type="text"
                     placeholder="Search by name, email, or username..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e?.target?.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -307,7 +307,7 @@ export default function MemberManagementCenter() {
                 <select
                   value={selectedRole}
                   onChange={(e) => setSelectedRole(e?.target?.value)}
-                  className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-white"
+                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-card"
                 >
                   <option value="all">All Roles</option>
                   <option value="user">Developer</option>
@@ -319,7 +319,7 @@ export default function MemberManagementCenter() {
                 <select
                   value={activityStatus}
                   onChange={(e) => setActivityStatus(e?.target?.value)}
-                  className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-white"
+                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-card"
                 >
                   <option value="all">All Status</option>
                   <option value="active">Active</option>
@@ -329,7 +329,7 @@ export default function MemberManagementCenter() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e?.target?.value)}
-                  className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-white"
+                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-card"
                 >
                   <option value="recent">Most Recent</option>
                   <option value="name">Name (A-Z)</option>
@@ -338,7 +338,7 @@ export default function MemberManagementCenter() {
 
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className="px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
+                  className="px-4 py-3 bg-muted text-foreground rounded-lg hover:bg-muted transition-colors flex items-center gap-2"
                 >
                   <Filter className="w-5 h-5" />
                   <span className="hidden sm:inline">Filters</span>
@@ -347,7 +347,7 @@ export default function MemberManagementCenter() {
             </div>
 
             {/* Select All Checkbox */}
-            <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="mt-4 pt-4 border-t border-border">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -355,7 +355,7 @@ export default function MemberManagementCenter() {
                   onChange={handleSelectAll}
                   className="w-5 h-5 text-slate-700 rounded focus:ring-slate-700"
                 />
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-foreground">
                   Select All ({members?.length} members)
                 </span>
               </label>
@@ -374,17 +374,17 @@ export default function MemberManagementCenter() {
 
           {/* Error Message */}
           {error && company && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-              <svg className="w-5 h-5 text-red-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+            <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+              <svg className="w-5 h-5 text-error mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
               </svg>
               <div className="flex-1">
                 <h3 className="text-sm font-medium text-red-800">Error</h3>
-                <p className="text-sm text-red-700 mt-1">{error}</p>
+                <p className="text-sm text-error mt-1">{error}</p>
               </div>
               <button
                 onClick={() => setError('')}
-                className="text-red-500 hover:text-red-700"
+                className="text-error hover:text-error"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -395,10 +395,10 @@ export default function MemberManagementCenter() {
 
           {/* Members Grid */}
           {members?.length === 0 ? (
-            <div className="bg-white rounded-lg shadow-md p-12 text-center">
-              <Users className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No Members Found</h3>
-              <p className="text-gray-600">
+            <div className="bg-card rounded-lg shadow-md p-12 text-center">
+              <Users className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">No Members Found</h3>
+              <p className="text-muted-foreground">
                 {searchTerm || selectedRole !== 'all' || activityStatus !== 'all' ?'Try adjusting your filters to see more results' :'Start by inviting team members to your company'}
               </p>
             </div>

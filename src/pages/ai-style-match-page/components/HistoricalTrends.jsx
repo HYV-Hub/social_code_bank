@@ -62,7 +62,7 @@ const HistoricalTrends = () => {
       </div>
 
       {/* Trend Chart */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
         <h3 className="text-xl font-semibold text-slate-900 mb-6">
           Style Score Evolution
         </h3>
@@ -122,12 +122,12 @@ const HistoricalTrends = () => {
 
       {/* Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
           <h4 className="text-lg font-semibold text-slate-900 mb-4">Key Statistics</h4>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <span className="text-slate-600">Highest Score</span>
-              <span className="text-xl font-bold text-green-600">{getMaxScore()}%</span>
+              <span className="text-xl font-bold text-success">{getMaxScore()}%</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-slate-600">Lowest Score</span>
@@ -135,7 +135,7 @@ const HistoricalTrends = () => {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-slate-600">Average Score</span>
-              <span className="text-xl font-bold text-blue-600">
+              <span className="text-xl font-bold text-primary">
                 {Math.round(
                   trendData?.reduce((sum, d) => sum + d?.score, 0) / trendData?.length
                 )}%
@@ -143,33 +143,33 @@ const HistoricalTrends = () => {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-slate-600">Total Contributions</span>
-              <span className="text-xl font-bold text-purple-600">
+              <span className="text-xl font-bold text-primary">
                 {trendData?.reduce((sum, d) => sum + d?.contributions, 0)}
               </span>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 p-6">
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-success/20 p-6">
           <h4 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-green-600" />
+            <TrendingUp className="w-5 h-5 text-success" />
             Growth Insights
           </h4>
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+              <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
               <p className="text-slate-700">
                 Consistent improvement over the past 6 months with <span className="font-semibold">14% growth</span>
               </p>
             </li>
             <li className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+              <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
               <p className="text-slate-700">
                 Documentation quality increased by <span className="font-semibold">31%</span> since April
               </p>
             </li>
             <li className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+              <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
               <p className="text-slate-700">
                 Error handling patterns improved by <span className="font-semibold">21%</span>
               </p>
@@ -179,7 +179,7 @@ const HistoricalTrends = () => {
       </div>
 
       {/* Milestones Timeline */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
         <h3 className="text-xl font-semibold text-slate-900 mb-6">Milestones & Achievements</h3>
         <div className="space-y-4">
           {milestones?.map((milestone, index) => (

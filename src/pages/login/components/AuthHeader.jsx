@@ -10,7 +10,7 @@ const AuthHeader = () => {
       {/* Logo */}
       <button
         onClick={() => navigate("/public-homepage")}
-        className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-xl shadow-lg mb-4 hover:shadow-xl transition-shadow border border-slate-100 p-2"
+        className="inline-flex items-center justify-center w-20 h-20 bg-card rounded-xl shadow-lg mb-4 hover:shadow-xl transition-shadow border border-slate-100 p-2"
         aria-label="HyvHub Home"
       >
         <AppImage 

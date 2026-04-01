@@ -62,9 +62,9 @@ const CommentSection = ({ comments = [], onAddComment }) => {
 
   if (!user) {
     return (
-      <div className="bg-white rounded-lg shadow-sm p-6">
+      <div className="bg-card rounded-lg shadow-sm p-6">
         <h3 className="text-lg font-semibold mb-4">Comments</h3>
-        <p className="text-gray-500 text-center py-4">
+        <p className="text-muted-foreground text-center py-4">
           Please login to view and add comments
         </p>
       </div>
@@ -80,18 +80,18 @@ const CommentSection = ({ comments = [], onAddComment }) => {
           className="w-10 h-10 rounded-full object-cover"
         />
         <div className="flex-1">
-          <div className="bg-gray-50 rounded-lg p-3">
+          <div className="bg-background rounded-lg p-3">
             <div className="flex items-center gap-2 mb-1">
               <span className="font-medium text-sm">{comment?.user?.name}</span>
-              <span className="text-xs text-gray-500">@{comment?.user?.username}</span>
-              <span className="text-xs text-gray-400">{formatDate(comment?.createdAt)}</span>
+              <span className="text-xs text-muted-foreground">@{comment?.user?.username}</span>
+              <span className="text-xs text-muted-foreground">{formatDate(comment?.createdAt)}</span>
             </div>
-            <p className="text-sm text-gray-700">{comment?.content}</p>
+            <p className="text-sm text-foreground">{comment?.content}</p>
           </div>
           {!isReply && (
             <button
               onClick={() => setReplyingTo(comment?.id)}
-              className="text-xs text-blue-600 hover:text-blue-700 mt-1 ml-3"
+              className="text-xs text-primary hover:text-primary mt-1 ml-3"
             >
               Reply
             </button>
@@ -107,7 +107,7 @@ const CommentSection = ({ comments = [], onAddComment }) => {
               value={replyText}
               onChange={(e) => setReplyText(e?.target?.value)}
               placeholder="Write a reply..."
-              className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               disabled={submitting}
             />
             <Button
@@ -141,7 +141,7 @@ const CommentSection = ({ comments = [], onAddComment }) => {
   );
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
+    <div className="bg-card rounded-lg shadow-sm p-6">
       <h3 className="text-lg font-semibold mb-4">
         Comments ({comments?.length || 0})
       </h3>
@@ -159,7 +159,7 @@ const CommentSection = ({ comments = [], onAddComment }) => {
               value={newComment}
               onChange={(e) => setNewComment(e?.target?.value)}
               placeholder="Add a comment..."
-              className="w-full px-4 py-2 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-ring"
               rows={3}
               disabled={submitting}
             />
@@ -177,14 +177,14 @@ const CommentSection = ({ comments = [], onAddComment }) => {
       </form>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-          <p className="text-red-600 text-sm">{error}</p>
+        <div className="bg-error/10 border border-error/20 rounded-lg p-3 mb-4">
+          <p className="text-error text-sm">{error}</p>
         </div>
       )}
 
       {/* Comments List */}
       {comments?.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">
+        <p className="text-muted-foreground text-center py-8">
           No comments yet. Be the first to comment!
         </p>
       ) : (

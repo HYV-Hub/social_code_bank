@@ -369,10 +369,10 @@ export default function HiveExplorer() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
           <div className="relative">
-            <div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-4 border-border border-t-purple-600 mx-auto mb-4"></div>
             <div className="absolute inset-0 rounded-full h-16 w-16 border-4 border-transparent border-t-indigo-600 mx-auto animate-ping opacity-20"></div>
           </div>
-          <p className="text-gray-700 font-medium animate-pulse">Loading hive experience...</p>
+          <p className="text-foreground font-medium animate-pulse">Loading hive experience...</p>
         </div>
       </div>
     );
@@ -383,13 +383,13 @@ export default function HiveExplorer() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 flex items-center justify-center p-4">
         <div className="text-center max-w-md">
           <div className="mb-6 relative">
-            <div className="absolute inset-0 bg-red-500 opacity-10 blur-3xl rounded-full"></div>
-            <Icon name="AlertCircle" size={80} className="mx-auto text-red-500 relative z-10" />
+            <div className="absolute inset-0 bg-error/100 opacity-10 blur-3xl rounded-full"></div>
+            <Icon name="AlertCircle" size={80} className="mx-auto text-error relative z-10" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-foreground mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
             Hive Not Found
           </h2>
-          <p className="text-gray-600 mb-8 leading-relaxed">
+          <p className="text-muted-foreground mb-8 leading-relaxed">
             {error || 'This hive does not exist or you do not have access to view it.'}
           </p>
           <Button 
@@ -426,11 +426,11 @@ export default function HiveExplorer() {
         <main className={isCompanyContext ? 'flex-1 overflow-y-auto pt-6' : ''}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Enhanced Hive Header with Gradient */}
-            <div className="relative bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 rounded-2xl shadow-2xl overflow-hidden mb-8">
+            <div className="relative bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 rounded-xl shadow-2xl overflow-hidden mb-8">
               {/* Decorative Background Elements */}
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-card rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-card rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
               </div>
 
               <div className="relative z-10 p-8">
@@ -441,12 +441,12 @@ export default function HiveExplorer() {
                         {hive?.name}
                       </h1>
                       <span className={`px-4 py-1.5 text-sm font-semibold rounded-full shadow-lg backdrop-blur-sm ${
-                        hive?.privacy === 'public' ?'bg-green-500/90 text-white' :'bg-yellow-500/90 text-white'
+                        hive?.privacy === 'public' ?'bg-success/100/90 text-white' :'bg-warning/100/90 text-white'
                       }`}>
                         {hive?.privacy === 'public' ? '🌍 Public Hive' : '🔒 Private Hive'}
                       </span>
                       {hive?.userRole && (
-                        <span className="px-4 py-1.5 text-sm font-semibold rounded-full bg-white/90 text-purple-700 capitalize shadow-lg backdrop-blur-sm">
+                        <span className="px-4 py-1.5 text-sm font-semibold rounded-full bg-card/90 text-primary capitalize shadow-lg backdrop-blur-sm">
                           {hive?.userRole === 'owner' ? '👑 ' : hive?.userRole === 'admin' ? '⭐ ' : ''}
                           {hive?.userRole}
                         </span>
@@ -458,19 +458,19 @@ export default function HiveExplorer() {
                     
                     {/* Stats Row with Enhanced Design */}
                     <div className="flex items-center gap-8 flex-wrap">
-                      <div className="flex items-center gap-2 text-white/90 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
+                      <div className="flex items-center gap-2 text-white/90 bg-card/10 px-4 py-2 rounded-lg backdrop-blur-sm">
                         <Icon name="Users" size={20} />
                         <span className="font-semibold">{hive?.member_count || 0}</span>
                         <span className="text-sm">members</span>
                       </div>
                       {hive?.snippet_count > 0 && (
-                        <div className="flex items-center gap-2 text-white/90 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
+                        <div className="flex items-center gap-2 text-white/90 bg-card/10 px-4 py-2 rounded-lg backdrop-blur-sm">
                           <Icon name="Code" size={20} />
                           <span className="font-semibold">{hive?.snippet_count}</span>
                           <span className="text-sm">snippets</span>
                         </div>
                       )}
-                      <div className="flex items-center gap-2 text-white/90 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
+                      <div className="flex items-center gap-2 text-white/90 bg-card/10 px-4 py-2 rounded-lg backdrop-blur-sm">
                         <Icon name="User" size={20} />
                         <span className="text-sm">Owner:</span>
                         <span className="font-semibold">{hive?.owner?.username || hive?.owner?.full_name || 'Unknown'}</span>
@@ -482,7 +482,7 @@ export default function HiveExplorer() {
                         {hive?.tags?.map((tag, idx) => (
                           <span
                             key={idx}
-                            className="px-4 py-1.5 text-sm font-medium bg-white/90 text-purple-700 rounded-full shadow-md backdrop-blur-sm hover:bg-white transition-colors"
+                            className="px-4 py-1.5 text-sm font-medium bg-card/90 text-primary rounded-full shadow-md backdrop-blur-sm hover:bg-card transition-colors"
                           >
                             {tag}
                           </span>
@@ -495,7 +495,7 @@ export default function HiveExplorer() {
                     <Button
                       onClick={handleJoinHive}
                       disabled={!user || hive?.hasPendingRequest}
-                      className="bg-white text-purple-700 hover:bg-gray-50 font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all px-8 py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-card text-primary hover:bg-background font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all px-8 py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {hive?.hasPendingRequest ? (
                         <>
@@ -521,12 +521,12 @@ export default function HiveExplorer() {
 
             {/* Enhanced Tabs Navigation */}
             <div className="mb-8">
-              <div className="bg-white rounded-xl shadow-md p-2 border border-gray-200">
+              <div className="bg-card rounded-xl shadow-md p-2 border border-border">
                 <nav className="flex gap-2 overflow-x-auto">
                   <button
                     onClick={() => setActiveTab('overview')}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                      activeTab === 'overview' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                      activeTab === 'overview' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     <Icon name="Home" size={18} />
@@ -535,13 +535,13 @@ export default function HiveExplorer() {
                   <button
                     onClick={() => setActiveTab('snippets')}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                      activeTab === 'snippets' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                      activeTab === 'snippets' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     <Icon name="Code" size={18} />
                     Snippets
                     {snippets?.length > 0 && (
-                      <span className="px-2 py-0.5 text-xs bg-white/20 rounded-full">
+                      <span className="px-2 py-0.5 text-xs bg-card/20 rounded-full">
                         {snippets?.length}
                       </span>
                     )}
@@ -549,13 +549,13 @@ export default function HiveExplorer() {
                   <button
                     onClick={() => setActiveTab('collections')}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                      activeTab === 'collections' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                      activeTab === 'collections' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     <Icon name="FolderOpen" size={18} />
                     Collections
                     {collections?.length > 0 && (
-                      <span className="px-2 py-0.5 text-xs bg-white/20 rounded-full">
+                      <span className="px-2 py-0.5 text-xs bg-card/20 rounded-full">
                         {collections?.length}
                       </span>
                     )}
@@ -563,12 +563,12 @@ export default function HiveExplorer() {
                   <button
                     onClick={() => setActiveTab('members')}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                      activeTab === 'members' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                      activeTab === 'members' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     <Icon name="Users" size={18} />
                     Members
-                    <span className="px-2 py-0.5 text-xs bg-white/20 rounded-full">
+                    <span className="px-2 py-0.5 text-xs bg-card/20 rounded-full">
                       {members?.length || 0}
                     </span>
                   </button>
@@ -576,7 +576,7 @@ export default function HiveExplorer() {
                     <button
                       onClick={() => setActiveTab('settings')}
                       className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                        activeTab === 'settings' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                        activeTab === 'settings' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                       }`}
                     >
                       <Icon name="Settings" size={18} />
@@ -592,7 +592,7 @@ export default function HiveExplorer() {
               {/* Main Content */}
               <div className="lg:col-span-8">
                 {activeTab === 'overview' && (
-                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                  <div className="bg-card rounded-xl shadow-lg border border-border p-6">
                     <ActivityFeed hiveId={hiveId} />
                   </div>
                 )}
@@ -600,18 +600,18 @@ export default function HiveExplorer() {
                 {activeTab === 'snippets' && (
                   <div className="space-y-6">
                     {/* Enhanced Search Bar */}
-                    <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                    <div className="bg-card rounded-xl shadow-lg border border-border p-6">
                       <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
                         <div>
-                          <h2 className="text-2xl font-bold text-gray-900 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                          <h2 className="text-2xl font-bold text-foreground bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                             Code Snippets
                           </h2>
-                          <p className="text-gray-600 text-sm mt-1">
+                          <p className="text-muted-foreground text-sm mt-1">
                             Explore {filteredSnippets?.length} snippet{filteredSnippets?.length !== 1 ? 's' : ''}
                           </p>
                         </div>
                         <div className="relative flex-1 max-w-md">
-                          <Icon name="Search" size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                          <Icon name="Search" size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                           <Input
                             type="text"
                             placeholder="Search snippets... (Press / to focus)"
@@ -619,12 +619,12 @@ export default function HiveExplorer() {
                             onChange={(e) => setSearchQuery(e?.target?.value)}
                             className={`pl-10 pr-4 py-3 border-2 rounded-lg transition-all ${
                               searchFocused 
-                                ? 'border-purple-500 ring-2 ring-purple-200' :'border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200'
+                                ? 'border-purple-500 ring-2 ring-purple-200' :'border-border focus:border-purple-500 focus:ring-2 focus:ring-purple-200'
                             }`}
                             onFocus={() => setSearchFocused(true)}
                             onBlur={() => setSearchFocused(false)}
                           />
-                          <kbd className="absolute right-3 top-1/2 transform -translate-y-1/2 px-2 py-1 text-xs bg-gray-100 border border-gray-300 rounded shadow-sm text-gray-500">
+                          <kbd className="absolute right-3 top-1/2 transform -translate-y-1/2 px-2 py-1 text-xs bg-muted border border-border rounded shadow-sm text-muted-foreground">
                             /
                           </kbd>
                         </div>
@@ -632,13 +632,13 @@ export default function HiveExplorer() {
                     </div>
 
                     {filteredSnippets?.length === 0 ? (
-                      <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-12 text-center">
+                      <div className="bg-card rounded-xl shadow-lg border border-border p-12 text-center">
                         <div className="relative inline-block mb-6">
-                          <div className="absolute inset-0 bg-purple-500 opacity-10 blur-2xl rounded-full"></div>
+                          <div className="absolute inset-0 bg-primary/100 opacity-10 blur-2xl rounded-full"></div>
                           <Icon name="Code" size={64} className="mx-auto text-purple-400 relative z-10" />
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">No snippets found</h3>
-                        <p className="text-gray-600 mb-6">
+                        <h3 className="text-xl font-semibold text-foreground mb-2">No snippets found</h3>
+                        <p className="text-muted-foreground mb-6">
                           {searchQuery 
                             ? 'Try adjusting your search terms' :'Be the first to add a snippet to this hive!'}
                         </p>
@@ -657,40 +657,40 @@ export default function HiveExplorer() {
                         {filteredSnippets?.map((snippet, idx) => (
                           <div
                             key={snippet?.id}
-                            className="group bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-2xl hover:border-purple-300 transition-all cursor-pointer transform hover:-translate-y-1"
+                            className="group bg-card border-2 border-border rounded-xl p-6 hover:shadow-2xl hover:border-border transition-all cursor-pointer transform hover:-translate-y-1"
                             onClick={() => navigate(`/snippet-details?id=${snippet?.id}`)}
                             style={{ animationDelay: `${idx * 50}ms` }}
                           >
                             <div className="flex items-start justify-between mb-3">
                               <div className="flex-1">
-                                <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
+                                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-2">
                                   {snippet?.title}
                                 </h3>
                                 {snippet?.description && (
-                                  <p className="text-gray-600 text-sm line-clamp-2 leading-relaxed">
+                                  <p className="text-muted-foreground text-sm line-clamp-2 leading-relaxed">
                                     {snippet?.description}
                                   </p>
                                 )}
                               </div>
-                              <span className="px-3 py-1.5 text-xs font-semibold bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-700 rounded-lg group-hover:from-purple-200 group-hover:to-indigo-200 transition-colors">
+                              <span className="px-3 py-1.5 text-xs font-semibold bg-gradient-to-r from-purple-100 to-indigo-100 text-primary rounded-lg group-hover:from-purple-200 group-hover:to-indigo-200 transition-colors">
                                 {snippet?.language}
                               </span>
                             </div>
                             
-                            <div className="flex items-center gap-6 text-sm text-gray-500 pt-4 border-t border-gray-100">
-                              <span className="flex items-center gap-2 hover:text-red-600 transition-colors">
+                            <div className="flex items-center gap-6 text-sm text-muted-foreground pt-4 border-t border-border">
+                              <span className="flex items-center gap-2 hover:text-error transition-colors">
                                 <Icon name="Heart" size={16} />
                                 <span className="font-medium">{snippet?.likes_count || 0}</span>
                               </span>
-                              <span className="flex items-center gap-2 hover:text-blue-600 transition-colors">
+                              <span className="flex items-center gap-2 hover:text-primary transition-colors">
                                 <Icon name="MessageCircle" size={16} />
                                 <span className="font-medium">{snippet?.comments_count || 0}</span>
                               </span>
-                              <span className="flex items-center gap-2 hover:text-green-600 transition-colors">
+                              <span className="flex items-center gap-2 hover:text-success transition-colors">
                                 <Icon name="Eye" size={16} />
                                 <span className="font-medium">{snippet?.views_count || 0}</span>
                               </span>
-                              <span className="flex items-center gap-2 ml-auto text-purple-600">
+                              <span className="flex items-center gap-2 ml-auto text-primary">
                                 <Icon name="User" size={16} />
                                 <span className="font-medium">@{snippet?.author?.username}</span>
                               </span>
@@ -703,7 +703,7 @@ export default function HiveExplorer() {
                 )}
 
                 {activeTab === 'collections' && (
-                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                  <div className="bg-card rounded-xl shadow-lg border border-border p-6">
                     <HiveCollectionsTab 
                       hiveId={hiveId} 
                       hiveRole={memberRole}
@@ -713,18 +713,18 @@ export default function HiveExplorer() {
 
                 {activeTab === 'members' && (
                   <div className="space-y-6">
-                    <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                    <div className="bg-card rounded-xl shadow-lg border border-border p-6">
                       <div className="mb-6">
-                        <h2 className="text-2xl font-bold text-gray-900 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                        <h2 className="text-2xl font-bold text-foreground bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                           Hive Members
                         </h2>
-                        <p className="text-gray-600 text-sm mt-1">
+                        <p className="text-muted-foreground text-sm mt-1">
                           {members?.length} active member{members?.length !== 1 ? 's' : ''}
                         </p>
                         {canManageHive && (
-                          <div className="mt-3 p-3 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 rounded-lg">
+                          <div className="mt-3 p-3 bg-gradient-to-r from-purple-50 to-indigo-50 border border-border rounded-lg">
                             <div className="flex items-start gap-2">
-                              <Icon name="Info" size={16} className="text-purple-600 mt-0.5" />
+                              <Icon name="Info" size={16} className="text-primary mt-0.5" />
                               <div className="text-xs text-purple-900 leading-relaxed">
                                 <p className="font-semibold mb-1">Role Management:</p>
                                 <ul className="space-y-1 ml-4 list-disc">
@@ -745,15 +745,15 @@ export default function HiveExplorer() {
                             <div className="absolute inset-0 bg-indigo-500 opacity-10 blur-2xl rounded-full"></div>
                             <Icon name="Users" size={64} className="mx-auto text-indigo-400 relative z-10" />
                           </div>
-                          <h3 className="text-xl font-semibold text-gray-900 mb-2">No members yet</h3>
-                          <p className="text-gray-600">Be the first to join this hive!</p>
+                          <h3 className="text-xl font-semibold text-foreground mb-2">No members yet</h3>
+                          <p className="text-muted-foreground">Be the first to join this hive!</p>
                         </div>
                       ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {members?.map((member, idx) => (
                             <div
                               key={member?.id}
-                              className="group flex items-center gap-4 p-4 border-2 border-gray-200 rounded-xl hover:shadow-lg hover:border-purple-300 transition-all"
+                              className="group flex items-center gap-4 p-4 border-2 border-border rounded-xl hover:shadow-lg hover:border-border transition-all"
                               style={{ animationDelay: `${idx * 30}ms` }}
                             >
                               {member?.user?.avatar_url ? (
@@ -768,12 +768,12 @@ export default function HiveExplorer() {
                                 </div>
                               )}
                               <div className="flex-1 min-w-0">
-                                <p className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors truncate">
+                                <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                                   {member?.user?.full_name || member?.user?.username}
                                 </p>
-                                <p className="text-sm text-gray-500 truncate">@{member?.user?.username}</p>
+                                <p className="text-sm text-muted-foreground truncate">@{member?.user?.username}</p>
                                 {canManageHive && member?.role !== 'owner' && (
-                                  <p className="text-xs text-gray-400 mt-1">
+                                  <p className="text-xs text-muted-foreground mt-1">
                                     Joined {new Date(member?.joined_at)?.toLocaleDateString()}
                                   </p>
                                 )}
@@ -790,7 +790,7 @@ export default function HiveExplorer() {
                                   member?.role === 'owner' ?'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md'
                                     : member?.role === 'admin' ?'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md'
                                     : member?.role === 'editor' ?'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-md'
-                                    : member?.role === 'viewer' ?'bg-gradient-to-r from-purple-400 to-pink-400 text-white shadow-md' :'bg-gray-100 text-gray-700'
+                                    : member?.role === 'viewer' ?'bg-gradient-to-r from-purple-400 to-pink-400 text-white shadow-md' :'bg-muted text-foreground'
                                 }`}>
                                   {member?.role === 'owner' && '👑 '}
                                   {member?.role === 'admin' && '⭐ '}
@@ -808,7 +808,7 @@ export default function HiveExplorer() {
                 )}
 
                 {activeTab === 'settings' && canManageHive && (
-                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                  <div className="bg-card rounded-xl shadow-lg border border-border p-6">
                     <HiveSettings 
                       hive={hive} 
                       onUpdate={loadHiveData}
@@ -819,7 +819,7 @@ export default function HiveExplorer() {
 
               {/* Right Sidebar - Analytics - Only visible on XL screens */}
               <div className="lg:col-span-4">
-                <div className="hidden xl:block w-80 border-l border-gray-200 overflow-y-auto min-h-[calc(100vh-4rem)] sticky top-16">
+                <div className="hidden xl:block w-80 border-l border-border overflow-y-auto min-h-[calc(100vh-4rem)] sticky top-16">
                   <HiveInsightsSidebar
                     hiveData={hive}
                     collections={collections}
@@ -868,19 +868,19 @@ export default function HiveExplorer() {
             {/* My Hives Icon - Mobile only */}
             <button
               onClick={() => setGlobalSidebarOpen(true)}
-              className="p-3 bg-white rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 transition-all hover:scale-105"
+              className="p-3 bg-card rounded-full shadow-lg border border-border hover:bg-background transition-all hover:scale-105"
               title="My Hives"
             >
-              <Icon name="Menu" size={24} className="text-gray-700" />
+              <Icon name="Menu" size={24} className="text-foreground" />
             </button>
             {/* Navigation Icon - Mobile only when user is member */}
             {hive?.userRole && (
               <button
                 onClick={() => setNavSidebarOpen(true)}
-                className="p-3 bg-white rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 transition-all hover:scale-105"
+                className="p-3 bg-card rounded-full shadow-lg border border-border hover:bg-background transition-all hover:scale-105"
                 title="Navigation"
               >
-                <Icon name="List" size={24} className="text-gray-700" />
+                <Icon name="List" size={24} className="text-foreground" />
               </button>
             )}
           </div>
@@ -888,7 +888,7 @@ export default function HiveExplorer() {
           {/* Mobile Global Sidebar */}
           {globalSidebarOpen && (
             <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50" onClick={() => setGlobalSidebarOpen(false)}>
-              <div className="absolute left-0 top-0 bottom-0 w-80 bg-white shadow-xl" onClick={(e) => e?.stopPropagation()}>
+              <div className="absolute left-0 top-0 bottom-0 w-80 bg-card shadow-xl" onClick={(e) => e?.stopPropagation()}>
                 <GlobalHivesSidebar
                   myHives={myHives}
                   currentHiveId={hiveId}
@@ -901,33 +901,33 @@ export default function HiveExplorer() {
           {/* Navigation Sidebar */}
           {navSidebarOpen && (
             <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50" onClick={() => setNavSidebarOpen(false)}>
-              <div className="absolute left-0 top-0 bottom-0 w-80 bg-white shadow-xl" onClick={(e) => e?.stopPropagation()}>
+              <div className="absolute left-0 top-0 bottom-0 w-80 bg-card shadow-xl" onClick={(e) => e?.stopPropagation()}>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold text-gray-900">Navigation</h2>
+                    <h2 className="text-xl font-bold text-foreground">Navigation</h2>
                     <button
                       onClick={() => setNavSidebarOpen(false)}
-                      className="text-gray-500 hover:text-gray-700"
+                      className="text-muted-foreground hover:text-foreground"
                     >
                       <Icon name="X" size={24} />
                     </button>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <Icon name="Home" size={20} className="text-gray-600" />
-                      <span className="text-gray-900">Home</span>
+                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-background cursor-pointer">
+                      <Icon name="Home" size={20} className="text-muted-foreground" />
+                      <span className="text-foreground">Home</span>
                     </div>
-                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <Icon name="FolderOpen" size={20} className="text-gray-600" />
-                      <span className="text-gray-900">Collections</span>
+                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-background cursor-pointer">
+                      <Icon name="FolderOpen" size={20} className="text-muted-foreground" />
+                      <span className="text-foreground">Collections</span>
                     </div>
-                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <Icon name="Users" size={20} className="text-gray-600" />
-                      <span className="text-gray-900">Members</span>
+                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-background cursor-pointer">
+                      <Icon name="Users" size={20} className="text-muted-foreground" />
+                      <span className="text-foreground">Members</span>
                     </div>
-                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <Icon name="Activity" size={20} className="text-gray-600" />
-                      <span className="text-gray-900">Activity</span>
+                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-background cursor-pointer">
+                      <Icon name="Activity" size={20} className="text-muted-foreground" />
+                      <span className="text-foreground">Activity</span>
                     </div>
                   </div>
                 </div>
@@ -946,7 +946,7 @@ export default function HiveExplorer() {
       {/* Enhanced Real-time Notification Toast - Keep for both contexts */}
       {realtimeNotification && (
         <div className="fixed top-20 right-4 z-50 animate-slide-in-right">
-          <div className="bg-white border-l-4 border-purple-600 rounded-xl shadow-2xl p-5 max-w-sm backdrop-blur-sm">
+          <div className="bg-card border-l-4 border-purple-600 rounded-xl shadow-2xl p-5 max-w-sm backdrop-blur-sm">
             <div className="flex items-start gap-3">
               <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${
                 realtimeNotification?.type === 'member' ? 'bg-gradient-to-br from-green-400 to-emerald-500' :
@@ -962,17 +962,17 @@ export default function HiveExplorer() {
                 />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-gray-900 leading-relaxed">
+                <p className="text-sm font-semibold text-foreground leading-relaxed">
                   {realtimeNotification?.message}
                 </p>
-                <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
                   <Icon name="Clock" size={12} />
                   Just now
                 </p>
               </div>
               <button
                 onClick={() => setRealtimeNotification(null)}
-                className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors"
+                className="flex-shrink-0 text-muted-foreground hover:text-muted-foreground transition-colors"
               >
                 <Icon name="X" size={18} />
               </button>

@@ -218,10 +218,10 @@ const UserPreferences = () => {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 flex items-start">
-            <Icon name="CheckCircle" size={20} className="text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+          <div className="bg-success/10 border border-success/20 rounded-lg p-4 mb-6 flex items-start">
+            <Icon name="CheckCircle" size={20} className="text-success mr-3 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="text-green-800 font-medium">{successMessage}</p>
+              <p className="text-success font-medium">{successMessage}</p>
             </div>
           </div>
         )}
@@ -334,7 +334,7 @@ const UserPreferences = () => {
                       }`}
                     >
                       <span
-                        className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
+                        className={`absolute top-1 left-1 w-4 h-4 bg-card rounded-full transition-transform ${
                           notificationPreferences?.[key] ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
@@ -370,7 +370,7 @@ const UserPreferences = () => {
                       }`}
                     >
                       <span
-                        className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
+                        className={`absolute top-1 left-1 w-4 h-4 bg-card rounded-full transition-transform ${
                           notificationPreferences?.[key] ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
@@ -406,7 +406,7 @@ const UserPreferences = () => {
                       }`}
                     >
                       <span
-                        className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
+                        className={`absolute top-1 left-1 w-4 h-4 bg-card rounded-full transition-transform ${
                           notificationPreferences?.[key] ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />

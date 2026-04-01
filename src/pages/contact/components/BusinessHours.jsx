@@ -44,14 +44,14 @@ const BusinessHours = () => {
         {supportTiers?.map((tier, index) => (
           <div
             key={index}
-            className={`relative bg-white dark:bg-slate-800 rounded-xl p-6 border-2 ${
+            className={`relative bg-card dark:bg-slate-800 rounded-xl p-6 border-2 ${
               tier?.highlight 
                 ? 'border-blue-500 shadow-lg' 
                 : 'border-[var(--color-border)]'
             }`}
           >
             {tier?.highlight && (
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-primary text-white text-xs font-semibold rounded-full">
                 Most Popular
               </div>
             )}
@@ -76,7 +76,7 @@ const BusinessHours = () => {
 
             <div className="space-y-3">
               <div className="flex items-start gap-2">
-                <Icon name="Clock" size={16} className="text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <Icon name="Clock" size={16} className="text-primary dark:text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-xs font-medium text-[var(--color-foreground)] mb-1">
                     Availability
@@ -88,7 +88,7 @@ const BusinessHours = () => {
               </div>
 
               <div className="flex items-start gap-2">
-                <Icon name="Timer" size={16} className="text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <Icon name="Timer" size={16} className="text-primary dark:text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-xs font-medium text-[var(--color-foreground)] mb-1">
                     Response Time
@@ -100,7 +100,7 @@ const BusinessHours = () => {
               </div>
 
               <div className="flex items-start gap-2">
-                <Icon name="MessageSquare" size={16} className="text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <Icon name="MessageSquare" size={16} className="text-primary dark:text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-xs font-medium text-[var(--color-foreground)] mb-1">
                     Support Channels
@@ -109,7 +109,7 @@ const BusinessHours = () => {
                     {tier?.channels?.map((channel, idx) => (
                       <span
                         key={idx}
-                        className="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded"
+                        className="text-xs px-2 py-0.5 bg-primary/15 dark:bg-blue-900/30 text-primary dark:text-blue-400 rounded"
                       >
                         {channel}
                       </span>
@@ -122,9 +122,9 @@ const BusinessHours = () => {
         ))}
       </div>
       {/* Additional Info */}
-      <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
+      <div className="bg-warning/10 dark:bg-yellow-900/20 border border-warning/20 dark:border-yellow-800 rounded-lg p-6">
         <div className="flex items-start gap-3">
-          <Icon name="Info" size={20} className="text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
+          <Icon name="Info" size={20} className="text-warning dark:text-yellow-400 mt-0.5 flex-shrink-0" />
           <div>
             <h4 className="font-semibold text-[var(--color-foreground)] mb-2">
               Holiday Support Schedule

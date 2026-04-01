@@ -19,20 +19,20 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+      <div className="bg-card rounded-lg shadow-xl max-w-md w-full">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-slate-100 rounded-lg">
               <Filter className="w-5 h-5 text-slate-700" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900">Advanced Filters</h2>
+            <h2 className="text-xl font-semibold text-foreground">Advanced Filters</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-muted rounded-lg transition-colors"
           >
-            <X className="w-5 h-5 text-gray-600" />
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
 
@@ -40,7 +40,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
         <div className="p-6 space-y-6">
           {/* Role Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-foreground mb-3">
               Filter by Role
             </label>
             <div className="space-y-2">
@@ -57,7 +57,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                     }}
                     className="w-4 h-4 text-slate-700 rounded focus:ring-slate-700"
                   />
-                  <span className="text-sm text-gray-700">{role?.label}</span>
+                  <span className="text-sm text-foreground">{role?.label}</span>
                 </label>
               ))}
             </div>
@@ -65,7 +65,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
 
           {/* Contributor Level Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-foreground mb-3">
               Filter by Contributor Level
             </label>
             <div className="space-y-2">
@@ -82,7 +82,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                     }}
                     className="w-4 h-4 text-slate-700 rounded focus:ring-slate-700"
                   />
-                  <span className="text-sm text-gray-700">{level?.label}</span>
+                  <span className="text-sm text-foreground">{level?.label}</span>
                 </label>
               ))}
             </div>
@@ -90,7 +90,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
 
           {/* Activity Status */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-foreground mb-3">
               Activity Status
             </label>
             <div className="space-y-2">
@@ -102,7 +102,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'all' })}
                   className="w-4 h-4 text-slate-700 focus:ring-slate-700"
                 />
-                <span className="text-sm text-gray-700">All Members</span>
+                <span className="text-sm text-foreground">All Members</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -112,7 +112,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'active' })}
                   className="w-4 h-4 text-slate-700 focus:ring-slate-700"
                 />
-                <span className="text-sm text-gray-700">Active Only</span>
+                <span className="text-sm text-foreground">Active Only</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -122,17 +122,17 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'inactive' })}
                   className="w-4 h-4 text-slate-700 focus:ring-slate-700"
                 />
-                <span className="text-sm text-gray-700">Inactive Only</span>
+                <span className="text-sm text-foreground">Inactive Only</span>
               </label>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50">
+        <div className="flex items-center justify-between p-6 border-t border-border bg-background">
           <button
             onClick={() => onFilterChange({})}
-            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             Clear All Filters
           </button>

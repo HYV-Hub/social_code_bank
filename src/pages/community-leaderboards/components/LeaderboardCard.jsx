@@ -6,11 +6,11 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
 
   // Mock trend data (in real app, calculate from historical data)
   const getTrendIndicator = () => {
-    if (rank <= 3) return { icon: Minus, text: 'Same', color: 'text-gray-400' };
+    if (rank <= 3) return { icon: Minus, text: 'Same', color: 'text-muted-foreground' };
     const random = Math.random();
     if (random > 0.5) return { icon: ArrowUp, text: 'Up', color: 'text-green-500' };
-    if (random < 0.3) return { icon: ArrowDown, text: 'Down', color: 'text-red-500' };
-    return { icon: Minus, text: 'Same', color: 'text-gray-400' };
+    if (random < 0.3) return { icon: ArrowDown, text: 'Down', color: 'text-error' };
+    return { icon: Minus, text: 'Same', color: 'text-muted-foreground' };
   };
 
   const trend = getTrendIndicator();
@@ -20,8 +20,8 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
     <div 
       onClick={onClick}
       className={`
-        bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer
-        border-2 ${rank <= 3 ? 'border-yellow-200' : 'border-transparent'}
+        bg-card rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer
+        border-2 ${rank <= 3 ? 'border-warning/20' : 'border-transparent'}
         hover:border-blue-300 p-6
       `}
     >
@@ -57,10 +57,10 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
 
             {/* Name and Username */}
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-gray-900 truncate">
+              <h3 className="font-semibold text-foreground truncate">
                 {user?.full_name || user?.username || 'Anonymous'}
               </h3>
-              <p className="text-sm text-gray-600 truncate">
+              <p className="text-sm text-muted-foreground truncate">
                 @{user?.username || 'unknown'}
               </p>
             </div>
@@ -70,11 +70,11 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
           <div className="flex items-center gap-2 mb-2">
             <span className={`
               px-2 py-1 text-xs font-medium rounded-full
-              ${user?.contributor_level === 'master' ? 'bg-purple-100 text-purple-700' : ''}
-              ${user?.contributor_level === 'expert' ? 'bg-blue-100 text-blue-700' : ''}
-              ${user?.contributor_level === 'advanced' ? 'bg-green-100 text-green-700' : ''}
-              ${user?.contributor_level === 'intermediate' ? 'bg-yellow-100 text-yellow-700' : ''}
-              ${user?.contributor_level === 'beginner' ? 'bg-gray-100 text-gray-700' : ''}
+              ${user?.contributor_level === 'master' ? 'bg-purple-100 text-primary' : ''}
+              ${user?.contributor_level === 'expert' ? 'bg-primary/15 text-primary' : ''}
+              ${user?.contributor_level === 'advanced' ? 'bg-success/15 text-success' : ''}
+              ${user?.contributor_level === 'intermediate' ? 'bg-warning/15 text-warning' : ''}
+              ${user?.contributor_level === 'beginner' ? 'bg-muted text-foreground' : ''}
             `}>
               {user?.contributor_level?.toUpperCase() || 'BEGINNER'}
             </span>
@@ -103,7 +103,7 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
                 </div>
               ))}
               {badges?.length > 3 && (
-                <div className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">
+                <div className="px-2 py-1 bg-muted rounded-full text-xs text-muted-foreground">
                   +{badges?.length - 3}
                 </div>
               )}
@@ -116,13 +116,13 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
           <div className={`
             text-3xl font-bold
             ${rank === 1 ? 'text-yellow-500' : ''}
-            ${rank === 2 ? 'text-gray-400' : ''}
+            ${rank === 2 ? 'text-muted-foreground' : ''}
             ${rank === 3 ? 'text-orange-500' : ''}
-            ${rank > 3 ? 'text-gray-900' : ''}
+            ${rank > 3 ? 'text-foreground' : ''}
           `}>
             {score?.toLocaleString() || 0}
           </div>
-          <div className="text-sm text-gray-600 font-medium">
+          <div className="text-sm text-muted-foreground font-medium">
             {scoreLabel}
           </div>
         </div>

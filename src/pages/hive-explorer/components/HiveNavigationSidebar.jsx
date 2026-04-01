@@ -38,19 +38,19 @@ export default function HiveNavigationSidebar({
   }
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-4 h-full overflow-y-auto">
+    <div className="bg-card rounded-xl border border-border p-4 h-full overflow-y-auto">
       {/* Mobile header */}
       <div className="flex items-center justify-between lg:hidden mb-4">
-        <h3 className="text-sm font-semibold text-gray-900">Navigation</h3>
+        <h3 className="text-sm font-semibold text-foreground">Navigation</h3>
         <button
           onClick={onClose}
-          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          className="p-2 hover:bg-muted rounded-lg transition-colors"
         >
           <Icon name="X" size={20} />
         </button>
       </div>
 
-      <h3 className="hidden lg:block text-sm font-semibold text-gray-900 mb-3">Navigation</h3>
+      <h3 className="hidden lg:block text-sm font-semibold text-foreground mb-3">Navigation</h3>
       <div className="space-y-1">
         {navigationItems?.map((tab) => (
           <button
@@ -61,8 +61,8 @@ export default function HiveNavigationSidebar({
             }}
             className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all ${
               activeTab === tab?.id
-                ? 'bg-purple-50 text-purple-700 font-medium shadow-sm'
-                : 'text-gray-700 hover:bg-gray-50'
+                ? 'bg-primary/10 text-primary font-medium shadow-sm'
+                : 'text-foreground hover:bg-background'
             }`}
           >
             <div className="flex items-center gap-3">
@@ -72,7 +72,7 @@ export default function HiveNavigationSidebar({
             {tab?.count !== undefined && (
               <span className={`text-xs px-2 py-0.5 rounded-full ${
                 tab?.highlight 
-                  ? 'bg-red-100 text-red-700 animate-pulse' :'bg-gray-100 text-gray-600'
+                  ? 'bg-error/15 text-error animate-pulse' :'bg-muted text-muted-foreground'
               }`}>
                 {tab?.count}
               </span>

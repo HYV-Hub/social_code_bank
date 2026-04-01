@@ -184,17 +184,17 @@ export default function RegisterPage() {
           </div>
 
           {/* Registration Form */}
-          <div className="bg-white rounded-lg shadow-xl border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
             {/* Error/Success Messages */}
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-600 text-sm">{error}</p>
+              <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg">
+                <p className="text-error text-sm">{error}</p>
               </div>
             )}
             
             {success && (
-              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-600 text-sm">{success}</p>
+              <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg">
+                <p className="text-success text-sm">{success}</p>
               </div>
             )}
 
@@ -236,7 +236,7 @@ export default function RegisterPage() {
                     name="fullName"
                     value={formData?.fullName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="John Doe"
                     required
                   />
@@ -252,7 +252,7 @@ export default function RegisterPage() {
                     name="username"
                     value={formData?.username}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="johndoe"
                   />
                   <p className="mt-1 text-xs text-slate-500">Optional - If not provided, will be generated from your email</p>
@@ -268,7 +268,7 @@ export default function RegisterPage() {
                     name="email"
                     value={formData?.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="john@example.com"
                     required
                   />
@@ -284,7 +284,7 @@ export default function RegisterPage() {
                     value={formData?.bio}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
                     placeholder="Tell us about yourself..."
                   />
                   <p className="mt-1 text-xs text-slate-500">Optional - Share a brief description about yourself</p>
@@ -300,7 +300,7 @@ export default function RegisterPage() {
                     name="password"
                     value={formData?.password}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="••••••••"
                     required
                   />
@@ -317,7 +317,7 @@ export default function RegisterPage() {
                     name="confirmPassword"
                     value={formData?.confirmPassword}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="••••••••"
                     required
                   />
@@ -346,7 +346,7 @@ export default function RegisterPage() {
                 disabled={loading || !formData?.role}
                 className={`w-full py-3 px-4 rounded-lg font-medium transition-all ${
                   loading || !formData?.role
-                    ? "bg-slate-300 text-slate-500 cursor-not-allowed" :"bg-blue-600 text-white hover:bg-blue-700 shadow-sm"
+                    ? "bg-slate-300 text-slate-500 cursor-not-allowed" :"bg-primary text-white hover:bg-primary shadow-sm"
                 }`}
               >
                 {loading ? (
@@ -367,7 +367,7 @@ export default function RegisterPage() {
             <div className="mt-6 text-center">
               <p className="text-slate-600">
                 Already have an account?{" "}
-                <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+                <Link to="/login" className="text-primary hover:text-primary font-medium">
                   Sign In
                 </Link>
               </p>

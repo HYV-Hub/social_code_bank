@@ -130,6 +130,19 @@ const AppNavigation = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
+  // Global search shortcut: press "/" to focus search
+  useEffect(() => {
+    const handleSlash = (e) => {
+      if (e.key === '/' && !e.ctrlKey && !e.metaKey && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) {
+        e.preventDefault();
+        const searchInput = document.querySelector('[role="search"] input');
+        if (searchInput) searchInput.focus();
+      }
+    };
+    document.addEventListener('keydown', handleSlash);
+    return () => document.removeEventListener('keydown', handleSlash);
+  }, []);
+
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -303,14 +316,14 @@ const AppNavigation = () => {
 
     return (
       <div 
-        className="absolute right-0 mt-3 w-72 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 py-2 animate-in fade-in slide-in-from-top-2 duration-200"
+        className="absolute right-0 mt-3 w-72 bg-card/95 backdrop-blur-xl rounded-xl shadow-2xl border border-border/50 py-2 animate-in fade-in slide-in-from-top-2 duration-200"
         role="menu"
         aria-label="User menu"
         style={{
           boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)'
         }}
       >
-        <div className="px-4 py-4 border-b border-gray-100">
+        <div className="px-4 py-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full blur-md opacity-50"></div>
@@ -328,10 +341,10 @@ const AppNavigation = () => {
               />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 truncate">
+              <p className="text-sm font-semibold text-foreground truncate">
                 {userProfile?.full_name || userProfile?.fullName || user?.email?.split('@')?.[0] || 'User'}
               </p>
-              <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+              <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
             </div>
           </div>
         </div>
@@ -342,10 +355,10 @@ const AppNavigation = () => {
               navigate('/user-dashboard');
               setUserMenuOpen(false);
             }}
-            className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 flex items-center gap-3 focus:outline-none focus:bg-gradient-to-r focus:from-blue-100 focus:to-indigo-100 transition-all duration-200 group"
+            className="w-full px-4 py-2.5 text-left text-sm text-foreground hover:bg-muted flex items-center gap-3 focus:outline-none focus:bg-muted transition-all duration-200 group"
             role="menuitem"
           >
-            <div className="p-1.5 rounded-lg bg-green-100 text-green-600 group-hover:scale-110 transition-transform duration-200">
+            <div className="p-1.5 rounded-lg bg-success/15 text-success group-hover:scale-110 transition-transform duration-200">
               <Icon name="Home" size={16} aria-hidden="true" />
             </div>
             <span className="font-medium">Back to Global Feed</span>
@@ -356,10 +369,10 @@ const AppNavigation = () => {
               navigate('/user-profile');
               setUserMenuOpen(false);
             }}
-            className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 flex items-center gap-3 focus:outline-none focus:bg-gradient-to-r focus:from-blue-100 focus:to-indigo-100 transition-all duration-200 group"
+            className="w-full px-4 py-2.5 text-left text-sm text-foreground hover:bg-muted flex items-center gap-3 focus:outline-none focus:bg-muted transition-all duration-200 group"
             role="menuitem"
           >
-            <div className="p-1.5 rounded-lg bg-blue-100 text-blue-600 group-hover:scale-110 transition-transform duration-200">
+            <div className="p-1.5 rounded-lg bg-primary/15 text-primary group-hover:scale-110 transition-transform duration-200">
               <Icon name="User" size={16} aria-hidden="true" />
             </div>
             <span className="font-medium">View Profile</span>
@@ -370,10 +383,10 @@ const AppNavigation = () => {
               navigate('/profile-editor');
               setUserMenuOpen(false);
             }}
-            className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 flex items-center gap-3 focus:outline-none focus:bg-gradient-to-r focus:from-blue-100 focus:to-indigo-100 transition-all duration-200 group"
+            className="w-full px-4 py-2.5 text-left text-sm text-foreground hover:bg-muted flex items-center gap-3 focus:outline-none focus:bg-muted transition-all duration-200 group"
             role="menuitem"
           >
-            <div className="p-1.5 rounded-lg bg-indigo-100 text-indigo-600 group-hover:scale-110 transition-transform duration-200">
+            <div className="p-1.5 rounded-lg bg-indigo-100 text-secondary group-hover:scale-110 transition-transform duration-200">
               <Icon name="Settings" size={16} aria-hidden="true" />
             </div>
             <span className="font-medium">Edit Profile</span>
@@ -384,10 +397,10 @@ const AppNavigation = () => {
               navigate('/teams-landing-page');
               setUserMenuOpen(false);
             }}
-            className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 flex items-center gap-3 focus:outline-none focus:bg-gradient-to-r focus:from-blue-100 focus:to-indigo-100 transition-all duration-200 group"
+            className="w-full px-4 py-2.5 text-left text-sm text-foreground hover:bg-muted flex items-center gap-3 focus:outline-none focus:bg-muted transition-all duration-200 group"
             role="menuitem"
           >
-            <div className="p-1.5 rounded-lg bg-purple-100 text-purple-600 group-hover:scale-110 transition-transform duration-200">
+            <div className="p-1.5 rounded-lg bg-purple-100 text-primary group-hover:scale-110 transition-transform duration-200">
               <Icon name="Users" size={16} aria-hidden="true" />
             </div>
             <span className="font-medium">My Teams</span>
@@ -400,21 +413,21 @@ const AppNavigation = () => {
                 navigate('/company-dashboard');
                 setUserMenuOpen(false);
               }}
-              className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 flex items-center gap-3 focus:outline-none focus:bg-gradient-to-r focus:from-blue-100 focus:to-indigo-100 transition-all duration-200 group"
+              className="w-full px-4 py-2.5 text-left text-sm text-foreground hover:bg-muted flex items-center gap-3 focus:outline-none focus:bg-muted transition-all duration-200 group"
               role="menuitem"
               title={`Access ${userCompany?.name} dashboard`}
             >
-              <div className="p-1.5 rounded-lg bg-green-100 text-green-600 group-hover:scale-110 transition-transform duration-200">
+              <div className="p-1.5 rounded-lg bg-success/15 text-success group-hover:scale-110 transition-transform duration-200">
                 <Icon name="Building2" size={16} aria-hidden="true" />
               </div>
               <div className="flex-1 min-w-0">
                 <span className="font-medium block truncate">{userCompany?.name}</span>
-                <span className="text-xs text-gray-500">Company Dashboard</span>
+                <span className="text-xs text-muted-foreground">Company Dashboard</span>
               </div>
             </button>
           ) : companyLoading ? (
-            <div className="w-full px-4 py-2.5 text-left text-sm text-gray-500 flex items-center gap-3">
-              <div className="p-1.5 rounded-lg bg-gray-100">
+            <div className="w-full px-4 py-2.5 text-left text-sm text-muted-foreground flex items-center gap-3">
+              <div className="p-1.5 rounded-lg bg-muted">
                 <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
               </div>
               <span>Checking company...</span>
@@ -425,30 +438,30 @@ const AppNavigation = () => {
                 navigate('/company-creation');
                 setUserMenuOpen(false);
               }}
-              className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 flex items-center gap-3 focus:outline-none focus:bg-gradient-to-r focus:from-blue-100 focus:to-indigo-100 transition-all duration-200 group"
+              className="w-full px-4 py-2.5 text-left text-sm text-foreground hover:bg-muted flex items-center gap-3 focus:outline-none focus:bg-muted transition-all duration-200 group"
               role="menuitem"
               title="Create or join a company workspace"
             >
-              <div className="p-1.5 rounded-lg bg-green-100 text-green-600 group-hover:scale-110 transition-transform duration-200">
+              <div className="p-1.5 rounded-lg bg-success/15 text-success group-hover:scale-110 transition-transform duration-200">
                 <Icon name="Building2" size={16} aria-hidden="true" />
               </div>
               <div className="flex-1 min-w-0">
                 <span className="font-medium block">Create / Join Company</span>
-                <span className="text-xs text-gray-500">Start collaborating</span>
+                <span className="text-xs text-muted-foreground">Start collaborating</span>
               </div>
             </button>
           )}
         </div>
 
-        <div className="border-t border-gray-100 mt-1 pt-1">
+        <div className="border-t border-border mt-1 pt-1">
           <button
             onClick={handleSignOut}
             disabled={isLoading}
-            className="w-full px-4 py-2.5 text-left text-sm text-red-600 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 flex items-center gap-3 focus:outline-none focus:bg-gradient-to-r focus:from-red-100 focus:to-pink-100 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
+            className="w-full px-4 py-2.5 text-left text-sm text-error hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 flex items-center gap-3 focus:outline-none focus:bg-gradient-to-r focus:from-red-100 focus:to-pink-100 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
             role="menuitem"
             aria-busy={isLoading}
           >
-            <div className="p-1.5 rounded-lg bg-red-100 text-red-600 group-hover:scale-110 transition-transform duration-200">
+            <div className="p-1.5 rounded-lg bg-error/15 text-error group-hover:scale-110 transition-transform duration-200">
               <Icon name="LogOut" size={16} aria-hidden="true" />
             </div>
             <span className="font-medium">{isLoading ? 'Signing out...' : 'Sign Out'}</span>
@@ -464,13 +477,13 @@ const AppNavigation = () => {
       <a
         ref={skipLinkRef}
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-gradient-to-r focus:from-blue-600 focus:to-indigo-600 focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-lg"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-gradient-to-r focus:from-blue-600 focus:to-indigo-600 focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:shadow-lg"
       >
         Skip to main content
       </a>
 
       <nav 
-        className="bg-white/80 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 z-50 shadow-sm"
+        className="bg-card/80 backdrop-blur-lg border-b border-border/50 sticky top-0 z-50 shadow-sm"
         role="navigation"
         aria-label="Main navigation"
         style={{
@@ -479,12 +492,12 @@ const AppNavigation = () => {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between h-14">
             {/* Logo */}
             <div className="flex items-center">
               <button
                 onClick={() => navigate(isOnCompanyPage && userCompany ? '/company-dashboard' : (user ? '/user-dashboard' : '/'))}
-                className="flex items-center gap-3 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-2 group"
+                className="flex items-center gap-3 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring rounded-lg p-2 group"
                 aria-label="Go to home page"
               >
                 <div className="relative">
@@ -498,7 +511,7 @@ const AppNavigation = () => {
                     }}
                   />
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">
+                <span className="text-xl font-bold text-gradient">
                   HYVhub
                 </span>
               </button>
@@ -512,34 +525,21 @@ const AppNavigation = () => {
                   onClick={() => {
                     navigate(item?.path || item?.href);
                   }}
-                  className={`relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 group overflow-hidden ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-150 focus:outline-none ${
                     isActive(item?.path || item?.href)
-                      ? 'text-white shadow-lg' 
-                      : 'text-gray-700 hover:text-gray-900'
+                      ? 'bg-primary/15 text-primary'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                   role="menuitem"
                   aria-label={`Navigate to ${item?.name}`}
                   aria-current={isActive(item?.path || item?.href) ? 'page' : undefined}
                 >
-                  {isActive(item?.path || item?.href) && (
-                    <>
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 animate-gradient"></div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/50 via-indigo-600/50 to-purple-600/50 blur-xl animate-pulse"></div>
-                    </>
-                  )}
-                  {!isActive(item?.path || item?.href) && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-gray-100 via-blue-50 to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  )}
-                  <Icon 
-                    name={item?.icon} 
-                    size={18} 
+                  <Icon
+                    name={item?.icon}
+                    size={18}
                     aria-hidden="true"
-                    className={`relative z-10 transition-transform duration-300 ${isActive(item?.path || item?.href) ? '' : 'group-hover:scale-110'}`}
                   />
-                  <span className="relative z-10">{item?.name}</span>
-                  {isActive(item?.path || item?.href) && (
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-white rounded-full"></div>
-                  )}
+                  <span>{item?.name}</span>
                 </button>
               ))}
             </div>
@@ -552,7 +552,7 @@ const AppNavigation = () => {
                   {!isOnCompanyPage && (
                     <button
                       onClick={() => setFriendModalOpen(true)}
-                      className="relative p-2.5 text-gray-600 hover:text-blue-600 rounded-xl transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-500 overflow-hidden"
+                      className="relative p-2.5 text-muted-foreground hover:text-primary rounded-xl transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-ring overflow-hidden"
                       aria-label="Find and add friends"
                       title="Find Friends"
                     >
@@ -569,7 +569,7 @@ const AppNavigation = () => {
                   {/* UPDATED: Notifications with badge */}
                   <button
                     onClick={() => navigate('/notifications')}
-                    className="relative p-2.5 text-gray-600 hover:text-gray-900 rounded-xl transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-500 overflow-hidden"
+                    className="relative p-2.5 text-muted-foreground hover:text-foreground rounded-xl transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-ring overflow-hidden"
                     aria-label={`View notifications ${unreadCount > 0 ? `(${unreadCount} unread)` : ''}`}
                     title={`Notifications ${unreadCount > 0 ? `(${unreadCount} unread)` : ''}`}
                   >
@@ -595,7 +595,7 @@ const AppNavigation = () => {
                   <div className="relative" ref={userMenuRef}>
                     <button
                       onClick={() => setUserMenuOpen(!userMenuOpen)}
-                      className="relative flex items-center gap-2 p-1.5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 group"
+                      className="relative flex items-center gap-2 p-1.5 hover:bg-muted rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring group"
                       aria-label="Open user menu"
                       aria-expanded={userMenuOpen}
                       aria-haspopup="true"
@@ -644,7 +644,7 @@ const AppNavigation = () => {
               <button
                 id="mobile-menu-toggle"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                className="md:hidden p-2.5 text-muted-foreground hover:text-foreground hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 rounded-xl focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-300"
                 aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-menu"
@@ -660,7 +660,7 @@ const AppNavigation = () => {
           <div 
             id="mobile-menu"
             ref={mobileMenuRef}
-            className="md:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-xl shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto animate-in slide-in-from-top duration-300"
+            className="md:hidden border-t border-border/50 bg-card/95 backdrop-blur-xl shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto animate-in slide-in-from-top duration-300"
             role="menu"
             aria-label="Mobile navigation menu"
             style={{
@@ -676,10 +676,10 @@ const AppNavigation = () => {
                     setFriendModalOpen(true);
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full flex items-center gap-3 px-4 py-3.5 text-sm font-medium rounded-xl text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 group"
+                  className="w-full flex items-center gap-3 px-4 py-3.5 text-sm font-medium rounded-xl text-primary hover:bg-muted transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring group"
                   role="menuitem"
                 >
-                  <div className="p-2 rounded-lg bg-blue-100 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-2 rounded-lg bg-primary/15 group-hover:scale-110 transition-transform duration-300">
                     <Icon name="UserPlus" size={20} aria-hidden="true" />
                   </div>
                   <span>Find Friends</span>
@@ -693,10 +693,10 @@ const AppNavigation = () => {
                     navigate(item?.path || item?.href);
                     setMobileMenuOpen(false);
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-3.5 text-sm font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 group relative overflow-hidden ${
+                  className={`w-full flex items-center gap-3 px-4 py-3.5 text-sm font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring group relative overflow-hidden ${
                     isActive(item?.path || item?.href)
                       ? 'text-white shadow-lg' 
-                      : 'text-gray-700 hover:text-gray-900'
+                      : 'text-foreground hover:text-foreground'
                   }`}
                   role="menuitem"
                   aria-current={isActive(item?.path || item?.href) ? 'page' : undefined}
@@ -709,13 +709,13 @@ const AppNavigation = () => {
                   )}
                   <div className={`p-2 rounded-lg relative z-10 group-hover:scale-110 transition-transform duration-300 ${
                     isActive(item?.path || item?.href) 
-                      ? 'bg-white/20' :'bg-gradient-to-r from-blue-100 to-indigo-100'
+                      ? 'bg-card/20' :'bg-gradient-to-r from-blue-100 to-indigo-100'
                   }`}>
                     <Icon 
                       name={item?.icon} 
                       size={20} 
                       aria-hidden="true"
-                      className={isActive(item?.path || item?.href) ? 'text-white' : 'text-blue-600'}
+                      className={isActive(item?.path || item?.href) ? 'text-white' : 'text-primary'}
                     />
                   </div>
                   <span className="relative z-10">{item?.name}</span>

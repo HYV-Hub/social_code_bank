@@ -7,15 +7,15 @@ const PrivacyPolicyPage = () => {
   const lastUpdated = "20 November 2024";
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <PublicNavigation />
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
-          <p className="text-gray-600">Last updated: {lastUpdated}</p>
-          <div className="mt-4 flex flex-col gap-2 text-sm text-gray-600">
+        <div className="bg-card rounded-lg shadow-sm p-8 mb-8">
+          <h1 className="text-4xl font-bold text-foreground mb-4">Privacy Policy</h1>
+          <p className="text-muted-foreground">Last updated: {lastUpdated}</p>
+          <div className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Icon name="Shield" size={16} />
               <span>GDPR & UK GDPR Compliant</span>
@@ -28,11 +28,11 @@ const PrivacyPolicyPage = () => {
         </div>
 
         {/* Content */}
-        <div className="bg-white rounded-lg shadow-sm p-8 space-y-8">
+        <div className="bg-card rounded-lg shadow-sm p-8 space-y-8">
           {/* Introduction */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">1. Introduction</h2>
+            <div className="space-y-4 text-foreground">
               <p>
                 HyvHub ("we," "our," or "us") is committed to protecting your privacy and personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform and services.
               </p>
@@ -47,8 +47,8 @@ const PrivacyPolicyPage = () => {
 
           {/* Information We Collect */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">2. Information We Collect</h2>
+            <div className="space-y-4 text-foreground">
               <p><strong>2.1 Information You Provide:</strong></p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Account Information:</strong> Name, username, email address, password (encrypted)</li>
@@ -77,8 +77,8 @@ const PrivacyPolicyPage = () => {
 
           {/* How We Use Your Information */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. How We Use Your Information</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">3. How We Use Your Information</h2>
+            <div className="space-y-4 text-foreground">
               <p><strong>3.1 Lawful Basis for Processing (GDPR Article 6):</strong></p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Contractual Necessity:</strong> To provide the Service you requested</li>
@@ -104,8 +104,8 @@ const PrivacyPolicyPage = () => {
 
           {/* AI Processing & Third-Party Services */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. AI Processing & Third-Party Data Sharing</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">4. AI Processing & Third-Party Data Sharing</h2>
+            <div className="space-y-4 text-foreground">
               <p><strong>4.1 OpenAI GPT-4 Processing:</strong></p>
               <p>
                 We use OpenAI's GPT-4 to analyze your code snippets for quality, security, and best practices. Your code is sent to OpenAI's servers for processing. OpenAI is GDPR-compliant and has appropriate data processing agreements.
@@ -136,8 +136,8 @@ const PrivacyPolicyPage = () => {
 
           {/* Data Storage & Security */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Data Storage & Security</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">5. Data Storage & Security</h2>
+            <div className="space-y-4 text-foreground">
               <p><strong>5.1 Data Location:</strong></p>
               <p>
                 Your data is primarily stored in EU data centers (Frankfurt, Germany) operated by Supabase/AWS. Some processing may occur in the US (OpenAI) with appropriate safeguards under GDPR Article 46.
@@ -165,38 +165,38 @@ const PrivacyPolicyPage = () => {
 
           {/* Your GDPR Rights */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Your Rights Under GDPR</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">6. Your Rights Under GDPR</h2>
+            <div className="space-y-4 text-foreground">
               <p>Under GDPR and UK GDPR, you have the following rights:</p>
 
-              <div className="bg-blue-50 rounded-lg p-4 space-y-3">
+              <div className="bg-primary/10 rounded-lg p-4 space-y-3">
                 <div>
-                  <p className="font-semibold text-blue-900">Right of Access (Article 15)</p>
-                  <p className="text-blue-800 text-sm">Request a copy of your personal data</p>
+                  <p className="font-semibold text-foreground">Right of Access (Article 15)</p>
+                  <p className="text-foreground text-sm">Request a copy of your personal data</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-blue-900">Right to Rectification (Article 16)</p>
-                  <p className="text-blue-800 text-sm">Correct inaccurate or incomplete data</p>
+                  <p className="font-semibold text-foreground">Right to Rectification (Article 16)</p>
+                  <p className="text-foreground text-sm">Correct inaccurate or incomplete data</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-blue-900">Right to Erasure (Article 17)</p>
-                  <p className="text-blue-800 text-sm">Request deletion of your data ("right to be forgotten")</p>
+                  <p className="font-semibold text-foreground">Right to Erasure (Article 17)</p>
+                  <p className="text-foreground text-sm">Request deletion of your data ("right to be forgotten")</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-blue-900">Right to Restriction (Article 18)</p>
-                  <p className="text-blue-800 text-sm">Limit how we use your data</p>
+                  <p className="font-semibold text-foreground">Right to Restriction (Article 18)</p>
+                  <p className="text-foreground text-sm">Limit how we use your data</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-blue-900">Right to Data Portability (Article 20)</p>
-                  <p className="text-blue-800 text-sm">Receive your data in a machine-readable format</p>
+                  <p className="font-semibold text-foreground">Right to Data Portability (Article 20)</p>
+                  <p className="text-foreground text-sm">Receive your data in a machine-readable format</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-blue-900">Right to Object (Article 21)</p>
-                  <p className="text-blue-800 text-sm">Object to processing based on legitimate interests</p>
+                  <p className="font-semibold text-foreground">Right to Object (Article 21)</p>
+                  <p className="text-foreground text-sm">Object to processing based on legitimate interests</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-blue-900">Right to Withdraw Consent</p>
-                  <p className="text-blue-800 text-sm">Withdraw consent for processing where consent is the legal basis</p>
+                  <p className="font-semibold text-foreground">Right to Withdraw Consent</p>
+                  <p className="text-foreground text-sm">Withdraw consent for processing where consent is the legal basis</p>
                 </div>
               </div>
 
@@ -217,8 +217,8 @@ const PrivacyPolicyPage = () => {
 
           {/* Cookies */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Cookies & Tracking Technologies</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">7. Cookies & Tracking Technologies</h2>
+            <div className="space-y-4 text-foreground">
               <p><strong>7.1 Types of Cookies We Use:</strong></p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Essential Cookies:</strong> Required for authentication and security</li>
@@ -236,8 +236,8 @@ const PrivacyPolicyPage = () => {
 
           {/* Children's Privacy */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Children's Privacy</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">8. Children's Privacy</h2>
+            <div className="space-y-4 text-foreground">
               <p>
                 Our Service is not intended for children under 16 (18 in Ireland). We do not knowingly collect personal information from children. If you believe we have collected data from a child, please contact us immediately.
               </p>
@@ -246,8 +246,8 @@ const PrivacyPolicyPage = () => {
 
           {/* International Transfers */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">9. International Data Transfers</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">9. International Data Transfers</h2>
+            <div className="space-y-4 text-foreground">
               <p>
                 Your data may be transferred to countries outside the EU/UK for AI processing (OpenAI in the US). These transfers are protected by:
               </p>
@@ -261,8 +261,8 @@ const PrivacyPolicyPage = () => {
 
           {/* Changes to Policy */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Changes to This Policy</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">10. Changes to This Policy</h2>
+            <div className="space-y-4 text-foreground">
               <p>
                 We may update this Privacy Policy from time to time. Material changes will be notified via email or platform notification at least 30 days before taking effect. Continued use of the Service after changes constitutes acceptance.
               </p>
@@ -271,14 +271,14 @@ const PrivacyPolicyPage = () => {
 
           {/* Contact Information */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Contact Information</h2>
-            <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-foreground mb-4">11. Contact Information</h2>
+            <div className="space-y-4 text-foreground">
               <p><strong>Data Controller:</strong></p>
               <ul className="space-y-2">
                 <li><strong>Company:</strong> HyvHub Ltd</li>
                 <li><strong>Address:</strong> London, United Kingdom</li>
                 <li><strong>Privacy Email:</strong> privacy@hyvhub.com</li>
-                <li><strong>Support:</strong> <Link to="/contact" className="text-blue-600 hover:underline">Contact Page</Link></li>
+                <li><strong>Support:</strong> <Link to="/contact" className="text-primary hover:underline">Contact Page</Link></li>
               </ul>
 
               <p><strong>Supervisory Authorities:</strong></p>
@@ -291,18 +291,18 @@ const PrivacyPolicyPage = () => {
         </div>
 
         {/* Related Links */}
-        <div className="mt-8 bg-blue-50 rounded-lg p-6">
-          <h3 className="font-semibold text-gray-900 mb-4">Related Documents</h3>
+        <div className="mt-8 bg-primary/10 rounded-lg p-6">
+          <h3 className="font-semibold text-foreground mb-4">Related Documents</h3>
           <div className="flex flex-wrap gap-4">
-            <Link to="/terms-of-service" className="flex items-center gap-2 text-blue-600 hover:underline">
+            <Link to="/terms-of-service" className="flex items-center gap-2 text-primary hover:underline">
               <Icon name="FileText" size={16} />
               Terms of Service
             </Link>
-            <Link to="/help-center" className="flex items-center gap-2 text-blue-600 hover:underline">
+            <Link to="/help-center" className="flex items-center gap-2 text-primary hover:underline">
               <Icon name="HelpCircle" size={16} />
               Help Center
             </Link>
-            <Link to="/contact" className="flex items-center gap-2 text-blue-600 hover:underline">
+            <Link to="/contact" className="flex items-center gap-2 text-primary hover:underline">
               <Icon name="Mail" size={16} />
               Contact Support
             </Link>

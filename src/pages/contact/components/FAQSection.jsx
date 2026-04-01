@@ -48,11 +48,11 @@ const FAQSection = () => {
       {faqs?.map((faq, index) => (
         <div
           key={index}
-          className="bg-white dark:bg-slate-800 rounded-lg border border-[var(--color-border)] overflow-hidden"
+          className="bg-card dark:bg-slate-800 rounded-lg border border-[var(--color-border)] overflow-hidden"
         >
           <button
             onClick={() => toggleFAQ(index)}
-            className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
+            className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-background dark:hover:bg-slate-700 transition-colors"
           >
             <span className="font-medium text-[var(--color-foreground)] pr-4">
               {faq?.question}
@@ -71,13 +71,13 @@ const FAQSection = () => {
           )}
         </div>
       ))}
-      <div className="mt-8 text-center p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+      <div className="mt-8 text-center p-6 bg-primary/10 dark:bg-blue-900/20 rounded-lg">
         <p className="text-sm text-[var(--color-muted-foreground)] mb-3">
           Can't find what you're looking for?
         </p>
         <a
           href="/help-center"
-          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-medium"
+          className="inline-flex items-center gap-2 text-primary dark:text-blue-400 hover:underline font-medium"
         >
           Visit our Help Center
           <Icon name="ExternalLink" size={16} />

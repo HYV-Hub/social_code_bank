@@ -13,7 +13,7 @@ const MetadataSection = ({
   // REMOVED: language and setLanguage props - AI will auto-detect language
   
   return (
-    <div className="bg-white rounded-lg border border-slate-200 p-6 mb-6">
+    <div className="bg-card rounded-lg border border-slate-200 p-6 mb-6">
       <h2 className="text-lg font-semibold text-slate-800 mb-4">Snippet Information</h2>
       <div className="space-y-4">
         <Input
@@ -31,14 +31,14 @@ const MetadataSection = ({
             Description
           </label>
           <textarea
-            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
             rows="3"
             placeholder="Describe what this snippet does and how to use it"
             value={description}
             onChange={(e) => setDescription(e?.target?.value)}
           />
           {errors?.description && (
-            <p className="mt-1 text-sm text-red-600">{errors?.description}</p>
+            <p className="mt-1 text-sm text-error">{errors?.description}</p>
           )}
         </div>
 

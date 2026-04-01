@@ -140,7 +140,7 @@ export default function AIOptimizationReportPage() {
       });
 
       console.log('✅ AI analysis completed:', {
-        optimizationScore: analysisResult?.optimizationScore,
+        qualityScore: analysisResult?.qualityScore,
         tagsCount: analysisResult?.tags?.length
       });
 
@@ -148,8 +148,8 @@ export default function AIOptimizationReportPage() {
       const { error: updateError } = await supabase
         ?.from('snippets')
         ?.update({
-          ai_analysis_data: analysisResult?.analysis,
-          ai_quality_score: analysisResult?.optimizationScore,
+          ai_analysis_data: { summary: analysisResult?.summary, strengths: analysisResult?.strengths, weaknesses: analysisResult?.weaknesses, improvements: analysisResult?.improvements, recommendations: analysisResult?.recommendations, categories: analysisResult?.categories, complexityLevel: analysisResult?.complexityLevel, bugRisk: analysisResult?.bugRisk, readabilityScore: analysisResult?.readabilityScore, purposeTags: analysisResult?.purposeTags, functionalityTags: analysisResult?.functionalityTags, searchAliases: analysisResult?.searchAliases, metrics: analysisResult?.metrics, requestId: analysisResult?.requestId, analysisVersion: analysisResult?.analysisVersion },
+          ai_quality_score: analysisResult?.qualityScore,
           ai_tags: analysisResult?.tags,
           updated_at: new Date()?.toISOString()
         })
@@ -164,8 +164,8 @@ export default function AIOptimizationReportPage() {
 
       // Transform and display the new analysis immediately
       const report = transformAnalysisToReport(
-        { ...snippet, ai_analysis_data: analysisResult?.analysis, ai_quality_score: analysisResult?.optimizationScore, ai_tags: analysisResult?.tags },
-        analysisResult?.analysis
+        { ...snippet, ai_analysis_data: analysisResult?.categories, ai_quality_score: analysisResult?.qualityScore, ai_tags: analysisResult?.tags },
+        analysisResult
       );
       
       setReportData(report);
@@ -284,7 +284,7 @@ export default function AIOptimizationReportPage() {
       });
 
       console.log('✅ Reanalysis completed:', {
-        optimizationScore: analysisResult?.optimizationScore,
+        qualityScore: analysisResult?.qualityScore,
         tagsCount: analysisResult?.tags?.length
       });
 
@@ -292,8 +292,8 @@ export default function AIOptimizationReportPage() {
       const { error: updateError } = await supabase
         ?.from('snippets')
         ?.update({
-          ai_analysis_data: analysisResult?.analysis,
-          ai_quality_score: analysisResult?.optimizationScore,
+          ai_analysis_data: { summary: analysisResult?.summary, strengths: analysisResult?.strengths, weaknesses: analysisResult?.weaknesses, improvements: analysisResult?.improvements, recommendations: analysisResult?.recommendations, categories: analysisResult?.categories, complexityLevel: analysisResult?.complexityLevel, bugRisk: analysisResult?.bugRisk, readabilityScore: analysisResult?.readabilityScore, purposeTags: analysisResult?.purposeTags, functionalityTags: analysisResult?.functionalityTags, searchAliases: analysisResult?.searchAliases, metrics: analysisResult?.metrics, requestId: analysisResult?.requestId, analysisVersion: analysisResult?.analysisVersion },
+          ai_quality_score: analysisResult?.qualityScore,
           ai_tags: analysisResult?.tags,
           updated_at: new Date()?.toISOString()
         })
@@ -355,18 +355,18 @@ export default function AIOptimizationReportPage() {
 
   const getSeverityColor = (severity) => {
     const colors = {
-      critical: 'text-red-600 bg-red-50 border-red-200',
+      critical: 'text-error bg-error/10 border-error/20',
       high: 'text-orange-600 bg-orange-50 border-orange-200',
-      medium: 'text-yellow-600 bg-yellow-50 border-yellow-200',
-      low: 'text-blue-600 bg-blue-50 border-blue-200'
+      medium: 'text-warning bg-warning/10 border-warning/20',
+      low: 'text-primary bg-primary/10 border-primary/20'
     };
     return colors?.[severity] || colors?.low;
   };
 
   const getScoreColor = (score) => {
-    if (score >= 80) return 'text-green-600';
-    if (score >= 60) return 'text-yellow-600';
-    return 'text-red-600';
+    if (score >= 80) return 'text-success';
+    if (score >= 60) return 'text-warning';
+    return 'text-error';
   };
 
   if (loading) {
@@ -391,7 +391,7 @@ export default function AIOptimizationReportPage() {
           <title>AI Optimization Report - HyvHub</title>
         </Helmet>
         <AppNavigation />
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <Button
               variant="ghost"
@@ -402,20 +402,20 @@ export default function AIOptimizationReportPage() {
               Back to Snippet
             </Button>
 
-            <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+            <div className="bg-card rounded-lg shadow-lg p-8 text-center">
               <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-6"></div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl font-bold text-foreground mb-4">
                 Generating Comprehensive AI Report
               </h2>
-              <p className="text-gray-600 mb-2">
+              <p className="text-muted-foreground mb-2">
                 Analyzing your code with OpenAI GPT-4...
               </p>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
                 This includes performance analysis, security review, bug detection, and optimization recommendations.
               </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left max-w-md mx-auto">
-                <p className="text-sm text-blue-900 font-medium mb-2">What's being analyzed:</p>
-                <ul className="text-xs text-blue-800 space-y-1">
+              <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 text-left max-w-md mx-auto">
+                <p className="text-sm text-foreground font-medium mb-2">What's being analyzed:</p>
+                <ul className="text-xs text-foreground space-y-1">
                   <li>✓ Automatic language detection and tagging</li>
                   <li>✓ Performance bottlenecks and optimization opportunities</li>
                   <li>✓ Security vulnerabilities and best practices</li>
@@ -424,7 +424,7 @@ export default function AIOptimizationReportPage() {
                   <li>✓ Architectural patterns and recommendations</li>
                 </ul>
               </div>
-              <p className="text-xs text-gray-500 mt-4">
+              <p className="text-xs text-muted-foreground mt-4">
                 Please wait - comprehensive analysis takes 10-30 seconds
               </p>
             </div>
@@ -447,8 +447,8 @@ export default function AIOptimizationReportPage() {
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Snippet
           </Button>
-          <div className="bg-red-500/10 border border-red-500 rounded-lg p-4">
-            <p className="text-red-400 mb-4">{error}</p>
+          <div className="bg-error/100/10 border border-error rounded-lg p-4">
+            <p className="text-error mb-4">{error}</p>
             <div className="flex gap-2">
               <Button onClick={() => navigate(-1)}>
                 Go Back
@@ -471,7 +471,7 @@ export default function AIOptimizationReportPage() {
           <title>AI Optimization Report - HyvHub</title>
         </Helmet>
         <AppNavigation />
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <Button
               variant="ghost"
@@ -482,17 +482,17 @@ export default function AIOptimizationReportPage() {
               Back to Snippet
             </Button>
 
-            <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-              <Icon name="Sparkles" size={64} className="mx-auto text-blue-600 mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-card rounded-lg shadow-lg p-8 text-center">
+              <Icon name="Sparkles" size={64} className="mx-auto text-primary mb-4" />
+              <h2 className="text-2xl font-bold text-foreground mb-4">
                 AI Analysis Failed
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 The automatic analysis didn't complete. Click below to try again.
               </p>
               {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-left">
-                  <p className="text-sm text-red-700">{error}</p>
+                <div className="bg-error/10 border border-error/20 rounded-lg p-4 mb-6 text-left">
+                  <p className="text-sm text-error">{error}</p>
                 </div>
               )}
               <Button 
@@ -527,7 +527,7 @@ export default function AIOptimizationReportPage() {
 
       <AppNavigation />
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="mb-6">
@@ -540,14 +540,14 @@ export default function AIOptimizationReportPage() {
               Back to Snippet
             </Button>
 
-            <div className="bg-white rounded-lg shadow-lg p-5">
+            <div className="bg-card rounded-lg shadow-lg p-5">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                  <h1 className="text-2xl font-bold text-foreground mb-1">
                     AI Optimization Report
                   </h1>
-                  <p className="text-sm text-gray-600">{reportData?.snippet?.title}</p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-sm text-muted-foreground">{reportData?.snippet?.title}</p>
+                  <p className="text-xs text-muted-foreground mt-1">
                     Analyzed: {new Date(reportData?.snippet?.analyzedAt)?.toLocaleString()}
                   </p>
                 </div>
@@ -584,41 +584,41 @@ export default function AIOptimizationReportPage() {
               {/* Compact Overall Score */}
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-600 mb-1">Optimization</p>
+                  <p className="text-xs text-muted-foreground mb-1">Optimization</p>
                   <div className="flex items-baseline">
                     <span className={`text-2xl font-bold ${getScoreColor(reportData?.overallScore)}`}>
                       {reportData?.overallScore}
                     </span>
-                    <span className="text-xs text-gray-500 ml-1">/100</span>
+                    <span className="text-xs text-muted-foreground ml-1">/100</span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-600 mb-1">Readability</p>
+                  <p className="text-xs text-muted-foreground mb-1">Readability</p>
                   <div className="flex items-baseline">
                     <span className={`text-2xl font-bold ${getScoreColor(reportData?.readabilityScore)}`}>
                       {reportData?.readabilityScore}
                     </span>
-                    <span className="text-xs text-gray-500 ml-1">/100</span>
+                    <span className="text-xs text-muted-foreground ml-1">/100</span>
                   </div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-600 mb-1">Complexity</p>
-                  <p className="text-lg font-bold text-gray-900 capitalize">{reportData?.complexityLevel}</p>
+                <div className="bg-background rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground mb-1">Complexity</p>
+                  <p className="text-lg font-bold text-foreground capitalize">{reportData?.complexityLevel}</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-600 mb-1">Bug Risk</p>
-                  <p className="text-lg font-bold text-green-600 capitalize">{reportData?.bugRisk}</p>
+                <div className="bg-background rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground mb-1">Bug Risk</p>
+                  <p className="text-lg font-bold text-success capitalize">{reportData?.bugRisk}</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-600 mb-1">Style Match</p>
-                  <p className="text-lg font-bold text-blue-600">{reportData?.styleMatchScore}%</p>
+                <div className="bg-background rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground mb-1">Style Match</p>
+                  <p className="text-lg font-bold text-primary">{reportData?.styleMatchScore}%</p>
                 </div>
               </div>
 
               {/* Compact AI Summary */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4">
-                <p className="text-xs font-medium text-blue-900 mb-1">AI Summary</p>
-                <p className="text-sm text-gray-700">{reportData?.summary}</p>
+              <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 mt-4">
+                <p className="text-xs font-medium text-foreground mb-1">AI Summary</p>
+                <p className="text-sm text-foreground">{reportData?.summary}</p>
               </div>
             </div>
           </div>
@@ -637,14 +637,14 @@ export default function AIOptimizationReportPage() {
           />
 
           {/* Compact Quick Recommendations */}
-          <div className="bg-white rounded-lg shadow-lg p-5 my-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">Quick Wins</h2>
+          <div className="bg-card rounded-lg shadow-lg p-5 my-6">
+            <h2 className="text-lg font-bold text-foreground mb-3">Quick Wins</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {reportData?.recommendations?.quick?.map((rec, index) => (
-                <div key={index} className="bg-green-50 border border-green-200 rounded-lg p-3">
+                <div key={index} className="bg-success/10 border border-success/20 rounded-lg p-3">
                   <div className="flex items-start space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-gray-700">{rec}</p>
+                    <CheckCircle className="w-4 h-4 text-success flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-foreground">{rec}</p>
                   </div>
                 </div>
               ))}
@@ -653,7 +653,7 @@ export default function AIOptimizationReportPage() {
 
           {/* Compact Detailed Recommendations */}
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-gray-900">Detailed Recommendations</h2>
+            <h2 className="text-lg font-bold text-foreground">Detailed Recommendations</h2>
             {reportData?.recommendations?.detailed?.map((rec, index) => (
               <RecommendationCard key={index} recommendation={rec} />
             ))}

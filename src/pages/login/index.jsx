@@ -27,7 +27,7 @@ const Login = () => {
           <AuthHeader />
 
           {/* Main Authentication Card */}
-          <div className="bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden">
+          <div className="bg-card rounded-lg shadow-xl border border-slate-200 overflow-hidden">
             {/* Tab Navigation */}
             <div className="flex border-b border-slate-200">
               <button
@@ -70,7 +70,7 @@ const Login = () => {
                   <div className="w-full border-t border-slate-200"></div>
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-white px-2 text-slate-500">Or continue with</span>
+                  <span className="bg-card px-2 text-slate-500">Or continue with</span>
                 </div>
               </div>
               
@@ -90,7 +90,7 @@ const Login = () => {
                   Don't have an account?{" "}
                   <button
                     onClick={() => navigate("/register")}
-                    className="text-blue-600 font-medium hover:text-blue-700 hover:underline"
+                    className="text-primary font-medium hover:text-primary hover:underline"
                   >
                     Create Account
                   </button>

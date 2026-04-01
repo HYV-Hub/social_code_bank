@@ -107,20 +107,20 @@ class LeaderboardService {
     const badges = [];
 
     // Snippet milestones
-    if (user?.snippets_count >= 100) badges?.push({ name: 'Code Master', icon: '🏆', color: 'bg-yellow-500' });
+    if (user?.snippets_count >= 100) badges?.push({ name: 'Code Master', icon: '🏆', color: 'bg-warning/100' });
     else if (user?.snippets_count >= 50) badges?.push({ name: 'Code Expert', icon: '🥇', color: 'bg-yellow-400' });
     else if (user?.snippets_count >= 10) badges?.push({ name: 'Code Creator', icon: '🥈', color: 'bg-gray-400' });
 
     // Bug fix milestones
-    if (user?.bugs_fixed_count >= 50) badges?.push({ name: 'Bug Terminator', icon: '🐛', color: 'bg-red-500' });
+    if (user?.bugs_fixed_count >= 50) badges?.push({ name: 'Bug Terminator', icon: '🐛', color: 'bg-error/100' });
     else if (user?.bugs_fixed_count >= 20) badges?.push({ name: 'Bug Hunter', icon: '🔍', color: 'bg-red-400' });
 
     // Points milestones
-    if (user?.points >= 1000) badges?.push({ name: 'Legend', icon: '⭐', color: 'bg-purple-500' });
-    else if (user?.points >= 500) badges?.push({ name: 'Expert', icon: '💎', color: 'bg-blue-500' });
+    if (user?.points >= 1000) badges?.push({ name: 'Legend', icon: '⭐', color: 'bg-primary/100' });
+    else if (user?.points >= 500) badges?.push({ name: 'Expert', icon: '💎', color: 'bg-primary' });
 
     // Mentor milestones
-    if (user?.followers_count >= 50) badges?.push({ name: 'Mentor Elite', icon: '👨‍🏫', color: 'bg-green-500' });
+    if (user?.followers_count >= 50) badges?.push({ name: 'Mentor Elite', icon: '👨‍🏫', color: 'bg-success/100' });
     else if (user?.followers_count >= 20) badges?.push({ name: 'Community Mentor', icon: '🎓', color: 'bg-green-400' });
 
     return badges;

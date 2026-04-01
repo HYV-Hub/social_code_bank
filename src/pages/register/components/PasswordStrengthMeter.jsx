@@ -13,10 +13,10 @@ const PasswordStrengthMeter = ({ password }) => {
 
     const levels = [
       { score: 0, label: '', color: '' },
-      { score: 1, label: 'Weak', color: 'bg-red-500' },
+      { score: 1, label: 'Weak', color: 'bg-error/100' },
       { score: 2, label: 'Fair', color: 'bg-orange-500' },
-      { score: 3, label: 'Good', color: 'bg-yellow-500' },
-      { score: 4, label: 'Strong', color: 'bg-green-500' },
+      { score: 3, label: 'Good', color: 'bg-warning/100' },
+      { score: 4, label: 'Strong', color: 'bg-success/100' },
       { score: 5, label: 'Very Strong', color: 'bg-emerald-600' }
     ];
 

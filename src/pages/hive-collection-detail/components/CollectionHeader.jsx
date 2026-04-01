@@ -20,7 +20,7 @@ const CollectionHeader = ({ collection, canManage, onBack, onEdit }) => {
           <div className="flex-1">
             {/* Icon and Title */}
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <div className="w-16 h-16 bg-card/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
                 <BookOpen className="w-8 h-8" />
               </div>
               <div>
@@ -76,7 +76,7 @@ const CollectionHeader = ({ collection, canManage, onBack, onEdit }) => {
             <div className="flex-shrink-0">
               <button
                 onClick={onEdit}
-                className="flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-card/20 hover:bg-card/30 backdrop-blur-sm rounded-lg transition-colors"
               >
                 <Edit className="w-5 h-5" />
                 <span>Edit Collection</span>

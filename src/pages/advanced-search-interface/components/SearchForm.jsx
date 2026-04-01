@@ -30,11 +30,11 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-6">
+    <form onSubmit={handleSubmit} className="bg-card rounded-lg border border-border p-6">
       <div className="space-y-6">
         {/* Main Search Query */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Search Query
           </label>
           <div className="relative">
@@ -48,14 +48,14 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
             <Icon
               name="Search"
               size={20}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
             />
           </div>
         </div>
 
         {/* Content Type */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Content Type
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -66,7 +66,7 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
                 onClick={() => onQueryChange({ ...searchQuery, contentType: type?.value })}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   searchQuery?.contentType === type?.value
-                    ? 'bg-purple-600 text-white' :'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-primary text-white' :'bg-muted text-foreground hover:bg-muted'
                 }`}
               >
                 {type?.label}
@@ -77,13 +77,13 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
 
         {/* Language Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Programming Language
           </label>
           <select
             value={searchQuery?.language}
             onChange={(e) => onQueryChange({ ...searchQuery, language: e?.target?.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
             {languages?.map((lang) => (
               <option key={lang?.value} value={lang?.value}>
@@ -95,7 +95,7 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
 
         {/* Author Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Author Name
           </label>
           <Input
@@ -109,7 +109,7 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
         {/* Date Range */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               From Date
             </label>
             <Input
@@ -124,7 +124,7 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               To Date
             </label>
             <Input
@@ -142,12 +142,12 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
 
         {/* Engagement Thresholds */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-foreground mb-2">
             Minimum Engagement
           </label>
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs text-gray-600 mb-1">Views</label>
+              <label className="block text-xs text-muted-foreground mb-1">Views</label>
               <Input
                 type="number"
                 min="0"
@@ -165,7 +165,7 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
               />
             </div>
             <div>
-              <label className="block text-xs text-gray-600 mb-1">Likes</label>
+              <label className="block text-xs text-muted-foreground mb-1">Likes</label>
               <Input
                 type="number"
                 min="0"
@@ -183,7 +183,7 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
               />
             </div>
             <div>
-              <label className="block text-xs text-gray-600 mb-1">Comments</label>
+              <label className="block text-xs text-muted-foreground mb-1">Comments</label>
               <Input
                 type="number"
                 min="0"

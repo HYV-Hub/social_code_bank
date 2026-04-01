@@ -157,8 +157,8 @@ const SessionManagement = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'success': return 'text-green-600 bg-green-50';
-      case 'failed': return 'text-red-600 bg-red-50';
+      case 'success': return 'text-success bg-success/10';
+      case 'failed': return 'text-error bg-error/10';
       case 'blocked': return 'text-orange-600 bg-orange-50';
       default: return 'text-slate-600 bg-slate-50';
     }
@@ -192,7 +192,7 @@ const SessionManagement = () => {
               </div>
               <button
                 onClick={() => navigate('/user-dashboard')}
-                className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-white rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-card rounded-lg transition-colors"
               >
                 <Icon name="ArrowLeft" size={20} />
                 <span>Back to Dashboard</span>
@@ -202,29 +202,29 @@ const SessionManagement = () => {
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-              <Icon name="AlertCircle" size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+            <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
+              <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-red-800 font-medium">Error</p>
-                <p className="text-red-600 text-sm">{error}</p>
+                <p className="text-error text-sm">{error}</p>
               </div>
             </div>
           )}
 
           {/* Tab Navigation */}
-          <div className="bg-white rounded-lg shadow-sm border border-slate-200 mb-6">
+          <div className="bg-card rounded-lg shadow-sm border border-slate-200 mb-6">
             <div className="flex border-b border-slate-200">
               <button
                 onClick={() => setActiveTab('sessions')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'sessions' ?'text-blue-800 border-b-2 border-blue-800 bg-blue-50' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
+                  activeTab === 'sessions' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
                   <Icon name="Monitor" size={18} />
                   <span>Active Sessions</span>
                   {sessions?.length > 0 && (
-                    <span className="ml-2 px-2 py-0.5 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full">
+                    <span className="ml-2 px-2 py-0.5 text-xs font-semibold text-foreground bg-primary/15 rounded-full">
                       {sessions?.length}
                     </span>
                   )}
@@ -233,7 +233,7 @@ const SessionManagement = () => {
               <button
                 onClick={() => setActiveTab('history')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'history' ?'text-blue-800 border-b-2 border-blue-800 bg-blue-50' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
+                  activeTab === 'history' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -244,7 +244,7 @@ const SessionManagement = () => {
               <button
                 onClick={() => setActiveTab('preferences')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'preferences' ?'text-blue-800 border-b-2 border-blue-800 bg-blue-50' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
+                  activeTab === 'preferences' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -263,7 +263,7 @@ const SessionManagement = () => {
                 {sessions?.length > 1 && (
                   <button
                     onClick={handleRevokeAllOther}
-                    className="flex items-center gap-2 px-4 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors border border-red-200"
+                    className="flex items-center gap-2 px-4 py-2 text-error hover:text-error hover:bg-error/10 rounded-lg transition-colors border border-error/20"
                   >
                     <Icon name="LogOut" size={18} />
                     <span>Logout All Other Devices</span>
@@ -276,24 +276,24 @@ const SessionManagement = () => {
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-800 mx-auto"></div>
                 </div>
               ) : sessions?.length === 0 ? (
-                <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-12 text-center">
+                <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-12 text-center">
                   <Icon name="Monitor" size={48} className="mx-auto text-slate-300 mb-4" />
                   <p className="text-slate-600">No active sessions found</p>
                 </div>
               ) : (
                 <div className="grid gap-4">
                   {sessions?.map((session) => (
-                    <div key={session?.id} className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+                    <div key={session?.id} className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
                       <div className="flex items-start justify-between">
                         <div className="flex items-start gap-4 flex-1">
-                          <div className="p-3 bg-blue-50 rounded-lg">
-                            <Icon name={getDeviceIcon(session?.deviceType)} size={24} className="text-blue-800" />
+                          <div className="p-3 bg-primary/10 rounded-lg">
+                            <Icon name={getDeviceIcon(session?.deviceType)} size={24} className="text-foreground" />
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2">
                               <h3 className="text-lg font-semibold text-slate-900">{session?.deviceName || 'Unknown Device'}</h3>
                               {session?.isTrustedDevice && (
-                                <span className="px-2 py-0.5 text-xs font-medium text-green-700 bg-green-100 rounded-full flex items-center gap-1">
+                                <span className="px-2 py-0.5 text-xs font-medium text-success bg-success/15 rounded-full flex items-center gap-1">
                                   <Icon name="Shield" size={12} />
                                   Trusted
                                 </span>
@@ -326,13 +326,13 @@ const SessionManagement = () => {
                         <div className="flex flex-col gap-2">
                           <button
                             onClick={() => handleToggleTrust(session?.id, session?.isTrustedDevice)}
-                            className="px-3 py-1.5 text-sm text-blue-800 hover:text-blue-900 hover:bg-blue-50 rounded-lg transition-colors border border-blue-200"
+                            className="px-3 py-1.5 text-sm text-foreground hover:text-foreground hover:bg-primary/10 rounded-lg transition-colors border border-primary/20"
                           >
                             {session?.isTrustedDevice ? 'Untrust' : 'Trust Device'}
                           </button>
                           <button
                             onClick={() => handleRevokeSession(session?.id)}
-                            className="px-3 py-1.5 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors border border-red-200"
+                            className="px-3 py-1.5 text-sm text-error hover:text-error hover:bg-error/10 rounded-lg transition-colors border border-error/20"
                           >
                             End Session
                           </button>
@@ -355,12 +355,12 @@ const SessionManagement = () => {
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-800 mx-auto"></div>
                 </div>
               ) : loginAttempts?.length === 0 ? (
-                <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-12 text-center">
+                <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-12 text-center">
                   <Icon name="Clock" size={48} className="mx-auto text-slate-300 mb-4" />
                   <p className="text-slate-600">No login history available</p>
                 </div>
               ) : (
-                <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <div className="bg-card rounded-lg shadow-sm border border-slate-200 overflow-hidden">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead className="bg-slate-50 border-b border-slate-200">
@@ -424,7 +424,7 @@ const SessionManagement = () => {
               ) : (
                 <form onSubmit={handleUpdatePreferences} className="space-y-6">
                   {/* Session Settings */}
-                  <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+                  <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
                     <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
                       <Icon name="Clock" size={20} />
                       Session Settings
@@ -442,7 +442,7 @@ const SessionManagement = () => {
                             preferences?.rememberDevice ? 'bg-blue-800' : 'bg-slate-300'
                           }`}
                         >
-                          <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                          <span className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform ${
                             preferences?.rememberDevice ? 'translate-x-6' : 'translate-x-1'
                           }`} />
                         </button>
@@ -464,7 +464,7 @@ const SessionManagement = () => {
                   </div>
 
                   {/* Security Settings */}
-                  <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+                  <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
                     <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
                       <Icon name="Shield" size={20} />
                       Security Settings
@@ -482,7 +482,7 @@ const SessionManagement = () => {
                             preferences?.requireMfaForNewDevice ? 'bg-blue-800' : 'bg-slate-300'
                           }`}
                         >
-                          <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                          <span className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform ${
                             preferences?.requireMfaForNewDevice ? 'translate-x-6' : 'translate-x-1'
                           }`} />
                         </button>
@@ -491,7 +491,7 @@ const SessionManagement = () => {
                   </div>
 
                   {/* Notification Settings */}
-                  <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+                  <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
                     <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
                       <Icon name="Bell" size={20} />
                       Email Notifications
@@ -509,7 +509,7 @@ const SessionManagement = () => {
                             preferences?.emailNotificationNewLogin ? 'bg-blue-800' : 'bg-slate-300'
                           }`}
                         >
-                          <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                          <span className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform ${
                             preferences?.emailNotificationNewLogin ? 'translate-x-6' : 'translate-x-1'
                           }`} />
                         </button>
@@ -526,7 +526,7 @@ const SessionManagement = () => {
                             preferences?.emailNotificationSuspiciousActivity ? 'bg-blue-800' : 'bg-slate-300'
                           }`}
                         >
-                          <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                          <span className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform ${
                             preferences?.emailNotificationSuspiciousActivity ? 'translate-x-6' : 'translate-x-1'
                           }`} />
                         </button>

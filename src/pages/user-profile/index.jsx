@@ -194,7 +194,7 @@ const UserProfile = () => {
       return (
         <button
           onClick={handleSendFriendRequest}
-          className="flex items-center space-x-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          className="flex items-center space-x-2 px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary">
           <Icon name="UserPlus" size={20} />
           <span>Add Friend</span>
         </button>
@@ -227,7 +227,7 @@ const UserProfile = () => {
       return (
         <button
           disabled
-          className="flex items-center space-x-2 px-6 py-2 bg-green-100 text-green-700 rounded-lg cursor-not-allowed">
+          className="flex items-center space-x-2 px-6 py-2 bg-success/15 text-success rounded-lg cursor-not-allowed">
           <Icon name="Check" size={20} />
           <span>Friends</span>
         </button>
@@ -604,8 +604,8 @@ const UserProfile = () => {
       <div className="min-h-screen bg-background">
         <AppNavigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-red-500/10 border border-red-500 rounded-lg p-4">
-            <p className="text-red-400">{error}</p>
+          <div className="bg-error/100/10 border border-error rounded-lg p-4">
+            <p className="text-error">{error}</p>
           </div>
         </div>
       </div>
@@ -634,7 +634,7 @@ const UserProfile = () => {
       <AppNavigation />
 
       {/* Profile Header */}
-      <div className="bg-white shadow">
+      <div className="bg-card shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8">
             <div className="flex-shrink-0">
@@ -807,7 +807,7 @@ const UserProfile = () => {
                       {filteredSnippets?.map((snippet) => (
                         <div
                           key={snippet?.id}
-                          className="group bg-white border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer"
+                          className="group bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer"
                           onClick={() => navigate(`/snippet-details?id=${snippet?.id}`)}
                         >
                           {/* Snippet Header */}

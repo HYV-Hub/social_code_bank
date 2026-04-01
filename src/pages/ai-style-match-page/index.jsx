@@ -162,10 +162,10 @@ import Button from '../../components/ui/Button';
           <title>Access Denied - AI Style Match</title>
         </Helmet>
         <AppNavigation />
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="min-h-screen bg-background flex items-center justify-center">
           <div className="text-center max-w-md">
-            <div className="p-4 bg-yellow-50 rounded-full inline-block mb-4">
-              <Icon name="Lock" size={48} className="text-yellow-600" />
+            <div className="p-4 bg-warning/10 rounded-full inline-block mb-4">
+              <Icon name="Lock" size={48} className="text-warning" />
             </div>
             <h2 className="text-2xl font-bold text-slate-900 mb-2">Company Feature</h2>
             <p className="text-slate-600 mb-6">
@@ -188,9 +188,9 @@ import Button from '../../components/ui/Button';
       </Helmet>
       {/* Add Navigation */}
       <AppNavigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         {/* Header */}
-        <div className="bg-white border-b border-slate-200">
+        <div className="bg-card border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
               <div>
@@ -221,7 +221,7 @@ import Button from '../../components/ui/Button';
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Tabs */}
-          <div className="bg-white rounded-lg shadow-sm border border-slate-200 mb-6">
+          <div className="bg-card rounded-lg shadow-sm border border-slate-200 mb-6">
             <div className="flex border-b border-slate-200">
               {[
                 { id: 'comparison', label: 'Code Comparison', icon: Code },
@@ -236,7 +236,7 @@ import Button from '../../components/ui/Button';
                   onClick={() => setActiveTab(tab?.id)}
                   className={`flex-1 px-6 py-4 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
                     activeTab === tab?.id
-                      ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50' :'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                      ? 'text-primary border-b-2 border-blue-600 bg-primary/10' :'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                 >
                   <tab.icon className="w-4 h-4" />
@@ -248,11 +248,11 @@ import Button from '../../components/ui/Button';
 
           {/* Error Display */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+            <div className="bg-error/10 border border-error/20 rounded-lg p-4 mb-6 flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-error flex-shrink-0 mt-0.5" />
               <div>
                 <h3 className="font-semibold text-red-900">Analysis Error</h3>
-                <p className="text-red-700 text-sm mt-1">{error}</p>
+                <p className="text-error text-sm mt-1">{error}</p>
               </div>
             </div>
           )}

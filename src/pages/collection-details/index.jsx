@@ -95,7 +95,7 @@ export default function CollectionDetailsPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          <p className="mt-2 text-gray-600">Loading collection...</p>
+          <p className="mt-2 text-muted-foreground">Loading collection...</p>
         </div>
       </div>
     );
@@ -105,10 +105,10 @@ export default function CollectionDetailsPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-500 text-lg">Collection not found</p>
+          <p className="text-muted-foreground text-lg">Collection not found</p>
           <button
             onClick={() => navigate('/snippet-collections')}
-            className="mt-4 text-blue-600 hover:text-blue-700"
+            className="mt-4 text-primary hover:text-primary"
           >
             Back to Collections
           </button>
@@ -124,33 +124,33 @@ export default function CollectionDetailsPage() {
       </Helmet>
       {/* Add Navigation */}
       <AppNavigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         {/* Header */}
-        <div className="bg-white shadow-sm border-b">
+        <div className="bg-card shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center gap-4 mb-4">
               <button
                 onClick={() => navigate('/snippet-collections')}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-2 hover:bg-muted rounded-lg transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-3xl font-bold text-gray-900">{collection?.title}</h1>
+                  <h1 className="text-3xl font-bold text-foreground">{collection?.title}</h1>
                   {collection?.isPublic ? (
-                    <Globe className="w-6 h-6 text-green-600" />
+                    <Globe className="w-6 h-6 text-success" />
                   ) : (
-                    <Lock className="w-6 h-6 text-gray-400" />
+                    <Lock className="w-6 h-6 text-muted-foreground" />
                   )}
                 </div>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 text-sm text-muted-foreground">
                   {collection?.description || 'No description'}
                 </p>
               </div>
               <button
                 onClick={() => setShowEditModal(true)}
-                className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                className="inline-flex items-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-foreground bg-card hover:bg-background"
               >
                 <Edit2 className="w-4 h-4 mr-2" />
                 Edit
@@ -163,7 +163,7 @@ export default function CollectionDetailsPage() {
                 {collection?.tags?.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full"
+                    className="px-3 py-1 text-sm font-medium bg-primary/15 text-foreground rounded-full"
                   >
                     {tag}
                   </span>
@@ -175,7 +175,7 @@ export default function CollectionDetailsPage() {
         {/* Error Message */}
         {error && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+            <div className="bg-error/10 border border-error/20 text-error px-4 py-3 rounded-lg">
               {error}
             </div>
           </div>
@@ -183,12 +183,12 @@ export default function CollectionDetailsPage() {
         {/* Snippets Grid */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">
+            <h2 className="text-xl font-semibold text-foreground">
               Snippets ({snippets?.length})
             </h2>
             <button
               onClick={() => navigate('/create-snippet')}
-              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary"
             >
               <Plus className="w-5 h-5 mr-2" />
               Add Snippet
@@ -196,8 +196,8 @@ export default function CollectionDetailsPage() {
           </div>
 
           {snippets?.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-lg shadow-sm">
-              <p className="text-gray-500 text-lg">
+            <div className="text-center py-12 bg-card rounded-lg shadow-sm">
+              <p className="text-muted-foreground text-lg">
                 No snippets in this collection yet. Add your first snippet!
               </p>
             </div>
@@ -206,16 +206,16 @@ export default function CollectionDetailsPage() {
               {snippets?.map((item) => (
                 <div
                   key={item?.id}
-                  className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 border border-gray-200 overflow-hidden group cursor-pointer"
+                  className="bg-card rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 border border-border overflow-hidden group cursor-pointer"
                   onClick={() => handleViewSnippet(item?.snippetId)}
                 >
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
+                        <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                           {item?.snippet?.title}
                         </h3>
-                        <p className="text-sm text-gray-600 line-clamp-2">
+                        <p className="text-sm text-muted-foreground line-clamp-2">
                           {item?.snippet?.description || 'No description'}
                         </p>
                       </div>
@@ -223,15 +223,15 @@ export default function CollectionDetailsPage() {
 
                     {/* Language Badge */}
                     <div className="mb-4">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border border-primary/20">
                         <Code className="w-3 h-3 mr-1" />
                         {item?.snippet?.language}
                       </span>
                     </div>
 
                     {/* Code Preview */}
-                    <div className="bg-gray-50 rounded p-3 mb-4 border border-gray-200 group-hover:border-blue-200 transition-colors">
-                      <pre className="text-xs text-gray-700 overflow-x-auto">
+                    <div className="bg-background rounded p-3 mb-4 border border-border group-hover:border-primary/20 transition-colors">
+                      <pre className="text-xs text-foreground overflow-x-auto">
                         <code className="line-clamp-3">{item?.snippet?.code}</code>
                       </pre>
                     </div>
@@ -243,7 +243,7 @@ export default function CollectionDetailsPage() {
                           e?.stopPropagation();
                           handleViewSnippet(item?.snippetId);
                         }}
-                        className="flex-1 inline-flex items-center justify-center px-3 py-2 border border-blue-600 rounded-md text-sm font-medium text-blue-600 bg-white hover:bg-blue-50 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center px-3 py-2 border border-blue-600 rounded-md text-sm font-medium text-primary bg-card hover:bg-primary/10 transition-colors"
                       >
                         <Eye className="w-4 h-4 mr-1" />
                         View Details
@@ -253,7 +253,7 @@ export default function CollectionDetailsPage() {
                           e?.stopPropagation();
                           handleRemoveSnippet(item?.snippetId);
                         }}
-                        className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors border border-red-600"
+                        className="p-2 text-error hover:bg-error/10 rounded transition-colors border border-red-600"
                         title="Remove from collection"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -261,8 +261,8 @@ export default function CollectionDetailsPage() {
                     </div>
 
                     {/* Stats */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Heart className="w-4 h-4" />
                           {item?.snippet?.likesCount || 0}
@@ -272,7 +272,7 @@ export default function CollectionDetailsPage() {
                           {item?.snippet?.viewsCount || 0}
                         </span>
                       </div>
-                      <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
                   </div>
                 </div>
@@ -283,12 +283,12 @@ export default function CollectionDetailsPage() {
         {/* Edit Collection Modal */}
         {showEditModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-md w-full p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Edit Collection</h2>
+            <div className="bg-card rounded-lg max-w-md w-full p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">Edit Collection</h2>
               <form onSubmit={handleUpdateCollection}>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-foreground mb-1">
                       Title *
                     </label>
                     <input
@@ -296,31 +296,31 @@ export default function CollectionDetailsPage() {
                       required
                       value={editForm?.title}
                       onChange={(e) => setEditForm({ ...editForm, title: e?.target?.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-transparent"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-foreground mb-1">
                       Description
                     </label>
                     <textarea
                       value={editForm?.description}
                       onChange={(e) => setEditForm({ ...editForm, description: e?.target?.value })}
                       rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-transparent"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-foreground mb-1">
                       Tags (comma-separated)
                     </label>
                     <input
                       type="text"
                       value={editForm?.tags}
                       onChange={(e) => setEditForm({ ...editForm, tags: e?.target?.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-transparent"
                     />
                   </div>
 
@@ -330,9 +330,9 @@ export default function CollectionDetailsPage() {
                       id="editIsPublic"
                       checked={editForm?.isPublic}
                       onChange={(e) => setEditForm({ ...editForm, isPublic: e?.target?.checked })}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-primary focus:ring-ring border-border rounded"
                     />
-                    <label htmlFor="editIsPublic" className="ml-2 block text-sm text-gray-700">
+                    <label htmlFor="editIsPublic" className="ml-2 block text-sm text-foreground">
                       Make this collection public
                     </label>
                   </div>
@@ -342,13 +342,13 @@ export default function CollectionDetailsPage() {
                   <button
                     type="button"
                     onClick={() => setShowEditModal(false)}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                    className="flex-1 px-4 py-2 border border-border rounded-md text-foreground hover:bg-background"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                    className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary"
                   >
                     Save Changes
                   </button>

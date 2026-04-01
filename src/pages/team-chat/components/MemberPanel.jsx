@@ -54,8 +54,8 @@ const MemberPanel = ({ activeChannel, members, sharedFiles, onMemberClick, onlin
                       className="w-10 h-10 rounded-full object-cover"
                     />
                     {isOnline && (
-                      <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-card rounded-full">
-                        <span className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></span>
+                      <span className="absolute bottom-0 right-0 w-3 h-3 bg-success/100 border-2 border-card rounded-full">
+                        <span className="absolute inset-0 bg-success/100 rounded-full animate-ping opacity-75"></span>
                       </span>
                     )}
                     {!isOnline && (
@@ -68,7 +68,7 @@ const MemberPanel = ({ activeChannel, members, sharedFiles, onMemberClick, onlin
                         {member?.full_name || member?.name}
                       </span>
                       {isOnline && (
-                        <span className="flex-shrink-0 px-1.5 py-0.5 bg-green-100 text-green-700 text-xs rounded">
+                        <span className="flex-shrink-0 px-1.5 py-0.5 bg-success/15 text-success text-xs rounded">
                           Online
                         </span>
                       )}

@@ -38,16 +38,16 @@ const SnippetCard = ({ snippet, onEdit, onShare, onVisibilityChange, onDelete })
 
   const getLanguageColor = (language) => {
     const colors = {
-      'JavaScript': 'bg-yellow-500',
-      'Python': 'bg-blue-500',
-      'Java': 'bg-red-500',
-      'TypeScript': 'bg-blue-600',
+      'JavaScript': 'bg-warning/100',
+      'Python': 'bg-primary',
+      'Java': 'bg-error/100',
+      'TypeScript': 'bg-primary',
       'Go': 'bg-cyan-500',
       'Rust': 'bg-orange-600',
       'C++': 'bg-pink-500',
       'Ruby': 'bg-red-600'
     };
-    return colors?.[language] || 'bg-gray-500';
+    return colors?.[language] || 'bg-background0';
   };
 
   const handleViewAIReport = () => {
@@ -57,7 +57,7 @@ const SnippetCard = ({ snippet, onEdit, onShare, onVisibilityChange, onDelete })
   return (
     <div 
       onClick={handleCardClick}
-      className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer"
+      className="bg-card rounded-lg border border-border p-4 hover:shadow-md transition-shadow cursor-pointer"
     >
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
@@ -85,7 +85,7 @@ const SnippetCard = ({ snippet, onEdit, onShare, onVisibilityChange, onDelete })
         <div className="relative bg-muted rounded-lg p-4 mb-4 font-mono text-sm overflow-x-auto">
           <button
             onClick={handleViewAIReport}
-            className="absolute top-2 right-2 p-1.5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-md transition-all opacity-0 group-hover:opacity-100"
+            className="absolute top-2 right-2 p-1.5 bg-gradient-to-r from-primary to-secondary hover:from-purple-700 hover:to-blue-700 rounded-md transition-all opacity-0 group-hover:opacity-100"
             title="View AI Optimization Report"
           >
             <Icon name="Sparkles" size={14} className="text-white" />

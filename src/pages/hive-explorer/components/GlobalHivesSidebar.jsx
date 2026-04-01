@@ -11,10 +11,10 @@ export default function GlobalHivesSidebar({ myHives, currentHiveId, onClose }) 
     <div className="p-6 space-y-6 h-full overflow-y-auto">
       {/* Header for mobile */}
       <div className="flex items-center justify-between lg:hidden mb-4">
-        <h2 className="text-lg font-bold text-gray-900">My Hives</h2>
+        <h2 className="text-lg font-bold text-foreground">My Hives</h2>
         <button
           onClick={onClose}
-          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          className="p-2 hover:bg-muted rounded-lg transition-colors"
         >
           <Icon name="X" size={20} />
         </button>
@@ -22,7 +22,7 @@ export default function GlobalHivesSidebar({ myHives, currentHiveId, onClose }) 
 
       {/* Hive Switcher */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-900 mb-3">My Hives</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">My Hives</h3>
         {myHives?.length > 0 ? (
           <div className="space-y-2">
             {myHives?.map((hive) => (
@@ -31,24 +31,24 @@ export default function GlobalHivesSidebar({ myHives, currentHiveId, onClose }) 
                 onClick={() => navigate(`/hives/${hive?.id}`)}
                 className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
                   currentHiveId === hive?.id
-                    ? 'bg-purple-100 text-purple-900 font-semibold' :'hover:bg-gray-100 text-gray-700'
+                    ? 'bg-purple-100 text-purple-900 font-semibold' :'hover:bg-muted text-foreground'
                 }`}
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                    hive?.privacy === 'private' ? 'bg-yellow-500' : 'bg-green-500'
+                    hive?.privacy === 'private' ? 'bg-warning/100' : 'bg-success/100'
                   }`} />
-                  <span className="text-sm font-medium text-gray-900 truncate">{hive?.name}</span>
+                  <span className="text-sm font-medium text-foreground truncate">{hive?.name}</span>
                 </div>
-                <span className="text-xs text-gray-500 flex-shrink-0 ml-2">
+                <span className="text-xs text-muted-foreground flex-shrink-0 ml-2">
                   {hive?.memberCount || 0}
                 </span>
               </button>
             ))}
           </div>
         ) : (
-          <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <p className="text-sm text-gray-600 text-center mb-3">No hives joined yet</p>
+          <div className="p-4 bg-background rounded-lg border border-border">
+            <p className="text-sm text-muted-foreground text-center mb-3">No hives joined yet</p>
             <Button
               onClick={() => {
                 navigate('/hives');
@@ -65,7 +65,7 @@ export default function GlobalHivesSidebar({ myHives, currentHiveId, onClose }) 
 
       {/* Global Search */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-900 mb-3">Quick Search</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Quick Search</h3>
         <Input
           type="text"
           placeholder="Search all hives..."
@@ -79,7 +79,7 @@ export default function GlobalHivesSidebar({ myHives, currentHiveId, onClose }) 
 
       {/* Quick Actions */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-900 mb-3">Quick Actions</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Quick Actions</h3>
         <div className="space-y-2">
           <Button
             variant="ghost"
@@ -119,16 +119,16 @@ export default function GlobalHivesSidebar({ myHives, currentHiveId, onClose }) 
 
       {/* Stats Overview */}
       {myHives?.length > 0 && (
-        <div className="pt-6 border-t border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-900 mb-3">Your Activity</h3>
+        <div className="pt-6 border-t border-border">
+          <h3 className="text-sm font-semibold text-foreground mb-3">Your Activity</h3>
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Hives Joined</span>
-              <span className="font-semibold text-gray-900">{myHives?.length}</span>
+              <span className="text-muted-foreground">Hives Joined</span>
+              <span className="font-semibold text-foreground">{myHives?.length}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Total Members</span>
-              <span className="font-semibold text-gray-900">
+              <span className="text-muted-foreground">Total Members</span>
+              <span className="font-semibold text-foreground">
                 {myHives?.reduce((sum, h) => sum + (h?.memberCount || 0), 0)}
               </span>
             </div>

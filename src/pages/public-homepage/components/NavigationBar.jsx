@@ -22,7 +22,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-card border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-8">
@@ -40,7 +40,7 @@ const NavigationBar = () => {
                 <button
                   key={link?.label}
                   onClick={() => navigate(link?.href)}
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors"
+                  className="text-slate-700 hover:text-primary font-medium transition-colors"
                 >
                   {link?.label}
                 </button>
@@ -84,7 +84,7 @@ const NavigationBar = () => {
                     navigate(link?.href);
                     setMobileMenuOpen(false);
                   }}
-                  className="text-slate-700 hover:text-blue-600 font-medium py-2 text-left"
+                  className="text-slate-700 hover:text-primary font-medium py-2 text-left"
                 >
                   {link?.label}
                 </button>

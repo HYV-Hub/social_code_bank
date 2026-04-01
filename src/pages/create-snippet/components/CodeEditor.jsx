@@ -41,7 +41,7 @@ const CodeEditor = ({
   };
 
   return (
-    <div className="bg-white rounded-lg border border-slate-200 p-6">
+    <div className="bg-card rounded-lg border border-slate-200 p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-slate-800">Code</h2>
         <p className="text-sm text-slate-600">
@@ -61,7 +61,7 @@ const CodeEditor = ({
         )}
         
         <textarea
-          className={`w-full min-h-[500px] p-4 ${lineNumbers ? 'pl-16' : 'pl-4'} font-mono text-sm text-slate-800 focus:outline-none resize-none bg-white`}
+          className={`w-full min-h-[500px] p-4 ${lineNumbers ? 'pl-16' : 'pl-4'} font-mono text-sm text-slate-800 focus:outline-none resize-none bg-card`}
           placeholder="// Start typing or paste your code here...\n\nfunction example() {\n  return 'Hello World';\n}"
           value={code}
           onChange={handleCodeChange}
@@ -69,8 +69,8 @@ const CodeEditor = ({
         />
       </div>
       {errors?.code && (
-        <div className="px-4 py-3 bg-red-50 border-t border-red-200">
-          <p className="text-sm text-red-600">{errors?.code}</p>
+        <div className="px-4 py-3 bg-error/10 border-t border-error/20">
+          <p className="text-sm text-error">{errors?.code}</p>
         </div>
       )}
       <div className="px-4 py-2 bg-slate-50 border-t border-slate-200 flex items-center justify-between">

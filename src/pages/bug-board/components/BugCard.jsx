@@ -4,10 +4,10 @@ import Image from '../../../components/AppImage';
 
 const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }) => {
   const priorityColors = {
-    critical: 'bg-red-100 text-red-800 border-red-300',
+    critical: 'bg-error/15 text-red-800 border-red-300',
     high: 'bg-orange-100 text-orange-800 border-orange-300',
-    medium: 'bg-yellow-100 text-yellow-800 border-yellow-300',
-    low: 'bg-blue-100 text-blue-800 border-blue-300'
+    medium: 'bg-warning/15 text-yellow-800 border-yellow-300',
+    low: 'bg-primary/15 text-foreground border-blue-300'
   };
 
   const priorityIcons = {
@@ -21,7 +21,7 @@ const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }
     <div
       draggable
       onDragStart={(e) => onDragStart(e, bug)}
-      className="bg-white rounded-lg border border-slate-200 p-4 mb-3 cursor-move hover:shadow-md transition-shadow"
+      className="bg-card rounded-lg border border-slate-200 p-4 mb-3 cursor-move hover:shadow-md transition-shadow"
     >
       <div className="flex items-start justify-between mb-3">
         <h4 className="text-sm font-semibold text-slate-800 flex-1 pr-2 line-clamp-2">
@@ -67,7 +67,7 @@ const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }
       <div className="flex items-center gap-2 pt-3 border-t border-slate-100">
         <button
           onClick={() => onViewDetails(bug)}
-          className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-700 rounded text-xs font-medium hover:bg-blue-100 transition-colors"
+          className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 bg-primary/10 text-primary rounded text-xs font-medium hover:bg-primary/15 transition-colors"
         >
           <Icon name="Eye" size={14} />
           View

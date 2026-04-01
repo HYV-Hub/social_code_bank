@@ -29,12 +29,12 @@ export function BulkActions({ selectedIds, onClearSelection, onUpdate }) {
 
   if (selectedIds?.length === 0) {
     return (
-      <div className="bg-white border-b border-gray-200 p-4">
+      <div className="bg-card border-b border-border p-4">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-600">Select notifications for bulk actions</span>
+          <span className="text-sm text-muted-foreground">Select notifications for bulk actions</span>
           <button
             onClick={handleMarkAllAsRead}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
           >
             <CheckCheck className="w-4 h-4" />
             Mark all as read
@@ -45,15 +45,15 @@ export function BulkActions({ selectedIds, onClearSelection, onUpdate }) {
   }
 
   return (
-    <div className="bg-blue-50 border-b border-blue-200 p-4">
+    <div className="bg-primary/10 border-b border-primary/20 p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <span className="text-sm font-medium text-gray-900">
+          <span className="text-sm font-medium text-foreground">
             {selectedIds?.length} selected
           </span>
           <button
             onClick={onClearSelection}
-            className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <X className="w-4 h-4" />
             Clear selection
@@ -63,7 +63,7 @@ export function BulkActions({ selectedIds, onClearSelection, onUpdate }) {
         <div className="flex items-center gap-2">
           <button
             onClick={handleDeleteSelected}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-100 rounded-lg transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-error hover:bg-error/15 rounded-lg transition-colors"
           >
             <Trash2 className="w-4 h-4" />
             Delete selected
