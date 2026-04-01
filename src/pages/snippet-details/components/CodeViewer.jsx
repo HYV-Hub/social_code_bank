@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
+import CodeBlock from '../../../components/ui/CodeBlock';
 
 const CodeViewer = ({ snippet }) => {
   const [copied, setCopied] = useState(false);
@@ -468,9 +469,7 @@ const CodeViewer = ({ snippet }) => {
       <div className="relative">
         {viewMode === 'code' ? (
           // Code View
-          (<pre className="p-4 overflow-x-auto bg-background text-foreground font-mono text-sm leading-relaxed">
-            <code>{snippet?.code}</code>
-          </pre>)
+          (<CodeBlock code={snippet?.code} language={snippet?.language} showLineNumbers showCopy />)
         ) : (
           // Preview View
           (<div className="relative bg-card" style={{ minHeight: '400px' }}>

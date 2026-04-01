@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import CodeBlock from '../../../components/ui/CodeBlock';
 
 const CodeHighlight = ({ before, after }) => {
   return (
@@ -9,9 +10,7 @@ const CodeHighlight = ({ before, after }) => {
         <div className="flex items-center space-x-2 mb-3">
           <span className="text-xs font-medium text-error">BEFORE</span>
         </div>
-        <pre className="text-sm text-foreground overflow-x-auto">
-          <code>{before}</code>
-        </pre>
+        <CodeBlock code={before} language="javascript" showCopy={false} />
       </div>
 
       {/* Arrow (hidden on mobile) */}
@@ -26,9 +25,7 @@ const CodeHighlight = ({ before, after }) => {
         <div className="flex items-center space-x-2 mb-3">
           <span className="text-xs font-medium text-success">AFTER</span>
         </div>
-        <pre className="text-sm text-foreground overflow-x-auto">
-          <code>{after}</code>
-        </pre>
+        <CodeBlock code={after} language="javascript" showCopy={false} />
       </div>
     </div>
   );

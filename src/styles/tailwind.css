@@ -219,3 +219,23 @@
     box-shadow: 0 0 25px rgba(6,182,212,0.2);
   }
 }
+
+/* Highlight.js — dark theme matching HYVHub */
+.hljs { background: transparent !important; color: #e2e8f0; }
+.hljs-keyword, .hljs-selector-tag, .hljs-type { color: #c084fc; font-weight: 500; }
+.hljs-string, .hljs-template-variable, .hljs-addition { color: #34d399; }
+.hljs-number, .hljs-literal { color: #f59e0b; }
+.hljs-comment, .hljs-quote { color: #64748b; font-style: italic; }
+.hljs-function .hljs-title, .hljs-title.function_ { color: #60a5fa; }
+.hljs-class .hljs-title, .hljs-title.class_ { color: #f472b6; }
+.hljs-variable, .hljs-attr { color: #e2e8f0; }
+.hljs-built_in, .hljs-name { color: #06b6d4; }
+.hljs-params { color: #cbd5e1; }
+.hljs-meta, .hljs-meta .hljs-keyword { color: #94a3b8; }
+.hljs-tag { color: #f472b6; }
+.hljs-attribute { color: #60a5fa; }
+.hljs-symbol, .hljs-bullet { color: #fb923c; }
+.hljs-deletion { color: #f87171; }
+.hljs-section { color: #c084fc; font-weight: 700; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }

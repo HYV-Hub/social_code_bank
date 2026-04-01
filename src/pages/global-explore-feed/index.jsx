@@ -96,11 +96,13 @@ export default function GlobalExploreFeed() {
     <PageShell noPadding>
       <div className="flex">
         {/* Global Hives Sidebar */}
-        <GlobalHivesSidebar />
+        <div className="hidden lg:block w-64 flex-shrink-0 border-r border-border bg-card overflow-y-auto" style={{ height: 'calc(100vh - 56px)' }}>
+          <GlobalHivesSidebar />
+        </div>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-y-auto">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex-1 overflow-y-auto">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             {/* Header */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-foreground mb-2">
@@ -183,7 +185,7 @@ export default function GlobalExploreFeed() {
               </>
             )}
           </div>
-        </main>
+        </div>
       </div>
     </PageShell>
   );

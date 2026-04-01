@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
+import CodeBlock from '../../../components/ui/CodeBlock';
 
 const SnippetCard = ({ snippet, onEdit, onShare, onVisibilityChange, onDelete }) => {
   const navigate = useNavigate();
@@ -90,9 +91,7 @@ const SnippetCard = ({ snippet, onEdit, onShare, onVisibilityChange, onDelete })
           >
             <Icon name="Sparkles" size={14} className="text-white" />
           </button>
-          <pre className="text-foreground whitespace-pre-wrap break-words">
-            <code>{snippet?.codePreview}</code>
-          </pre>
+          <CodeBlock code={snippet?.codePreview || snippet?.code?.substring(0, 200)} language={snippet?.language} maxLines={4} showCopy={false} showLineNumbers={false} />
         </div>
 
         <div className="flex items-center justify-between">

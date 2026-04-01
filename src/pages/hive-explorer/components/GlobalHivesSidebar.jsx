@@ -8,7 +8,7 @@ export default function GlobalHivesSidebar({ myHives, currentHiveId, onClose }) 
   const navigate = useNavigate();
 
   return (
-    <div className="p-6 space-y-6 h-full overflow-y-auto">
+    <div className="w-64 flex-shrink-0 p-6 space-y-6 h-full overflow-y-auto bg-card border-r border-border">
       {/* Header for mobile */}
       <div className="flex items-center justify-between lg:hidden mb-4">
         <h2 className="text-lg font-bold text-foreground">My Hives</h2>

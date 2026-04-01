@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icon from './AppIcon';
 import Button from './ui/Button';
+import CodeBlock from './ui/CodeBlock';
 import { aiReportService } from '../services/aiReportService';
 import { bugService } from '../services/bugService';
 import { snippetService } from '../services/snippetService';
@@ -194,9 +195,7 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                           </span>
                         </div>
                         {fix?.code_example && (
-                          <pre className="text-xs bg-background p-2 rounded overflow-x-auto">
-                            <code>{fix?.code_example}</code>
-                          </pre>
+                          <CodeBlock code={fix?.code_example} language={entity?.language} maxLines={10} showCopy />
                         )}
                       </div>
                     ))}

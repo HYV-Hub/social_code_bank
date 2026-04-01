@@ -19,8 +19,8 @@ class AITaggingService {
       requestId: raw.requestId || raw.request_id || crypto.randomUUID?.() || Date.now().toString(),
       detectedLanguage: raw.detectedLanguage || raw.detected_language || 'unknown',
       languageConfidence: raw.languageConfidence || raw.language_confidence || 'low',
-      qualityScore: raw.qualityScore ?? raw.optimizationScore ?? raw.optimization_score ?? raw.quality_score ?? 0,
-      readabilityScore: raw.readabilityScore ?? raw.readability_score ?? 0,
+      qualityScore: Math.round(raw.qualityScore ?? raw.optimizationScore ?? raw.optimization_score ?? raw.quality_score ?? 0),
+      readabilityScore: Math.round(raw.readabilityScore ?? raw.readability_score ?? 0),
       complexityLevel: raw.complexityLevel || raw.complexity_level || 'medium',
       bugRisk: raw.bugRisk || raw.bug_risk || 'low',
       tags: raw.tags || raw.aiTags || raw.ai_tags || [],
@@ -298,7 +298,7 @@ Return comprehensive JSON analysis.`,
         .from('snippets')
         .update({
           ai_tags: analysisData?.tags,
-          ai_quality_score: analysisData?.qualityScore,
+          ai_quality_score: Math.round(analysisData?.qualityScore || 0),
           ai_analysis_data: {
             summary: analysisData?.summary,
             strengths: analysisData?.strengths,

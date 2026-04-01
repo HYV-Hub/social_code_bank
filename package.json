@@ -46,6 +46,7 @@
     "dotenv": "^16.0.1",
     "express-rate-limit": "^8.2.1",
     "framer-motion": "^10.16.4",
+    "highlight.js": "^11.11.1",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.484.0",
     "openai": "^5.12.2",

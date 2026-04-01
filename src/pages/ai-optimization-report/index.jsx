@@ -71,6 +71,19 @@ export default function AIOptimizationReportPage() {
         hasScore: !!snippet?.ai_quality_score
       });
 
+      // Use cached analysis if available
+      if (snippet?.ai_analysis_data && (snippet?.ai_quality_score || snippet?.ai_quality_score === 0)) {
+        // Use cached analysis
+        console.log('✅ Using cached AI analysis');
+        const analysis = typeof snippet?.ai_analysis_data === 'string'
+          ? JSON.parse(snippet?.ai_analysis_data)
+          : snippet?.ai_analysis_data;
+        const report = transformAnalysisToReport(snippet, analysis);
+        setReportData(report);
+        setLoading(false);
+        return;
+      }
+
       // Check if snippet has AI analysis data
       if (!snippet?.ai_analysis_data || !snippet?.ai_quality_score) {
         console.warn('⚠️ Snippet missing AI analysis - triggering automatic generation');
@@ -149,7 +162,7 @@ export default function AIOptimizationReportPage() {
         ?.from('snippets')
         ?.update({
           ai_analysis_data: { summary: analysisResult?.summary, strengths: analysisResult?.strengths, weaknesses: analysisResult?.weaknesses, improvements: analysisResult?.improvements, recommendations: analysisResult?.recommendations, categories: analysisResult?.categories, complexityLevel: analysisResult?.complexityLevel, bugRisk: analysisResult?.bugRisk, readabilityScore: analysisResult?.readabilityScore, purposeTags: analysisResult?.purposeTags, functionalityTags: analysisResult?.functionalityTags, searchAliases: analysisResult?.searchAliases, metrics: analysisResult?.metrics, requestId: analysisResult?.requestId, analysisVersion: analysisResult?.analysisVersion },
-          ai_quality_score: analysisResult?.qualityScore,
+          ai_quality_score: Math.round(analysisResult?.qualityScore || 0),
           ai_tags: analysisResult?.tags,
           updated_at: new Date()?.toISOString()
         })
@@ -164,7 +177,7 @@ export default function AIOptimizationReportPage() {
 
       // Transform and display the new analysis immediately
       const report = transformAnalysisToReport(
-        { ...snippet, ai_analysis_data: analysisResult?.categories, ai_quality_score: analysisResult?.qualityScore, ai_tags: analysisResult?.tags },
+        { ...snippet, ai_analysis_data: analysisResult?.categories, ai_quality_score: Math.round(analysisResult?.qualityScore || 0), ai_tags: analysisResult?.tags },
         analysisResult
       );
       
@@ -175,7 +188,8 @@ export default function AIOptimizationReportPage() {
       
     } catch (err) {
       console.error('❌ Background analysis failed:', err);
-      
+      analysisInitiated.current = false;
+
       // Show user-friendly error message
       if (err?.message?.includes('API key')) {
         setError('OpenAI API key not configured. Please add VITE_OPENAI_API_KEY to your .env file to enable AI analysis.');
@@ -293,7 +307,7 @@ export default function AIOptimizationReportPage() {
         ?.from('snippets')
         ?.update({
           ai_analysis_data: { summary: analysisResult?.summary, strengths: analysisResult?.strengths, weaknesses: analysisResult?.weaknesses, improvements: analysisResult?.improvements, recommendations: analysisResult?.recommendations, categories: analysisResult?.categories, complexityLevel: analysisResult?.complexityLevel, bugRisk: analysisResult?.bugRisk, readabilityScore: analysisResult?.readabilityScore, purposeTags: analysisResult?.purposeTags, functionalityTags: analysisResult?.functionalityTags, searchAliases: analysisResult?.searchAliases, metrics: analysisResult?.metrics, requestId: analysisResult?.requestId, analysisVersion: analysisResult?.analysisVersion },
-          ai_quality_score: analysisResult?.qualityScore,
+          ai_quality_score: Math.round(analysisResult?.qualityScore || 0),
           ai_tags: analysisResult?.tags,
           updated_at: new Date()?.toISOString()
         })

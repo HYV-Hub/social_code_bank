@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
+import CodeBlock from '../../../components/ui/CodeBlock';
 import { snippetService } from '../../../services/snippetService';
 import { collectionService } from '../../../services/collectionService';
 import { useAuth } from '../../../contexts/AuthContext';
@@ -340,9 +341,7 @@ const SnippetResultCard = ({ snippet }) => {
 
           {snippet?.code && (
             <div className="bg-background rounded-lg p-3 mb-3">
-              <pre className="text-xs text-foreground overflow-x-auto line-clamp-4">
-                <code>{snippet?.code}</code>
-              </pre>
+              <CodeBlock code={snippet?.code} language={snippet?.language} maxLines={4} showCopy={false} showLineNumbers={false} />
             </div>
           )}
 
