@@ -1,4 +1,8 @@
+/**
+ * Shared timestamp formatter for consistent "X ago" display
+ */
 export function formatTimeAgo(timestamp) {
+  if (!timestamp) return '';
   const date = new Date(timestamp);
   const now = new Date();
   const diffMs = now - date;
@@ -10,5 +14,6 @@ export function formatTimeAgo(timestamp) {
   if (diffMins < 60) return `${diffMins}m ago`;
   if (diffHours < 24) return `${diffHours}h ago`;
   if (diffDays < 7) return `${diffDays}d ago`;
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)}w ago`;
   return date.toLocaleDateString();
 }

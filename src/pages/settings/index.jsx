@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../components/AuthContext';
-import { supabase } from '../../services/supabaseClient';
+import { useAuth } from '../../contexts/AuthContext';
+import { supabase } from '../../lib/supabase';
 import { hiveService } from '../../services/hiveService';
 import AppNavigation from '../../components/AppNavigation';
 import Button from '../../components/ui/Button';
@@ -180,6 +180,11 @@ const SettingsPage = () => {
         });
 
       if (error) throw error;
+
+      // Also save to user_profiles.notification_preferences for quick access
+      await supabase?.from('user_profiles')?.update({
+        notification_preferences: notifications
+      })?.eq('id', user?.id);
 
       setMessage({ type: 'success', text: 'Notification preferences updated!' });
     } catch (error) {

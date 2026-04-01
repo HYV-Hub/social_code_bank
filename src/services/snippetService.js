@@ -55,6 +55,8 @@ export const snippetService = {
         likesCount: snippet?.likes_count || 0,
         commentsCount: snippet?.comments_count || 0,
         viewsCount: snippet?.views_count || 0,
+        reuseCount: snippet?.reuse_count || 0,
+        forkCount: snippet?.fork_count || 0,
         aiTags: snippet?.ai_tags || [],
         aiQualityScore: snippet?.ai_quality_score,
         aiAnalysisData: snippet?.ai_analysis_data,
@@ -96,6 +98,8 @@ export const snippetService = {
         likesCount: data?.likes_count || 0,
         commentsCount: data?.comments_count || 0,
         viewsCount: data?.views_count || 0,
+        reuseCount: data?.reuse_count || 0,
+        forkCount: data?.fork_count || 0,
         aiTags: data?.ai_tags || [],
         aiQualityScore: data?.ai_quality_score,
         aiAnalysisData: data?.ai_analysis_data,
@@ -145,6 +149,7 @@ export const snippetService = {
         likesCount: snippet?.likes_count || 0,
         commentsCount: snippet?.comments_count || 0,
         viewsCount: snippet?.views_count || 0,
+        reuseCount: snippet?.reuse_count || 0,
         aiTags: snippet?.ai_tags || [],
         aiQualityScore: snippet?.ai_quality_score,
         aiReport: snippet?.ai_report,
@@ -752,6 +757,90 @@ export const snippetService = {
       console.error('Error enhancing snippet with AI:', error);
       throw error;
     }
+  },
+
+  /**
+   * Log a reuse event (copy, fork, reference)
+   * The database trigger auto-increments snippets.reuse_count
+   */
+  async logReuse(snippetId, reuseType = 'copy') {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      await supabase.from('snippet_reuse_log').insert({
+        snippet_id: snippetId,
+        user_id: user?.id || null,
+        reuse_type: reuseType,
+      });
+    } catch (error) {
+      // Non-blocking — don't fail the copy/fork if logging fails
+      console.warn('Failed to log reuse:', error.message);
+    }
+  },
+
+  /**
+   * Search snippets using full-text search with ranking
+   */
+  async searchSnippets(searchTerm, filters = {}) {
+    try {
+      if (!searchTerm || !searchTerm.trim()) {
+        return this.getAllSnippets(filters);
+      }
+
+      const tsQuery = searchTerm.trim().split(/\s+/).filter(Boolean).join(' & ');
+
+      const { data, error } = await supabase
+        .rpc('search_snippets_fts', { search_query: tsQuery })
+        .limit(filters.limit || 50);
+
+      if (error) {
+        // Fallback to ilike if RPC doesn't exist yet
+        console.warn('FTS search failed, falling back to ilike:', error.message);
+        let query = supabase.from('snippets').select(`
+          *,
+          user:user_profiles!snippets_user_id_fkey(id, full_name, username, avatar_url)
+        `).eq('visibility', 'public');
+
+        query = query.or(`title.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%`);
+        query = query.order('created_at', { ascending: false }).limit(50);
+
+        const { data: fallbackData, error: fallbackError } = await query;
+        if (fallbackError) throw fallbackError;
+        return this.transformSnippetList(fallbackData);
+      }
+
+      return this.transformSnippetList(data);
+    } catch (error) {
+      console.error('Search error:', error);
+      throw error;
+    }
+  },
+
+  /**
+   * Helper to transform raw snippet rows to app format
+   */
+  transformSnippetList(data) {
+    return (data || []).map(snippet => ({
+      id: snippet?.id,
+      title: snippet?.title,
+      description: snippet?.description,
+      code: snippet?.code,
+      language: snippet?.language,
+      visibility: snippet?.visibility,
+      likesCount: snippet?.likes_count || 0,
+      commentsCount: snippet?.comments_count || 0,
+      viewsCount: snippet?.views_count || 0,
+      reuseCount: snippet?.reuse_count || 0,
+      forkCount: snippet?.fork_count || 0,
+      aiTags: snippet?.ai_tags || [],
+      aiQualityScore: snippet?.ai_quality_score,
+      createdAt: snippet?.created_at,
+      user: snippet?.user ? {
+        id: snippet.user.id,
+        name: snippet.user.full_name,
+        username: snippet.user.username,
+        avatar: snippet.user.avatar_url || '/assets/images/no_image.png',
+      } : null
+    }));
   },
 };
 

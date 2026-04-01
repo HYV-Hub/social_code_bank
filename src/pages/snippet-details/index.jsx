@@ -117,7 +117,9 @@ const SnippetDetails = () => {
             views: data?.views_count || 0,
             likes: data?.likes_count || 0,
             comments: data?.comments_count || 0,
-            saves: 0
+            saves: 0,
+            reuses: data?.reuse_count || 0,
+            forks: data?.fork_count || 0,
           },
           visibility: data?.visibility,
           createdAt: new Date(data?.created_at),
@@ -725,6 +727,14 @@ const SnippetDetails = () => {
                     {snippet?.stats?.likes?.toLocaleString()} likes
                   </span>
                 </div>
+                {snippet?.stats?.reuses > 0 && (
+                  <div className="flex items-center gap-2 bg-card/10 backdrop-blur-sm rounded-xl px-4 py-2">
+                    <Icon name="Copy" size={18} className="text-white/80" />
+                    <span className="text-sm text-white font-medium">
+                      {snippet?.stats?.reuses?.toLocaleString()} reuses
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Language Badge */}
