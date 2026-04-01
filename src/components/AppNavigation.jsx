@@ -363,7 +363,7 @@ const AppNavigation = () => {
 
           <button
             onClick={() => {
-              navigate('/user-profile');
+              navigate(`/user-profile/${user?.id}`);
               setUserMenuOpen(false);
             }}
             className="w-full px-4 py-2.5 text-left text-sm text-foreground hover:bg-muted flex items-center gap-3 focus:outline-none focus:bg-muted transition-all duration-200 group"

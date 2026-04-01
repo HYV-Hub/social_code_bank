@@ -12,7 +12,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
       <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-4 cursor-pointer">
         <div className="flex items-start gap-4 mb-4">
           <img
-            src={snippet?.author?.avatar_url || '/assets/images/no_image.png'}
+            src={snippet?.author?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(snippet?.author?.full_name || snippet?.author?.username || 'U')}&background=8b5cf6&color=fff&size=40`}
             alt={snippet?.author?.full_name || 'User avatar'}
             className="w-8 h-8 rounded-full object-cover"
           />
@@ -112,7 +112,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
       <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-4 cursor-pointer">
         <div className="flex items-start gap-4 mb-4">
           <img
-            src={bug?.reporter?.avatar_url || '/assets/images/no_image.png'}
+            src={bug?.reporter?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(bug?.reporter?.full_name || bug?.reporter?.username || 'U')}&background=8b5cf6&color=fff&size=40`}
             alt={bug?.reporter?.full_name || 'User avatar'}
             className="w-8 h-8 rounded-full object-cover"
           />
@@ -183,7 +183,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
       <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-4 cursor-pointer">
         <div className="flex items-start gap-4 mb-4">
           <img
-            src={collection?.creator?.avatar_url || '/assets/images/no_image.png'}
+            src={collection?.creator?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(collection?.creator?.full_name || collection?.creator?.username || 'U')}&background=8b5cf6&color=fff&size=40`}
             alt={collection?.creator?.full_name || 'User avatar'}
             className="w-8 h-8 rounded-full object-cover"
           />

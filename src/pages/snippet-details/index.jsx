@@ -485,9 +485,8 @@ const SnippetDetails = () => {
       const { getHiveCollections } = await import('../../services/hiveCollectionService');
       
       // Get user's hive (assuming user has hiveId in profile)
-      const { data: profile } = await import('../../services/profileService')?.then(m => 
-        m?.profileService?.getCurrentProfile()
-      );
+      const profileModule = await import('../../services/profileService');
+      const { data: profile } = await profileModule?.profileService?.getCurrentProfile();
       
       if (profile?.hiveId) {
         const { data } = await getHiveCollections(profile?.hiveId);

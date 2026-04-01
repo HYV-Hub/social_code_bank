@@ -196,7 +196,7 @@ const UserDashboard = () => {
       title: "Snippets",
       description: "View your code snippets",
       color: "accent",
-      action: () => navigate('/user-profile')
+      action: () => navigate(`/user-profile/${user?.id}`)
     }
   ];
 
@@ -711,7 +711,7 @@ const UserDashboard = () => {
                     <h2 className="text-xl font-semibold text-foreground">My Snippets</h2>
                     <Button 
                       variant="ghost" 
-                      onClick={() => navigate('/user-profile')}
+                      onClick={() => navigate(`/user-profile/${user?.id}`)}
                       className="text-sm text-accent hover:text-accent/80"
                     >
                       View All

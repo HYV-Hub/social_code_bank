@@ -180,7 +180,7 @@ export default function ProfileEditor() {
 
       // Redirect after 2 seconds
       setTimeout(() => {
-        navigate('/user-profile');
+        navigate(`/user-profile/${user?.id}`);
       }, 2000);
 
     } catch (err) {
@@ -195,10 +195,10 @@ export default function ProfileEditor() {
   const handleCancel = () => {
     if (hasChanges) {
       if (window.confirm('You have unsaved changes. Are you sure you want to leave?')) {
-        navigate('/user-profile');
+        navigate(`/user-profile/${user?.id}`);
       }
     } else {
-      navigate('/user-profile');
+      navigate(`/user-profile/${user?.id}`);
     }
   };
 

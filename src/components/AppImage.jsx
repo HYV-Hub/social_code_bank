@@ -13,7 +13,7 @@ function Image({
       alt={alt}
       className={className}
       onError={(e) => {
-        e.target.src = "/assets/images/no_image.png"
+        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(alt || 'U')}&background=8b5cf6&color=fff&size=40`;
       }}
       {...props}
     />
