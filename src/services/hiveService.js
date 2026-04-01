@@ -519,19 +519,42 @@ export const hiveService = {
    */
   async getGlobalExploreFeed(filters = {}) {
     try {
-      const { contentType = 'all', language, recency = 'all', page = 1, limit = 20 } = filters;
-      
+      const { contentType = 'all', language, recency = 'all', page = 1, limit = 20, sortBy = 'trending', category, tagFilter } = filters;
+
       let feedItems = [];
 
-      // Fetch trending snippets
+      // Fetch snippets
       if (contentType === 'all' || contentType === 'snippets') {
-        const { data: snippets } = await supabase
+        let query = supabase
           ?.from('snippets')
           ?.select('*, author:user_profiles!snippets_user_id_fkey(id, username, full_name, avatar_url), hive:hives!snippets_team_id_fkey(id, name)')
-          ?.eq('visibility', 'public')
-          ?.order('views_count', { ascending: false })
-          ?.order('likes_count', { ascending: false })
-          ?.limit(contentType === 'snippets' ? limit : 10);
+          ?.eq('visibility', 'public');
+
+        // Tag filter
+        if (tagFilter) {
+          query = query?.contains('ai_tags', [tagFilter]);
+        }
+
+        // Category filter (maps to snippet_type)
+        const categoryTypeMap = { 'Algorithms': 'algorithm', 'API Patterns': 'function', 'Database': 'query', 'Config': 'config', 'UI Components': 'class' };
+        if (category && categoryTypeMap[category]) {
+          query = query?.eq('snippet_type', categoryTypeMap[category]);
+        } else if (category) {
+          query = query?.contains('ai_tags', [category.toLowerCase()]);
+        }
+
+        // Sort
+        if (sortBy === 'newest') {
+          query = query?.order('created_at', { ascending: false });
+        } else if (sortBy === 'most_reused') {
+          query = query?.order('reuse_count', { ascending: false, nullsFirst: false });
+        } else if (sortBy === 'top_rated') {
+          query = query?.order('ai_quality_score', { ascending: false, nullsFirst: false });
+        } else {
+          query = query?.order('views_count', { ascending: false })?.order('likes_count', { ascending: false });
+        }
+
+        const { data: snippets } = await query?.limit(contentType === 'snippets' ? limit : 10);
 
         snippets?.forEach(snippet => {
           feedItems?.push({
@@ -592,26 +615,19 @@ export const hiveService = {
 
       // Apply recency filter
       if (recency !== 'all') {
-        const now = new Date();
         const cutoffDate = new Date();
-        
         switch (recency) {
-          case '24h':
-            cutoffDate?.setHours(cutoffDate?.getHours() - 24);
-            break;
-          case '7d':
-            cutoffDate?.setDate(cutoffDate?.getDate() - 7);
-            break;
-          case '30d':
-            cutoffDate?.setDate(cutoffDate?.getDate() - 30);
-            break;
+          case '24h': cutoffDate?.setHours(cutoffDate?.getHours() - 24); break;
+          case '7d': cutoffDate?.setDate(cutoffDate?.getDate() - 7); break;
+          case '30d': cutoffDate?.setDate(cutoffDate?.getDate() - 30); break;
         }
-
         feedItems = feedItems?.filter(item => new Date(item?.created_at) >= cutoffDate);
       }
 
-      // Sort by created_at descending
-      feedItems?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      // Sort by created_at descending (for mixed feeds)
+      if (sortBy === 'newest' || contentType === 'all') {
+        feedItems?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      }
 
       // Pagination
       const from = (page - 1) * limit;
@@ -627,6 +643,100 @@ export const hiveService = {
     } catch (error) {
       console.error('Error fetching explore feed:', error);
       throw error;
+    }
+  },
+
+  async getTrendingTags(limit = 15) {
+    try {
+      const { data } = await supabase
+        ?.from('snippets')
+        ?.select('ai_tags')
+        ?.eq('visibility', 'public')
+        ?.not('ai_tags', 'is', null)
+        ?.limit(500);
+
+      const tagCounts = {};
+      data?.forEach(s => s?.ai_tags?.forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; }));
+      return Object.entries(tagCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, limit)
+        .map(([tag, count]) => ({ tag, count }));
+    } catch (error) {
+      console.error('Error fetching trending tags:', error);
+      return [];
+    }
+  },
+
+  async getTopContributors(limit = 5) {
+    try {
+      const { data } = await supabase
+        ?.from('snippets')
+        ?.select('user_id, author:user_profiles!snippets_user_id_fkey(id, username, full_name, avatar_url)')
+        ?.eq('visibility', 'public')
+        ?.limit(1000);
+
+      const userCounts = {};
+      const userProfiles = {};
+      data?.forEach(s => {
+        const uid = s?.user_id;
+        if (!uid) return;
+        userCounts[uid] = (userCounts[uid] || 0) + 1;
+        if (!userProfiles[uid] && s?.author) userProfiles[uid] = s.author;
+      });
+      return Object.entries(userCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, limit)
+        .map(([id, count]) => ({ ...userProfiles[id], snippet_count: count }));
+    } catch (error) {
+      console.error('Error fetching top contributors:', error);
+      return [];
+    }
+  },
+
+  async getExploreStats() {
+    try {
+      const { count: total } = await supabase
+        ?.from('snippets')?.select('*', { count: 'exact', head: true })?.eq('visibility', 'public');
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const { count: newToday } = await supabase
+        ?.from('snippets')?.select('*', { count: 'exact', head: true })
+        ?.eq('visibility', 'public')?.gte('created_at', today.toISOString());
+
+      return { totalSnippets: total || 0, newToday: newToday || 0 };
+    } catch (error) {
+      console.error('Error fetching explore stats:', error);
+      return { totalSnippets: 0, newToday: 0 };
+    }
+  },
+
+  async getCategoryCounts() {
+    try {
+      const { data } = await supabase
+        ?.from('snippets')
+        ?.select('snippet_type, ai_analysis_data')
+        ?.eq('visibility', 'public')
+        ?.limit(1000);
+
+      const typeLabels = { code: 'Code', function: 'Functions', class: 'Classes', algorithm: 'Algorithms', config: 'Config', query: 'Database' };
+      const counts = {};
+      data?.forEach(s => {
+        if (s?.snippet_type) {
+          const label = typeLabels[s.snippet_type] || s.snippet_type;
+          counts[label] = (counts[label] || 0) + 1;
+        }
+        const tags = s?.ai_analysis_data?.purposeTags || [];
+        tags.forEach(t => { counts[t] = (counts[t] || 0) + 1; });
+      });
+
+      return Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 12)
+        .map(([category, count]) => ({ category, count }));
+    } catch (error) {
+      console.error('Error fetching category counts:', error);
+      return [];
     }
   },
 

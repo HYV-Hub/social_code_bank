@@ -1,88 +1,135 @@
 import React from 'react';
+import Icon from '../../../components/AppIcon';
 
-export default function FilterControls({ activeFilters, onFilterChange }) {
-  const contentTypes = [
-    { value: 'all', label: 'All Content' },
-    { value: 'snippets', label: 'Snippets' },
-    { value: 'discussions', label: 'Discussions' },
-    { value: 'collections', label: 'Collections' }
-  ];
+const SORT_OPTIONS = [
+  { value: 'trending', label: 'Trending', icon: 'TrendingUp' },
+  { value: 'newest', label: 'Newest', icon: 'Clock' },
+  { value: 'most_reused', label: 'Most Reused', icon: 'GitFork' },
+  { value: 'top_rated', label: 'Top Rated', icon: 'Sparkles' },
+];
 
-  const languages = [
-    { value: 'all', label: 'All Languages' },
-    { value: 'javascript', label: 'JavaScript' },
-    { value: 'python', label: 'Python' },
-    { value: 'java', label: 'Java' },
-    { value: 'csharp', label: 'C#' },
-    { value: 'ruby', label: 'Ruby' },
-    { value: 'go', label: 'Go' },
-    { value: 'rust', label: 'Rust' },
-    { value: 'typescript', label: 'TypeScript' }
-  ];
+const LANGUAGES = [
+  { value: 'all', label: 'All' },
+  { value: 'javascript', label: 'JS' },
+  { value: 'typescript', label: 'TS' },
+  { value: 'python', label: 'Python' },
+  { value: 'java', label: 'Java' },
+  { value: 'go', label: 'Go' },
+  { value: 'rust', label: 'Rust' },
+  { value: 'csharp', label: 'C#' },
+  { value: 'ruby', label: 'Ruby' },
+  { value: 'php', label: 'PHP' },
+  { value: 'sql', label: 'SQL' },
+];
 
-  const recencyOptions = [
-    { value: 'all', label: 'All Time' },
-    { value: '24h', label: 'Last 24 Hours' },
-    { value: '7d', label: 'Last 7 Days' },
-    { value: '30d', label: 'Last 30 Days' }
-  ];
+const CONTENT_TYPES = [
+  { value: 'all', label: 'All' },
+  { value: 'snippets', label: 'Snippets' },
+  { value: 'discussions', label: 'Discussions' },
+  { value: 'collections', label: 'Collections' },
+];
 
+export default function FilterControls({
+  categories = [],
+  activeCategory,
+  onCategoryClick,
+  activeLanguage = 'all',
+  onLanguageChange,
+  activeContentType = 'all',
+  onContentTypeChange,
+  sortBy = 'trending',
+  onSortChange,
+  activeTagFilter,
+  onTagClear,
+}) {
   return (
-    <div className="bg-card rounded-lg border border-border p-4 mb-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Content Type Filter */}
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Content Type
-          </label>
-          <select
-            value={activeFilters?.contentType}
-            onChange={(e) => onFilterChange('contentType', e?.target?.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
-          >
-            {contentTypes?.map((type) => (
-              <option key={type?.value} value={type?.value}>
-                {type?.label}
-              </option>
-            ))}
-          </select>
+    <div className="space-y-3 mb-6">
+      {/* Sort + content type + active tag */}
+      <div className="flex items-center justify-between flex-wrap gap-2">
+        <div className="flex items-center gap-1.5">
+          {SORT_OPTIONS.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => onSortChange(opt.value)}
+              className={`flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                sortBy === opt.value
+                  ? 'bg-primary text-white'
+                  : 'bg-card text-muted-foreground hover:text-foreground border border-border'
+              }`}
+            >
+              <Icon name={opt.icon} size={12} />
+              {opt.label}
+            </button>
+          ))}
         </div>
+        <div className="flex items-center gap-2">
+          {activeTagFilter && (
+            <button onClick={onTagClear} className="hyv-tag-ai flex items-center gap-1 text-[11px]">
+              <Icon name="X" size={10} /> {activeTagFilter}
+            </button>
+          )}
+          <div className="flex items-center gap-1">
+            {CONTENT_TYPES.map(ct => (
+              <button
+                key={ct.value}
+                onClick={() => onContentTypeChange(ct.value)}
+                className={`px-2 py-1 text-[11px] font-medium rounded transition-colors ${
+                  activeContentType === ct.value
+                    ? 'bg-accent/15 text-accent'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {ct.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
-        {/* Language Filter */}
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Programming Language
-          </label>
-          <select
-            value={activeFilters?.language}
-            onChange={(e) => onFilterChange('language', e?.target?.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
+      {/* Category chips */}
+      {categories.length > 0 && (
+        <div className="flex flex-wrap gap-1.5">
+          <button
+            onClick={() => onCategoryClick(null)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              !activeCategory
+                ? 'bg-primary/15 text-primary border border-primary/30'
+                : 'bg-card text-muted-foreground border border-border hover:text-foreground'
+            }`}
           >
-            {languages?.map((lang) => (
-              <option key={lang?.value} value={lang?.value}>
-                {lang?.label}
-              </option>
-            ))}
-          </select>
+            All
+          </button>
+          {categories.map(c => (
+            <button
+              key={c.category}
+              onClick={() => onCategoryClick(c.category === activeCategory ? null : c.category)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                activeCategory === c.category
+                  ? 'bg-primary/15 text-primary border border-primary/30'
+                  : 'bg-card text-muted-foreground border border-border hover:text-foreground'
+              }`}
+            >
+              {c.category} <span className="opacity-50 ml-0.5">{c.count}</span>
+            </button>
+          ))}
         </div>
+      )}
 
-        {/* Recency Filter */}
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Recency
-          </label>
-          <select
-            value={activeFilters?.recency}
-            onChange={(e) => onFilterChange('recency', e?.target?.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
+      {/* Language chips */}
+      <div className="flex flex-wrap gap-1">
+        {LANGUAGES.map(lang => (
+          <button
+            key={lang.value}
+            onClick={() => onLanguageChange(lang.value)}
+            className={`px-2 py-0.5 text-[11px] font-mono rounded transition-colors ${
+              activeLanguage === lang.value
+                ? 'bg-primary/20 text-primary border border-primary/30'
+                : 'bg-muted text-muted-foreground hover:text-foreground'
+            }`}
           >
-            {recencyOptions?.map((option) => (
-              <option key={option?.value} value={option?.value}>
-                {option?.label}
-              </option>
-            ))}
-          </select>
-        </div>
+            {lang.label}
+          </button>
+        ))}
       </div>
     </div>
   );
