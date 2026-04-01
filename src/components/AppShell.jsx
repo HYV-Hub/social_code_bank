@@ -12,6 +12,8 @@ const NAV_ITEMS = [
     { name: 'Trending', icon: 'TrendingUp', path: '/trending' },
     { name: 'Hives', icon: 'Hexagon', path: '/hives' },
     { name: 'Collections', icon: 'FolderOpen', path: '/snippet-collections' },
+    { name: 'Challenges', icon: 'Trophy', path: '/challenges' },
+    { name: 'Series', icon: 'Layers', path: '/snippet-series' },
   ]},
   { section: 'CREATE', items: [
     { name: 'New Snippet', icon: 'Plus', path: '/create-snippet', accent: true },

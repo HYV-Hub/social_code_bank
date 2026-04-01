@@ -72,12 +72,15 @@ export default function FeedItemCard({ item, onLike, onSave, onTagClick }) {
             <Icon name="Eye" size={12} /> {snippet?.views_count || 0}
           </span>
           {qualityScore > 0 && (
-            <span className={`ml-auto px-1.5 py-0.5 text-[10px] font-bold rounded ${
+            <span className={`ml-auto px-1.5 py-0.5 text-[10px] font-bold rounded flex items-center gap-0.5 ${
               qualityScore >= 80 ? 'bg-success/15 text-success' :
               qualityScore >= 50 ? 'bg-warning/15 text-warning' :
+              qualityScore < 40 ? 'bg-error/15 text-error' :
               'bg-muted text-muted-foreground'
             }`}>
-              AI {qualityScore}
+              {qualityScore >= 80 && <Icon name="BadgeCheck" size={10} />}
+              {qualityScore < 40 && <Icon name="AlertTriangle" size={10} />}
+              {qualityScore}
             </span>
           )}
         </div>

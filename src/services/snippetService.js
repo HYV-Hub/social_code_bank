@@ -771,6 +771,36 @@ export const snippetService = {
         user_id: user?.id || null,
         reuse_type: reuseType,
       });
+
+      // Notify the snippet author
+      try {
+        const { data: snippet } = await supabase
+          .from('snippets')
+          .select('user_id, title')
+          .eq('id', snippetId)
+          .single();
+
+        const { data: { user: currentUser } } = await supabase.auth.getUser();
+        if (snippet?.user_id && currentUser?.id && snippet.user_id !== currentUser.id) {
+          const { data: profile } = await supabase
+            .from('user_profiles')
+            .select('username')
+            .eq('id', currentUser.id)
+            .single();
+
+          await supabase.from('notifications').insert({
+            user_id: snippet.user_id,
+            type: 'reuse',
+            title: 'Your code was reused!',
+            message: `@${profile?.username || 'Someone'} ${reuseType === 'fork' ? 'forked' : reuseType === 'save' ? 'saved' : 'copied'} your snippet "${snippet.title}"`,
+            priority: 'low',
+            metadata: JSON.stringify({ snippet_id: snippetId, actor_id: currentUser.id, reuse_type: reuseType }),
+          });
+        }
+      } catch (notifErr) {
+        // Non-blocking
+        console.warn('Reuse notification failed:', notifErr);
+      }
     } catch (error) {
       // Non-blocking — don't fail the copy/fork if logging fails
       console.warn('Failed to log reuse:', error.message);

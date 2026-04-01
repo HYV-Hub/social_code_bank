@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
 import AppShell from '../../components/AppShell';
@@ -13,6 +13,7 @@ import ExploreSidebar from './components/ExploreSidebar';
 export default function GlobalExploreFeed() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { tagName } = useParams();
 
   const [feedItems, setFeedItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,6 +34,13 @@ export default function GlobalExploreFeed() {
   // Sidebar data
   const [categories, setCategories] = useState([]);
   const [sidebarData, setSidebarData] = useState({ tags: [], contributors: [], stats: {} });
+
+  // Set tag filter from vanity URL
+  useEffect(() => {
+    if (tagName) {
+      setActiveTagFilter(tagName);
+    }
+  }, [tagName]);
 
   // Load sidebar data once
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 
 
 import CodeViewer from './components/CodeViewer';
@@ -27,6 +27,7 @@ import Image from '../../components/Image';
 const SnippetDetails = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams?.get('id');
+  const { snippetSlug } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
@@ -52,6 +53,27 @@ const SnippetDetails = () => {
   const [errors, setErrors] = useState({});
   const [retryAttempt, setRetryAttempt] = useState(0);
   const [retryDelay, setRetryDelay] = useState(0);
+
+  // Resolve vanity slug to snippet ID
+  useEffect(() => {
+    if (snippetSlug && !id) {
+      const resolveSlug = async () => {
+        try {
+          const { data } = await supabase
+            .from('snippets')
+            .select('id')
+            .eq('slug', snippetSlug)
+            .single();
+          if (data?.id) {
+            navigate(`/snippet-details?id=${data.id}`, { replace: true });
+          }
+        } catch (err) {
+          console.error('Snippet slug not found:', err);
+        }
+      };
+      resolveSlug();
+    }
+  }, [snippetSlug]);
 
   // Load snippet details
   useEffect(() => {
@@ -826,6 +848,21 @@ const SnippetDetails = () => {
                   {snippet?.language}
                 </span>
               </div>
+
+              {/* AI Quality Badge */}
+              {snippet?.aiQualityScore > 0 && (
+                <div className={`flex items-center gap-2 backdrop-blur-sm rounded-xl px-4 py-2 border ${
+                  snippet.aiQualityScore >= 80 ? 'bg-success/20 border-success/30' :
+                  snippet.aiQualityScore >= 50 ? 'bg-warning/20 border-warning/30' :
+                  snippet.aiQualityScore < 40 ? 'bg-error/20 border-error/30' :
+                  'bg-card/20 border-white/30'
+                }`}>
+                  <Icon name={snippet.aiQualityScore >= 80 ? 'BadgeCheck' : snippet.aiQualityScore < 40 ? 'AlertTriangle' : 'Activity'} size={18} className="text-white" />
+                  <span className="text-sm font-bold text-white">
+                    AI {snippet.aiQualityScore}
+                  </span>
+                </div>
+              )}
 
               {/* Visibility Badge */}
               <div className={`flex items-center gap-2 rounded-xl px-4 py-2 border ${

@@ -15,7 +15,7 @@ import friendRequestService from '../../services/friendRequestService';
 
 
 const UserProfile = () => {
-  const { userId } = useParams();
+  const { userId, username: routeUsername } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('snippets');
@@ -78,6 +78,27 @@ const UserProfile = () => {
     { id: 'team', label: 'Team', icon: 'Users' },
     { id: 'company', label: 'Company', icon: 'Building' }
   ];
+
+  // Resolve vanity username to userId
+  useEffect(() => {
+    if (routeUsername && !userId) {
+      const resolveUsername = async () => {
+        try {
+          const { data } = await supabase
+            .from('user_profiles')
+            .select('id')
+            .eq('username', routeUsername)
+            .single();
+          if (data?.id) {
+            navigate(`/user-profile/${data.id}`, { replace: true });
+          }
+        } catch (err) {
+          console.error('Username not found:', err);
+        }
+      };
+      resolveUsername();
+    }
+  }, [routeUsername]);
 
   // Load user profile from database
   useEffect(() => {

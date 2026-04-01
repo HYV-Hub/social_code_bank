@@ -81,6 +81,17 @@ const SnippetCard = ({ snippet, onDelete, onEdit, showActions = true }) => {
           <span className="ml-auto text-[10px]">
             {formatTimeAgo(snippet?.createdAt)}
           </span>
+          {snippet?.aiQualityScore > 0 && (
+            <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded flex items-center gap-0.5 ${
+              snippet.aiQualityScore >= 80 ? 'bg-success/15 text-success' :
+              snippet.aiQualityScore >= 50 ? 'bg-warning/15 text-warning' :
+              snippet.aiQualityScore < 40 ? 'bg-error/15 text-error' : 'bg-muted text-muted-foreground'
+            }`}>
+              {snippet.aiQualityScore >= 80 && '\u2713 '}
+              {snippet.aiQualityScore < 40 && '\u26A0 '}
+              {snippet.aiQualityScore}
+            </span>
+          )}
         </div>
 
         {/* Action Buttons (optional, for dashboard) */}

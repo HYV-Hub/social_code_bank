@@ -62,6 +62,8 @@ import SessionManagement from './pages/session-management';
 import InboxPage from './pages/inbox';
 import ForYouFeed from './pages/feed';
 import TrendingPage from './pages/trending';
+import ChallengesPage from './pages/challenges';
+import SnippetSeriesPage from './pages/snippet-series';
 
 const BillingSubscriptionPage = React.lazy(() => import("pages/billing-subscription"));
 
@@ -139,6 +141,13 @@ export default function AppRoutes() {
           <Route path="/hive-collections-gallery/:hiveId" element={<P><HiveCollectionsGallery /></P>} />
           <Route path="/global-hives-landing" element={<P><GlobalHivesLanding /></P>} />
           <Route path="/hive-snippet-editor" element={<P><HiveSnippetEditor /></P>} />
+          <Route path="/challenges" element={<P><ChallengesPage /></P>} />
+          <Route path="/snippet-series" element={<P><SnippetSeriesPage /></P>} />
+
+          {/* Vanity URLs */}
+          <Route path="/u/:username" element={<P><UserProfile /></P>} />
+          <Route path="/s/:snippetSlug" element={<P><SnippetDetails /></P>} />
+          <Route path="/explore/:tagName" element={<P><GlobalExploreFeed /></P>} />
 
           {/* Catch-all route - MUST be last */}
           <Route path="*" element={<NotFound />} />
