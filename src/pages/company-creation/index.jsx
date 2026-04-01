@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import AppIcon from '../../components/AppIcon';
@@ -457,7 +457,7 @@ const CompanyCreationPage = () => {
   };
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Create Company">
       <div className="max-w-3xl mx-auto py-6">
         {/* Progress Indicator */}
         <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
@@ -554,7 +554,7 @@ const CompanyCreationPage = () => {
           </div>
         </div>
       </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

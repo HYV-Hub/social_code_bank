@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -215,7 +215,7 @@ export default function HivesBrowsePage() {
   ];
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Hives">
       {/* Keyboard Shortcuts Modal */}
       {showShortcuts && (
         <div 
@@ -901,7 +901,7 @@ export default function HivesBrowsePage() {
           </span>
         </button>
       </div>
-    </PageShell>
+    </AppShell>
   );
 }
 

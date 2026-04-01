@@ -7,7 +7,7 @@ import LeaderboardCard from './components/LeaderboardCard';
 import TimeFilterTabs from './components/TimeFilterTabs';
 import CategoryTabs from './components/CategoryTabs';
 import AchievementShowcase from './components/AchievementShowcase';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 
 const CommunityLeaderboards = () => {
   const navigate = useNavigate();
@@ -114,7 +114,7 @@ const CommunityLeaderboards = () => {
   };
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Leaderboard">
       <Helmet>
         <title>Community Leaderboards | Social Code Bank</title>
         <meta
@@ -257,7 +257,7 @@ const CommunityLeaderboards = () => {
           {/* Achievement Showcase */}
           <AchievementShowcase />
         </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

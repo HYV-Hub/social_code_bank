@@ -7,11 +7,10 @@ import EngagementBar from './components/EngagementBar';
 import CommentSection from './components/CommentSection';
 import VersionHistory from './components/VersionHistory';
 import RelatedSnippets from './components/RelatedSnippets';
-import AuthorCard from './components/AuthorCard';
 import RecentEngagement from './components/RecentEngagement';
 import AITagsDisplay from './components/AITagsDisplay';
 import AISnippetSharing from './components/AISnippetSharing';
-import PageShell from "../../components/PageShell";
+import AppShell from '../../components/AppShell';
 import { supabase } from '../../lib/supabase';
 
 import Button from '../../components/ui/Button';
@@ -539,7 +538,7 @@ const SnippetDetails = () => {
 
   if (loading) {
     return (
-      <PageShell noPadding>
+      <AppShell>
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative">
@@ -552,13 +551,13 @@ const SnippetDetails = () => {
             <p className="text-sm text-muted-foreground mt-1">Preparing your code experience</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (error) {
     return (
-      <PageShell noPadding>
+      <AppShell>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="bg-card rounded-xl shadow-lg border-l-4 border-error p-6">
             <div className="flex items-start gap-4">
@@ -579,13 +578,13 @@ const SnippetDetails = () => {
             </div>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (!snippet) {
     return (
-      <PageShell noPadding>
+      <AppShell>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="bg-card rounded-xl shadow-lg border-l-4 border-yellow-500 p-6">
             <div className="flex items-start gap-4">
@@ -606,7 +605,7 @@ const SnippetDetails = () => {
             </div>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
@@ -631,9 +630,53 @@ const SnippetDetails = () => {
   // REMOVED: Empty version history - will be loaded from database when feature is implemented
   const versionHistory = [];
 
+  const DetailSidebar = () => (
+    <div className="space-y-4">
+      {/* Author */}
+      {snippet?.author && (
+        <div className="hyv-card p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <img src={snippet?.author?.avatar || '/assets/images/no_image.png'} alt="" className="w-9 h-9 rounded-full object-cover" />
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-foreground truncate">{snippet?.author?.name || 'Anonymous'}</p>
+              <p className="text-xs text-muted-foreground">@{snippet?.author?.username || 'user'}</p>
+            </div>
+          </div>
+          <button onClick={() => navigate(`/user-profile/${snippet?.author?.id}`)}
+            className="w-full px-3 py-1.5 text-xs font-medium text-primary border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors">
+            View Profile
+          </button>
+        </div>
+      )}
+
+      {/* AI Tags */}
+      {snippet?.tags?.length > 0 && (
+        <div className="hyv-card p-4">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">AI Tags</h3>
+          <div className="flex flex-wrap gap-1.5">
+            {snippet.tags.map((tag, i) => (
+              <span key={i} className="hyv-tag text-[10px]">{tag}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Stats */}
+      <div className="hyv-card p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Stats</h3>
+        <div className="grid grid-cols-2 gap-3 text-center text-xs">
+          <div><p className="text-lg font-bold text-foreground">{snippet?.stats?.views || 0}</p><p className="text-muted-foreground">Views</p></div>
+          <div><p className="text-lg font-bold text-foreground">{snippet?.stats?.likes || 0}</p><p className="text-muted-foreground">Likes</p></div>
+          <div><p className="text-lg font-bold text-foreground">{comments?.length || 0}</p><p className="text-muted-foreground">Comments</p></div>
+          <div><p className="text-lg font-bold text-foreground">{snippet?.stats?.forks || 0}</p><p className="text-muted-foreground">Forks</p></div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <PageShell noPadding>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <AppShell rightSidebar={snippet ? <DetailSidebar /> : null}>
+      <div className="p-4 lg:p-6">
         {/* Enhanced Hero Header Section */}
         <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-xl shadow-2xl p-8 mb-8 relative overflow-hidden">
           {/* Decorative background elements */}
@@ -865,26 +908,34 @@ const SnippetDetails = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content - Left Column */}
-          <div className="lg:col-span-2 space-y-6">
-            <EngagementBar 
-              snippet={snippet} 
+        <div className="space-y-6">
+            <EngagementBar
+              snippet={snippet}
               onLikeUpdate={handleLikeUpdate}
             />
 
             <AISnippetSharing snippet={snippet} />
-            
+
             <CodeViewer snippet={snippet} />
-            
-            <CommentSection 
-              comments={comments} 
+
+            {/* AI Analysis */}
+            <AITagsDisplay
+              aiAnalysis={aiAnalysis}
+              snippetId={snippet?.id}
+              code={snippet?.code}
+              language={snippet?.language}
+            />
+
+            <CommentSection
+              comments={comments}
               onAddComment={handleAddComment}
             />
-            
+
+            <RecentEngagement likes={recentLikes} saves={recentSaves} />
+
             <div className="max-w-5xl mx-auto">
-              <AIReportButton 
-                entity={snippet} 
+              <AIReportButton
+                entity={snippet}
                 entityType="snippet"
                 onReportGenerated={(report) => {
                   console.log('Snippet AI report generated:', report);
@@ -895,94 +946,10 @@ const SnippetDetails = () => {
                 }}
               />
             </div>
-          </div>
 
-          {/* Enhanced Sidebar - Right Column */}
-          <div className="space-y-6">
-            {/* Author Card with gradient */}
-            <div className="bg-gradient-to-br from-white to-purple-50 rounded-xl shadow-lg border border-border overflow-hidden">
-              <div className="bg-gradient-to-r from-primary to-secondary px-4 py-3">
-                <h3 className="text-white font-semibold flex items-center gap-2">
-                  <Icon name="User" size={18} />
-                  Author Information
-                </h3>
-              </div>
-              <AuthorCard author={snippet?.author} />
-            </div>
-
-            {/* AI Analysis Card */}
-            <AITagsDisplay 
-              aiAnalysis={aiAnalysis}
-              snippetId={snippet?.id}
-              code={snippet?.code}
-              language={snippet?.language}
-            />
-
-            {/* Stats Overview Card */}
-            <div className="bg-card rounded-xl shadow-lg border border-border p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                <Icon name="TrendingUp" size={20} className="text-primary" />
-                Engagement Stats
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-primary/20">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary rounded-lg">
-                      <Icon name="Eye" size={18} className="text-white" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">Total Views</span>
-                  </div>
-                  <span className="text-lg font-bold text-primary">
-                    {snippet?.stats?.views?.toLocaleString()}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-red-50 to-pink-50 rounded-lg border border-error/20">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-error/100 rounded-lg">
-                      <Icon name="Heart" size={18} className="text-white" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">Total Likes</span>
-                  </div>
-                  <span className="text-lg font-bold text-error">
-                    {snippet?.stats?.likes?.toLocaleString()}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-success/5 to-success/10 rounded-lg border border-success/20">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-success/100 rounded-lg">
-                      <Icon name="MessageSquare" size={18} className="text-white" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">Comments</span>
-                  </div>
-                  <span className="text-lg font-bold text-success">
-                    {snippet?.stats?.comments?.toLocaleString()}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg border border-border">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/100 rounded-lg">
-                      <Icon name="Bookmark" size={18} className="text-white" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">Saves</span>
-                  </div>
-                  <span className="text-lg font-bold text-primary">
-                    {recentSaves?.length?.toLocaleString() || 0}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <RecentEngagement likes={recentLikes} saves={recentSaves} />
-            {versionHistory?.length > 0 && (
-              <VersionHistory versions={versionHistory} />
-            )}
             {relatedSnippets?.length > 0 && (
               <RelatedSnippets snippets={relatedSnippets} />
             )}
-          </div>
         </div>
       </div>
 
@@ -1072,7 +1039,7 @@ const SnippetDetails = () => {
           </div>
         </div>
       )}
-    </PageShell>
+    </AppShell>
   );
 };
 

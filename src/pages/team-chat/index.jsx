@@ -6,7 +6,7 @@ import ChannelList from './components/ChannelList';
 import MessageThread from './components/MessageThread';
 import MemberPanel from './components/MemberPanel';
 import { useAuth } from '../../contexts/AuthContext';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import { teamChatService } from '../../services/teamChatService';
 import { profileService } from '../../services/profileService';
 
@@ -362,19 +362,19 @@ const TeamChat = () => {
   // Loading state
   if (!user) {
     return (
-      <PageShell noPadding>
+      <AppShell pageTitle="Chat">
         <div className="flex items-center justify-center h-[calc(100vh-56px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Chat">
         {/* Error display */}
         {error && (
           <div className="flex items-center justify-center p-8">
@@ -554,7 +554,7 @@ const TeamChat = () => {
             </div>
           </div>
         )}
-    </PageShell>
+    </AppShell>
   );
 };
 

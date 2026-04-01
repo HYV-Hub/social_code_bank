@@ -9,7 +9,7 @@ import { FilterControls } from './components/FilterControls';
 import { BulkActions } from './components/BulkActions';
 import { PreferencesPanel } from './components/PreferencesPanel';
 import { SearchPanel } from './components/SearchPanel';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 
 export default function NotificationsPage() {
   const navigate = useNavigate();
@@ -162,14 +162,14 @@ export default function NotificationsPage() {
   // Show loading state during authentication check
   if (authLoading || loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Notifications">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <Loader className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
             <p className="text-muted-foreground">Loading notifications...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
@@ -179,7 +179,7 @@ export default function NotificationsPage() {
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Notifications">
       <Helmet>
         <title>Notifications - HyvHub</title>
       </Helmet>
@@ -287,6 +287,6 @@ export default function NotificationsPage() {
           isOpen={showPreferences}
           onClose={() => setShowPreferences(false)}
         />
-    </PageShell>
+    </AppShell>
   );
 }

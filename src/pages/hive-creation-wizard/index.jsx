@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -65,7 +65,7 @@ export default function HiveCreationWizard() {
 
   if (!user) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Create Hive">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <Icon name="Lock" size={64} className="mx-auto text-muted-foreground mb-4" />
@@ -74,12 +74,12 @@ export default function HiveCreationWizard() {
             <Button onClick={() => navigate('/login')}>Sign In</Button>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Create Hive">
       <div className="max-w-3xl mx-auto">
         <div className="bg-card rounded-lg shadow-xl p-8">
           <div className="mb-8">
@@ -213,6 +213,6 @@ export default function HiveCreationWizard() {
           </form>
         </div>
       </div>
-    </PageShell>
+    </AppShell>
   );
 }

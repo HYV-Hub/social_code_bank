@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -128,7 +128,7 @@ export default function AdvancedSearchInterface() {
   };
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Advanced Search">
       <div className="flex">
         {/* Global Hives Sidebar */}
         <GlobalHivesSidebar />
@@ -242,6 +242,6 @@ export default function AdvancedSearchInterface() {
           </div>
         </div>
       )}
-    </PageShell>
+    </AppShell>
   );
 }

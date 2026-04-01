@@ -4,7 +4,7 @@ import { Search, Filter, Grid, List, TrendingUp, Clock, Users, Eye, Bookmark, Sh
 import { hiveCollectionService } from '../../services/hiveCollectionService';
 import { useAuth } from '../../contexts/AuthContext';
 import Icon from '../../components/ui/Icon';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 
 const HiveCollectionsGallery = () => {
   const { hiveId } = useParams();
@@ -161,20 +161,20 @@ const HiveCollectionsGallery = () => {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Collections Gallery">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading collections...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (error) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Collections Gallery">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <p className="text-error mb-4">{error}</p>
@@ -186,12 +186,12 @@ const HiveCollectionsGallery = () => {
             </button>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Collections Gallery">
       {/* Enhanced Header with gradient background */}
       <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 border-b border-blue-700 sticky top-0 z-10 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -429,7 +429,7 @@ const HiveCollectionsGallery = () => {
           <Icon name="ArrowUp" size={24} className="group-hover:scale-110 transition-transform" />
         </button>
       </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

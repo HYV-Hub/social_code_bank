@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Icon from '../../components/AppIcon';
@@ -101,7 +101,7 @@ const HelpCenterPage = () => {
   });
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Help">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">Help Center</h1>
@@ -229,7 +229,7 @@ const HelpCenterPage = () => {
             </Button>
           </div>
         </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

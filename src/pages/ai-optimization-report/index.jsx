@@ -10,7 +10,7 @@ import { analyzeSnippetWithAI } from '../../services/aiTaggingService';
 import RecommendationCard from './components/RecommendationCard';
 import TagCloud from './components/TagCloud';
 import Icon from '../../components/AppIcon';
-import PageShell from "../../components/PageShell";
+import AppShell from "../../components/AppShell";
 import CategoryBreakdown from './components/CategoryBreakdown';
 
 
@@ -385,21 +385,21 @@ export default function AIOptimizationReportPage() {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="AI Report">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-text-secondary">Loading report...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show analyzing state with progress message
   if (analyzing && !reportData) {
     return (
-      <PageShell>
+      <AppShell pageTitle="AI Report">
         <Helmet>
           <title>AI Optimization Report - HyvHub</title>
         </Helmet>
@@ -438,13 +438,13 @@ export default function AIOptimizationReportPage() {
             Please wait - comprehensive analysis takes 10-30 seconds
           </p>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (error && !reportData) {
     return (
-      <PageShell>
+      <AppShell pageTitle="AI Report">
         <Button
           variant="ghost"
           onClick={() => navigate(-1)}
@@ -464,14 +464,14 @@ export default function AIOptimizationReportPage() {
             </Button>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show "needs analysis" state only if auto-analysis failed
   if (reportData?.needsAnalysis) {
     return (
-      <PageShell>
+      <AppShell pageTitle="AI Report">
         <Helmet>
           <title>AI Optimization Report - HyvHub</title>
         </Helmet>
@@ -515,12 +515,12 @@ export default function AIOptimizationReportPage() {
             )}
           </Button>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell>
+    <AppShell pageTitle="AI Report">
       <Helmet>
         <title>AI Optimization Report - HyvHub</title>
       </Helmet>
@@ -653,6 +653,6 @@ export default function AIOptimizationReportPage() {
               <RecommendationCard key={index} recommendation={rec} />
             ))}
           </div>
-    </PageShell>
+    </AppShell>
   );
 }

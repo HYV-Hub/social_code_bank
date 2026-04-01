@@ -10,7 +10,7 @@ import ActivityItem from './components/ActivityItem';
 import UserCard from './components/UserCard';
 import AchievementBadge from './components/AchievementBadge';
 import StatsCard from './components/StatsCard';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import friendRequestService from '../../services/friendRequestService';
 
 
@@ -586,44 +586,44 @@ const UserProfile = () => {
   // Show loading state
   if (authLoading || isLoading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Profile">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading profile...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show error state
   if (error) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Profile">
         <div className="bg-error/100/10 border border-error rounded-lg p-4">
           <p className="text-error">{error}</p>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show not logged in state
   if (!user || !userData) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Profile">
         <div className="bg-warning/10 border border-warning rounded-lg p-4">
           <p className="text-foreground">Please log in to view your profile.</p>
           <Button className="mt-4" onClick={() => navigate('/login')}>
             Go to Login
           </Button>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Profile">
       {/* Profile Header */}
       <div className="bg-card shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -943,7 +943,7 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

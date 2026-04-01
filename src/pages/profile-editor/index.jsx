@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
 import { profileService } from '../../services/profileService';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import { User, Mail, AtSign, FileText, Upload, Loader2, Check, X, Camera } from 'lucide-react';
 
 export default function ProfileEditor() {
@@ -204,19 +204,19 @@ export default function ProfileEditor() {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Edit Profile">
         <Helmet>
           <title>Loading Profile - HYVhub</title>
         </Helmet>
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Edit Profile">
       <Helmet>
         <title>Edit Profile - HYVhub</title>
         <meta name="description" content="Edit your profile information and settings" />
@@ -450,6 +450,6 @@ export default function ProfileEditor() {
             </p>
           )}
         </form>
-    </PageShell>
+    </AppShell>
   );
 }

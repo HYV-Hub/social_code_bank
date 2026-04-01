@@ -10,7 +10,7 @@ import SnippetCard from './components/SnippetCard';
 import SavedItemCard from './components/SavedItemCard';
 import ActivityItem from './components/ActivityItem';
 import AchievementBadge from './components/AchievementBadge';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import InviteTeamModal from '../../components/InviteTeamModal';
 import { snippetService } from '../../services/snippetService';
 import AdvancedFilterPanel from './components/AdvancedFilterPanel';
@@ -213,39 +213,39 @@ const UserDashboard = () => {
   // Show loading state
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="My Library">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading dashboard...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show error state
   if (error) {
     return (
-      <PageShell>
+      <AppShell pageTitle="My Library">
         <div className="bg-error/100/10 border border-error rounded-lg p-4">
           <p className="text-error">{error}</p>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show not logged in state
   if (!user) {
     return (
-      <PageShell>
+      <AppShell pageTitle="My Library">
         <div className="bg-warning/10 border border-warning rounded-lg p-4">
           <p className="text-foreground">Please log in to view your dashboard.</p>
           <Button className="mt-4" onClick={() => navigate('/login')}>
             Go to Login
           </Button>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
@@ -402,8 +402,55 @@ const UserDashboard = () => {
     setShowFilters(false);
   };
 
+  const DashboardSidebar = () => (
+    <div className="space-y-5">
+      {/* Stats */}
+      <div className="hyv-card p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Overview</h3>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="text-center">
+            <p className="text-2xl font-bold text-foreground">{userStats?.totalSnippets || 0}</p>
+            <p className="text-[10px] text-muted-foreground">Snippets</p>
+          </div>
+          <div className="text-center">
+            <p className="text-2xl font-bold text-accent">{userStats?.totalViews || 0}</p>
+            <p className="text-[10px] text-muted-foreground">Views</p>
+          </div>
+          <div className="text-center">
+            <p className="text-2xl font-bold text-success">{userStats?.totalLikes || 0}</p>
+            <p className="text-[10px] text-muted-foreground">Likes</p>
+          </div>
+          <div className="text-center">
+            <p className="text-2xl font-bold text-primary">{userCollections?.length || 0}</p>
+            <p className="text-[10px] text-muted-foreground">Collections</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Activity */}
+      <div className="hyv-card p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Recent Activity</h3>
+        <div className="space-y-2">
+          {recentActivity?.slice(0, 5)?.map((item, i) => (
+            <div key={i} className="flex items-start gap-2 text-xs">
+              <Icon name={item?.icon || 'Activity'} size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-foreground truncate">{item?.message || item?.description || 'Activity'}</p>
+                <p className="text-muted-foreground">{item?.time || item?.created_at || ''}</p>
+              </div>
+            </div>
+          ))}
+          {(!recentActivity || recentActivity.length === 0) && (
+            <p className="text-xs text-muted-foreground text-center py-4">No recent activity</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <PageShell>
+    <AppShell pageTitle="My Library" rightSidebar={<DashboardSidebar />}>
+      <div className="p-4 lg:p-6">
       {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
@@ -1001,7 +1048,8 @@ const UserDashboard = () => {
         teamId={selectedTeam?.id}
         teamName={selectedTeam?.name}
       />
-    </PageShell>
+      </div>
+    </AppShell>
   );
 };
 

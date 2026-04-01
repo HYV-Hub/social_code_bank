@@ -8,7 +8,7 @@ import ViolationsList from './components/ViolationsList';
 import TeamStyleGuide from './components/TeamStyleGuide';
 import HistoricalTrends from './components/HistoricalTrends';
 import BatchProcessor from './components/BatchProcessor';
-import PageShell from "../../components/PageShell";
+import AppShell from "../../components/AppShell";
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../components/AppIcon';
@@ -157,7 +157,7 @@ import Button from '../../components/ui/Button';
   // Show access denied if no company
   if (!userProfile?.company_id) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Style Match">
         <Helmet>
           <title>Access Denied - AI Style Match</title>
         </Helmet>
@@ -176,12 +176,12 @@ import Button from '../../components/ui/Button';
             </Button>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Style Match">
       <Helmet>
         <title>AI Style Match - HyvHub</title>
       </Helmet>
@@ -285,7 +285,7 @@ import Button from '../../components/ui/Button';
             )}
           </div>
         </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

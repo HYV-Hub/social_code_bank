@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Plus } from 'lucide-react';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import CollectionHeader from './components/CollectionHeader';
 import FilterPanel from './components/FilterPanel';
 import SnippetCard from './components/SnippetCard';
@@ -113,7 +113,7 @@ const HiveCollectionDetail = () => {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Collection">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative w-16 h-16 mx-auto mb-6">
@@ -123,13 +123,13 @@ const HiveCollectionDetail = () => {
             <p className="text-foreground font-medium text-lg">Loading collection...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (error || !collection) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Collection">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center max-w-md mx-auto px-4">
             <div className="w-24 h-24 bg-gradient-to-br from-red-100 to-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -152,12 +152,12 @@ const HiveCollectionDetail = () => {
             </button>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Collection">
           {/* Enhanced Back Button */}
           <button
             onClick={() => navigate(`/hives/${collection?.hive?.id}`)}
@@ -251,7 +251,7 @@ const HiveCollectionDetail = () => {
           onSuccess={handleSnippetAdded}
         />
       )}
-    </PageShell>
+    </AppShell>
   );
 };
 

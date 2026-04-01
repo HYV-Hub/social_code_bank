@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { collectionService } from '../../services/collectionService';
 import { Helmet } from 'react-helmet';
-import AppNavigation from "../../components/AppNavigation";
+import AppShell from '../../components/AppShell';
 
 
 import { ArrowLeft, Plus, Lock, Globe, Edit2, Trash2, Code, Eye, Heart, ExternalLink } from 'lucide-react';
@@ -92,38 +92,40 @@ export default function CollectionDetailsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          <p className="mt-2 text-muted-foreground">Loading collection...</p>
+      <AppShell pageTitle="Collection">
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <p className="mt-2 text-muted-foreground">Loading collection...</p>
+          </div>
         </div>
-      </div>
+      </AppShell>
     );
   }
 
   if (!collection) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-muted-foreground text-lg">Collection not found</p>
-          <button
-            onClick={() => navigate('/snippet-collections')}
-            className="mt-4 text-primary hover:text-primary"
-          >
-            Back to Collections
-          </button>
+      <AppShell pageTitle="Collection">
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-muted-foreground text-lg">Collection not found</p>
+            <button
+              onClick={() => navigate('/snippet-collections')}
+              className="mt-4 text-primary hover:text-primary"
+            >
+              Back to Collections
+            </button>
+          </div>
         </div>
-      </div>
+      </AppShell>
     );
   }
 
   return (
-    <>
+    <AppShell pageTitle="Collection">
       <Helmet>
         <title>Collection Details - HyvHub</title>
       </Helmet>
-      {/* Add Navigation */}
-      <AppNavigation />
       <div className="min-h-screen bg-background">
         {/* Header */}
         <div className="bg-card shadow-sm border-b">
@@ -358,6 +360,6 @@ export default function CollectionDetailsPage() {
           </div>
         )}
       </div>
-    </>
+    </AppShell>
   );
 }

@@ -9,7 +9,7 @@ import FilterToolbar from './components/FilterToolbar';
 import BugDetailsModal from './components/BugDetailsModal';
 import CreateBugModal from './components/CreateBugModal';
 import { useAuth } from '../../contexts/AuthContext';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import { bugService } from '../../services/bugService';
 import { supabase } from '../../lib/supabase';
 import { Helmet } from 'react-helmet';
@@ -303,14 +303,14 @@ const BugBoardPage = () => {
   // Show loading state
   if (loading && bugs?.length === 0) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Bug Board">
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading bugs...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
@@ -331,7 +331,7 @@ const BugBoardPage = () => {
   ];
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Bug Board">
       <Helmet>
         <title>{getContextTitle()} - HyvHub</title>
       </Helmet>
@@ -534,7 +534,7 @@ const BugBoardPage = () => {
             context={currentContext}
           />
         }
-    </PageShell>
+    </AppShell>
   );
 };
 

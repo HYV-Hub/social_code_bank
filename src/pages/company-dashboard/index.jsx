@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Button from '../../components/ui/Button';
 
 import Icon from '../../components/AppIcon';
@@ -252,21 +252,21 @@ const CompanyDashboard = () => {
   // Show loading state
   if (authLoading || loading) {
     return (
-      <PageShell noPadding>
+      <AppShell pageTitle="Company">
         <div className="flex items-center justify-center h-[calc(100vh-56px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading company dashboard...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show error state with redirect message
   if (error && !companyDetails) {
     return (
-      <PageShell noPadding>
+      <AppShell pageTitle="Company">
         <div className="flex items-center justify-center h-[calc(100vh-56px)]">
           <div className="text-center max-w-md">
             <div className="bg-error/10 rounded-lg p-6 border border-error/20">
@@ -277,13 +277,13 @@ const CompanyDashboard = () => {
             </div>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show company dashboard
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Company">
       <div className="flex">
         {/* Company Sidebar */}
         <CompanySidebar
@@ -759,7 +759,7 @@ const CompanyDashboard = () => {
         onClose={() => setShowCreateSnippetModal(false)}
         companyId={companyDetails?.id}
       />
-    </PageShell>
+    </AppShell>
   );
 };
 

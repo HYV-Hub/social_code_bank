@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import AppNavigation from '../../components/AppNavigation';
+import AppShell from '../../components/AppShell';
 
 export default function CodeReviewWorkflow() {
   const navigate = useNavigate();
@@ -31,22 +31,20 @@ export default function CodeReviewWorkflow() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
+      <AppShell pageTitle="Code Review">
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading reviews...</p>
           </div>
         </div>
-      </div>
+      </AppShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppNavigation />
+    <AppShell pageTitle="Code Review">
       {/* ... keep existing UI structure ... */}
-    </div>
+    </AppShell>
   );
 }

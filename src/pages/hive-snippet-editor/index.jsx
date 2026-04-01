@@ -7,7 +7,7 @@ import MetadataSection from '../create-snippet/components/MetadataSection';
 import CodeEditor from '../create-snippet/components/CodeEditor';
 import FileUploadSection from '../create-snippet/components/FileUploadSection';
 import AISuggestions from '../create-snippet/components/AISuggestions';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import { snippetService } from '../../services/snippetService';
@@ -182,7 +182,7 @@ const HiveSnippetEditor = () => {
   // Loading state
   if (loading || !user || !hiveIdFromUrl) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Snippet Editor">
         <div className="flex items-center justify-center h-[calc(100vh-120px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
@@ -191,7 +191,7 @@ const HiveSnippetEditor = () => {
             </p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
@@ -605,7 +605,7 @@ const HiveSnippetEditor = () => {
   };
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Snippet Editor">
         <div className="bg-card rounded-lg shadow-lg p-8">
           {/* Hive Context Indicator */}
           {hiveDetails && (
@@ -920,7 +920,7 @@ const HiveSnippetEditor = () => {
           Publish
         </Button>
       </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

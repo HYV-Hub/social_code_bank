@@ -8,7 +8,7 @@ import CodeEditor from './components/CodeEditor';
 import FileUploadSection from './components/FileUploadSection';
 import VisibilityControl from './components/VisibilityControl';
 import AISuggestions from './components/AISuggestions';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import { snippetService } from '../../services/snippetService';
@@ -272,21 +272,21 @@ const CreateSnippet = () => {
   // Ensure page renders even if loading
   if (!user) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Create Snippet">
         <div className="flex items-center justify-center h-[calc(100vh-120px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   // Show loading state when fetching snippet for edit
   if (loading || !user) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Create Snippet">
         <div className="flex items-center justify-center h-[calc(100vh-120px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
@@ -295,7 +295,7 @@ const CreateSnippet = () => {
             </p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
@@ -736,7 +736,7 @@ const CreateSnippet = () => {
   };
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Create Snippet">
         <div className="bg-card rounded-lg shadow-lg p-8">
           {/* FIXED: Only show company context indicator when explicitly set from company dashboard */}
           {companyContext && !teamIdFromUrl && (
@@ -1163,7 +1163,7 @@ const CreateSnippet = () => {
           Publish
         </Button>
       </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

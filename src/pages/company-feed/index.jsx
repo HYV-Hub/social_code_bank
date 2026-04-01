@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import CompanySidebar from '../../components/CompanySidebar';
@@ -123,7 +123,7 @@ export default function CompanyFeed() {
 
   if (!userProfile?.company_id) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Company Feed">
         <div className="bg-warning/10 border border-warning/20 rounded-lg p-6">
           <div className="flex items-start gap-3">
             <Icon name="AlertCircle" className="text-warning flex-shrink-0" size={24} />
@@ -139,12 +139,12 @@ export default function CompanyFeed() {
             </div>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Company Feed">
       <div className="flex">
         {/* Company Sidebar */}
         <CompanySidebar
@@ -411,6 +411,6 @@ export default function CompanyFeed() {
           </div>
         </main>
       </div>
-    </PageShell>
+    </AppShell>
   );
 }

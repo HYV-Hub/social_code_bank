@@ -8,7 +8,7 @@ import RoleUpdateModal from './components/RoleUpdateModal';
 import BulkActionsBar from './components/BulkActionsBar';
 import { Helmet } from 'react-helmet';
 import { supabase } from '../../lib/supabase';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 
 export default function MemberManagementCenter() {
   const { user } = useAuth();
@@ -214,20 +214,20 @@ export default function MemberManagementCenter() {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Members">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-slate-700 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading member data...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (error && !company) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Members">
         <div className="flex items-center justify-center py-12">
           <div className="bg-card p-8 rounded-lg shadow-md max-w-md w-full">
             <div className="text-error mb-4">
@@ -245,14 +245,14 @@ export default function MemberManagementCenter() {
             </button>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   const userLimitInfo = companyDashboardService?.getUserLimitInfo(company);
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Members">
       <Helmet>
         <title>Member Management Center | Social Code Bank</title>
         <meta name="description" content="Manage team members, roles, and permissions with comprehensive administrative controls" />
@@ -438,6 +438,6 @@ export default function MemberManagementCenter() {
           }}
         />
       )}
-    </PageShell>
+    </AppShell>
   );
 }

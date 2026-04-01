@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -120,7 +120,7 @@ export default function GlobalHivesLanding() {
   };
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Hives">
       <div className="flex">
         {/* Persistent Sidebar */}
         <aside className="hidden lg:block w-80 bg-card border-r border-border h-screen sticky top-0 overflow-y-auto">
@@ -483,6 +483,6 @@ export default function GlobalHivesLanding() {
           </div>
         </div>
       )}
-    </PageShell>
+    </AppShell>
   );
 }

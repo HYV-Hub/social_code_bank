@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import { Helmet } from 'react-helmet';
 import { Search, Plus, Edit, Trash2, Eye, Globe, Lock, Users, Building, FolderPlus, Filter } from 'lucide-react';
 import Select from '../../components/ui/Select';
@@ -297,7 +297,7 @@ export default function MySnippetsPage() {
   };
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Collections">
       <Helmet>
         <title>My Snippets - HyvHub</title>
       </Helmet>
@@ -933,6 +933,6 @@ export default function MySnippetsPage() {
             </div>
           </div>
         )}
-    </PageShell>
+    </AppShell>
   );
 }

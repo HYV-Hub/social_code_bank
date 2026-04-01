@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, Users, Gift } from 'lucide-react';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Button from '../../components/ui/Button';
 
 const BillingSubscriptionPage = () => {
   const navigate = useNavigate();
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Billing">
       <Helmet>
         <title>Subscription - HyvHub</title>
       </Helmet>
@@ -152,7 +152,7 @@ const BillingSubscriptionPage = () => {
               Learn More About Plans
             </Button>
           </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

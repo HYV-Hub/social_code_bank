@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, TrendingUp, Activity, UserPlus, Search, Filter, MoreVertical, AlertCircle, Award, Code, MessageSquare, Eye, Heart } from 'lucide-react';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import { companyDashboardService } from '../../services/companyDashboardService';
 import { companyMemberService } from '../../services/companyMemberService';
 import { supabase } from '../../lib/supabase';
@@ -150,32 +150,32 @@ export default function CompanyManagementDashboard() {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Management">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading dashboard...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (error) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Management">
         <div className="bg-error/10 border border-error/20 rounded-lg p-4">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-5 h-5 text-error" />
             <p className="text-error">{error}</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Management">
       <div className="flex">
         {/* Company Sidebar */}
         <CompanySidebar
@@ -600,6 +600,6 @@ export default function CompanyManagementDashboard() {
           </div>
         </main>
       </div>
-    </PageShell>
+    </AppShell>
   );
 }

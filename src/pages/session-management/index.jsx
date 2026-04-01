@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Icon from '../../components/AppIcon';
 import { sessionService } from '../../services/sessionService';
 import { useAuth } from '../../contexts/AuthContext';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 
 const SessionManagement = () => {
   const navigate = useNavigate();
@@ -167,19 +167,19 @@ const SessionManagement = () => {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Sessions">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="flex flex-col items-center gap-4">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-800"></div>
             <p className="text-muted-foreground">Loading session data...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Sessions">
       <Helmet>
         <title>Session Management - Social Code Bank</title>
         <meta name="description" content="Manage your active sessions, review login history, and configure security preferences for your Social Code Bank account." />
@@ -566,7 +566,7 @@ const SessionManagement = () => {
               )}
             </div>
           )}
-    </PageShell>
+    </AppShell>
   );
 };
 

@@ -5,7 +5,7 @@ import { Plus, Users, Globe, Search, Filter, TrendingUp, Grid, List, ArrowUpDown
 import { hiveService } from '../../services/hiveService';
 import CreateCompanyHiveModal from './components/CreateCompanyHiveModal';
 import CompanyHiveCard from './components/CompanyHiveCard';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import CompanySidebar from '../../components/CompanySidebar';
 
 const CompanyTeamsPage = () => {
@@ -118,19 +118,19 @@ const CompanyTeamsPage = () => {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Company Teams">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading company hives...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Company Teams">
 
       <div className="flex">
         {/* Reusable Company Sidebar */}
@@ -418,7 +418,7 @@ const CompanyTeamsPage = () => {
           companyId={companyInfo?.id}
         />
       )}
-    </PageShell>
+    </AppShell>
   );
 };
 

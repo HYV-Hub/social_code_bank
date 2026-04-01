@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Icon from "../../components/AppIcon";
 import Button from "../../components/ui/Button";
 
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import { useAuth } from "../../contexts/AuthContext";
 
 import MetricCard from "../company-dashboard/components/MetricCard";
@@ -335,7 +335,7 @@ const TeamDashboard = () => {
 
   if (loading) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Team">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
@@ -343,13 +343,13 @@ const TeamDashboard = () => {
             <p className="text-sm text-muted-foreground mt-2">Fetching team snippets and activity...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (error) {
     return (
-      <PageShell>
+      <AppShell pageTitle="Team">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center max-w-md px-4">
             <Icon name="AlertCircle" size={48} color="var(--color-error)" className="mx-auto mb-4" />
@@ -365,12 +365,12 @@ const TeamDashboard = () => {
             </div>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Team">
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -705,7 +705,7 @@ const TeamDashboard = () => {
           </div>
         )}
       </main>
-    </PageShell>
+    </AppShell>
   );
 };
 

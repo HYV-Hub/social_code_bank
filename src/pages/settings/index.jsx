@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import { hiveService } from '../../services/hiveService';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Icon from '../../components/AppIcon';
@@ -608,7 +608,7 @@ const SettingsPage = () => {
   };
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Settings">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground">Settings</h1>
           <p className="text-muted-foreground mt-2">Manage your account settings and preferences</p>
@@ -651,7 +651,7 @@ const SettingsPage = () => {
             </div>
           </div>
         </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

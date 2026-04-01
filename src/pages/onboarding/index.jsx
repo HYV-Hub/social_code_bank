@@ -5,7 +5,7 @@ import { supabase } from '../../lib/supabase';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Icon from '../../components/AppIcon';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 
 const OnboardingPage = () => {
   const navigate = useNavigate();
@@ -441,7 +441,7 @@ const OnboardingPage = () => {
   };
 
   return (
-    <PageShell>
+    <AppShell pageTitle="Getting Started">
       <div className="max-w-3xl mx-auto">
         {/* Progress Bar */}
         <div className="bg-card rounded-lg shadow-lg p-8 mb-6">
@@ -508,7 +508,7 @@ const OnboardingPage = () => {
           </div>
         </div>
       </div>
-    </PageShell>
+    </AppShell>
   );
 };
 

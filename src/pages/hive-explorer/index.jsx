@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams, useParams, useLocation } from 'react-rout
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
 import { useHiveRealtime } from '../../hooks/useHiveRealtime';
-import PageShell from '../../components/PageShell';
+import AppShell from '../../components/AppShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -366,7 +366,7 @@ export default function HiveExplorer() {
 
   if (loading) {
     return (
-      <PageShell noPadding>
+      <AppShell pageTitle="Hive">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative">
@@ -376,13 +376,13 @@ export default function HiveExplorer() {
             <p className="text-foreground font-medium animate-pulse">Loading hive experience...</p>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   if (error || !hive) {
     return (
-      <PageShell noPadding>
+      <AppShell pageTitle="Hive">
         <div className="flex items-center justify-center min-h-[60vh] p-4">
           <div className="text-center max-w-md">
             <div className="mb-6 relative">
@@ -404,12 +404,12 @@ export default function HiveExplorer() {
             </Button>
           </div>
         </div>
-      </PageShell>
+      </AppShell>
     );
   }
 
   return (
-    <PageShell noPadding>
+    <AppShell pageTitle="Hive">
       
       <div className={isCompanyContext ? 'flex' : 'pt-16'}>
         {/* NEW: Show CompanySidebar for company hives */}
@@ -982,7 +982,7 @@ export default function HiveExplorer() {
           </div>
         </div>
       )}
-    </PageShell>
+    </AppShell>
   );
 
   function calculateGrowthRate() {
