@@ -102,9 +102,9 @@ const CommunityLeaderboards = () => {
 
   // Get rank badge
   const getRankBadge = (rank) => {
-    if (rank === 1) return { icon: Crown, color: 'text-yellow-500', bg: 'bg-warning/10' };
+    if (rank === 1) return { icon: Crown, color: 'text-warning', bg: 'bg-warning/10' };
     if (rank === 2) return { icon: Medal, color: 'text-muted-foreground', bg: 'bg-background' };
-    if (rank === 3) return { icon: Award, color: 'text-orange-500', bg: 'bg-orange-50' };
+    if (rank === 3) return { icon: Award, color: 'text-warning', bg: 'bg-warning/10' };
     return { icon: Trophy, color: 'text-primary', bg: 'bg-primary/10' };
   };
 
@@ -191,10 +191,13 @@ const CommunityLeaderboards = () => {
                 <div className="w-10 h-10 bg-error/15 rounded-full flex items-center justify-center">
                   <span className="text-2xl">⚠️</span>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-red-900">Error Loading Leaderboard</h3>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-foreground">Error Loading Leaderboard</h3>
                   <p className="text-sm text-error">{error}</p>
                 </div>
+                <button onClick={() => { setError(null); fetchLeaderboardData(); }} className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium">
+                  Retry
+                </button>
               </div>
             </div>
           )}

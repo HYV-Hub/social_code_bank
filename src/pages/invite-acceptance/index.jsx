@@ -37,49 +37,68 @@ const InviteAcceptance = () => {
     try {
       setLoading(true);
 
-      // Simulate API call to validate invite token
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Import supabase
+      const { supabase } = await import('../../lib/supabase');
 
-      // Mock invite data
-      const mockInviteData = {
+      // Validate token against database
+      const { data: invite, error: inviteError } = await supabase
+        .from('team_invites')
+        .select(`
+          *,
+          teams(id, name, description),
+          companies(id, name)
+        `)
+        .eq('token', token)
+        .eq('status', 'pending')
+        .single();
+
+      if (inviteError || !invite) {
+        setError('This invite link is invalid or has expired.');
+        setLoading(false);
+        return;
+      }
+
+      // Check if invite has expired
+      if (invite.expires_at && new Date(invite.expires_at) < new Date()) {
+        setError('This invite link has expired. Please request a new one.');
+        setLoading(false);
+        return;
+      }
+
+      const invitePayload = {
         company: {
-          name: 'TechCorp Solutions',
-          logo: "https://img.rocket.new/generatedImages/rocket_gen_img_17b4dce52-1764654560254.png",
-          logoAlt: 'TechCorp Solutions company logo with blue and white design'
+          name: invite.companies?.name || 'Unknown Company',
+          logo: null,
+          logoAlt: ''
         },
         invitedBy: {
-          name: 'Sarah Mitchell',
-          role: 'Engineering Manager',
-          avatar: "https://img.rocket.new/generatedImages/rocket_gen_img_103b528db-1763293982935.png",
-          avatarAlt: 'Professional headshot of woman with long brown hair wearing white blouse'
+          name: invite.inviter_name || 'A team member',
+          role: '',
+          avatar: null,
+          avatarAlt: ''
         },
         role: {
-          title: 'Senior Frontend Developer',
-          permissions: [
-          'Create and manage code snippets',
-          'Access private team repositories',
-          'Review team member code',
-          'Participate in team discussions',
-          'Access analytics dashboard']
-
+          title: invite.role || 'member',
+          permissions: []
         },
         companyContext: {
-          teamSize: 47,
-          activeProjects: 12,
-          snippetsLibrary: 3847
+          teamSize: 0,
+          activeProjects: 0,
+          snippetsLibrary: 0
         },
         inviteDetails: {
-          sentAt: '2025-11-18T14:30:00',
-          expiresAt: '2025-11-25T14:30:00',
+          sentAt: invite.created_at,
+          expiresAt: invite.expires_at,
           isExpired: false,
           usageCount: 0,
           maxUsage: 1
         },
-        prefilledEmail: 'john.developer@example.com'
+        prefilledEmail: invite.email || '',
+        token: token
       };
 
-      setInviteData(mockInviteData);
-      setFormData((prev) => ({ ...prev, email: mockInviteData?.prefilledEmail }));
+      setInviteData(invitePayload);
+      setFormData((prev) => ({ ...prev, email: invitePayload?.prefilledEmail }));
       setError(null);
     } catch (err) {
       setError('Failed to validate invite link. Please contact your team admin.');
@@ -131,8 +150,15 @@ const InviteAcceptance = () => {
     try {
       setSubmitting(true);
 
-      // Simulate API call to accept invite
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const { supabase } = await import('../../lib/supabase');
+
+      // Accept the invite
+      const { error: acceptError } = await supabase
+        .from('team_invites')
+        .update({ status: 'accepted', accepted_at: new Date().toISOString() })
+        .eq('token', inviteData?.token);
+
+      if (acceptError) throw acceptError;
 
       // Navigate to onboarding or dashboard
       navigate('/user-dashboard', {

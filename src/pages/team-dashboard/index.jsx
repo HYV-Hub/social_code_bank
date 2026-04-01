@@ -303,7 +303,7 @@ const TeamDashboard = () => {
   ];
 
   const handleViewProfile = (memberId) => {
-    navigate(`/user-profile?id=${memberId}`);
+    navigate(`/user-profile/${memberId}`);
   };
 
   const handleViewSnippet = (snippetId) => {

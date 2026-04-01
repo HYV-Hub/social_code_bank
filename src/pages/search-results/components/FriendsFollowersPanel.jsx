@@ -250,7 +250,7 @@ const FriendsFollowersPanel = () => {
               onClick={() => setActiveTab(tab?.id)}
               className={`flex items-center gap-2 px-4 py-3 font-medium text-sm transition-colors border-l-4 ${
                 activeTab === tab?.id
-                  ? 'border-blue-600 text-primary bg-primary/10' :'border-transparent text-muted-foreground hover:text-foreground hover:bg-background'
+                  ? 'border-primary text-primary bg-primary/10' :'border-transparent text-muted-foreground hover:text-foreground hover:bg-background'
               }`}
             >
               <Icon name={tab?.icon} size={16} />
@@ -269,7 +269,7 @@ const FriendsFollowersPanel = () => {
         {loading ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-sm text-muted-foreground">Loading...</p>
             </div>
           </div>

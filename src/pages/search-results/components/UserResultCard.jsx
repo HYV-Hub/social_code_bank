@@ -25,7 +25,7 @@ const UserResultCard = ({ user, searchQuery }) => {
     <div className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all">
       <div className="flex items-start gap-4">
         <div
-          onClick={() => navigate('/user-profile')}
+          onClick={() => navigate(`/user-profile/${user?.id}`)}
           className="flex-shrink-0 cursor-pointer"
         >
           <Image
@@ -39,7 +39,7 @@ const UserResultCard = ({ user, searchQuery }) => {
           <div className="flex items-start justify-between gap-4 mb-2">
             <div>
               <h3
-                onClick={() => navigate('/user-profile')}
+                onClick={() => navigate(`/user-profile/${user?.id}`)}
                 className="text-lg font-semibold text-foreground hover:text-primary transition-colors cursor-pointer"
               >
                 {highlightText(user?.name)}

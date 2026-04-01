@@ -135,7 +135,7 @@ const AISnippetSharing = ({ snippet }) => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg shadow-sm p-6 border border-blue-100">
+    <div className="hyv-card p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -299,7 +299,7 @@ const AISnippetSharing = ({ snippet }) => {
       )}
 
       {/* Footer Note - Updated to mention caching */}
-      <div className="flex items-start gap-2 mt-4 p-3 bg-primary/10 rounded-lg border border-blue-100">
+      <div className="flex items-start gap-2 mt-4 p-3 bg-primary/10 rounded-lg border border-primary/20">
         <Icon name="Info" size={16} className="text-primary mt-0.5 flex-shrink-0" />
         <p className="text-xs text-foreground">
           {sharingData?.cached 

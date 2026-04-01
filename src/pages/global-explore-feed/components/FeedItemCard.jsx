@@ -19,7 +19,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <button
-                onClick={() => navigate(`/user-profile?id=${snippet?.author?.id}`)}
+                onClick={() => navigate(`/user-profile/${snippet?.author?.id}`)}
                 className="font-semibold text-foreground hover:text-primary"
               >
                 {snippet?.author?.full_name || snippet?.author?.username}
@@ -119,7 +119,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <button
-                onClick={() => navigate(`/user-profile?id=${bug?.reporter?.id}`)}
+                onClick={() => navigate(`/user-profile/${bug?.reporter?.id}`)}
                 className="font-semibold text-foreground hover:text-primary"
               >
                 {bug?.reporter?.full_name || bug?.reporter?.username}
@@ -190,7 +190,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <button
-                onClick={() => navigate(`/user-profile?id=${collection?.creator?.id}`)}
+                onClick={() => navigate(`/user-profile/${collection?.creator?.id}`)}
                 className="font-semibold text-foreground hover:text-primary"
               >
                 {collection?.creator?.full_name || collection?.creator?.username}

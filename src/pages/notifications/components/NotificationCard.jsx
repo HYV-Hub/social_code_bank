@@ -22,7 +22,7 @@ const getPriorityColor = (priority) => {
   const colors = {
     low: 'text-muted-foreground',
     normal: 'text-primary',
-    high: 'text-orange-500',
+    high: 'text-warning',
     urgent: 'text-error'
   };
   return colors?.[priority] || 'text-muted-foreground';
@@ -31,11 +31,11 @@ const getPriorityColor = (priority) => {
 const getTypeColor = (type) => {
   const colors = {
     comment: 'bg-primary/15 text-primary',
-    like: 'bg-pink-100 text-pink-600',
+    like: 'bg-error/15 text-error',
     follow: 'bg-success/15 text-success',
-    mention: 'bg-purple-100 text-primary',
+    mention: 'bg-primary/15 text-primary',
     bug_assignment: 'bg-error/15 text-error',
-    team_update: 'bg-indigo-100 text-secondary',
+    team_update: 'bg-secondary/15 text-secondary',
     snippet_share: 'bg-warning/15 text-warning'
   };
   return colors?.[type] || 'bg-muted text-muted-foreground';

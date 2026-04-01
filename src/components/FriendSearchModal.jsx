@@ -348,7 +348,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
           }}
         >
           {/* Header - FIXED */}
-          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
+          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border bg-card flex-shrink-0">
             <h2 id="friend-modal-title" className="text-xl sm:text-2xl font-bold text-foreground flex items-center gap-2">
               <Icon name="UserPlus" size={24} className="text-primary" />
               <span className="hidden sm:inline">Find Friends</span>
@@ -368,7 +368,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
             <button
               onClick={() => setActiveTab('search')}
               className={`flex-1 px-4 py-3 text-sm font-medium transition-all ${
-                activeTab === 'search' ?'text-primary border-b-2 border-blue-600 bg-card' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                activeTab === 'search' ?'text-primary border-b-2 border-primary bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
               <div className="flex items-center justify-center gap-2">
@@ -379,7 +379,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
             <button
               onClick={() => setActiveTab('requests')}
               className={`flex-1 px-4 py-3 text-sm font-medium transition-all relative ${
-                activeTab === 'requests' ?'text-primary border-b-2 border-blue-600 bg-card' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                activeTab === 'requests' ?'text-primary border-b-2 border-primary bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
               <div className="flex items-center justify-center gap-2">
@@ -408,7 +408,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
                   placeholder="Search by name or username..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e?.target?.value)}
-                  className="pl-12 pr-4 py-3 w-full text-base border-2 border-border focus:border-blue-500 rounded-xl"
+                  className="pl-12 pr-4 py-3 w-full text-base border-2 border-border focus:border-primary rounded-xl"
                   autoFocus
                 />
               </div>
@@ -540,7 +540,7 @@ const FriendSearchModal = ({ isOpen, onClose }) => {
                     {pendingRequests?.map((request) => (
                       <div
                         key={request?.id}
-                        className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-blue-300 hover:bg-primary/10/30 transition-all"
+                        className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all"
                       >
                         <img
                           src={request?.sender?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(request?.sender?.name || 'User')}&background=random`}

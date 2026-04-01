@@ -630,7 +630,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       <AppNavigation />
 
       {/* Profile Header */}
@@ -733,7 +733,7 @@ const UserProfile = () => {
                   onClick={() => setActiveTab(tab?.id)}
                   className={`flex items-center gap-2 px-6 py-4 font-medium transition-colors whitespace-nowrap ${
                     activeTab === tab?.id
-                      ? 'text-accent border-b-2 border-accent' :'text-muted-foreground hover:text-foreground'
+                      ? 'text-primary border-b-2 border-primary' :'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   <Icon name={tab?.icon} size={18} />

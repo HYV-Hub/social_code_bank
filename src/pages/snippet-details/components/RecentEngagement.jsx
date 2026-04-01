@@ -10,7 +10,7 @@ const RecentEngagement = ({ likes = [], saves = [] }) => {
   
   if (!hasLikes && !hasSaves) {
     return (
-      <div className="bg-card rounded-xl shadow-lg border border-border p-6">
+      <div className="hyv-card p-6">
         <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
           <Icon name="Users" size={20} className="text-primary" />
           Recent Engagement
@@ -43,7 +43,7 @@ const RecentEngagement = ({ likes = [], saves = [] }) => {
   };
 
   return (
-    <div className="bg-card rounded-xl shadow-lg border border-border p-6">
+    <div className="hyv-card p-6">
       <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
         <Icon name="Users" size={20} className="text-primary" />
         Recent Engagement

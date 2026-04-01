@@ -362,12 +362,12 @@ const TeamChat = () => {
   // Loading state
   if (!user) {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-background">
         <AppNavigation />
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-slate-600">Loading...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-muted-foreground">Loading...</p>
           </div>
         </div>
       </div>
@@ -375,13 +375,20 @@ const TeamChat = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       <AppNavigation />
       <div className="min-h-screen bg-background">
         {/* Error display */}
         {error && (
-          <div className="bg-error/10 border border-error/20 text-error px-4 py-3 rounded relative" role="alert">
-            <span className="block sm:inline">{error}</span>
+          <div className="flex items-center justify-center p-8">
+            <div className="text-center">
+              <Icon name="AlertCircle" size={48} className="mx-auto mb-4 opacity-40 text-error" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">Connection Error</h3>
+              <p className="text-sm text-muted-foreground mb-4">{error}</p>
+              <button onClick={() => window.location.reload()} className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium">
+                Retry
+              </button>
+            </div>
           </div>
         )}
 

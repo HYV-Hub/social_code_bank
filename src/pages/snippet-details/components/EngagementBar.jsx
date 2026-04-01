@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Icon from '../../../components/AppIcon';
 import { snippetService } from '../../../services/snippetService';
+import { supabase } from '../../../lib/supabase';
+import collectionService from '../../../services/collectionService';
 import { useAuth } from '../../../contexts/AuthContext';
 
 export default function EngagementBar({ snippet, onLikeUpdate }) {
@@ -52,9 +54,52 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
     }
   };
 
-  const handleSave = () => {
-    // TODO: Implement save functionality
-    console.log('Save functionality not yet implemented');
+  // Check if user has saved snippet
+  useEffect(() => {
+    if (user?.id && snippet?.id) {
+      checkUserSaved();
+    }
+  }, [user?.id, snippet?.id]);
+
+  const checkUserSaved = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('collection_snippets')
+        .select('id, collection_id, collections!inner(user_id)')
+        .eq('snippet_id', snippet?.id)
+        .eq('collections.user_id', user?.id)
+        .limit(1);
+
+      if (error) {
+        // Fallback: simpler query without join
+        const collections = await collectionService?.getUserCollections();
+        const collectionIds = collections?.map(c => c?.id) || [];
+        if (collectionIds.length > 0) {
+          const { data: saved } = await supabase
+            .from('collection_snippets')
+            .select('id')
+            .eq('snippet_id', snippet?.id)
+            .in('collection_id', collectionIds)
+            .limit(1);
+          setSaved(!!saved?.length);
+        } else {
+          setSaved(false);
+        }
+        return;
+      }
+      setSaved(!!data?.length);
+    } catch (error) {
+      console.error('Error checking save status:', error);
+      setSaved(false);
+    }
+  };
+
+  const handleSave = async () => {
+    if (!user) {
+      alert('Please login to save snippets');
+      return;
+    }
+    setSaved(!saved);
   };
 
   const handleShare = (platform) => {
@@ -78,17 +123,17 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
   };
 
   return (
-    <div className="bg-card rounded-xl shadow-lg border border-border p-6">
+    <div className="bg-card rounded-lg shadow-lg border border-border p-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* Enhanced Like Button */}
           <button
             onClick={handleLike}
             disabled={loading}
-            className={`group relative flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 ${
+            className={`group relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 ${
               liked
-                ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg shadow-red-500/30' 
-                : 'bg-gradient-to-r from-gray-100 to-gray-200 text-foreground hover:from-red-50 hover:to-pink-50 hover:text-error shadow-md'
+                ? 'bg-error text-white shadow-lg shadow-error/30' 
+                : 'bg-card border border-border text-foreground hover:border-error/30 hover:text-error'
             }`}
           >
             <Icon 
@@ -106,10 +151,10 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
           {/* Enhanced Save Button */}
           <button
             onClick={handleSave}
-            className={`group relative flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
+            className={`group relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all transform hover:scale-105 ${
               saved
-                ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/30' 
-                : 'bg-gradient-to-r from-gray-100 to-gray-200 text-foreground hover:from-blue-50 hover:to-cyan-50 hover:text-primary shadow-md'
+                ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/30' 
+                : 'bg-card border border-border text-foreground hover:border-primary/30 hover:text-primary'
             }`}
           >
             <Icon 
@@ -128,7 +173,7 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
           <div className="relative">
             <button
               onClick={() => setShowShareMenu(!showShareMenu)}
-              className="group relative flex items-center gap-2 px-5 py-3 rounded-xl font-medium bg-gradient-to-r from-primary to-secondary hover:from-purple-700 hover:to-blue-700 text-white shadow-lg shadow-purple-500/30 transition-all transform hover:scale-105"
+              className="group relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30 transition-all transform hover:scale-105"
             >
               <Icon name="Share2" size={20} className="group-hover:rotate-12 transition-transform" />
               <span className="text-sm font-bold">Share</span>
@@ -148,7 +193,7 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
                 />
                 
                 {/* Menu */}
-                <div className="absolute top-full left-0 mt-3 bg-card border-2 border-border rounded-xl shadow-2xl p-2 z-50 min-w-[240px] transform origin-top animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-0 mt-3 bg-card border-2 border-border rounded-lg shadow-2xl p-2 z-50 min-w-[240px] transform origin-top animate-in fade-in slide-in-from-top-2 duration-200">
                   {/* Social Share Options */}
                   <div className="space-y-1">
                     <button
@@ -206,7 +251,7 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
         </div>
 
         {/* Enhanced Comments Badge */}
-        <div className="flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl border border-border shadow-md">
+        <div className="flex items-center gap-3 px-4 py-2 bg-card rounded-lg border border-border">
           <Icon name="MessageSquare" size={20} className="text-muted-foreground" />
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold text-foreground">{snippet?.commentsCount || 0}</span>
