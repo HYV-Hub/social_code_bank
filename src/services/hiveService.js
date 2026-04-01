@@ -547,14 +547,15 @@ export const hiveService = {
         if (sortBy === 'newest') {
           query = query?.order('created_at', { ascending: false });
         } else if (sortBy === 'most_reused') {
-          query = query?.order('reuse_count', { ascending: false, nullsFirst: false });
+          query = query?.order('views_count', { ascending: false });
         } else if (sortBy === 'top_rated') {
           query = query?.order('ai_quality_score', { ascending: false, nullsFirst: false });
         } else {
           query = query?.order('views_count', { ascending: false })?.order('likes_count', { ascending: false });
         }
 
-        const { data: snippets } = await query?.limit(contentType === 'snippets' ? limit : 10);
+        const { data: snippets, error: snippetsError } = await query?.limit(contentType === 'snippets' ? limit : 10);
+        if (snippetsError) console.error('Snippets query error:', snippetsError);
 
         snippets?.forEach(snippet => {
           feedItems?.push({

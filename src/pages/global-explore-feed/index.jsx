@@ -51,72 +51,75 @@ export default function GlobalExploreFeed() {
 
   // Load feed when filters change
   useEffect(() => {
-    loadFeed();
-  }, [contentType, language, sortBy, activeCategory, activeTagFilter, page]);
+    let cancelled = false;
+    const doLoad = async () => {
+      try {
+        setLoading(true);
+        setError('');
 
-  const loadFeed = async () => {
-    try {
-      setLoading(true);
-      setError('');
+        const result = await hiveService?.getGlobalExploreFeed({
+          contentType,
+          language: language === 'all' ? undefined : language,
+          sortBy,
+          category: activeCategory || undefined,
+          tagFilter: activeTagFilter || undefined,
+          page,
+          limit: 20
+        });
 
-      const { items, total } = await hiveService?.getGlobalExploreFeed({
-        contentType,
-        language,
-        sortBy,
-        category: activeCategory,
-        tagFilter: activeTagFilter,
-        page,
-        limit: 20
-      });
+        if (cancelled) return;
 
-      if (page === 1) {
-        setFeedItems(items || []);
-      } else {
-        setFeedItems(prev => [...prev, ...(items || [])]);
+        const items = result?.items || [];
+        const total = result?.total || 0;
+
+        if (page === 1) {
+          setFeedItems(items);
+        } else {
+          setFeedItems(prev => [...prev, ...items]);
+        }
+
+        setHasMore(items.length >= 20 && (page * 20) < total);
+      } catch (err) {
+        if (!cancelled) {
+          console.error('Error loading feed:', err);
+          setError(err?.message || 'Failed to load feed');
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-
-      setHasMore((feedItems?.length || 0) + (items?.length || 0) < total);
-    } catch (err) {
-      console.error('Error loading feed:', err);
-      setError(err?.message || 'Failed to load feed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const resetAndReload = () => {
-    setPage(1);
-    setFeedItems([]);
-  };
+    };
+    doLoad();
+    return () => { cancelled = true; };
+  }, [contentType, language, sortBy, activeCategory, activeTagFilter, page]);
 
   const handleSortChange = (value) => {
     setSortBy(value);
-    resetAndReload();
+    setPage(1);
   };
 
   const handleLanguageChange = (value) => {
     setLanguage(value);
-    resetAndReload();
+    setPage(1);
   };
 
   const handleContentTypeChange = (value) => {
     setContentType(value);
-    resetAndReload();
+    setPage(1);
   };
 
   const handleCategoryClick = (cat) => {
     setActiveCategory(cat);
-    resetAndReload();
+    setPage(1);
   };
 
   const handleTagClick = (tag) => {
     setActiveTagFilter(tag === activeTagFilter ? null : tag);
-    resetAndReload();
+    setPage(1);
   };
 
   const handleTagClear = () => {
     setActiveTagFilter(null);
-    resetAndReload();
+    setPage(1);
   };
 
   const handleLoadMore = () => {

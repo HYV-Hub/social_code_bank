@@ -214,7 +214,7 @@ export default function AppShell({ children, rightSidebar = null, pageTitle = ''
   return (
     <div className="min-h-screen bg-background flex">
       {/* ─── LEFT SIDEBAR (Desktop) ─── */}
-      <aside className={`hidden lg:flex flex-col border-r border-border bg-[#0b0a14] transition-all duration-200 ${sidebarCollapsed ? 'w-16' : 'w-56'} fixed top-0 left-0 h-full z-30`}>
+      <aside className={`hidden lg:flex flex-col border-r border-border bg-[#0b0a14] transition-all duration-200 ${sidebarCollapsed ? '-translate-x-full w-56' : 'translate-x-0 w-56'} fixed top-0 left-0 h-full z-30`}>
         {/* Logo */}
         <div className={`flex items-center ${sidebarCollapsed ? 'justify-center px-2' : 'px-4'} h-14 border-b border-border`}>
           <button onClick={() => navigate('/user-dashboard')} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
@@ -223,7 +223,7 @@ export default function AppShell({ children, rightSidebar = null, pageTitle = ''
           </button>
         </div>
 
-        {renderNav(sidebarCollapsed)}
+        {renderNav(false)}
 
         {/* Bottom: User + Collapse */}
         <div className="border-t border-border p-2">
@@ -278,10 +278,11 @@ export default function AppShell({ children, rightSidebar = null, pageTitle = ''
             </div>
           )}
           <button
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className="w-full flex items-center justify-center py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+            onClick={() => setSidebarCollapsed(true)}
+            className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors text-xs"
           >
-            <Icon name={sidebarCollapsed ? 'ChevronsRight' : 'ChevronsLeft'} size={16} />
+            <Icon name="PanelLeftClose" size={14} />
+            {!sidebarCollapsed && <span>Collapse</span>}
           </button>
         </div>
       </aside>
@@ -339,9 +340,17 @@ export default function AppShell({ children, rightSidebar = null, pageTitle = ''
       )}
 
       {/* ─── MAIN CONTENT AREA ─── */}
-      <main className={`flex-1 ${sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-56'} transition-all duration-200 mt-12 lg:mt-0`}>
+      <main className={`flex-1 ${sidebarCollapsed ? 'lg:ml-0' : 'lg:ml-56'} transition-all duration-200 mt-12 lg:mt-0`}>
         {/* Top Bar */}
         <div className="sticky top-0 z-20 bg-background/80 backdrop-blur-lg border-b border-border px-4 lg:px-6 h-14 flex items-center gap-4">
+          {/* Sidebar toggle for desktop */}
+          <button
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="hidden lg:flex items-center justify-center w-8 h-8 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+            title={sidebarCollapsed ? 'Show sidebar' : 'Hide sidebar'}
+          >
+            <Icon name={sidebarCollapsed ? 'PanelLeftOpen' : 'PanelLeftClose'} size={18} />
+          </button>
           {pageTitle && <h1 className="text-sm font-semibold text-foreground hidden lg:block whitespace-nowrap">{pageTitle}</h1>}
 
           {/* Global Search */}
