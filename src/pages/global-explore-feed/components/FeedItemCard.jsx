@@ -9,12 +9,12 @@ export default function FeedItemCard({ item, onLike, onSave }) {
   const renderSnippetCard = () => {
     const snippet = item?.data;
     return (
-      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-6">
+      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-4 cursor-pointer">
         <div className="flex items-start gap-4 mb-4">
           <img
             src={snippet?.author?.avatar_url || '/assets/images/no_image.png'}
             alt={snippet?.author?.full_name || 'User avatar'}
-            className="w-12 h-12 rounded-full object-cover"
+            className="w-8 h-8 rounded-full object-cover"
           />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
@@ -40,7 +40,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
 
         <h3
           onClick={() => navigate(`/snippet-details?id=${snippet?.id}`)}
-          className="text-lg font-semibold text-foreground mb-2 cursor-pointer hover:text-primary"
+          className="text-sm font-semibold text-foreground mb-2 cursor-pointer hover:text-primary line-clamp-1"
         >
           {snippet?.title}
         </h3>
@@ -109,12 +109,12 @@ export default function FeedItemCard({ item, onLike, onSave }) {
   const renderDiscussionCard = () => {
     const bug = item?.data;
     return (
-      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-6">
+      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-4 cursor-pointer">
         <div className="flex items-start gap-4 mb-4">
           <img
             src={bug?.reporter?.avatar_url || '/assets/images/no_image.png'}
             alt={bug?.reporter?.full_name || 'User avatar'}
-            className="w-12 h-12 rounded-full object-cover"
+            className="w-8 h-8 rounded-full object-cover"
           />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
@@ -140,7 +140,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
 
         <h3
           onClick={() => navigate(`/bug-board?id=${bug?.id}`)}
-          className="text-lg font-semibold text-foreground mb-2 cursor-pointer hover:text-primary"
+          className="text-sm font-semibold text-foreground mb-2 cursor-pointer hover:text-primary line-clamp-1"
         >
           {bug?.title}
         </h3>
@@ -180,12 +180,12 @@ export default function FeedItemCard({ item, onLike, onSave }) {
   const renderCollectionCard = () => {
     const collection = item?.data;
     return (
-      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-6">
+      <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow p-4 cursor-pointer">
         <div className="flex items-start gap-4 mb-4">
           <img
             src={collection?.creator?.avatar_url || '/assets/images/no_image.png'}
             alt={collection?.creator?.full_name || 'User avatar'}
-            className="w-12 h-12 rounded-full object-cover"
+            className="w-8 h-8 rounded-full object-cover"
           />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
@@ -211,7 +211,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
 
         <h3
           onClick={() => navigate(`/collection-details?id=${collection?.id}`)}
-          className="text-lg font-semibold text-foreground mb-2 cursor-pointer hover:text-primary"
+          className="text-sm font-semibold text-foreground mb-2 cursor-pointer hover:text-primary line-clamp-1"
         >
           {collection?.name}
         </h3>

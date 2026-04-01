@@ -20,6 +20,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import Icon from '../../components/AppIcon';
 import FriendsFollowersPanel from './components/FriendsFollowersPanel';
 import AnalyticsPanel from './components/AnalyticsPanel';
+import FilterSidebar from './components/FilterSidebar';
 
 
 
@@ -298,6 +299,24 @@ const SearchResultsPage = () => {
     });
   };
 
+  const handleFilterChange = (newFilters) => {
+    if (newFilters.sortBy) {
+      setSortBy(newFilters.sortBy);
+    }
+    if ('language' in newFilters) {
+      setAdvancedFilters(prev => ({ ...prev, language: newFilters.language || 'all' }));
+    }
+    if ('visibility' in newFilters) {
+      setAdvancedFilters(prev => ({ ...prev, visibility: newFilters.visibility }));
+    }
+  };
+
+  const sidebarFilters = {
+    sortBy,
+    language: advancedFilters?.language,
+    visibility: advancedFilters?.visibility || null,
+  };
+
   // Sort results
   const sortedResults = [...allResults]?.sort((a, b) => {
     switch (sortBy) {
@@ -319,7 +338,7 @@ const SearchResultsPage = () => {
   );
 
   return (
-    <PageShell noPadding>
+    <PageShell noPadding sidebar={<FilterSidebar filters={sidebarFilters} onFilterChange={handleFilterChange} />}>
       <Helmet>
         <title>{query ? `Search: ${query}` : viewMode === 'bug-board' ? 'Global Bug Board' : 'Explore'} - HyvHub</title>
       </Helmet>
@@ -498,19 +517,7 @@ const SearchResultsPage = () => {
             </div>
           ) : (
             /* Normal Explore View */
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Left Sidebar - Friends, Followers & Analytics */}
-              <aside className="lg:col-span-3 space-y-6">
-                <div>
-                  <FriendsFollowersPanel />
-                </div>
-                <div>
-                  <AnalyticsPanel />
-                </div>
-              </aside>
-
-              {/* Main Content Area - Results */}
-              <main className="lg:col-span-9 space-y-6">
+            <div className="space-y-6">
                 {/* Results Section */}
                 {isLoading ? (
                   <LoadingState />
@@ -525,7 +532,7 @@ const SearchResultsPage = () => {
                     onClearFilters={handleClearFilters} />
                 ) : (
                   <>
-                    <div className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                       {paginatedResults?.map((result) => {
                         if (result?.type === 'snippet') {
                           return (
@@ -571,10 +578,10 @@ const SearchResultsPage = () => {
                           iconName="ChevronLeft"
                           disabled={currentPage === 1}
                           onClick={() => setCurrentPage(currentPage - 1)} />
-                        
+
                         <div className="flex gap-1">
                           {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                            const pageNum = currentPage <= 3 ? i + 1 : 
+                            const pageNum = currentPage <= 3 ? i + 1 :
                                           currentPage >= totalPages - 2 ? totalPages - 4 + i :
                                           currentPage - 2 + i;
                             if (pageNum > 0 && pageNum <= totalPages) {
@@ -605,7 +612,6 @@ const SearchResultsPage = () => {
                     )}
                   </>
                 )}
-              </main>
             </div>
           )}
         </div>

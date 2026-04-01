@@ -316,12 +316,9 @@ const AppNavigation = () => {
 
     return (
       <div 
-        className="absolute right-0 mt-3 w-72 bg-card/95 backdrop-blur-xl rounded-xl shadow-2xl border border-border/50 py-2 animate-in fade-in slide-in-from-top-2 duration-200"
+        className="absolute right-0 mt-3 w-72 bg-card backdrop-blur-md rounded-xl border border-border py-2 z-50 shadow-xl shadow-black/20 animate-in fade-in slide-in-from-top-2 duration-200"
         role="menu"
         aria-label="User menu"
-        style={{
-          boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)'
-        }}
       >
         <div className="px-4 py-4 border-b border-border">
           <div className="flex items-center gap-3">
@@ -511,6 +508,25 @@ const AppNavigation = () => {
                   HYVhub
                 </span>
               </button>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-1" role="menubar">
+              {navigation?.map((item) => (
+                <button
+                  key={item?.name}
+                  onClick={() => navigate(item?.path || item?.href)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-150 ${
+                    isActive(item?.path || item?.href)
+                      ? 'bg-primary/15 text-primary'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  }`}
+                  role="menuitem"
+                >
+                  <Icon name={item?.icon} size={16} />
+                  <span>{item?.name}</span>
+                </button>
+              ))}
             </div>
 
             {/* Right Side Actions */}

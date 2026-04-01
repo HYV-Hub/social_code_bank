@@ -1,155 +1,107 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { formatDistanceToNow } from 'date-fns';
 import Icon from '../../../components/AppIcon';
-import Button from '../../../components/ui/Button';
 import CodeBlock from '../../../components/ui/CodeBlock';
+import { formatTimeAgo } from '../../../utils/formatTime';
 
-const SnippetCard = ({ snippet, onEdit, onShare, onVisibilityChange, onDelete }) => {
+const SnippetCard = ({ snippet, onDelete, onEdit, showActions = true }) => {
   const navigate = useNavigate();
 
-  const handleCardClick = () => {
-    // Navigate to snippet details page
+  const handleClick = () => {
     navigate(`/snippet-details?id=${snippet?.id}`);
   };
 
-  const handleEditClick = (e) => {
-    e?.stopPropagation(); // Prevent card click
-    if (onEdit) {
-      onEdit(snippet?.id);
-    }
-  };
-
-  const handleDeleteClick = (e) => {
-    e?.stopPropagation(); // Prevent card click
-    if (onDelete) {
-      onDelete(snippet?.id);
-    }
-  };
-
-  const getVisibilityIcon = (visibility) => {
-    switch(visibility) {
-      case 'public': return 'Globe';
-      case 'company': return 'Building2';
-      case 'team': return 'Users';
-      case 'private': return 'Lock';
-      default: return 'Lock';
-    }
-  };
-
-  const getLanguageColor = (language) => {
-    const colors = {
-      'JavaScript': 'bg-warning/100',
-      'Python': 'bg-primary',
-      'Java': 'bg-error/100',
-      'TypeScript': 'bg-primary',
-      'Go': 'bg-cyan-500',
-      'Rust': 'bg-orange-600',
-      'C++': 'bg-pink-500',
-      'Ruby': 'bg-red-600'
-    };
-    return colors?.[language] || 'bg-background0';
-  };
-
-  const handleViewAIReport = () => {
-    navigate(`/ai-optimization-report?snippetId=${snippet?.id}`);
-  };
-
   return (
-    <div 
-      onClick={handleCardClick}
-      className="bg-card rounded-lg border border-border p-4 hover:shadow-md transition-shadow cursor-pointer"
+    <div
+      onClick={handleClick}
+      className="bg-card rounded-lg border border-border overflow-hidden cursor-pointer transition-all duration-200 hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 group"
     >
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-2">
-              <span className={`w-3 h-3 rounded-full ${getLanguageColor(snippet?.language)}`}></span>
-              <span className="text-xs font-medium text-muted-foreground">{snippet?.language}</span>
-              <span className="text-xs text-muted-foreground">•</span>
-              <span className="text-xs text-muted-foreground">
-                {snippet?.createdAt instanceof Date 
-                  ? formatDistanceToNow(snippet?.createdAt, { addSuffix: true })
-                  : snippet?.createdAt || 'Recently'}
-              </span>
-            </div>
-            <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-              {snippet?.title}
-            </h3>
-            <p className="text-sm text-muted-foreground line-clamp-2">{snippet?.description}</p>
-          </div>
-          <div className="flex items-center gap-1 ml-4">
-            <Icon name={getVisibilityIcon(snippet?.visibility)} size={18} color="var(--color-muted-foreground)" />
-          </div>
-        </div>
+      {/* Code Preview — Hero Section */}
+      <div className="relative">
+        <CodeBlock
+          code={snippet?.codePreview || snippet?.code?.substring(0, 300) || '// No code preview'}
+          language={snippet?.language}
+          maxLines={6}
+          showCopy={false}
+          showLineNumbers={false}
+          className="border-0 rounded-none"
+        />
+        {/* Language Badge */}
+        <span className="absolute top-2 right-2 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-primary/90 text-white rounded">
+          {snippet?.language || 'code'}
+        </span>
+      </div>
 
-        <div className="relative bg-muted rounded-lg p-4 mb-4 font-mono text-sm overflow-x-auto">
-          <button
-            onClick={handleViewAIReport}
-            className="absolute top-2 right-2 p-1.5 bg-gradient-to-r from-primary to-secondary hover:from-purple-700 hover:to-blue-700 rounded-md transition-all opacity-0 group-hover:opacity-100"
-            title="View AI Optimization Report"
-          >
-            <Icon name="Sparkles" size={14} className="text-white" />
-          </button>
-          <CodeBlock code={snippet?.codePreview || snippet?.code?.substring(0, 200)} language={snippet?.language} maxLines={4} showCopy={false} showLineNumbers={false} />
-        </div>
+      {/* Content Section */}
+      <div className="p-3">
+        {/* Title */}
+        <h3 className="font-semibold text-sm text-foreground line-clamp-1 group-hover:text-primary transition-colors">
+          {snippet?.title || 'Untitled Snippet'}
+        </h3>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <Icon name="Heart" size={16} />
-              <span className="text-sm">{snippet?.likes}</span>
-            </div>
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <Icon name="MessageSquare" size={16} />
-              <span className="text-sm">{snippet?.comments}</span>
-            </div>
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <Icon name="Eye" size={16} />
-              <span className="text-sm">{snippet?.views}</span>
-            </div>
-          </div>
+        {/* Description */}
+        {snippet?.description && (
+          <p className="text-xs text-muted-foreground line-clamp-2 mt-1">
+            {snippet?.description}
+          </p>
+        )}
 
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleEditClick}
-            >
-              <Icon name="Edit" size={16} />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleDeleteClick}
-            >
-              <Icon name="Trash2" size={16} className="text-destructive" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              iconName="Share2" 
-              iconSize={16}
-              onClick={(e) => {
-                e?.stopPropagation();
-                onShare?.(snippet?.id);
-              }}
-            >
-              Share
-            </Button>
-          </div>
-        </div>
-
-        {snippet?.tags && snippet?.tags?.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border">
-            {snippet?.tags?.map((tag, index) => (
-              <span 
-                key={index}
-                className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md font-medium"
-              >
-                #{tag}
+        {/* AI Tags */}
+        {snippet?.tags?.length > 0 && (
+          <div className="flex flex-wrap gap-1 mt-2">
+            {snippet.tags.slice(0, 3).map((tag, i) => (
+              <span key={i} className="px-1.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded">
+                {tag}
               </span>
             ))}
+            {snippet.tags.length > 3 && (
+              <span className="px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                +{snippet.tags.length - 3}
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Stats Row */}
+        <div className="flex items-center gap-3 mt-2 pt-2 border-t border-border/50 text-xs text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <Icon name="Heart" size={12} /> {snippet?.likes || snippet?.likesCount || 0}
+          </span>
+          <span className="flex items-center gap-1">
+            <Icon name="MessageSquare" size={12} /> {snippet?.comments || snippet?.commentsCount || 0}
+          </span>
+          <span className="flex items-center gap-1">
+            <Icon name="Eye" size={12} /> {snippet?.views || snippet?.viewsCount || 0}
+          </span>
+          {snippet?.reuseCount > 0 && (
+            <span className="flex items-center gap-1">
+              <Icon name="Copy" size={12} /> {snippet.reuseCount}
+            </span>
+          )}
+          <span className="ml-auto text-[10px]">
+            {formatTimeAgo(snippet?.createdAt)}
+          </span>
+        </div>
+
+        {/* Action Buttons (optional, for dashboard) */}
+        {showActions && (onEdit || onDelete) && (
+          <div className="flex gap-1 mt-2 pt-2 border-t border-border/50">
+            {onEdit && (
+              <button
+                onClick={(e) => { e.stopPropagation(); onEdit(snippet); }}
+                className="flex-1 flex items-center justify-center gap-1 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/10 rounded transition-colors"
+              >
+                <Icon name="Edit" size={12} /> Edit
+              </button>
+            )}
+            {onDelete && (
+              <button
+                onClick={(e) => { e.stopPropagation(); onDelete(snippet?.id); }}
+                className="flex-1 flex items-center justify-center gap-1 py-1 text-xs text-muted-foreground hover:text-error hover:bg-error/10 rounded transition-colors"
+              >
+                <Icon name="Trash2" size={12} /> Delete
+              </button>
+            )}
           </div>
         )}
       </div>

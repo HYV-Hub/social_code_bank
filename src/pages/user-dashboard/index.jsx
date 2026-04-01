@@ -544,7 +544,7 @@ const UserDashboard = () => {
                   <p className="text-sm text-muted-foreground">Try adjusting your filters</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                   {filteredContent?.map((item) => (
                     <div
                       key={item?.id}
@@ -680,7 +680,7 @@ const UserDashboard = () => {
                       </Button>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                       {recentSnippets?.map((snippet) => (
                         <SnippetCard 
                           key={snippet?.id} 
@@ -729,7 +729,7 @@ const UserDashboard = () => {
                     <>
                       {/* Collection List */}
                       {!selectedCollection && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                           {userCollections?.map((collection) => (
                             <div
                               key={collection?.id}
@@ -825,7 +825,7 @@ const UserDashboard = () => {
                               <p className="text-muted-foreground">No snippets in this collection yet</p>
                             </div>
                           ) : (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                               {collectionSnippets?.map((item) => (
                                 <div
                                   key={item?.id}
