@@ -95,7 +95,7 @@ export default function CollectionDetailsPage() {
       <AppShell pageTitle="Collection">
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
             <p className="mt-2 text-muted-foreground">Loading collection...</p>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function CollectionDetailsPage() {
                           e?.stopPropagation();
                           handleViewSnippet(item?.snippetId);
                         }}
-                        className="flex-1 inline-flex items-center justify-center px-3 py-2 border border-blue-600 rounded-md text-sm font-medium text-primary bg-card hover:bg-primary/10 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center px-3 py-2 border border-primary rounded-md text-sm font-medium text-primary bg-card hover:bg-primary/10 transition-colors"
                       >
                         <Eye className="w-4 h-4 mr-1" />
                         View Details
@@ -255,7 +255,7 @@ export default function CollectionDetailsPage() {
                           e?.stopPropagation();
                           handleRemoveSnippet(item?.snippetId);
                         }}
-                        className="p-2 text-error hover:bg-error/10 rounded transition-colors border border-red-600"
+                        className="p-2 text-error hover:bg-error/10 rounded transition-colors border border-error"
                         title="Remove from collection"
                       >
                         <Trash2 className="w-4 h-4" />

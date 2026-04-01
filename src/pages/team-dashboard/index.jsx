@@ -422,7 +422,7 @@ const TeamDashboard = () => {
             <div className="flex items-start gap-2">
               <Icon name="AlertCircle" size={20} className="text-error mt-0.5" />
               <div>
-                <p className="font-medium text-red-900">Failed to load team snippets</p>
+                <p className="font-medium text-error">Failed to load team snippets</p>
                 <p className="text-sm text-error mt-1">{error}</p>
               </div>
             </div>
@@ -443,7 +443,7 @@ const TeamDashboard = () => {
           {loading ? (
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
                 <p className="mt-4 text-muted-foreground">Loading team snippets...</p>
               </div>
             </div>
@@ -494,14 +494,14 @@ const TeamDashboard = () => {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Icon name="AlertTriangle" size={24} className="text-error" />
-                    <h2 className="text-xl font-bold text-red-900">Red Flags ({redFlags?.length})</h2>
+                    <h2 className="text-xl font-bold text-error">Red Flags ({redFlags?.length})</h2>
                   </div>
                   <Button
                     variant="outline"
                     size="sm"
                     iconName="Eye"
                     onClick={() => setActiveTab("bugs")}
-                    className="border-red-300 text-error hover:bg-error/15"
+                    className="border-error text-error hover:bg-error/15"
                   >
                     View All Bugs
                   </Button>
@@ -517,7 +517,7 @@ const TeamDashboard = () => {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
                             <span className={`px-2 py-1 rounded text-xs font-medium ${
-                              bug?.priority === 'critical' ? 'bg-error/15 text-error' : 'bg-orange-100 text-orange-800'
+                              bug?.priority === 'critical' ? 'bg-error/15 text-error' : 'bg-warning/10 text-warning'
                             }`}>
                               {bug?.priority?.toUpperCase()}
                             </span>
@@ -660,7 +660,7 @@ const TeamDashboard = () => {
                     <div className="flex items-center gap-2 mb-3">
                       <span className={`px-2 py-1 rounded text-xs font-medium ${
                         bug?.priority === 'critical' ? 'bg-error/15 text-error' :
-                        bug?.priority === 'high' ? 'bg-orange-100 text-orange-800' :
+                        bug?.priority === 'high' ? 'bg-warning/10 text-warning' :
                         bug?.priority === 'medium'? 'bg-warning/15 text-warning' : 'bg-primary/15 text-foreground'
                       }`}>
                         {bug?.priority?.toUpperCase()}
@@ -683,7 +683,7 @@ const TeamDashboard = () => {
               </div>
             ) : (
               <div className="text-center py-12 bg-card rounded-lg border border-border">
-                <Icon name="CheckCircle" size={48} className="mx-auto mb-4 text-green-500" />
+                <Icon name="CheckCircle" size={48} className="mx-auto mb-4 text-success" />
                 <h3 className="text-lg font-semibold text-foreground mb-2">No Bugs Reported</h3>
                 <p className="text-muted-foreground mb-4">
                   Your team has a clean slate! Report bugs when they occur.
@@ -723,7 +723,7 @@ const SnippetCard = ({ snippet, onClick }) => {
               <h3 className="text-lg font-semibold text-foreground">
                 {snippet?.title || 'Untitled Snippet'}
               </h3>
-              <span className="px-2 py-1 bg-purple-100 text-primary text-xs rounded-full font-medium">
+              <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">
                 Team Snippet
               </span>
             </div>

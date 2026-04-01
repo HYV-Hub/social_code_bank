@@ -122,7 +122,7 @@ export default function HiveCreationWizard() {
                 onChange={handleInputChange}
                 rows={4}
                 placeholder="Describe the purpose of your hive..."
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
               />
               <p className="mt-1 text-sm text-muted-foreground">
                 Help others understand what your hive is about
@@ -175,7 +175,7 @@ export default function HiveCreationWizard() {
               <div className="p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
                 <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-red-900">Error creating hive</p>
+                  <p className="text-sm font-medium text-error">Error creating hive</p>
                   <p className="text-sm text-error mt-1">{error}</p>
                 </div>
               </div>
@@ -195,7 +195,7 @@ export default function HiveCreationWizard() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                className="flex-1 bg-primary hover:bg-primary/90"
               >
                 {loading ? (
                   <div className="flex items-center justify-center gap-2">

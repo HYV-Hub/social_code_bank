@@ -210,14 +210,24 @@ const UserDashboard = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Show loading state
+  // Show loading state — skeleton cards
   if (loading) {
     return (
       <AppShell pageTitle="My Library">
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Loading dashboard...</p>
+        <div className="p-4 lg:p-6 space-y-5">
+          <div className="h-5 w-48 hyv-skeleton rounded" />
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {[1,2,3,4,5,6].map(i => (
+              <div key={i} className="hyv-card p-4">
+                <div className="h-3 w-20 hyv-skeleton mb-2 rounded" />
+                <div className="h-4 w-3/4 hyv-skeleton mb-3 rounded" />
+                <div className="h-20 hyv-skeleton rounded-lg mb-3" />
+                <div className="flex justify-between">
+                  <div className="h-3 w-16 hyv-skeleton rounded" />
+                  <div className="h-3 w-10 hyv-skeleton rounded" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </AppShell>
@@ -451,101 +461,52 @@ const UserDashboard = () => {
   return (
     <AppShell pageTitle="My Library" rightSidebar={<DashboardSidebar />}>
       <div className="p-4 lg:p-6">
-      {/* Welcome Section */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            Welcome back, {userProfile?.full_name || user?.email?.split('@')?.[0]}! 👋
-          </h1>
-          <p className="text-muted-foreground">
-            Here's what's happening with your code sharing today
-          </p>
+      {/* Quick Save */}
+        <div className="hyv-card p-4 border-accent/20 mb-5">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-medium text-accent flex items-center gap-1.5">
+              <Icon name="Zap" size={14} /> Quick Save
+            </span>
+          </div>
+          <div className="flex gap-2">
+            <input type="text" placeholder="Snippet title..." id="quick-title"
+              className="flex-1 px-3 py-2 bg-muted border border-border rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary" />
+            <button onClick={() => navigate('/create-snippet')}
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors flex items-center gap-1.5">
+              <Icon name="Plus" size={14} /> New
+            </button>
+          </div>
         </div>
 
-        {/* UPDATED: Statistics Section - Replaced Quick Access */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-foreground mb-4">Your Statistics</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Total Snippets */}
-            <div className="bg-gradient-to-br from-primary to-accent rounded-lg p-6 text-white shadow-lg">
-              <div className="flex items-center justify-between mb-3">
-                <Icon name="Code" size={28} />
-                <span className="text-sm font-medium opacity-90">Total</span>
-              </div>
-              <div className="text-3xl font-bold mb-1">{userStats?.totalSnippets}</div>
-              <div className="text-sm opacity-90">Code Snippets</div>
-            </div>
-
-            {/* Total Views */}
-            <div className="bg-gradient-to-br from-success to-emerald-400 rounded-lg p-6 text-white shadow-lg">
-              <div className="flex items-center justify-between mb-3">
-                <Icon name="Eye" size={28} />
-                <span className="text-sm font-medium opacity-90">Views</span>
-              </div>
-              <div className="text-3xl font-bold mb-1">{userStats?.totalViews}</div>
-              <div className="text-sm opacity-90">Total Profile Views</div>
-            </div>
-
-            {/* Total Likes */}
-            <div className="bg-gradient-to-br from-error to-pink-400 rounded-lg p-6 text-white shadow-lg">
-              <div className="flex items-center justify-between mb-3">
-                <Icon name="Heart" size={28} />
-                <span className="text-sm font-medium opacity-90">Likes</span>
-              </div>
-              <div className="text-3xl font-bold mb-1">{userStats?.totalLikes}</div>
-              <div className="text-sm opacity-90">Total Appreciation</div>
-            </div>
-
-            {/* Bugs Fixed */}
-            <div className="bg-gradient-to-br from-warning to-yellow-400 rounded-lg p-6 text-white shadow-lg">
-              <div className="flex items-center justify-between mb-3">
-                <Icon name="Bug" size={28} />
-                <span className="text-sm font-medium opacity-90">Fixed</span>
-              </div>
-              <div className="text-3xl font-bold mb-1">{userStats?.bugsFixed}</div>
-              <div className="text-sm opacity-90">Bugs Resolved</div>
-            </div>
+        {/* Stats Row — compact */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-5">
+          <div className="hyv-card p-3 text-center">
+            <p className="text-xl font-bold text-foreground">{userStats?.totalSnippets}</p>
+            <p className="text-[10px] text-muted-foreground">Snippets</p>
           </div>
-
-          {/* Secondary Stats Row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            {/* Followers */}
-            <div className="bg-card rounded-lg border border-border p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Icon name="Users" size={20} className="text-primary" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-foreground">{userStats?.followers}</div>
-                  <div className="text-sm text-muted-foreground">Followers</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Following */}
-            <div className="bg-card rounded-lg border border-border p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-success/10 rounded-lg">
-                  <Icon name="UserCheck" size={20} className="text-success" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-foreground">{userStats?.following}</div>
-                  <div className="text-sm text-muted-foreground">Following</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Points */}
-            <div className="bg-card rounded-lg border border-border p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-accent/10 rounded-lg">
-                  <Icon name="Award" size={20} className="text-accent" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-foreground">{userStats?.points}</div>
-                  <div className="text-sm text-muted-foreground">Contribution Points</div>
-                </div>
-              </div>
-            </div>
+          <div className="hyv-card p-3 text-center">
+            <p className="text-xl font-bold text-accent">{userStats?.totalViews}</p>
+            <p className="text-[10px] text-muted-foreground">Views</p>
+          </div>
+          <div className="hyv-card p-3 text-center">
+            <p className="text-xl font-bold text-success">{userStats?.totalLikes}</p>
+            <p className="text-[10px] text-muted-foreground">Likes</p>
+          </div>
+          <div className="hyv-card p-3 text-center">
+            <p className="text-xl font-bold text-warning">{userStats?.bugsFixed}</p>
+            <p className="text-[10px] text-muted-foreground">Bugs Fixed</p>
+          </div>
+          <div className="hyv-card p-3 text-center">
+            <p className="text-xl font-bold text-primary">{userStats?.followers}</p>
+            <p className="text-[10px] text-muted-foreground">Followers</p>
+          </div>
+          <div className="hyv-card p-3 text-center">
+            <p className="text-xl font-bold text-foreground">{userStats?.following}</p>
+            <p className="text-[10px] text-muted-foreground">Following</p>
+          </div>
+          <div className="hyv-card p-3 text-center">
+            <p className="text-xl font-bold text-accent">{userStats?.points}</p>
+            <p className="text-[10px] text-muted-foreground">Points</p>
           </div>
         </div>
 
@@ -760,7 +721,7 @@ const UserDashboard = () => {
 
                   {loadingCollections ? (
                     <div className="text-center py-12">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
+                      <div className="animate-spin rounded-full h-10 w-10 border-2 border-border border-t-primary mx-auto mb-4"></div>
                       <p className="text-muted-foreground">Loading collections...</p>
                     </div>
                   ) : userCollections?.length === 0 ? (

@@ -40,7 +40,7 @@ export default function KeyboardShortcutsModal({ isOpen, onClose }) {
         onClick={(e) => e?.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-5">
+        <div className="bg-primary px-6 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-card/20 rounded-lg flex items-center justify-center">
@@ -48,7 +48,7 @@ export default function KeyboardShortcutsModal({ isOpen, onClose }) {
               </div>
               <div>
                 <h2 className="text-xl font-bold text-white">Keyboard Shortcuts</h2>
-                <p className="text-purple-100 text-sm">Navigate faster with shortcuts</p>
+                <p className="text-white/80 text-sm">Navigate faster with shortcuts</p>
               </div>
             </div>
             <button
@@ -66,7 +66,7 @@ export default function KeyboardShortcutsModal({ isOpen, onClose }) {
             {shortcuts?.map((section, idx) => (
               <div key={idx}>
                 <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <div className="w-1 h-6 bg-gradient-to-b from-purple-600 to-indigo-600 rounded-full"></div>
+                  <div className="w-1 h-6 bg-primary rounded-full"></div>
                   {section?.category}
                 </h3>
                 <div className="space-y-3">
@@ -104,7 +104,7 @@ export default function KeyboardShortcutsModal({ isOpen, onClose }) {
             </p>
             <Button
               onClick={onClose}
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
+              className="bg-primary text-white"
             >
               Got it
             </Button>

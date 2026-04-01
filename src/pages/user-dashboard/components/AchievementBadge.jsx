@@ -4,11 +4,11 @@ import Icon from '../../../components/AppIcon';
 const AchievementBadge = ({ achievement }) => {
   const getBadgeColor = (rarity) => {
     switch(rarity) {
-      case 'legendary': return 'from-yellow-500 to-orange-500';
-      case 'epic': return 'from-purple-500 to-pink-500';
-      case 'rare': return 'from-blue-500 to-cyan-500';
-      case 'common': return 'from-gray-400 to-gray-500';
-      default: return 'from-gray-400 to-gray-500';
+      case 'legendary': return 'from-warning to-warning/60';
+      case 'epic': return 'from-primary to-error/60';
+      case 'rare': return 'from-primary to-accent';
+      case 'common': return 'from-muted-foreground to-muted-foreground/60';
+      default: return 'from-muted-foreground to-muted-foreground/60';
     }
   };
 

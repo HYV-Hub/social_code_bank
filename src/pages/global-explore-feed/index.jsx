@@ -131,11 +131,18 @@ export default function GlobalExploreFeed() {
 
           {/* Feed Items */}
           {loading && page === 1 ? (
-            <div className="flex items-center justify-center py-16">
-              <div className="text-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
-                <p className="text-muted-foreground">Loading feed...</p>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[1,2,3,4,5,6].map(i => (
+                <div key={i} className="hyv-card p-4">
+                  <div className="h-3 w-20 hyv-skeleton mb-2 rounded" />
+                  <div className="h-4 w-3/4 hyv-skeleton mb-3 rounded" />
+                  <div className="h-20 hyv-skeleton rounded-lg mb-3" />
+                  <div className="flex justify-between">
+                    <div className="h-3 w-16 hyv-skeleton rounded" />
+                    <div className="h-3 w-10 hyv-skeleton rounded" />
+                  </div>
+                </div>
+              ))}
             </div>
           ) : feedItems?.length === 0 ? (
             <div className="text-center py-16">

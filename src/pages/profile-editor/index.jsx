@@ -266,7 +266,7 @@ export default function ProfileEditor() {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
+                    <div className="w-full h-full flex items-center justify-center bg-primary">
                       <User className="w-16 h-16 text-white" />
                     </div>
                   )}
@@ -445,7 +445,7 @@ export default function ProfileEditor() {
 
           {/* Change Indicator */}
           {hasChanges && !saving && (
-            <p className="mt-4 text-center text-sm text-amber-600">
+            <p className="mt-4 text-center text-sm text-warning">
               You have unsaved changes
             </p>
           )}

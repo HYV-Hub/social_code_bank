@@ -31,17 +31,17 @@ const StyleMetrics = ({ metrics, analysis }) => {
   return (
     <div className="space-y-6">
       {/* Overall Score Card */}
-      <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-8 text-white">
+      <div className="bg-primary rounded-xl p-8 text-white">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-3xl font-bold mb-2">Overall Style Match</h2>
-            <p className="text-blue-100">
+            <p className="text-primary-foreground/70">
               Aggregate score across all style categories
             </p>
           </div>
           <div className="text-right">
             <div className="text-6xl font-bold">{metrics?.overall}%</div>
-            <div className="text-blue-100 mt-2">Based on team guidelines</div>
+            <div className="text-primary-foreground/70 mt-2">Based on team guidelines</div>
           </div>
         </div>
       </div>
@@ -72,9 +72,9 @@ const StyleMetrics = ({ metrics, analysis }) => {
                   <div
                     className={`h-full rounded-full transition-all duration-500 ${
                       score >= 80
-                        ? 'bg-gradient-to-r from-green-400 to-green-600'
+                        ? 'bg-success'
                         : score >= 60
-                        ? 'bg-gradient-to-r from-yellow-400 to-yellow-600' :'bg-gradient-to-r from-red-400 to-red-600'
+                        ? 'bg-warning' :'bg-error'
                     }`}
                     style={{ width: `${score}%` }}
                   />
@@ -116,14 +116,14 @@ const StyleMetrics = ({ metrics, analysis }) => {
                 <div className="relative h-8 bg-muted rounded-lg overflow-hidden">
                   {/* Team Average Line */}
                   <div
-                    className="absolute top-0 bottom-0 w-0.5 bg-slate-400 z-10"
+                    className="absolute top-0 bottom-0 w-0.5 bg-muted-foreground z-10"
                     style={{ left: `${teamAverage}%` }}
                   />
                   {/* Your Score Bar */}
                   <div
                     className={`absolute top-0 bottom-0 rounded-r-lg transition-all duration-500 ${
                       score >= teamAverage
-                        ? 'bg-gradient-to-r from-green-400 to-green-600' :'bg-gradient-to-r from-blue-400 to-blue-600'
+                        ? 'bg-success' :'bg-primary'
                     }`}
                     style={{ width: `${score}%` }}
                   />
@@ -135,23 +135,23 @@ const StyleMetrics = ({ metrics, analysis }) => {
       </div>
 
       {/* Recommendations */}
-      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-200">
+      <div className="bg-warning/10 rounded-xl p-6 border border-warning/20">
         <h3 className="text-lg font-semibold text-foreground mb-4">Quick Recommendations</h3>
         <ul className="space-y-3">
           <li className="flex items-start gap-3">
-            <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
+            <div className="w-2 h-2 bg-warning rounded-full mt-2 flex-shrink-0" />
             <p className="text-muted-foreground">
               <span className="font-medium">Improve commenting standards:</span> Add JSDoc comments to all public functions and components
             </p>
           </li>
           <li className="flex items-start gap-3">
-            <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
+            <div className="w-2 h-2 bg-warning rounded-full mt-2 flex-shrink-0" />
             <p className="text-muted-foreground">
               <span className="font-medium">Enhance error handling:</span> Implement try-catch blocks for all async operations
             </p>
           </li>
           <li className="flex items-start gap-3">
-            <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
+            <div className="w-2 h-2 bg-warning rounded-full mt-2 flex-shrink-0" />
             <p className="text-muted-foreground">
               <span className="font-medium">Naming conventions:</span> Use camelCase for variables and functions consistently
             </p>

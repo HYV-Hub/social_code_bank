@@ -20,9 +20,9 @@ const CommunityLeaderboards = () => {
   // Category configurations
   const categories = [
     { id: 'snippets', label: 'Top Snippet Creators', icon: Code, color: 'bg-primary' },
-    { id: 'bugs', label: 'Bug Fix Champions', icon: Bug, color: 'bg-error/100' },
-    { id: 'helpful', label: 'Most Helpful', icon: Star, color: 'bg-warning/100' },
-    { id: 'mentors', label: 'Community Mentors', icon: Users, color: 'bg-success/100' }
+    { id: 'bugs', label: 'Bug Fix Champions', icon: Bug, color: 'bg-error' },
+    { id: 'helpful', label: 'Most Helpful', icon: Star, color: 'bg-warning' },
+    { id: 'mentors', label: 'Community Mentors', icon: Users, color: 'bg-success' }
   ];
 
   const timeWindows = [
@@ -123,7 +123,7 @@ const CommunityLeaderboards = () => {
         />
       </Helmet>
         {/* Hero Header */}
-        <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white">
+        <div className="bg-primary text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="text-center">
               <div className="inline-flex items-center justify-center w-20 h-20 bg-card/20 rounded-full backdrop-blur-sm mb-6">
@@ -132,7 +132,7 @@ const CommunityLeaderboards = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 Community Leaderboards
               </h1>
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              <p className="text-xl text-white/80 max-w-3xl mx-auto">
                 Celebrate our top contributors, bug fix champions, and community mentors. 
                 Track your progress and climb the ranks!
               </p>
@@ -143,26 +143,26 @@ const CommunityLeaderboards = () => {
               <div className="bg-card/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Code className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">{leaderboardData?.length || 0}</div>
-                <div className="text-sm text-blue-100">Active Contributors</div>
+                <div className="text-sm text-white/80">Active Contributors</div>
               </div>
               <div className="bg-card/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <TrendingUp className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">
                   {leaderboardData?.[0] ? getScore(leaderboardData?.[0]) : 0}
                 </div>
-                <div className="text-sm text-blue-100">Top Score</div>
+                <div className="text-sm text-white/80">Top Score</div>
               </div>
               <div className="bg-card/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Award className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">
                   {categories?.length}
                 </div>
-                <div className="text-sm text-blue-100">Categories</div>
+                <div className="text-sm text-white/80">Categories</div>
               </div>
               <div className="bg-card/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Zap className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-2xl font-bold">Live</div>
-                <div className="text-sm text-blue-100">Updated Daily</div>
+                <div className="text-sm text-white/80">Updated Daily</div>
               </div>
             </div>
           </div>

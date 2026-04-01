@@ -99,7 +99,7 @@ export default function CreateTeamModal({ isOpen, onClose, onSubmit }) {
             <div className="p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
               <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <p className="text-sm font-medium text-red-900">Error</p>
+                <p className="text-sm font-medium text-error">Error</p>
                 <p className="text-sm text-error mt-1">{error}</p>
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function CreateTeamModal({ isOpen, onClose, onSubmit }) {
               onChange={(e) => handleChange('description', e?.target?.value)}
               placeholder="What does this team work on?"
               rows={3}
-              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500 transition-colors resize-none"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary transition-colors resize-none"
               disabled={loading}
             />
           </div>
@@ -186,7 +186,7 @@ export default function CreateTeamModal({ isOpen, onClose, onSubmit }) {
             <Button
               type="submit"
               disabled={loading || !formData?.name?.trim()}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+              className="flex-1 bg-primary hover:bg-primary/90"
             >
               {loading ? (
                 <div className="flex items-center gap-2">

@@ -55,7 +55,7 @@ const RecentEngagement = ({ likes = [], saves = [] }) => {
                   <Image
                     src={like?.avatar}
                     alt={like?.avatarAlt}
-                    className="w-8 h-8 rounded-full object-cover border-2 border-border group-hover:border-red-400"
+                    className="w-8 h-8 rounded-full object-cover border-2 border-border group-hover:border-error"
                   />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-foreground truncate group-hover:text-error">
@@ -76,7 +76,7 @@ const RecentEngagement = ({ likes = [], saves = [] }) => {
         {hasSaves && (
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Icon name="Bookmark" size={16} className="text-purple-500" />
+              <Icon name="Bookmark" size={16} className="text-primary" />
               <h4 className="text-sm font-semibold text-foreground">Recent Saves</h4>
               <span className="text-xs text-muted-foreground">({saves?.length})</span>
             </div>
@@ -90,7 +90,7 @@ const RecentEngagement = ({ likes = [], saves = [] }) => {
                   <Image
                     src={save?.avatar}
                     alt={save?.avatarAlt}
-                    className="w-8 h-8 rounded-full object-cover border-2 border-border group-hover:border-purple-400"
+                    className="w-8 h-8 rounded-full object-cover border-2 border-border group-hover:border-primary"
                   />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-foreground truncate group-hover:text-primary">

@@ -71,8 +71,8 @@ const ActivityItem = ({ activity }) => {
 
         {/* Code Preview for Snippet Activities */}
         {activity?.codePreview && (
-          <div className="bg-slate-900 rounded p-3 mt-2 overflow-hidden">
-            <pre className="text-xs text-slate-300 font-mono line-clamp-2">
+          <div className="bg-foreground/90 rounded p-3 mt-2 overflow-hidden">
+            <pre className="text-xs text-muted font-mono line-clamp-2">
               <code>{activity?.codePreview}</code>
             </pre>
           </div>

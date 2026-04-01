@@ -97,7 +97,7 @@ const BatchProcessor = () => {
           Batch Style Analysis
         </h3>
         
-        <div className="border-2 border-dashed border-border rounded-xl p-12 text-center hover:border-blue-500 transition-colors">
+        <div className="border-2 border-dashed border-border rounded-xl p-12 text-center hover:border-primary transition-colors">
           <input
             type="file"
             multiple
@@ -148,7 +148,7 @@ const BatchProcessor = () => {
             <button
               onClick={handleProcess}
               disabled={processing}
-              className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all flex items-center justify-center gap-2 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full mt-4 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {processing ? (
                 <>
@@ -209,14 +209,14 @@ const BatchProcessor = () => {
               <div className="flex gap-3">
                 <button
                   onClick={handleExportReport}
-                  className="px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2 font-medium"
+                  className="px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors flex items-center gap-2 font-medium"
                 >
                   <Download className="w-4 h-4" />
                   Export Report
                 </button>
                 <button
                   onClick={handleApplyAllFixes}
-                  className="px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all flex items-center gap-2 font-medium"
+                  className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all flex items-center gap-2 font-medium"
                 >
                   <CheckCircle className="w-4 h-4" />
                   Apply All Fixes
@@ -251,7 +251,7 @@ const BatchProcessor = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200">
+                <tbody className="divide-y divide-border">
                   {results?.map((result) => {
                     const statusConfig = getStatusConfig(result?.status);
                     const StatusIcon = statusConfig?.icon;

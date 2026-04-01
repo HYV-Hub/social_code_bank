@@ -83,7 +83,7 @@ export default function SearchForm({ searchQuery, onQueryChange, onSearch, loadi
           <select
             value={searchQuery?.language}
             onChange={(e) => onQueryChange({ ...searchQuery, language: e?.target?.value })}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
           >
             {languages?.map((lang) => (
               <option key={lang?.value} value={lang?.value}>

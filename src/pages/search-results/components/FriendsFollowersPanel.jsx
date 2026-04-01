@@ -144,7 +144,7 @@ const FriendsFollowersPanel = () => {
             className="w-12 h-12 rounded-full object-cover flex-shrink-0" 
           />
         ) : (
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center flex-shrink-0">
             <span className="text-white font-semibold text-base">
               {(userItem?.full_name || userItem?.username)?.charAt(0)?.toUpperCase()}
             </span>
@@ -256,7 +256,7 @@ const FriendsFollowersPanel = () => {
               <Icon name={tab?.icon} size={16} />
               <span>{tab?.label}</span>
               {tab?.id === 'requests' && (pendingRequests?.length > 0 || sentRequests?.length > 0) && (
-                <span className="ml-auto px-2 py-0.5 text-xs font-semibold rounded-full bg-error/100 text-white">
+                <span className="ml-auto px-2 py-0.5 text-xs font-semibold rounded-full bg-error text-white">
                   {pendingRequests?.length + sentRequests?.length}
                 </span>
               )}
@@ -337,7 +337,7 @@ const FriendsFollowersPanel = () => {
                                     className="w-12 h-12 rounded-full object-cover flex-shrink-0" 
                                   />
                                 ) : (
-                                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center flex-shrink-0">
+                                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center flex-shrink-0">
                                     <span className="text-white font-semibold text-base">
                                       {request?.sender?.full_name?.charAt(0)?.toUpperCase()}
                                     </span>
@@ -392,7 +392,7 @@ const FriendsFollowersPanel = () => {
                                     className="w-12 h-12 rounded-full object-cover flex-shrink-0" 
                                   />
                                 ) : (
-                                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center flex-shrink-0">
+                                  <div className="w-12 h-12 rounded-full bg-muted-foreground flex items-center justify-center flex-shrink-0">
                                     <span className="text-white font-semibold text-base">
                                       {request?.receiver?.full_name?.charAt(0)?.toUpperCase()}
                                     </span>

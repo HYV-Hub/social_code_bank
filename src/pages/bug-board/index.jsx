@@ -306,7 +306,7 @@ const BugBoardPage = () => {
       <AppShell pageTitle="Bug Board">
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading bugs...</p>
           </div>
         </div>
@@ -380,7 +380,7 @@ const BugBoardPage = () => {
               <div className="flex items-start gap-3">
                 <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <h3 className="font-semibold text-red-900 mb-1">Error Loading Bugs</h3>
+                  <h3 className="font-semibold text-error mb-1">Error Loading Bugs</h3>
                   <p className="text-sm text-error">{error}</p>
                   <button
                     onClick={() => window.location?.reload()}
@@ -414,7 +414,7 @@ const BugBoardPage = () => {
             <div className="bg-card rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-muted-foreground">In Progress</span>
-                <Icon name="Clock" size={20} className="text-yellow-500" />
+                <Icon name="Clock" size={20} className="text-warning" />
               </div>
               <div className="text-2xl font-bold text-warning">
                 {getBugsByStatus('in_progress')?.length}
@@ -423,7 +423,7 @@ const BugBoardPage = () => {
             <div className="bg-card rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-muted-foreground">Resolved</span>
-                <Icon name="CheckCircle" size={20} className="text-green-500" />
+                <Icon name="CheckCircle" size={20} className="text-success" />
               </div>
               <div className="text-2xl font-bold text-success">
                 {getBugsByStatus('resolved')?.length}

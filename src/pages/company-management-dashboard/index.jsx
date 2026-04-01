@@ -153,7 +153,7 @@ export default function CompanyManagementDashboard() {
       <AppShell pageTitle="Management">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading dashboard...</p>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function CompanyManagementDashboard() {
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-warning mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-yellow-900 font-medium">User limit reached</p>
+                  <p className="text-warning font-medium">User limit reached</p>
                   <p className="text-warning text-sm mt-1">
                     You have reached the maximum of {userLimitInfo?.limit} users. Contact support to increase your limit.
                   </p>
@@ -245,7 +245,7 @@ export default function CompanyManagementDashboard() {
                   <p className="text-3xl font-bold text-foreground mt-2">{metrics?.bugsResolved}</p>
                   <p className="text-sm text-success mt-1">+8% this month</p>
                 </div>
-                <div className="bg-purple-100 p-3 rounded-lg">
+                <div className="bg-primary/10 p-3 rounded-lg">
                   <Activity className="w-8 h-8 text-primary" />
                 </div>
               </div>
@@ -256,7 +256,7 @@ export default function CompanyManagementDashboard() {
           <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
-                <Award className="w-6 h-6 text-yellow-500" />
+                <Award className="w-6 h-6 text-warning" />
                 Top Collaborators
               </h3>
             </div>
@@ -264,7 +264,7 @@ export default function CompanyManagementDashboard() {
               {topCollaborators?.map((collaborator, index) => (
                 <div key={collaborator?.id} className="flex items-center justify-between p-4 bg-background rounded-lg hover:bg-muted transition-colors">
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 text-white font-bold">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-warning text-white font-bold">
                       {index + 1}
                     </div>
                     <div className="h-12 w-12 rounded-full bg-primary/15 flex items-center justify-center">
@@ -310,7 +310,7 @@ export default function CompanyManagementDashboard() {
           <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
-                <TrendingUp className="w-6 h-6 text-green-500" />
+                <TrendingUp className="w-6 h-6 text-success" />
                 Top Posts
               </h3>
             </div>
@@ -319,7 +319,7 @@ export default function CompanyManagementDashboard() {
                 <div
                   key={post?.id}
                   onClick={() => navigate(`/snippet-details?id=${post?.id}`)}
-                  className="p-4 border border-border rounded-lg hover:border-blue-500 hover:shadow-md transition-all cursor-pointer"
+                  className="p-4 border border-border rounded-lg hover:border-primary hover:shadow-md transition-all cursor-pointer"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
@@ -375,11 +375,11 @@ export default function CompanyManagementDashboard() {
           {teamMetrics && (
             <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
               <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-                <Users className="w-6 h-6 text-purple-500" />
+                <Users className="w-6 h-6 text-primary" />
                 Team Collaboration Metrics
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
+                <div className="p-4 bg-primary/10 rounded-lg">
                   <div className="text-2xl font-bold text-primary">{teamMetrics?.totalTeams}</div>
                   <div className="text-sm text-muted-foreground">Active Teams</div>
                 </div>
@@ -387,12 +387,12 @@ export default function CompanyManagementDashboard() {
                   <div className="text-2xl font-bold text-success">{teamMetrics?.totalMembers}</div>
                   <div className="text-sm text-muted-foreground">Total Members</div>
                 </div>
-                <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+                <div className="p-4 bg-primary/10 rounded-lg">
                   <div className="text-2xl font-bold text-primary">{teamMetrics?.totalSnippets}</div>
                   <div className="text-sm text-muted-foreground">Total Snippets</div>
                 </div>
-                <div className="p-4 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg">
-                  <div className="text-2xl font-bold text-orange-600">{teamMetrics?.avgSnippetsPerTeam}</div>
+                <div className="p-4 bg-warning/10 rounded-lg">
+                  <div className="text-2xl font-bold text-warning">{teamMetrics?.avgSnippetsPerTeam}</div>
                   <div className="text-sm text-muted-foreground">Avg per Team</div>
                 </div>
               </div>
@@ -404,7 +404,7 @@ export default function CompanyManagementDashboard() {
                   {teamMetrics?.topCollaboratingTeams?.map((team, index) => (
                     <div key={team?.id} className="flex items-center justify-between p-3 bg-background rounded-lg">
                       <div className="flex items-center gap-3">
-                        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 text-white text-xs font-bold">
+                        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs font-bold">
                           {index + 1}
                         </div>
                         <div>
@@ -517,7 +517,7 @@ export default function CompanyManagementDashboard() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          member?.role === 'company_admin' ? 'bg-purple-100 text-purple-800' :
+                          member?.role === 'company_admin' ? 'bg-primary/10 text-primary' :
                           member?.role === 'team_admin'? 'bg-primary/15 text-foreground' : 'bg-muted text-foreground'
                         }`}>
                           {member?.role?.replace('_', ' ') || 'user'}
@@ -583,7 +583,7 @@ export default function CompanyManagementDashboard() {
             <h3 className="text-lg font-bold text-foreground mb-4">Teams</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {teams?.map((team) => (
-                <div key={team?.id} className="border border-border rounded-lg p-4 hover:border-blue-500 transition-colors">
+                <div key={team?.id} className="border border-border rounded-lg p-4 hover:border-primary transition-colors">
                   <h4 className="font-medium text-foreground">{team?.name}</h4>
                   <p className="text-sm text-muted-foreground mt-1">{team?.description || 'No description'}</p>
                   <div className="mt-3 flex items-center justify-between">

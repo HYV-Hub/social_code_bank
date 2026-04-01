@@ -60,7 +60,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
 
   const priorityColors = {
     critical: 'bg-error/15 text-error',
-    high: 'bg-orange-100 text-orange-800',
+    high: 'bg-warning/15 text-warning',
     medium: 'bg-warning/15 text-warning',
     low: 'bg-primary/15 text-foreground'
   };
@@ -70,7 +70,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
     in_progress: 'bg-warning/15 text-warning',
     resolved: 'bg-success/15 text-success',
     closed: 'bg-muted text-foreground',
-    reopened: 'bg-orange-100 text-orange-800'
+    reopened: 'bg-warning/15 text-warning'
   };
 
   return (
@@ -101,7 +101,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <button
               onClick={() => setActiveTab('details')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'details' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
+                activeTab === 'details' ?'border-primary text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               <Icon name="FileText" size={16} className="inline mr-2" />
@@ -110,7 +110,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <button
               onClick={() => setActiveTab('comments')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'comments' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
+                activeTab === 'comments' ?'border-primary text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               <Icon name="MessageSquare" size={16} className="inline mr-2" />
@@ -119,7 +119,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <button
               onClick={() => setActiveTab('history')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'history' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
+                activeTab === 'history' ?'border-primary text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               <Icon name="Clock" size={16} className="inline mr-2" />
@@ -142,7 +142,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
               {bug?.code && (
                 <div>
                   <h3 className="text-sm font-semibold text-muted-foreground mb-2">Code</h3>
-                  <pre className="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto text-sm">
+                  <pre className="bg-foreground text-background p-4 rounded-lg overflow-x-auto text-sm">
                     <code>{bug?.code}</code>
                   </pre>
                 </div>
@@ -199,7 +199,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
               {/* Comments List */}
               {loading ? (
                 <div className="text-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
                 </div>
               ) : comments?.length > 0 ? (
                 <div className="space-y-4">
@@ -228,7 +228,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
                 </div>
               ) : (
                 <div className="text-center py-8 text-muted-foreground">
-                  <Icon name="MessageSquare" size={48} className="mx-auto mb-2 text-slate-300" />
+                  <Icon name="MessageSquare" size={48} className="mx-auto mb-2 text-muted-foreground" />
                   <p>No comments yet</p>
                 </div>
               )}
@@ -237,7 +237,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
 
           {activeTab === 'history' && (
             <div className="text-center py-8 text-muted-foreground">
-              <Icon name="Clock" size={48} className="mx-auto mb-2 text-slate-300" />
+              <Icon name="Clock" size={48} className="mx-auto mb-2 text-muted-foreground" />
               <p>Bug history coming soon</p>
             </div>
           )}

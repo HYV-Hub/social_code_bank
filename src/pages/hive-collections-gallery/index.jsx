@@ -164,7 +164,7 @@ const HiveCollectionsGallery = () => {
       <AppShell pageTitle="Collections Gallery">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading collections...</p>
           </div>
         </div>
@@ -193,7 +193,7 @@ const HiveCollectionsGallery = () => {
   return (
     <AppShell pageTitle="Collections Gallery">
       {/* Enhanced Header with gradient background */}
-      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 border-b border-blue-700 sticky top-0 z-10 shadow-lg">
+      <div className="bg-primary border-b border-primary/80 sticky top-0 z-10 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="text-white">
@@ -203,7 +203,7 @@ const HiveCollectionsGallery = () => {
                 </div>
                 Hive Collections Gallery
               </h1>
-              <p className="text-blue-100 text-lg">
+              <p className="text-white/80 text-lg">
                 📚 Discover and browse {collections?.length} collections from hive members
               </p>
             </div>
@@ -249,7 +249,7 @@ const HiveCollectionsGallery = () => {
 
       {/* Enhanced Featured Collections Section with better visual design */}
       {featuredCollections?.length > 0 && (
-        <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white py-12 shadow-2xl">
+        <div className="bg-primary text-white py-12 shadow-2xl">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-card/20 rounded-xl backdrop-blur-sm">
@@ -268,9 +268,9 @@ const HiveCollectionsGallery = () => {
                   className="group bg-card/10 backdrop-blur-md rounded-xl p-6 cursor-pointer hover:bg-card/20 transition-all duration-300 border border-white/20 hover:border-white/40 hover:scale-105 hover:shadow-2xl"
                 >
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-bold text-xl group-hover:text-yellow-300 transition-colors">{collection?.name}</h3>
-                    <div className="p-2 bg-yellow-400/30 rounded-lg">
-                      <TrendingUp className="w-6 h-6 text-yellow-300" />
+                    <h3 className="font-bold text-xl group-hover:text-warning transition-colors">{collection?.name}</h3>
+                    <div className="p-2 bg-warning/30 rounded-lg">
+                      <TrendingUp className="w-6 h-6 text-warning" />
                     </div>
                   </div>
                   <p className="text-white/90 text-sm mb-4 line-clamp-2 leading-relaxed">
@@ -300,7 +300,7 @@ const HiveCollectionsGallery = () => {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl hover:from-blue-600 hover:to-indigo-600 shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                className="flex items-center gap-2 px-5 py-3 bg-primary text-white rounded-xl hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all hover:scale-105"
               >
                 <Filter className="w-5 h-5" />
                 <span className="font-medium">Filters</span>
@@ -311,7 +311,7 @@ const HiveCollectionsGallery = () => {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e?.target?.value)}
-                  className="appearance-none px-5 py-3 pr-10 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-blue-500 bg-card font-medium text-foreground cursor-pointer hover:border-border transition-all"
+                  className="appearance-none px-5 py-3 pr-10 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-primary bg-card font-medium text-foreground cursor-pointer hover:border-border transition-all"
                 >
                   <option value="recent">🕐 Most Recent</option>
                   <option value="popular">🔥 Most Popular</option>
@@ -341,7 +341,7 @@ const HiveCollectionsGallery = () => {
               </button>
               <button
                 onClick={loadSavedFilters}
-                className="px-5 py-3 text-secondary bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-all font-medium"
+                className="px-5 py-3 text-primary bg-primary/10 rounded-xl hover:bg-primary/15 transition-all font-medium"
               >
                 📂 Load Saved
               </button>
@@ -358,7 +358,7 @@ const HiveCollectionsGallery = () => {
                   <select
                     value={filterLanguage}
                     onChange={(e) => setFilterLanguage(e?.target?.value)}
-                    className="w-full px-4 py-3 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-blue-500 font-medium"
+                    className="w-full px-4 py-3 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-primary font-medium"
                   >
                     <option value="all">All Languages</option>
                     {getLanguages()?.map(lang => (
@@ -374,7 +374,7 @@ const HiveCollectionsGallery = () => {
         {/* Enhanced Results Count with better visual design */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-3 bg-card px-6 py-3 rounded-xl shadow-md border border-border">
-            <div className="w-2 h-2 bg-success/100 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
             <p className="text-foreground font-medium">
               Showing <span className="font-bold text-primary">{filteredCollections?.length}</span> of <span className="font-bold">{collections?.length}</span> collections
             </p>
@@ -385,7 +385,7 @@ const HiveCollectionsGallery = () => {
         {filteredCollections?.length === 0 ? (
           <div className="bg-card rounded-xl shadow-xl p-16 text-center border border-border">
             <div className="max-w-md mx-auto">
-              <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
                 <Grid className="w-12 h-12 text-muted-foreground" />
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-3">No collections found</h3>
@@ -415,7 +415,7 @@ const HiveCollectionsGallery = () => {
       <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-40">
         <button
           onClick={() => navigate(-1)}
-          className="group flex items-center justify-center w-14 h-14 bg-card text-foreground rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 border-2 border-border hover:border-blue-500"
+          className="group flex items-center justify-center w-14 h-14 bg-card text-foreground rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 border-2 border-border hover:border-primary"
           title="Go Back"
         >
           <Icon name="ArrowLeft" size={24} className="group-hover:text-primary transition-colors" />
@@ -423,7 +423,7 @@ const HiveCollectionsGallery = () => {
         
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="group flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
+          className="group flex items-center justify-center w-14 h-14 bg-primary text-white rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
           title="Scroll to Top"
         >
           <Icon name="ArrowUp" size={24} className="group-hover:scale-110 transition-transform" />
@@ -435,13 +435,13 @@ const HiveCollectionsGallery = () => {
 
 // Enhanced CollectionCard component
 const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onShare }) => {
-  const cardClass = viewMode === 'grid' ?'group bg-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-border hover:border-blue-300 hover:scale-105' :'group bg-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden flex border border-border hover:border-blue-300';
+  const cardClass = viewMode === 'grid' ?'group bg-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-border hover:border-primary/30 hover:scale-105' :'group bg-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden flex border border-border hover:border-primary/30';
 
   return (
     <div className={cardClass} onClick={() => onCollectionClick(collection?.id)}>
       {/* Enhanced Preview Thumbnail with gradient and animation */}
       {viewMode === 'grid' && (
-        <div className="h-56 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 relative overflow-hidden">
+        <div className="h-56 bg-primary relative overflow-hidden">
           <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all"></div>
           <div className="absolute inset-0 flex items-center justify-center text-white transform group-hover:scale-110 transition-transform duration-300">
             <div className="text-center">
@@ -463,7 +463,7 @@ const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onSha
       )}
       <div className={viewMode === 'grid' ? 'p-6' : 'flex-1 p-6 flex items-center gap-6'}>
         {viewMode === 'list' && (
-          <div className="flex-shrink-0 w-24 h-24 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+          <div className="flex-shrink-0 w-24 h-24 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
             <div className="text-center">
               <div className="text-2xl font-bold">{collection?.snippet_count || 0}</div>
               <div className="text-xs">Snippets</div>
@@ -484,7 +484,7 @@ const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onSha
           
           {/* Enhanced Creator Info */}
           <div className="flex items-center gap-3 mb-4 p-3 bg-background rounded-lg group-hover:bg-primary/10 transition-colors">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md">
+            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md">
               {collection?.creator_name?.charAt(0)?.toUpperCase() || 'U'}
             </div>
             <div>
@@ -509,7 +509,7 @@ const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onSha
           <div className="flex items-center gap-2">
             <button
               onClick={(e) => { e?.stopPropagation(); onCollectionClick(collection?.id); }}
-              className="flex-1 px-4 py-2.5 text-sm bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 font-semibold shadow-md hover:shadow-lg transition-all"
+              className="flex-1 px-4 py-2.5 text-sm bg-primary text-white rounded-xl hover:bg-primary/90 font-semibold shadow-md hover:shadow-lg transition-all"
             >
               View Collection →
             </button>
@@ -522,7 +522,7 @@ const CollectionCard = ({ collection, viewMode, onCollectionClick, onSave, onSha
             </button>
             <button
               onClick={(e) => { e?.stopPropagation(); onShare(collection?.id, e); }}
-              className="p-2.5 text-muted-foreground hover:text-secondary hover:bg-indigo-50 rounded-xl transition-all"
+              className="p-2.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-xl transition-all"
               title="Share Collection"
             >
               <Share2 className="w-5 h-5" />

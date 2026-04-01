@@ -215,7 +215,7 @@ const UserProfile = () => {
         return (
           <button
             onClick={handleAcceptFriendRequest}
-            className="flex items-center space-x-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+            className="flex items-center space-x-2 px-6 py-2 bg-success text-white rounded-lg hover:bg-success/90">
             <Icon name="Check" size={20} />
             <span>Accept Request</span>
           </button>
@@ -346,21 +346,21 @@ const UserProfile = () => {
             icon: "Eye",
             label: "Total Views",
             value: String(totalViews),
-            gradient: "from-success to-emerald-400",
+            gradient: "from-success to-success/60",
             trend: 0
           },
           {
             icon: "Heart",
             label: "Total Likes",
             value: String(totalLikes),
-            gradient: "from-error to-pink-400",
+            gradient: "from-error to-error/60",
             trend: 0
           },
           {
             icon: "Bug",
             label: "Bugs Fixed",
             value: String(userProfile?.bugs_fixed_count || 0),
-            gradient: "from-warning to-yellow-400",
+            gradient: "from-warning to-warning/60",
             trend: 0
           }
         ]);

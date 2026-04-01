@@ -82,7 +82,7 @@ const ViolationsList = ({ violations }) => {
               onClick={() => setFilter(severity)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 filter === severity
-                  ? 'bg-primary text-white' :'bg-muted text-muted-foreground hover:bg-slate-200'
+                  ? 'bg-primary text-white' :'bg-muted text-muted-foreground hover:bg-muted/80'
               }`}
             >
               {severity?.charAt(0)?.toUpperCase() + severity?.slice(1)}
@@ -134,7 +134,7 @@ const ViolationsList = ({ violations }) => {
                     {violation?.autoFixAvailable && (
                       <button
                         onClick={() => handleApplyFix(violation?.id)}
-                        className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all flex items-center gap-2 text-sm font-medium whitespace-nowrap"
+                        className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all flex items-center gap-2 text-sm font-medium whitespace-nowrap"
                       >
                         <Zap className="w-4 h-4" />
                         Apply Fix
@@ -191,7 +191,7 @@ const ViolationsList = ({ violations }) => {
       {/* Empty State */}
       {filteredViolations?.length === 0 && (
         <div className="bg-card rounded-xl shadow-sm border border-border p-12 text-center">
-          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+          <CheckCircle className="w-16 h-16 text-success mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-foreground mb-2">
             No {filter !== 'all' ? filter + ' severity' : ''} violations found
           </h3>

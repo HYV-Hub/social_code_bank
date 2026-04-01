@@ -160,7 +160,7 @@ const SessionManagement = () => {
     switch (status) {
       case 'success': return 'text-success bg-success/10';
       case 'failed': return 'text-error bg-error/10';
-      case 'blocked': return 'text-orange-600 bg-orange-50';
+      case 'blocked': return 'text-warning bg-warning/10';
       default: return 'text-muted-foreground bg-muted';
     }
   };
@@ -170,7 +170,7 @@ const SessionManagement = () => {
       <AppShell pageTitle="Sessions">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="flex flex-col items-center gap-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-800"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
             <p className="text-muted-foreground">Loading session data...</p>
           </div>
         </div>
@@ -218,7 +218,7 @@ const SessionManagement = () => {
               <button
                 onClick={() => setActiveTab('sessions')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'sessions' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activeTab === 'sessions' ?'text-foreground border-b-2 border-primary bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -234,7 +234,7 @@ const SessionManagement = () => {
               <button
                 onClick={() => setActiveTab('history')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'history' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activeTab === 'history' ?'text-foreground border-b-2 border-primary bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -245,7 +245,7 @@ const SessionManagement = () => {
               <button
                 onClick={() => setActiveTab('preferences')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'preferences' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activeTab === 'preferences' ?'text-foreground border-b-2 border-primary bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -274,11 +274,11 @@ const SessionManagement = () => {
 
               {sessionsLoading ? (
                 <div className="text-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-800 mx-auto"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
                 </div>
               ) : sessions?.length === 0 ? (
                 <div className="bg-card rounded-lg shadow-sm border border-border p-12 text-center">
-                  <Icon name="Monitor" size={48} className="mx-auto text-slate-300 mb-4" />
+                  <Icon name="Monitor" size={48} className="mx-auto text-muted-foreground mb-4" />
                   <p className="text-muted-foreground">No active sessions found</p>
                 </div>
               ) : (
@@ -353,11 +353,11 @@ const SessionManagement = () => {
 
               {attemptsLoading ? (
                 <div className="text-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-800 mx-auto"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
                 </div>
               ) : loginAttempts?.length === 0 ? (
                 <div className="bg-card rounded-lg shadow-sm border border-border p-12 text-center">
-                  <Icon name="Clock" size={48} className="mx-auto text-slate-300 mb-4" />
+                  <Icon name="Clock" size={48} className="mx-auto text-muted-foreground mb-4" />
                   <p className="text-muted-foreground">No login history available</p>
                 </div>
               ) : (
@@ -373,7 +373,7 @@ const SessionManagement = () => {
                           <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">IP Address</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-200">
+                      <tbody className="divide-y divide-border">
                         {loginAttempts?.map((attempt) => (
                           <tr key={attempt?.id} className="hover:bg-muted">
                             <td className="px-6 py-4 whitespace-nowrap">
@@ -384,7 +384,7 @@ const SessionManagement = () => {
                                 {attempt?.attemptStatus}
                               </span>
                               {attempt?.isSuspicious && (
-                                <span className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium text-orange-700 bg-orange-100">
+                                <span className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium text-warning bg-warning/10">
                                   <Icon name="AlertTriangle" size={12} />
                                   Suspicious
                                 </span>
@@ -420,7 +420,7 @@ const SessionManagement = () => {
 
               {preferencesLoading ? (
                 <div className="text-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-800 mx-auto"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
                 </div>
               ) : (
                 <form onSubmit={handleUpdatePreferences} className="space-y-6">
@@ -440,7 +440,7 @@ const SessionManagement = () => {
                           type="button"
                           onClick={() => setPreferences({ ...preferences, rememberDevice: !preferences?.rememberDevice })}
                           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                            preferences?.rememberDevice ? 'bg-blue-800' : 'bg-slate-300'
+                            preferences?.rememberDevice ? 'bg-primary' : 'bg-muted'
                           }`}
                         >
                           <span className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform ${
@@ -458,7 +458,7 @@ const SessionManagement = () => {
                           onChange={(e) => setPreferences({ ...preferences, autoLogoutMinutes: parseInt(e?.target?.value) || 120 })}
                           min="5"
                           max="1440"
-                          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
+                          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
                         />
                       </div>
                     </div>
@@ -480,7 +480,7 @@ const SessionManagement = () => {
                           type="button"
                           onClick={() => setPreferences({ ...preferences, requireMfaForNewDevice: !preferences?.requireMfaForNewDevice })}
                           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                            preferences?.requireMfaForNewDevice ? 'bg-blue-800' : 'bg-slate-300'
+                            preferences?.requireMfaForNewDevice ? 'bg-primary' : 'bg-muted'
                           }`}
                         >
                           <span className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform ${
@@ -507,7 +507,7 @@ const SessionManagement = () => {
                           type="button"
                           onClick={() => setPreferences({ ...preferences, emailNotificationNewLogin: !preferences?.emailNotificationNewLogin })}
                           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                            preferences?.emailNotificationNewLogin ? 'bg-blue-800' : 'bg-slate-300'
+                            preferences?.emailNotificationNewLogin ? 'bg-primary' : 'bg-muted'
                           }`}
                         >
                           <span className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform ${
@@ -524,7 +524,7 @@ const SessionManagement = () => {
                           type="button"
                           onClick={() => setPreferences({ ...preferences, emailNotificationSuspiciousActivity: !preferences?.emailNotificationSuspiciousActivity })}
                           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                            preferences?.emailNotificationSuspiciousActivity ? 'bg-blue-800' : 'bg-slate-300'
+                            preferences?.emailNotificationSuspiciousActivity ? 'bg-primary' : 'bg-muted'
                           }`}
                         >
                           <span className={`inline-block h-4 w-4 transform rounded-full bg-card transition-transform ${
@@ -547,7 +547,7 @@ const SessionManagement = () => {
                     <button
                       type="submit"
                       disabled={preferencesUpdating}
-                      className="px-6 py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                      className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                     >
                       {preferencesUpdating ? (
                         <>

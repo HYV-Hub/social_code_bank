@@ -23,10 +23,10 @@ const BugResultCard = ({ bug, searchQuery }) => {
 
   const getStatusColor = (status) => {
     const colors = {
-      open: 'bg-error/100/10 text-error border-error/30',
-      'in-review': 'bg-warning/100/10 text-warning border-yellow-500/30',
-      'fix-submitted': 'bg-primary/10 text-primary border-blue-500/30',
-      resolved: 'bg-success/100/10 text-success border-green-500/30'
+      open: 'bg-error/10 text-error border-error/30',
+      'in-review': 'bg-warning/10 text-warning border-warning/30',
+      'fix-submitted': 'bg-primary/10 text-primary border-primary/30',
+      resolved: 'bg-success/10 text-success border-success/30'
     };
     return colors?.[status] || colors?.open;
   };
@@ -43,10 +43,10 @@ const BugResultCard = ({ bug, searchQuery }) => {
 
   const getPriorityColor = (priority) => {
     const colors = {
-      critical: 'text-error bg-error/100/10',
-      high: 'text-orange-600 bg-orange-500/10',
-      medium: 'text-warning bg-warning/100/10',
-      low: 'text-muted-foreground bg-background0/10'
+      critical: 'text-error bg-error/10',
+      high: 'text-warning bg-warning/10',
+      medium: 'text-warning bg-warning/10',
+      low: 'text-muted-foreground bg-muted'
     };
     return colors?.[priority] || colors?.medium;
   };
@@ -74,7 +74,7 @@ const BugResultCard = ({ bug, searchQuery }) => {
       <div className="p-6 pb-4">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/10 to-red-600/10 border border-error/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 rounded-xl bg-error/10 border border-error/20 flex items-center justify-center group-hover:scale-110 transition-transform">
               <Icon name="Bug" size={24} className="text-error" />
             </div>
           </div>
@@ -151,7 +151,7 @@ const BugResultCard = ({ bug, searchQuery }) => {
                 </code>
               </pre>
               {!showFullError && errorLines?.length >= 3 && (
-                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-foreground to-transparent pointer-events-none" />
               )}
             </div>
           )}
@@ -244,7 +244,7 @@ const BugResultCard = ({ bug, searchQuery }) => {
               </span>
             )}
             {bug?.upvotes_count !== undefined && (
-              <span className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-green-500 transition-colors">
+              <span className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-success transition-colors">
                 <Icon name="ThumbsUp" size={16} />
                 <span className="font-medium">{bug?.upvotes_count || 0}</span>
               </span>
@@ -258,7 +258,7 @@ const BugResultCard = ({ bug, searchQuery }) => {
             {bug?.tags?.map((tag, index) => (
               <span
                 key={index}
-                className="px-2.5 py-1 bg-error/100/5 hover:bg-error/100/10 border border-error/10 rounded-full text-xs text-error font-medium transition-colors cursor-pointer"
+                className="px-2.5 py-1 bg-error/5 hover:bg-error/10 border border-error/10 rounded-full text-xs text-error font-medium transition-colors cursor-pointer"
               >
                 #{tag}
               </span>

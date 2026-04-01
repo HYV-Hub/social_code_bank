@@ -9,28 +9,28 @@ const AchievementShowcase = () => {
       name: 'Code Master',
       description: '100+ snippets created',
       icon: Crown,
-      color: 'bg-warning/100',
+      color: 'bg-warning',
       requirement: '100 snippets'
     },
     {
       name: 'Bug Terminator',
       description: '50+ bugs fixed',
       icon: Trophy,
-      color: 'bg-error/100',
+      color: 'bg-error',
       requirement: '50 bug fixes'
     },
     {
       name: 'Legend Status',
       description: '1000+ points earned',
       icon: Star,
-      color: 'bg-primary/100',
+      color: 'bg-primary',
       requirement: '1000 points'
     },
     {
       name: 'Mentor Elite',
       description: '50+ followers',
       icon: Medal,
-      color: 'bg-success/100',
+      color: 'bg-success',
       requirement: '50 followers'
     },
     {
@@ -44,7 +44,7 @@ const AchievementShowcase = () => {
       name: 'Rising Star',
       description: '500+ points earned',
       icon: Zap,
-      color: 'bg-orange-500',
+      color: 'bg-warning',
       requirement: '500 points'
     }
   ];

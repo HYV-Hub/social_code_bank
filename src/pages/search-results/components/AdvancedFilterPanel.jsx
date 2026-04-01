@@ -193,7 +193,7 @@ export default function AdvancedFilterPanel({ filters, onFilterChange, onClear, 
   if (!isOpen) return null;
 
   return (
-    <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg border border-border p-4 space-y-4">
+    <div className="bg-muted rounded-lg border border-border p-4 space-y-4">
       <div className="flex items-center justify-between pb-2 border-b border-border">
         <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
           <Icon name="Filter" size={18} className="text-primary" />

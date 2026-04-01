@@ -26,7 +26,7 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
   return (
     <div className="space-y-6">
       {/* Overview Card */}
-      <div className="bg-muted rounded-xl p-6 border border-blue-100">
+      <div className="bg-muted rounded-xl p-6 border border-border">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xl font-semibold text-foreground">Code Style Analysis</h3>
@@ -42,15 +42,15 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
 
         {/* Key Improvements */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-card rounded-lg p-4 border border-blue-100">
+          <div className="bg-card rounded-lg p-4 border border-border">
             <div className="text-2xl font-bold text-success">+32%</div>
             <div className="text-sm text-muted-foreground mt-1">Error Handling</div>
           </div>
-          <div className="bg-card rounded-lg p-4 border border-blue-100">
+          <div className="bg-card rounded-lg p-4 border border-border">
             <div className="text-2xl font-bold text-success">+45%</div>
             <div className="text-sm text-muted-foreground mt-1">Documentation</div>
           </div>
-          <div className="bg-card rounded-lg p-4 border border-blue-100">
+          <div className="bg-card rounded-lg p-4 border border-border">
             <div className="text-2xl font-bold text-success">+18%</div>
             <div className="text-sm text-muted-foreground mt-1">Best Practices</div>
           </div>
@@ -61,9 +61,9 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Original Code */}
         <div className="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex items-center justify-between">
+          <div className="bg-foreground px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Code2 className="w-5 h-5 text-slate-300" />
+              <Code2 className="w-5 h-5 text-muted" />
               <h3 className="text-white font-semibold">Original Code</h3>
             </div>
             <button
@@ -95,7 +95,7 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
 
         {/* Improved Code */}
         <div className="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
-          <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 flex items-center justify-between">
+          <div className="bg-success px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Code2 className="w-5 h-5 text-white" />
               <h3 className="text-white font-semibold">AI-Suggested Improvements</h3>
@@ -141,7 +141,7 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
             >
               <div
                 className={`px-2 py-1 rounded text-xs font-medium ${
-                  diff?.type === 'addition' ?'bg-green-200 text-success' :'bg-blue-200 text-foreground'
+                  diff?.type === 'addition' ?'bg-success/15 text-success' :'bg-primary/15 text-foreground'
                 }`}
               >
                 Line {diff?.line}

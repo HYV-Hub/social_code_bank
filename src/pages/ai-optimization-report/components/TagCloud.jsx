@@ -108,14 +108,14 @@ export default function TagCloud({ tags }) {
   const getCategoryColor = (category) => {
     const colorMap = {
       language: 'bg-muted text-primary border-primary/20',
-      framework: 'from-purple-50 to-purple-100 text-primary border-border',
+      framework: 'bg-primary/10 text-primary border-border',
       purpose: 'bg-muted text-success border-success/20',
-      behavioral: 'from-orange-50 to-orange-100 text-orange-700 border-orange-200',
-      difficulty: 'from-yellow-50 to-yellow-100 text-warning border-warning/20',
-      ui: 'from-pink-50 to-pink-100 text-pink-700 border-pink-200',
-      security: 'from-red-50 to-red-100 text-error border-error/20',
-      performance: 'from-indigo-50 to-indigo-100 text-indigo-700 border-indigo-200',
-      database: 'from-teal-50 to-teal-100 text-teal-700 border-teal-200'
+      behavioral: 'bg-warning/10 text-warning border-warning/20',
+      difficulty: 'bg-warning/10 text-warning border-warning/20',
+      ui: 'bg-error/10 text-error border-error/20',
+      security: 'bg-error/10 text-error border-error/20',
+      performance: 'bg-primary/10 text-primary border-primary/20',
+      database: 'bg-accent/10 text-accent border-accent/20'
     };
     return colorMap?.[category] || colorMap?.language;
   };

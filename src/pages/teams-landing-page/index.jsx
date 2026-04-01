@@ -77,10 +77,10 @@ export default function HivesBrowsePage() {
 
   // Helper function to get activity level badge
   const getActivityBadge = (memberCount) => {
-    if (memberCount > 100) return { label: 'Very Active', color: 'bg-success/100', icon: '🔥' };
+    if (memberCount > 100) return { label: 'Very Active', color: 'bg-success', icon: '🔥' };
     if (memberCount > 50) return { label: 'Active', color: 'bg-primary', icon: '⚡' };
-    if (memberCount > 10) return { label: 'Growing', color: 'bg-warning/100', icon: '🌱' };
-    return { label: 'New', color: 'bg-primary/100', icon: '✨' };
+    if (memberCount > 10) return { label: 'Growing', color: 'bg-warning', icon: '🌱' };
+    return { label: 'New', color: 'bg-primary', icon: '✨' };
   };
 
   // Keyboard shortcuts
@@ -267,7 +267,7 @@ export default function HivesBrowsePage() {
         </nav>
 
         {/* Enhanced Hero Banner with Stats */}
-        <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-xl p-6 lg:p-8 mb-8 text-white shadow-2xl relative overflow-hidden">
+        <div className="bg-primary rounded-xl p-6 lg:p-8 mb-8 text-white shadow-2xl relative overflow-hidden">
           {/* Decorative background elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-card/5 rounded-full -translate-y-32 translate-x-32"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-card/5 rounded-full translate-y-24 -translate-x-24"></div>
@@ -281,7 +281,7 @@ export default function HivesBrowsePage() {
                   </div>
                   <h1 className="text-3xl lg:text-4xl font-bold">Explore Global Hives</h1>
                 </div>
-                <p className="text-lg lg:text-xl text-blue-100 mb-4">
+                <p className="text-lg lg:text-xl text-white/80 mb-4">
                   Join developer communities, share code snippets, and collaborate worldwide
                 </p>
                 
@@ -290,11 +290,11 @@ export default function HivesBrowsePage() {
                   <div className="flex items-center gap-2 bg-card/10 rounded-lg px-3 py-2 backdrop-blur-sm">
                     <Icon name="Users" size={16} />
                     <span className="font-semibold">{hives?.length || 0}</span>
-                    <span className="text-blue-100">Active Hives</span>
+                    <span className="text-white/80">Active Hives</span>
                   </div>
                   <div className="flex items-center gap-2 bg-card/10 rounded-lg px-3 py-2 backdrop-blur-sm">
                     <Icon name="TrendingUp" size={16} />
-                    <span className="text-blue-100">Growing Community</span>
+                    <span className="text-white/80">Growing Community</span>
                   </div>
                 </div>
               </div>
@@ -408,10 +408,10 @@ export default function HivesBrowsePage() {
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center gap-2">
-                <Icon name="TrendingUp" size={24} className="text-orange-500" />
+                <Icon name="TrendingUp" size={24} className="text-warning" />
                 <h2 className="text-2xl font-bold text-foreground">Trending Hives</h2>
               </div>
-              <div className="flex-1 h-px bg-gradient-to-r from-orange-200 to-transparent"></div>
+              <div className="flex-1 h-px bg-gradient-to-r from-warning/20 to-transparent"></div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -420,11 +420,11 @@ export default function HivesBrowsePage() {
                 return (
                   <div
                     key={hive?.id}
-                    className="relative bg-gradient-to-br from-white to-blue-50 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 border-blue-100 hover:border-blue-300 group"
+                    className="relative bg-card rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 border-border hover:border-primary group"
                     onClick={() => navigate(`/hives/${hive?.id}`)}
                   >
                     {/* Trending Badge */}
-                    <div className="absolute -top-3 -right-3 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+                    <div className="absolute -top-3 -right-3 bg-warning text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
                       <Icon name="Flame" size={12} />
                       #{idx + 1}
                     </div>
@@ -464,7 +464,7 @@ export default function HivesBrowsePage() {
                         handleHiveAction(hive);
                       }}
                       size="sm"
-                      className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md"
+                      className="w-full bg-primary hover:bg-primary/90 shadow-md"
                     >
                       {hive?.isMember ? 'Open Hive' : 'Join Now'}
                     </Button>
@@ -566,7 +566,7 @@ export default function HivesBrowsePage() {
           <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
             <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-red-900">Error loading hives</p>
+              <p className="text-sm font-medium text-error">Error loading hives</p>
               <p className="text-sm text-error mt-1">{error}</p>
             </div>
           </div>
@@ -580,25 +580,25 @@ export default function HivesBrowsePage() {
             {[1, 2, 3, 4, 5, 6]?.map(i => (
               <div key={i} className="bg-card rounded-xl p-6 shadow-lg animate-pulse border border-border">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="h-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-3/4"></div>
-                  <div className="h-6 w-16 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full"></div>
+                  <div className="h-6 bg-muted rounded w-3/4"></div>
+                  <div className="h-6 w-16 bg-muted rounded-full"></div>
                 </div>
                 <div className="space-y-3 mb-4">
-                  <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-full"></div>
-                  <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-5/6"></div>
+                  <div className="h-4 bg-muted rounded w-full"></div>
+                  <div className="h-4 bg-muted rounded w-5/6"></div>
                 </div>
                 <div className="flex gap-2 mb-4">
-                  <div className="h-6 w-16 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
-                  <div className="h-6 w-20 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
+                  <div className="h-6 w-16 bg-muted rounded"></div>
+                  <div className="h-6 w-20 bg-muted rounded"></div>
                 </div>
-                <div className="h-10 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
+                <div className="h-10 bg-muted rounded"></div>
               </div>
             ))}
           </div>
         ) : hives?.length === 0 ? (
           // Enhanced Empty State
-          (<div className="text-center py-20 bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-lg border-2 border-dashed border-primary/20">
-            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 mb-6 shadow-lg">
+          (<div className="text-center py-20 bg-card rounded-xl shadow-lg border-2 border-dashed border-primary/20">
+            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary/15 mb-6 shadow-lg">
               <Icon name="Users" size={48} className="text-primary" />
             </div>
             <h3 className="text-2xl font-bold text-foreground mb-3">No hives found</h3>
@@ -609,7 +609,7 @@ export default function HivesBrowsePage() {
             {user && (
               <Button
                 onClick={() => navigate('/hive-creation-wizard')}
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+                className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
                 size="lg"
               >
                 <Icon name="Plus" size={24} className="mr-2" />
@@ -629,7 +629,7 @@ export default function HivesBrowsePage() {
                 return (
                   <div
                     key={hive?.id}
-                    className={`bg-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 border-border hover:border-blue-300 group ${
+                    className={`bg-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 border-border hover:border-primary group ${
                       viewMode === 'grid' ? 'p-6' : 'p-4 flex items-center gap-4'
                     }`}
                     onClick={() => navigate(`/hives/${hive?.id}`)}
@@ -680,7 +680,7 @@ export default function HivesBrowsePage() {
                             {hive?.tags?.slice(0, 3)?.map((tag, idx) => (
                               <span
                                 key={idx}
-                                className="px-3 py-1 bg-gradient-to-r from-blue-50 to-indigo-50 text-primary rounded-full text-xs font-medium border border-blue-100 hover:border-blue-300 transition-colors"
+                                className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium border border-primary/20 hover:border-primary transition-colors"
                               >
                                 {tag}
                               </span>
@@ -770,7 +770,7 @@ export default function HivesBrowsePage() {
                           size="sm"
                           className={`shadow-md hover:shadow-lg transition-all ${
                             hive?.isMember 
-                              ? 'bg-gradient-to-r from-blue-600 to-blue-700' :'bg-gradient-to-r from-blue-600 to-indigo-600'
+                              ? 'bg-primary' :'bg-primary'
                           }`}
                           disabled={hive?.hasPendingRequest}
                         >
@@ -810,7 +810,7 @@ export default function HivesBrowsePage() {
                         onClick={() => setPage(pageNum)}
                         className={`min-w-[40px] ${
                           page === pageNum 
-                            ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md' 
+                            ? 'bg-primary text-white shadow-md' 
                             : 'hover:bg-primary/10'
                         }`}
                       >
@@ -842,7 +842,7 @@ export default function HivesBrowsePage() {
         {user && (
           <button
             onClick={() => navigate('/hive-creation-wizard')}
-            className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 group relative"
+            className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-primary text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 group relative"
             title="Create New Hive (Ctrl+N)"
             aria-label="Create new hive"
           >

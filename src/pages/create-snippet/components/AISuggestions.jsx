@@ -66,13 +66,13 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
 
   const getQualityColor = (score) => {
     if (score >= 80) return 'text-success';
-    if (score >= 60) return 'text-amber-600';
+    if (score >= 60) return 'text-warning';
     return 'text-error';
   };
 
   const getQualityBg = (score) => {
     if (score >= 80) return 'bg-success/15';
-    if (score >= 60) return 'bg-amber-100';
+    if (score >= 60) return 'bg-warning/15';
     return 'bg-error/15';
   };
 
@@ -93,7 +93,7 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
         </div>
         {analyzing && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <div className="w-4 h-4 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
             <span>Analyzing...</span>
           </div>
         )}
@@ -109,7 +109,7 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
             </span>
           </div>
           
-          <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+          <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
             <div
               className={`h-full ${getQualityBg(analysis?.qualityScore)} transition-all duration-500`}
               style={{ width: `${analysis?.qualityScore}%` }}

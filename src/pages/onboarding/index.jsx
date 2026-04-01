@@ -270,7 +270,7 @@ const OnboardingPage = () => {
                       {interest}
                       <button
                         onClick={() => handleRemoveItem('interests', interest)}
-                        className="hover:text-green-900"
+                        className="hover:text-success"
                       >
                         <Icon name="X" size={14} />
                       </button>
@@ -303,12 +303,12 @@ const OnboardingPage = () => {
                   {formData?.preferredLanguages?.map((lang, index) => (
                     <span
                       key={index}
-                      className="inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm"
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
                     >
                       {lang}
                       <button
                         onClick={() => handleRemoveItem('preferredLanguages', lang)}
-                        className="hover:text-purple-900"
+                        className="hover:text-primary"
                       >
                         <Icon name="X" size={14} />
                       </button>

@@ -121,7 +121,7 @@ const CompanyTeamsPage = () => {
       <AppShell pageTitle="Company Teams">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading company hives...</p>
           </div>
         </div>
@@ -197,18 +197,18 @@ const CompanyTeamsPage = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-success font-medium">Active Members</p>
-                      <p className="text-2xl font-bold text-green-900">
+                      <p className="text-2xl font-bold text-success">
                         {companyHives?.reduce((acc, hive) => acc + (hive?.member_count || 0), 0)}
                       </p>
                     </div>
                     <TrendingUp className="w-8 h-8 text-success" />
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border border-border">
+                <div className="bg-primary/10 rounded-lg p-4 border border-border">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-primary font-medium">Total Snippets</p>
-                      <p className="text-2xl font-bold text-purple-900">
+                      <p className="text-2xl font-bold text-primary">
                         {companyHives?.reduce((acc, hive) => acc + (hive?.snippet_count || 0), 0)}
                       </p>
                     </div>

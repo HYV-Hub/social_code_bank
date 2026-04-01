@@ -139,7 +139,7 @@ export default function GlobalHivesLanding() {
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <div className={`w-2 h-2 rounded-full ${
-                            hive?.privacy === 'private' ? 'bg-warning/100' : 'bg-success/100'
+                            hive?.privacy === 'private' ? 'bg-warning' : 'bg-success'
                           }`} />
                           <span className="text-sm font-medium text-foreground truncate">{hive?.name}</span>
                         </div>
@@ -217,7 +217,7 @@ export default function GlobalHivesLanding() {
         <main className="flex-1 overflow-y-auto">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Hero Banner */}
-            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl p-8 mb-8 text-white">
+            <div className="bg-primary rounded-xl p-8 mb-8 text-white">
               <h1 className="text-4xl font-bold mb-4">Explore Hives</h1>
               <p className="text-lg mb-6 opacity-90">
                 Join communities of developers sharing knowledge, code snippets, and best practices
@@ -281,7 +281,7 @@ export default function GlobalHivesLanding() {
               <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
                 <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-red-900">Error</p>
+                  <p className="text-sm font-medium text-error">Error</p>
                   <p className="text-sm text-error mt-1">{error}</p>
                 </div>
               </div>
@@ -291,13 +291,13 @@ export default function GlobalHivesLanding() {
             {loading ? (
               <div className="flex items-center justify-center py-16">
                 <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
                   <p className="text-muted-foreground">Loading hives...</p>
                 </div>
               </div>
             ) : hives?.length === 0 ? (
               <div className="text-center py-16">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-purple-100 mb-6">
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
                   <Icon name="Hexagon" size={40} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">No hives found</h3>
@@ -309,7 +309,7 @@ export default function GlobalHivesLanding() {
                 {user && !searchQuery && (
                   <Button
                     onClick={() => setIsCreateModalOpen(true)}
-                    className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+                    className="bg-primary hover:bg-primary/90"
                   >
                     <Icon name="Plus" size={20} className="mr-2" />
                     Create Your First Hive
@@ -450,7 +450,7 @@ export default function GlobalHivesLanding() {
                   <label className="block text-sm font-medium text-foreground mb-1">Description</label>
                   <textarea
                     name="description"
-                    className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
                     rows="3"
                     placeholder="Describe your hive..."
                   />
@@ -459,7 +459,7 @@ export default function GlobalHivesLanding() {
                   <label className="block text-sm font-medium text-foreground mb-1">Privacy</label>
                   <select
                     name="privacy"
-                    className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring"
                   >
                     <option value="public">Public</option>
                     <option value="private">Private</option>

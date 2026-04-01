@@ -54,12 +54,12 @@ export default function VersionHistory({ snippetId, currentVersion }) {
 
   const renderDiffLine = (line, index) => {
     const bgColor = 
-      line?.type === 'added' ? 'bg-success/10 border-l-4 border-green-500' :
+      line?.type === 'added' ? 'bg-success/10 border-l-4 border-success' :
       line?.type === 'removed'? 'bg-error/10 border-l-4 border-error' : 'bg-background';
 
     const textColor =
-      line?.type === 'added' ? 'text-green-900' :
-      line?.type === 'removed'? 'text-red-900' : 'text-foreground';
+      line?.type === 'added' ? 'text-success' :
+      line?.type === 'removed'? 'text-error' : 'text-foreground';
 
     const icon =
       line?.type === 'added' ? <Icon name="Plus" size={14} className="text-success" /> :
@@ -80,7 +80,7 @@ export default function VersionHistory({ snippetId, currentVersion }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-10 w-10 border-4 border-border border-t-purple-600"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-4 border-border border-t-primary"></div>
       </div>
     );
   }
@@ -113,7 +113,7 @@ export default function VersionHistory({ snippetId, currentVersion }) {
     <div className="space-y-6">
       {/* Stats Overview */}
       {stats && (
-        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 border border-border">
+        <div className="bg-primary/10 rounded-xl p-6 border border-border">
           <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
             <Icon name="BarChart" size={20} className="text-primary" />
             Version Statistics

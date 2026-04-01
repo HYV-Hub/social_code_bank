@@ -10,7 +10,7 @@ export default function SavedSearches({ savedSearches, onLoad, onDelete }) {
           Saved Searches
         </h3>
         <div className="text-center py-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-100 mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
             <Icon name="Save" size={32} className="text-primary" />
           </div>
           <p className="text-sm text-muted-foreground">

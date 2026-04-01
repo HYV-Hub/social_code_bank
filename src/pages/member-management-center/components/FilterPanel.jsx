@@ -55,7 +55,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                         : (filters?.roles || [])?.filter(r => r !== role?.value);
                       onFilterChange({ ...filters, roles: newRoles });
                     }}
-                    className="w-4 h-4 text-muted-foreground rounded focus:ring-slate-700"
+                    className="w-4 h-4 text-muted-foreground rounded focus:ring-ring"
                   />
                   <span className="text-sm text-foreground">{role?.label}</span>
                 </label>
@@ -80,7 +80,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                         : (filters?.levels || [])?.filter(l => l !== level?.value);
                       onFilterChange({ ...filters, levels: newLevels });
                     }}
-                    className="w-4 h-4 text-muted-foreground rounded focus:ring-slate-700"
+                    className="w-4 h-4 text-muted-foreground rounded focus:ring-ring"
                   />
                   <span className="text-sm text-foreground">{level?.label}</span>
                 </label>
@@ -100,7 +100,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   name="activityStatus"
                   checked={filters?.activityStatus === 'all' || !filters?.activityStatus}
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'all' })}
-                  className="w-4 h-4 text-muted-foreground focus:ring-slate-700"
+                  className="w-4 h-4 text-muted-foreground focus:ring-ring"
                 />
                 <span className="text-sm text-foreground">All Members</span>
               </label>
@@ -110,7 +110,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   name="activityStatus"
                   checked={filters?.activityStatus === 'active'}
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'active' })}
-                  className="w-4 h-4 text-muted-foreground focus:ring-slate-700"
+                  className="w-4 h-4 text-muted-foreground focus:ring-ring"
                 />
                 <span className="text-sm text-foreground">Active Only</span>
               </label>
@@ -120,7 +120,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   name="activityStatus"
                   checked={filters?.activityStatus === 'inactive'}
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'inactive' })}
-                  className="w-4 h-4 text-muted-foreground focus:ring-slate-700"
+                  className="w-4 h-4 text-muted-foreground focus:ring-ring"
                 />
                 <span className="text-sm text-foreground">Inactive Only</span>
               </label>
@@ -138,7 +138,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
           </button>
           <button
             onClick={onClose}
-            className="px-6 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-800 transition-colors"
+            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
           >
             Apply Filters
           </button>

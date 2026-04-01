@@ -42,7 +42,7 @@ export default function TeamCard({ team, onClick, onUpdate }) {
   return (
     <div
       onClick={onClick}
-      className="group bg-card rounded-xl border border-border hover:border-blue-300 hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden"
+      className="group bg-card rounded-xl border border-border hover:border-primary hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden"
     >
       {/* Header */}
       <div className="p-6 border-b border-border">

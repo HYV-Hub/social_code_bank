@@ -8,7 +8,7 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
   const getTrendIndicator = () => {
     if (rank <= 3) return { icon: Minus, text: 'Same', color: 'text-muted-foreground' };
     const random = Math.random();
-    if (random > 0.5) return { icon: ArrowUp, text: 'Up', color: 'text-green-500' };
+    if (random > 0.5) return { icon: ArrowUp, text: 'Up', color: 'text-success' };
     if (random < 0.3) return { icon: ArrowDown, text: 'Down', color: 'text-error' };
     return { icon: Minus, text: 'Same', color: 'text-muted-foreground' };
   };
@@ -22,7 +22,7 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
       className={`
         bg-card rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer
         border-2 ${rank <= 3 ? 'border-warning/20' : 'border-transparent'}
-        hover:border-blue-300 p-6
+        hover:border-primary/30 p-6
       `}
     >
       <div className="flex items-center gap-6">
@@ -30,7 +30,7 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
         <div className="flex-shrink-0">
           <div className={`
             w-16 h-16 rounded-full flex flex-col items-center justify-center
-            ${rankBg} ${rank <= 3 ? 'ring-4 ring-yellow-100' : ''}
+            ${rankBg} ${rank <= 3 ? 'ring-4 ring-warning/10' : ''}
           `}>
             <RankIcon className={`w-6 h-6 ${rankColor}`} />
             <span className={`text-xs font-bold ${rankColor}`}>#{rank}</span>
@@ -41,7 +41,7 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-3 mb-2">
             {/* Avatar */}
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold overflow-hidden">
+            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold overflow-hidden">
               {user?.avatar_url ? (
                 <img 
                   src={user?.avatar_url} 
@@ -70,7 +70,7 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
           <div className="flex items-center gap-2 mb-2">
             <span className={`
               px-2 py-1 text-xs font-medium rounded-full
-              ${user?.contributor_level === 'master' ? 'bg-purple-100 text-primary' : ''}
+              ${user?.contributor_level === 'master' ? 'bg-primary/10 text-primary' : ''}
               ${user?.contributor_level === 'expert' ? 'bg-primary/15 text-primary' : ''}
               ${user?.contributor_level === 'advanced' ? 'bg-success/15 text-success' : ''}
               ${user?.contributor_level === 'intermediate' ? 'bg-warning/15 text-warning' : ''}
@@ -115,9 +115,9 @@ const LeaderboardCard = ({ rank, user, score, scoreLabel, rankBadge, badges, onC
         <div className="flex-shrink-0 text-right">
           <div className={`
             text-3xl font-bold
-            ${rank === 1 ? 'text-yellow-500' : ''}
+            ${rank === 1 ? 'text-warning' : ''}
             ${rank === 2 ? 'text-muted-foreground' : ''}
-            ${rank === 3 ? 'text-orange-500' : ''}
+            ${rank === 3 ? 'text-warning' : ''}
             ${rank > 3 ? 'text-foreground' : ''}
           `}>
             {score?.toLocaleString() || 0}

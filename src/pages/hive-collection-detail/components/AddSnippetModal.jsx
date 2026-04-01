@@ -152,11 +152,11 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
       <div className="bg-card rounded-xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-border animate-slide-in-up">
         {/* Enhanced Header with gradient */}
-        <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white p-8 rounded-t-2xl">
+        <div className="relative bg-primary text-white p-8 rounded-t-2xl">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-3xl font-bold mb-2">Add Snippets to Collection</h2>
-              <p className="text-blue-100">Select snippets from your hive to add to this collection</p>
+              <p className="text-white/80">Select snippets from your hive to add to this collection</p>
             </div>
             <button
               onClick={onClose}
@@ -179,7 +179,7 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
               placeholder="🔍 Search snippets by title, description, or language..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e?.target?.value)}
-              className="w-full pl-12 pr-4 py-4 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-blue-500 shadow-inner text-foreground font-medium"
+              className="w-full pl-12 pr-4 py-4 border-2 border-border rounded-xl focus:ring-4 focus:ring-ring/20 focus:border-primary shadow-inner text-foreground font-medium"
             />
           </div>
         </div>
@@ -188,11 +188,11 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
         <div className="flex-1 overflow-y-auto p-6">
           {error && (
             <div className="mb-6 p-4 bg-error/10 border-l-4 border-error rounded-lg flex items-start gap-3">
-              <div className="w-6 h-6 bg-error/100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-6 h-6 bg-error rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                 <X className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-red-900">Error</p>
+                <p className="text-sm font-semibold text-error">Error</p>
                 <p className="text-sm text-error">{error}</p>
               </div>
             </div>
@@ -202,13 +202,13 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
             <div className="flex flex-col items-center justify-center py-20">
               <div className="relative w-16 h-16 mb-6">
                 <div className="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
-                <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+                <div className="absolute inset-0 border-4 border-primary rounded-full border-t-transparent animate-spin"></div>
               </div>
               <p className="text-muted-foreground font-medium">Loading snippets...</p>
             </div>
           ) : filteredSnippets?.length === 0 ? (
             <div className="text-center py-20">
-              <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
                 <Code className="w-12 h-12 text-muted-foreground" />
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-3">No snippets available</h3>
@@ -225,7 +225,7 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
                   onClick={() => handleToggleSnippet(snippet?.id)}
                   className={`group p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
                     selectedSnippets?.has(snippet?.id)
-                      ? 'border-blue-500 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg scale-[1.02]' 
+                      ? 'border-primary bg-primary/10 shadow-lg scale-[1.02]'
                       : 'border-border hover:border-border hover:shadow-md'
                   }`}
                 >
@@ -244,7 +244,7 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
                           {snippet?.title}
                         </h3>
                         {snippet?.language && (
-                          <span className="ml-3 px-3 py-1 bg-gradient-to-r from-blue-100 to-indigo-100 text-primary text-xs font-bold rounded-lg whitespace-nowrap">
+                          <span className="ml-3 px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-lg whitespace-nowrap">
                             {snippet?.language}
                           </span>
                         )}
@@ -273,7 +273,7 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
         {/* Enhanced Footer */}
         <div className="p-6 border-t-2 border-border bg-background flex items-center justify-between rounded-b-2xl">
           <div className="flex items-center gap-3">
-            <div className={`w-3 h-3 rounded-full ${selectedSnippets?.size > 0 ? 'bg-success/100 animate-pulse' : 'bg-muted'}`}></div>
+            <div className={`w-3 h-3 rounded-full ${selectedSnippets?.size > 0 ? 'bg-success animate-pulse' : 'bg-muted'}`}></div>
             <span className="text-sm font-semibold text-foreground">
               {selectedSnippets?.size} snippet{selectedSnippets?.size !== 1 ? 's' : ''} selected
             </span>
@@ -288,7 +288,7 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
             </button>
             <button
               onClick={handleAddSnippets}
-              className="flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl font-semibold"
+              className="flex items-center gap-3 px-8 py-3 bg-primary text-white rounded-xl hover:bg-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl font-semibold"
               disabled={adding || selectedSnippets?.size === 0}
             >
               {adding ? (

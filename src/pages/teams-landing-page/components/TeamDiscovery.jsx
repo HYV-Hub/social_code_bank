@@ -61,7 +61,7 @@ export default function TeamDiscovery() {
           <Button
             type="submit"
             disabled={loading || !searchQuery?.trim()}
-            className="px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+            className="px-8 bg-primary hover:bg-primary/90"
           >
             {loading ? 'Searching...' : 'Search'}
           </Button>
@@ -72,7 +72,7 @@ export default function TeamDiscovery() {
         <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
           <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <p className="text-sm font-medium text-red-900">Error</p>
+            <p className="text-sm font-medium text-error">Error</p>
             <p className="text-sm text-error mt-1">{error}</p>
           </div>
         </div>
@@ -81,7 +81,7 @@ export default function TeamDiscovery() {
       {loading && (
         <div className="flex items-center justify-center py-16">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-muted-foreground">Searching teams...</p>
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function TeamDiscovery() {
             {searchResults?.map((team) => (
               <div
                 key={team?.id}
-                className="bg-card rounded-xl border border-border hover:border-blue-300 hover:shadow-lg transition-all duration-300 overflow-hidden"
+                className="bg-card rounded-xl border border-border hover:border-primary hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 <div className="p-6">
                   <div className="flex items-start gap-3 mb-4">
@@ -130,7 +130,7 @@ export default function TeamDiscovery() {
                   <Button
                     onClick={() => handleRequestInvite(team?.id)}
                     disabled={requestingInvite?.[team?.id]}
-                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                    className="w-full bg-primary hover:bg-primary/90"
                   >
                     {requestingInvite?.[team?.id] ? (
                       <div className="flex items-center justify-center gap-2">

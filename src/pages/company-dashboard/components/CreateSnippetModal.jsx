@@ -158,7 +158,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
             <div className="flex items-center gap-3">
               <Icon name="CheckCircle" className="text-success" size={24} />
               <div>
-                <p className="text-green-900 font-semibold">Snippet created successfully!</p>
+                <p className="text-success font-semibold">Snippet created successfully!</p>
                 <p className="text-success text-sm">Redirecting to snippet details...</p>
               </div>
             </div>
@@ -171,7 +171,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
             <div className="flex items-center gap-3">
               <Icon name="AlertCircle" className="text-error" size={24} />
               <div className="flex-1">
-                <p className="text-red-900 font-semibold">Error</p>
+                <p className="text-error font-semibold">Error</p>
                 <p className="text-error text-sm">{error}</p>
               </div>
             </div>
@@ -190,7 +190,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               value={formData?.title}
               onChange={(e) => handleChange('title', e?.target?.value)}
               placeholder="Enter snippet title"
-              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
               disabled={loading || success}
               required
             />
@@ -206,7 +206,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               onChange={(e) => handleChange('description', e?.target?.value)}
               placeholder="Brief description of the snippet"
               rows={2}
-              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
               disabled={loading || success}
             />
           </div>
@@ -220,7 +220,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               <select
                 value={formData?.language}
                 onChange={(e) => handleChange('language', e?.target?.value)}
-                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
                 disabled={loading || success}
               >
                 <option value="javascript">JavaScript</option>
@@ -242,7 +242,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               <select
                 value={formData?.snippetType}
                 onChange={(e) => handleChange('snippetType', e?.target?.value)}
-                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
                 disabled={loading || success}
               >
                 <option value="code">Code</option>
@@ -262,14 +262,14 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
             </label>
             {loadingTeams ? (
               <div className="flex items-center gap-2 text-muted-foreground">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
                 <span className="text-sm">Loading teams...</span>
               </div>
             ) : teams?.length > 0 ? (
               <select
                 value={formData?.teamId}
                 onChange={(e) => handleChange('teamId', e?.target?.value)}
-                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
                 disabled={loading || success}
               >
                 <option value="">No specific team (Company-wide)</option>
@@ -294,7 +294,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
               onChange={(e) => handleChange('code', e?.target?.value)}
               placeholder="Paste your code here..."
               rows={8}
-              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500 font-mono text-sm"
+              className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary font-mono text-sm"
               disabled={loading || success}
               required
             />
@@ -342,7 +342,7 @@ const CreateSnippetModal = ({ isOpen, onClose, companyId }) => {
                 type="submit"
                 disabled={loading || success}
                 iconName={loading ? "Loader" : "Plus"}
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                className="bg-primary hover:bg-primary/90"
               >
                 {loading ? 'Creating...' : 'Create Snippet'}
               </Button>

@@ -48,7 +48,7 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
         <div className="p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
           <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <p className="text-sm font-medium text-red-900">Error</p>
+            <p className="text-sm font-medium text-error">Error</p>
             <p className="text-sm text-error mt-1">{error}</p>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
         <div className="p-4 bg-success/10 border border-success/20 rounded-lg flex items-start gap-3">
           <Icon name="CheckCircle" size={20} className="text-success flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <p className="text-sm font-medium text-green-900">Success</p>
+            <p className="text-sm font-medium text-success">Success</p>
             <p className="text-sm text-success mt-1">{success}</p>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
               onChange={(e) => setDescription(e?.target?.value)}
               placeholder="Describe your hive..."
               rows={4}
-              className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
             />
           </div>
 
@@ -124,7 +124,7 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
           <Button
             onClick={handleSave}
             disabled={saving || !name || !description}
-            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+            className="w-full bg-primary hover:bg-primary"
           >
             {saving ? 'Saving...' : 'Save Changes'}
           </Button>
@@ -134,7 +134,7 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
       {/* Danger Zone - Owner Only */}
       {isOwner && (
         <div className="bg-card rounded-xl border-2 border-error/20 p-6">
-          <h3 className="text-lg font-semibold text-red-900 mb-4 flex items-center gap-2">
+          <h3 className="text-lg font-semibold text-error mb-4 flex items-center gap-2">
             <Icon name="AlertTriangle" size={20} />
             Danger Zone
           </h3>
@@ -144,7 +144,7 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
               <p className="text-sm text-muted-foreground mb-3">
                 Transfer ownership of this hive to another admin. This action cannot be undone.
               </p>
-              <Button variant="ghost" className="text-orange-600 hover:bg-orange-50">
+              <Button variant="ghost" className="text-warning hover:bg-warning/10">
                 Transfer Ownership
               </Button>
             </div>

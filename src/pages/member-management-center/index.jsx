@@ -217,7 +217,7 @@ export default function MemberManagementCenter() {
       <AppShell pageTitle="Members">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-slate-700 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading member data...</p>
           </div>
         </div>
@@ -239,7 +239,7 @@ export default function MemberManagementCenter() {
             <p className="text-muted-foreground text-center mb-4">{error}</p>
             <button
               onClick={() => window.location.href = '/'}
-              className="w-full px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-800 transition-colors"
+              className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
             >
               Return to Dashboard
             </button>
@@ -280,7 +280,7 @@ export default function MemberManagementCenter() {
                 
                 <button
                   onClick={() => window.location.href = '/company-dashboard'}
-                  className="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-800 transition-colors"
+                  className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
                 >
                   Back to Dashboard
                 </button>
@@ -300,7 +300,7 @@ export default function MemberManagementCenter() {
                     placeholder="Search by name, email, or username..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e?.target?.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
                   />
                 </div>
               </div>
@@ -310,7 +310,7 @@ export default function MemberManagementCenter() {
                 <select
                   value={selectedRole}
                   onChange={(e) => setSelectedRole(e?.target?.value)}
-                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-card"
+                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-card"
                 >
                   <option value="all">All Roles</option>
                   <option value="user">Developer</option>
@@ -322,7 +322,7 @@ export default function MemberManagementCenter() {
                 <select
                   value={activityStatus}
                   onChange={(e) => setActivityStatus(e?.target?.value)}
-                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-card"
+                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-card"
                 >
                   <option value="all">All Status</option>
                   <option value="active">Active</option>
@@ -332,7 +332,7 @@ export default function MemberManagementCenter() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e?.target?.value)}
-                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent bg-card"
+                  className="px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-card"
                 >
                   <option value="recent">Most Recent</option>
                   <option value="name">Name (A-Z)</option>
@@ -356,7 +356,7 @@ export default function MemberManagementCenter() {
                   type="checkbox"
                   checked={selectedMembers?.length === members?.length && members?.length > 0}
                   onChange={handleSelectAll}
-                  className="w-5 h-5 text-muted-foreground rounded focus:ring-slate-700"
+                  className="w-5 h-5 text-muted-foreground rounded focus:ring-ring"
                 />
                 <span className="text-sm font-medium text-foreground">
                   Select All ({members?.length} members)

@@ -39,25 +39,25 @@ const HistoricalTrends = () => {
     <div className="space-y-6">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white">
+        <div className="bg-success rounded-xl p-6 text-white">
           <TrendingUp className="w-8 h-8 mb-3" />
           <div className="text-3xl font-bold">+14%</div>
-          <div className="text-green-100 text-sm mt-1">6-Month Improvement</div>
+          <div className="text-white/70 text-sm mt-1">6-Month Improvement</div>
         </div>
-        <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-6 text-white">
+        <div className="bg-primary rounded-xl p-6 text-white">
           <Target className="w-8 h-8 mb-3" />
           <div className="text-3xl font-bold">76%</div>
-          <div className="text-blue-100 text-sm mt-1">Current Score</div>
+          <div className="text-white/70 text-sm mt-1">Current Score</div>
         </div>
-        <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-6 text-white">
+        <div className="bg-primary rounded-xl p-6 text-white">
           <Award className="w-8 h-8 mb-3" />
           <div className="text-3xl font-bold">327</div>
-          <div className="text-purple-100 text-sm mt-1">Total Contributions</div>
+          <div className="text-white/70 text-sm mt-1">Total Contributions</div>
         </div>
-        <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl p-6 text-white">
+        <div className="bg-warning rounded-xl p-6 text-white">
           <Calendar className="w-8 h-8 mb-3" />
           <div className="text-3xl font-bold">6</div>
-          <div className="text-amber-100 text-sm mt-1">Months Tracking</div>
+          <div className="text-white/70 text-sm mt-1">Months Tracking</div>
         </div>
       </div>
 
@@ -93,13 +93,13 @@ const HistoricalTrends = () => {
                   {/* Bar */}
                   <div className="w-full relative group">
                     <div
-                      className="w-full bg-gradient-to-t from-blue-500 to-indigo-600 rounded-t-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 cursor-pointer"
+                      className="w-full bg-primary rounded-t-lg transition-all duration-300 hover:bg-primary/90 cursor-pointer"
                       style={{ height: `${(data?.score / 100) * 180}px` }}
                     >
                       {/* Tooltip */}
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-foreground text-background text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                         <div className="font-semibold">{data?.score}%</div>
-                        <div className="text-slate-300">{data?.contributions} contributions</div>
+                        <div className="text-muted">{data?.contributions} contributions</div>
                       </div>
                     </div>
                   </div>
@@ -113,7 +113,7 @@ const HistoricalTrends = () => {
           {/* Legend */}
           <div className="flex items-center justify-center gap-6 pt-4 border-t border-border">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded" />
+              <div className="w-4 h-4 bg-primary rounded" />
               <span className="text-sm text-muted-foreground">Style Match Score</span>
             </div>
           </div>
@@ -157,19 +157,19 @@ const HistoricalTrends = () => {
           </h4>
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
+              <div className="w-2 h-2 bg-success rounded-full mt-2 flex-shrink-0" />
               <p className="text-muted-foreground">
                 Consistent improvement over the past 6 months with <span className="font-semibold">14% growth</span>
               </p>
             </li>
             <li className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
+              <div className="w-2 h-2 bg-success rounded-full mt-2 flex-shrink-0" />
               <p className="text-muted-foreground">
                 Documentation quality increased by <span className="font-semibold">31%</span> since April
               </p>
             </li>
             <li className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
+              <div className="w-2 h-2 bg-success rounded-full mt-2 flex-shrink-0" />
               <p className="text-muted-foreground">
                 Error handling patterns improved by <span className="font-semibold">21%</span>
               </p>
@@ -187,8 +187,8 @@ const HistoricalTrends = () => {
               <div className="flex flex-col items-center">
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    milestone?.type === 'achievement' ?'bg-gradient-to-br from-yellow-400 to-amber-500'
-                      : milestone?.type === 'milestone' ?'bg-gradient-to-br from-blue-500 to-indigo-600' :'bg-gradient-to-br from-green-500 to-emerald-600'
+                    milestone?.type === 'achievement' ?'bg-warning'
+                      : milestone?.type === 'milestone' ?'bg-primary' :'bg-success'
                   }`}
                 >
                   {milestone?.type === 'achievement' ? (
@@ -198,7 +198,7 @@ const HistoricalTrends = () => {
                   )}
                 </div>
                 {index < milestones?.length - 1 && (
-                  <div className="w-0.5 h-full bg-slate-200 mt-2" />
+                  <div className="w-0.5 h-full bg-muted mt-2" />
                 )}
               </div>
               <div className="flex-1 pb-6">

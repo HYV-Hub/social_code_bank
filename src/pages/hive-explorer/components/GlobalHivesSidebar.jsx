@@ -31,12 +31,12 @@ export default function GlobalHivesSidebar({ myHives, currentHiveId, onClose }) 
                 onClick={() => navigate(`/hives/${hive?.id}`)}
                 className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
                   currentHiveId === hive?.id
-                    ? 'bg-purple-100 text-purple-900 font-semibold' :'hover:bg-muted text-foreground'
+                    ? 'bg-primary/10 text-primary font-semibold' :'hover:bg-muted text-foreground'
                 }`}
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                    hive?.privacy === 'private' ? 'bg-warning/100' : 'bg-success/100'
+                    hive?.privacy === 'private' ? 'bg-warning' : 'bg-success'
                   }`} />
                   <span className="text-sm font-medium text-foreground truncate">{hive?.name}</span>
                 </div>

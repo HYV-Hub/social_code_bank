@@ -19,27 +19,27 @@ const BillingSubscriptionPage = () => {
           </div>
 
           {/* Current Plan Status */}
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg shadow-lg p-8 text-white mb-8">
+          <div className="bg-success rounded-lg shadow-lg p-8 text-white mb-8">
             <div className="flex items-center gap-3 mb-4">
               <Gift size={32} />
               <div>
                 <h2 className="text-2xl font-bold">Free Access</h2>
-                <p className="text-green-100">All features included</p>
+                <p className="text-white/80">All features included</p>
               </div>
             </div>
             <div className="bg-card/20 rounded-lg p-4 backdrop-blur-sm">
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div>
                   <div className="text-3xl font-bold mb-1">∞</div>
-                  <div className="text-sm text-green-100">Code Snippets</div>
+                  <div className="text-sm text-white/80">Code Snippets</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold mb-1">∞</div>
-                  <div className="text-sm text-green-100">Storage</div>
+                  <div className="text-sm text-white/80">Storage</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold mb-1">∞</div>
-                  <div className="text-sm text-green-100">AI Analysis</div>
+                  <div className="text-sm text-white/80">AI Analysis</div>
                 </div>
               </div>
             </div>

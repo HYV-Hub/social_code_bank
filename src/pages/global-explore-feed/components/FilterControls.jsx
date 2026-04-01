@@ -38,7 +38,7 @@ export default function FilterControls({ activeFilters, onFilterChange }) {
           <select
             value={activeFilters?.contentType}
             onChange={(e) => onFilterChange('contentType', e?.target?.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
           >
             {contentTypes?.map((type) => (
               <option key={type?.value} value={type?.value}>
@@ -56,7 +56,7 @@ export default function FilterControls({ activeFilters, onFilterChange }) {
           <select
             value={activeFilters?.language}
             onChange={(e) => onFilterChange('language', e?.target?.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
           >
             {languages?.map((lang) => (
               <option key={lang?.value} value={lang?.value}>
@@ -74,7 +74,7 @@ export default function FilterControls({ activeFilters, onFilterChange }) {
           <select
             value={activeFilters?.recency}
             onChange={(e) => onFilterChange('recency', e?.target?.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent"
           >
             {recencyOptions?.map((option) => (
               <option key={option?.value} value={option?.value}>

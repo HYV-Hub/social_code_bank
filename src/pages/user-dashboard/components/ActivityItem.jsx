@@ -18,9 +18,9 @@ const ActivityItem = ({ activity }) => {
     switch(type) {
       case 'like': return 'text-error';
       case 'comment': return 'text-primary';
-      case 'follow': return 'text-green-500';
-      case 'share': return 'text-purple-500';
-      case 'save': return 'text-yellow-500';
+      case 'follow': return 'text-success';
+      case 'share': return 'text-primary';
+      case 'save': return 'text-warning';
       default: return 'text-muted-foreground';
     }
   };

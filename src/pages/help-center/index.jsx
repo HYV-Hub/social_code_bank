@@ -139,7 +139,7 @@ const HelpCenterPage = () => {
                 className="bg-card rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                  <div className="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center group-hover:bg-primary/25 transition-colors">
                     <Icon name={link?.icon} size={24} className="text-primary" />
                   </div>
                   <div className="flex-1">
@@ -213,9 +213,9 @@ const HelpCenterPage = () => {
         </div>
 
         {/* Contact Support */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg shadow-lg p-8 text-center text-white">
+        <div className="bg-primary rounded-lg shadow-lg p-8 text-center text-white">
           <h2 className="text-2xl font-bold mb-4">Still need help?</h2>
-          <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+          <p className="text-white/80 mb-6 max-w-2xl mx-auto">
             Our support team is here to help you with any questions or issues you may have.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

@@ -4,10 +4,10 @@ import Image from '../../../components/AppImage';
 
 const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }) => {
   const priorityColors = {
-    critical: 'bg-error/15 text-error border-red-300',
-    high: 'bg-orange-100 text-orange-800 border-orange-300',
-    medium: 'bg-warning/15 text-warning border-yellow-300',
-    low: 'bg-primary/15 text-foreground border-blue-300'
+    critical: 'bg-error/15 text-error border-error/30',
+    high: 'bg-warning/15 text-warning border-warning/30',
+    medium: 'bg-warning/15 text-warning border-warning/30',
+    low: 'bg-primary/15 text-foreground border-primary/30'
   };
 
   const priorityIcons = {

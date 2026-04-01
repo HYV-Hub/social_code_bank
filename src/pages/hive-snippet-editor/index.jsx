@@ -185,7 +185,7 @@ const HiveSnippetEditor = () => {
       <AppShell pageTitle="Snippet Editor">
         <div className="flex items-center justify-center h-[calc(100vh-120px)]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">
               {loading ? 'Loading...' : 'Initializing editor...'}
             </p>
@@ -613,7 +613,7 @@ const HiveSnippetEditor = () => {
               <div className="flex items-start gap-3">
                 <Icon name="Hexagon" className="text-primary mt-0.5" size={20} />
                 <div className="flex-1">
-                  <p className="text-purple-900 font-semibold">
+                  <p className="text-primary font-semibold">
                     Creating for Hive: {hiveDetails?.name}
                   </p>
                   <p className="text-primary text-sm">
@@ -791,7 +791,7 @@ const HiveSnippetEditor = () => {
                             {aiResults?.qualityScore}/100
                           </span>
                         </div>
-                        <div className="w-full bg-slate-200 rounded-full h-2">
+                        <div className="w-full bg-muted rounded-full h-2">
                           <div
                             className="bg-primary h-2 rounded-full transition-all duration-500"
                             style={{ width: `${aiResults?.qualityScore}%` }}
@@ -808,7 +808,7 @@ const HiveSnippetEditor = () => {
                             {aiResults?.tags?.map((tag, index) => (
                               <span
                                 key={index}
-                                className="px-3 py-1 bg-purple-100 text-primary rounded-full text-sm"
+                                className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
                               >
                                 {tag}
                               </span>
@@ -886,8 +886,8 @@ const HiveSnippetEditor = () => {
                   </div>
                 )}
 
-                <div className="bg-slate-900 rounded-lg p-4 overflow-x-auto">
-                  <pre className="text-sm text-slate-100 font-mono">
+                <div className="bg-foreground/90 rounded-lg p-4 overflow-x-auto">
+                  <pre className="text-sm text-muted font-mono">
                     <code>{code || '// No code yet'}</code>
                   </pre>
                 </div>

@@ -91,7 +91,7 @@ const FileUploadSection = ({ files, setFiles }) => {
       <h2 className="text-lg font-semibold text-foreground mb-4">Attachments</h2>
       <div
         className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-          dragActive ? 'border-blue-500 bg-primary/10' : 'border-border bg-muted'
+          dragActive ? 'border-primary bg-primary/10' : 'border-border bg-muted'
         }`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}

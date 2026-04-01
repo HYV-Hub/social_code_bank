@@ -63,11 +63,11 @@ export default function MemberRoleManager({
 
   const getRoleColor = (role) => {
     switch (role) {
-      case 'owner': return 'from-purple-500 to-indigo-500';
-      case 'admin': return 'from-blue-500 to-cyan-500';
-      case 'editor': return 'from-green-500 to-emerald-500';
-      case 'viewer': return 'from-purple-400 to-pink-400';
-      default: return 'from-gray-400 to-gray-500';
+      case 'owner': return 'bg-primary';
+      case 'admin': return 'bg-accent';
+      case 'editor': return 'bg-success';
+      case 'viewer': return 'bg-primary/60';
+      default: return 'bg-muted-foreground';
     }
   };
 
@@ -78,9 +78,9 @@ export default function MemberRoleManager({
         onClick={() => canManageThisRole && setShowRolePicker(!showRolePicker)}
         disabled={!canManageThisRole}
         className={`px-3 py-1.5 text-xs font-semibold rounded-lg whitespace-nowrap transition-all ${
-          member?.role === 'owner' ?'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md cursor-not-allowed'
+          member?.role === 'owner' ?'bg-primary text-white shadow-md cursor-not-allowed'
             : canManageThisRole
-            ? `bg-gradient-to-r ${getRoleColor(member?.role)} text-white shadow-md hover:shadow-lg transform hover:scale-105 cursor-pointer`
+            ? `${getRoleColor(member?.role)} text-white shadow-md hover:shadow-lg transform hover:scale-105 cursor-pointer`
             : 'bg-muted text-foreground cursor-not-allowed'
         }`}
         title={canManageThisRole ? 'Click to change role' : 'Cannot manage this role'}
@@ -193,7 +193,7 @@ export default function MemberRoleManager({
                   <Button
                     onClick={handleRemoveMember}
                     disabled={isChangingRole}
-                    className="flex-1 bg-red-600 text-white hover:bg-red-700"
+                    className="flex-1 bg-error text-white hover:bg-error"
                   >
                     {isChangingRole ? (
                       <>

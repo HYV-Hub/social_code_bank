@@ -16,8 +16,8 @@ const SavedItemCard = ({ item, onRemove, onView }) => {
   const getItemTypeBadge = (type) => {
     const badges = {
       'snippet': 'bg-primary/10 text-primary',
-      'bug': 'bg-orange-500/10 text-orange-500',
-      'discussion': 'bg-primary/100/10 text-purple-500'
+      'bug': 'bg-warning/10 text-warning',
+      'discussion': 'bg-primary/10 text-primary'
     };
     return badges?.[type] || 'bg-background0/10 text-muted-foreground';
   };

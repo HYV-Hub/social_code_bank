@@ -48,13 +48,13 @@ const SearchHeader = ({ query, searchQuery, setSearchQuery, onSearch, resultCoun
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12">
+    <div className="bg-primary text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2">
             {query ? `Search Results for "${query}"` : 'Explore Code Snippets'}
           </h1>
-          <p className="text-blue-100 text-lg">
+          <p className="text-white/70 text-lg">
             {resultCount > 0 
               ? `Found ${resultCount} result${resultCount !== 1 ? 's' : ''}`
               : 'Discover and learn from the community'
@@ -69,7 +69,7 @@ const SearchHeader = ({ query, searchQuery, setSearchQuery, onSearch, resultCoun
               onChange={(e) => setSearchQuery(e?.target?.value)}
               onKeyPress={handleKeyPress}
               placeholder="Search snippets, bugs, users, teams... (e.g., 'bespoke gallery')"
-              className="w-full pl-12 pr-24 py-4 text-lg rounded-xl border-2 border-blue-400 focus:border-white focus:ring-4 focus:ring-blue-300 bg-card/95 text-foreground placeholder-muted-foreground"
+              className="w-full pl-12 pr-24 py-4 text-lg rounded-xl border-2 border-primary/50 focus:border-white focus:ring-4 focus:ring-primary/30 bg-card/95 text-foreground placeholder-muted-foreground"
             />
             <Icon 
               name="Search" 
@@ -114,7 +114,7 @@ const SearchHeader = ({ query, searchQuery, setSearchQuery, onSearch, resultCoun
                           <Icon 
                             name={suggestion?.isSuggested ? "Sparkles" : "Tag"} 
                             size={16} 
-                            className={suggestion?.isSuggested ? "text-yellow-500" : "text-primary"}
+                            className={suggestion?.isSuggested ? "text-warning" : "text-primary"}
                           />
                           <span className="text-foreground font-medium">
                             {suggestion?.tag}

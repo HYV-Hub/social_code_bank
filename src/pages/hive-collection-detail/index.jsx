@@ -118,7 +118,7 @@ const HiveCollectionDetail = () => {
           <div className="text-center">
             <div className="relative w-16 h-16 mx-auto mb-6">
               <div className="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
-              <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+              <div className="absolute inset-0 border-4 border-primary rounded-full border-t-transparent animate-spin"></div>
             </div>
             <p className="text-foreground font-medium text-lg">Loading collection...</p>
           </div>
@@ -132,10 +132,10 @@ const HiveCollectionDetail = () => {
       <AppShell pageTitle="Collection">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center max-w-md mx-auto px-4">
-            <div className="w-24 h-24 bg-gradient-to-br from-red-100 to-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 bg-error/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <ArrowLeft className="w-12 h-12 text-error" />
             </div>
-            <div className="bg-card rounded-xl shadow-xl p-8 mb-6 border-2 border-red-100">
+            <div className="bg-card rounded-xl shadow-xl p-8 mb-6 border-2 border-error/10">
               <h2 className="text-3xl font-bold text-foreground mb-3">
                 {error ? '⚠️ Error Loading Collection' : '🔍 Collection Not Found'}
               </h2>
@@ -145,7 +145,7 @@ const HiveCollectionDetail = () => {
             </div>
             <button
               onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 font-semibold"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-xl hover:bg-primary transition-all shadow-lg hover:shadow-xl hover:scale-105 font-semibold"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Go Back</span>
@@ -187,7 +187,7 @@ const HiveCollectionDetail = () => {
             {isOwner && (
               <button
                 onClick={() => setShowAddModal(true)}
-                className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 font-semibold"
+                className="group flex items-center gap-3 px-6 py-3 bg-primary text-white rounded-xl hover:bg-primary transition-all shadow-lg hover:shadow-xl hover:scale-105 font-semibold"
               >
                 <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform" />
                 <span>Add Snippet</span>
@@ -200,13 +200,13 @@ const HiveCollectionDetail = () => {
             <div className="flex items-center justify-center py-20">
               <div className="relative w-16 h-16">
                 <div className="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
-                <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+                <div className="absolute inset-0 border-4 border-primary rounded-full border-t-transparent animate-spin"></div>
               </div>
             </div>
           ) : snippets?.length === 0 ? (
             <div className="text-center py-20 bg-card rounded-xl border-2 border-dashed border-border shadow-lg">
               <div className="max-w-md mx-auto px-4">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Plus className="w-12 h-12 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-3">
@@ -218,7 +218,7 @@ const HiveCollectionDetail = () => {
                 {isOwner && !filters?.search && filters?.language === 'all' && (
                   <button
                     onClick={() => setShowAddModal(true)}
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 font-semibold"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-xl hover:bg-primary transition-all shadow-lg hover:shadow-xl hover:scale-105 font-semibold"
                   >
                     <Plus className="w-6 h-6" />
                     <span>Add First Snippet</span>

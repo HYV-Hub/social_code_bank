@@ -39,7 +39,7 @@ export default function ActivityFeed({ activities = [], loading = false }) {
       case 'member_joined':
         return { name: 'UserPlus', color: 'text-success', bg: 'bg-success/15' };
       case 'comment_added':
-        return { name: 'MessageCircle', color: 'text-primary', bg: 'bg-purple-100' };
+        return { name: 'MessageCircle', color: 'text-primary', bg: 'bg-primary/10' };
       default:
         return { name: 'Activity', color: 'text-muted-foreground', bg: 'bg-muted' };
     }

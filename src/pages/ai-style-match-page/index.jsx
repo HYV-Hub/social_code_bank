@@ -191,7 +191,7 @@ import Button from '../../components/ui/Button';
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
-                  <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg">
+                  <div className="p-2 bg-primary rounded-lg">
                     <Code className="w-8 h-8 text-white" />
                   </div>
                   AI Style Match
@@ -204,7 +204,7 @@ import Button from '../../components/ui/Button';
                 <button 
                   onClick={handleAnalyzeCode}
                   disabled={loading}
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Zap className="w-5 h-5" />
                   {loading ? 'Analyzing...' : 'Analyze Code'}
@@ -232,7 +232,7 @@ import Button from '../../components/ui/Button';
                   onClick={() => setActiveTab(tab?.id)}
                   className={`flex-1 px-6 py-4 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
                     activeTab === tab?.id
-                      ? 'text-primary border-b-2 border-blue-600 bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      ? 'text-primary border-b-2 border-primary bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                 >
                   <tab.icon className="w-4 h-4" />
@@ -247,7 +247,7 @@ import Button from '../../components/ui/Button';
             <div className="bg-error/10 border border-error/20 rounded-lg p-4 mb-6 flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-error flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-semibold text-red-900">Analysis Error</h3>
+                <h3 className="font-semibold text-error">Analysis Error</h3>
                 <p className="text-error text-sm mt-1">{error}</p>
               </div>
             </div>

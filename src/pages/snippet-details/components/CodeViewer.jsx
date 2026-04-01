@@ -360,7 +360,7 @@ const CodeViewer = ({ snippet }) => {
             {snippet?.code?.split('\n')?.length} lines
           </span>
           {canShowPreview && (
-            <span className="px-2 py-0.5 bg-primary/100/10 border border-purple-500/20 rounded text-xs text-primary font-medium">
+            <span className="px-2 py-0.5 bg-primary/10 border border-primary/20 rounded text-xs text-primary font-medium">
               UX Component
             </span>
           )}
@@ -394,7 +394,7 @@ const CodeViewer = ({ snippet }) => {
             iconName="Sparkles"
             iconPosition="left"
             onClick={handleViewAIReport}
-            className="bg-gradient-to-r from-primary to-secondary hover:from-purple-700 hover:to-blue-700"
+            className="bg-primary hover:bg-primary"
           >
             AI Report
           </Button>
@@ -420,12 +420,12 @@ const CodeViewer = ({ snippet }) => {
       </div>
       {/* Validation Warnings Banner */}
       {validationWarnings?.length > 0 && viewMode === 'preview' && (
-        <div className="border-b border-border bg-warning/10 dark:bg-yellow-900/10">
+        <div className="border-b border-border bg-warning/10">
           <div className="px-4 py-3">
             <div className="flex items-start gap-2 mb-2">
-              <Icon name="AlertTriangle" size={18} className="text-warning dark:text-yellow-500 mt-0.5 flex-shrink-0" />
+              <Icon name="AlertTriangle" size={18} className="text-warning mt-0.5 flex-shrink-0" />
               <div className="flex-1">
-                <h4 className="text-sm font-semibold text-warning dark:text-yellow-400 mb-2">
+                <h4 className="text-sm font-semibold text-warning mb-2">
                   Preview Visibility Issues Detected ({validationWarnings?.length})
                 </h4>
                 <div className="space-y-2">

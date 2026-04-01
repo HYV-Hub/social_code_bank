@@ -174,7 +174,7 @@ export default function AdvancedSearchInterface() {
                   <div className="mt-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
                     <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-red-900">Error</p>
+                      <p className="text-sm font-medium text-error">Error</p>
                       <p className="text-sm text-error mt-1">{error}</p>
                     </div>
                   </div>

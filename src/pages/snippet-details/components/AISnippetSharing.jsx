@@ -86,7 +86,7 @@ const AISnippetSharing = ({ snippet }) => {
     return (
       <div className="bg-card rounded-lg shadow-sm p-6 border border-border">
         <div className="flex items-center justify-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
           <span className="ml-3 text-muted-foreground">Generating AI-powered sharing content...</span>
         </div>
       </div>
@@ -139,7 +139,7 @@ const AISnippetSharing = ({ snippet }) => {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
             <Icon name="Sparkles" size={20} className="text-white" />
           </div>
           <div>

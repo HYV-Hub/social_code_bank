@@ -194,7 +194,7 @@ export default function MemberInvitationSystem() {
       <AppShell pageTitle="Invitations">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading invitation system...</p>
           </div>
         </div>
@@ -235,7 +235,7 @@ export default function MemberInvitationSystem() {
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-warning mt-0.5" />
               <div className="flex-1">
-                <p className="text-yellow-900 font-medium">User limit reached</p>
+                <p className="text-warning font-medium">User limit reached</p>
                 <p className="text-warning text-sm mt-1">
                   You have reached the maximum of {userLimitInfo?.limit} users. Contact support to increase your limit.
                 </p>

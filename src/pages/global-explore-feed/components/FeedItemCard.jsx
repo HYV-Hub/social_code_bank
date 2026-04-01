@@ -33,7 +33,7 @@ export default function FeedItemCard({ item, onLike, onSave }) {
               {snippet?.author?.username && `@${snippet?.author?.username}`}
             </p>
           </div>
-          <span className="px-3 py-1 text-xs font-medium bg-purple-100 text-primary rounded-full">
+          <span className="px-3 py-1 text-xs font-medium bg-primary/15 text-primary rounded-full">
             Snippet
           </span>
         </div>

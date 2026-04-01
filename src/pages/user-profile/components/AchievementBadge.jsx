@@ -4,10 +4,10 @@ import Icon from '../../../components/AppIcon';
 const AchievementBadge = ({ achievement }) => {
   const getBadgeColor = (level) => {
     const colorMap = {
-      bronze: 'from-amber-700 to-amber-500',
-      silver: 'from-slate-400 to-slate-200',
-      gold: 'from-yellow-500 to-yellow-300',
-      platinum: 'from-cyan-400 to-blue-500'
+      bronze: 'from-warning/80 to-warning/50',
+      silver: 'from-muted-foreground to-muted',
+      gold: 'from-warning to-warning/60',
+      platinum: 'from-accent to-primary'
     };
     return colorMap?.[level] || 'from-primary to-accent';
   };

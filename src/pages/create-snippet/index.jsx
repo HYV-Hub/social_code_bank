@@ -960,7 +960,7 @@ const CreateSnippet = () => {
                                         <li key={idx} className="text-xs text-muted-foreground flex items-start gap-1">
                                           <span className={
                                             issue?.severity === 'high' ? 'text-error' :
-                                            issue?.severity === 'medium' ? 'text-yellow-500' : 'text-primary'
+                                            issue?.severity === 'medium' ? 'text-warning' : 'text-primary'
                                           }>•</span>
                                           <span>{issue?.title}</span>
                                         </li>
@@ -1116,8 +1116,8 @@ const CreateSnippet = () => {
                   </div>
                 )}
 
-                <div className="bg-slate-900 rounded-lg p-4 overflow-x-auto">
-                  <pre className="text-sm text-slate-100 font-mono">
+                <div className="bg-foreground rounded-lg p-4 overflow-x-auto">
+                  <pre className="text-sm text-background font-mono">
                     <code>{code || '// No code yet'}</code>
                   </pre>
                 </div>

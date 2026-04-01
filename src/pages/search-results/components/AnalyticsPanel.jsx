@@ -49,7 +49,7 @@ const AnalyticsPanel = () => {
       <div className="bg-card rounded-lg shadow-sm p-4 sm:p-6">
         <div className="flex items-center justify-center py-8 sm:py-12">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-blue-600 mx-auto mb-3 sm:mb-4"></div>
+            <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-primary mx-auto mb-3 sm:mb-4"></div>
             <p className="text-sm sm:text-base text-muted-foreground">Loading analytics...</p>
           </div>
         </div>
@@ -114,7 +114,7 @@ const AnalyticsPanel = () => {
                     {post?.author?.avatar_url ? (
                       <img src={post?.author?.avatar_url} alt={post?.author?.full_name} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full" />
                     ) : (
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center">
                         <span className="text-white font-semibold text-xs sm:text-sm">
                           {post?.author?.full_name?.charAt(0)?.toUpperCase()}
                         </span>
@@ -158,7 +158,7 @@ const AnalyticsPanel = () => {
           <select
             value={selectedTimeRange}
             onChange={(e) => setSelectedTimeRange(e?.target?.value)}
-            className="text-xs sm:text-sm border border-border rounded-lg px-2 sm:px-3 py-1.5 focus:ring-2 focus:ring-ring focus:border-blue-500 w-full sm:w-auto"
+            className="text-xs sm:text-sm border border-border rounded-lg px-2 sm:px-3 py-1.5 focus:ring-2 focus:ring-ring focus:border-primary w-full sm:w-auto"
           >
             <option value="24h">Last 24 hours</option>
             <option value="7d">Last 7 days</option>
@@ -176,7 +176,7 @@ const AnalyticsPanel = () => {
               <div key={post?.id} className="border border-border rounded-lg p-3 sm:p-4 hover:shadow-md transition-shadow cursor-pointer">
                 <div className="flex items-start gap-2 sm:gap-3">
                   <div className="flex-shrink-0">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-red-400 to-orange-600 flex items-center justify-center">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-error to-warning flex items-center justify-center">
                       <span className="text-white font-bold text-xs sm:text-sm">#{index + 1}</span>
                     </div>
                   </div>

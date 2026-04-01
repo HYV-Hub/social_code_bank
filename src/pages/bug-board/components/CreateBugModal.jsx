@@ -145,10 +145,10 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
               {/* Ongoing Bug Option */}
               <button
                 onClick={() => handleBugTypeSelection(false)}
-                className="p-6 border-2 border-border rounded-lg hover:border-blue-500 hover:bg-primary/10 transition-all group"
+                className="p-6 border-2 border-border rounded-lg hover:border-primary hover:bg-primary/10 transition-all group"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-error/15 rounded-full flex items-center justify-center mb-4 group-hover:bg-red-200 transition-colors">
+                  <div className="w-16 h-16 bg-error/15 rounded-full flex items-center justify-center mb-4 group-hover:bg-error/25 transition-colors">
                     <Icon name="Bug" size={32} className="text-error" />
                   </div>
                   <h4 className="font-semibold text-lg text-foreground mb-2">
@@ -163,10 +163,10 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
               {/* Bug Fix Option */}
               <button
                 onClick={() => handleBugTypeSelection(true)}
-                className="p-6 border-2 border-border rounded-lg hover:border-green-500 hover:bg-success/10 transition-all group"
+                className="p-6 border-2 border-border rounded-lg hover:border-success hover:bg-success/10 transition-all group"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
+                  <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center mb-4 group-hover:bg-success/25 transition-colors">
                     <Icon name="CheckCircle" size={32} className="text-success" />
                   </div>
                   <h4 className="font-semibold text-lg text-foreground mb-2">
@@ -312,12 +312,12 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
             </div>
 
             {/* AI Language Detection Info */}
-            <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-border rounded-lg p-4">
+            <div className="bg-primary/10 border border-border rounded-lg p-4">
               <div className="flex items-start gap-3">
                 <Icon name="Sparkles" size={20} className="text-primary flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-semibold text-purple-900 mb-1">AI-Powered Analysis</h4>
-                  <p className="text-sm text-purple-800">
+                  <h4 className="font-semibold text-foreground mb-1">AI-Powered Analysis</h4>
+                  <p className="text-sm text-muted-foreground">
                     Our AI will automatically detect the programming language, analyze your code, 
                     and highlight relevant tags and bug issues
                   </p>

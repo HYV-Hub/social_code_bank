@@ -37,14 +37,14 @@ const TeamStyleGuide = ({ rules }) => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-8 text-white">
+      <div className="bg-primary rounded-xl p-8 text-white">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-3xl font-bold mb-2 flex items-center gap-3">
               <Book className="w-8 h-8" />
               Team Style Guide
             </h2>
-            <p className="text-indigo-100">
+            <p className="text-primary-foreground/70">
               Company-specific coding standards and best practices
             </p>
           </div>
@@ -69,17 +69,17 @@ const TeamStyleGuide = ({ rules }) => {
         <div className="grid grid-cols-3 gap-4 mt-6">
           <div className="bg-card/10 rounded-lg p-4">
             <div className="text-2xl font-bold">{rules?.length}</div>
-            <div className="text-indigo-100 text-sm mt-1">Style Categories</div>
+            <div className="text-primary-foreground/70 text-sm mt-1">Style Categories</div>
           </div>
           <div className="bg-card/10 rounded-lg p-4">
             <div className="text-2xl font-bold">{totalWeight}%</div>
-            <div className="text-indigo-100 text-sm mt-1">Total Weight</div>
+            <div className="text-primary-foreground/70 text-sm mt-1">Total Weight</div>
           </div>
           <div className="bg-card/10 rounded-lg p-4">
             <div className="text-2xl font-bold">
               {rules?.filter((r) => r?.status === 'pass')?.length}
             </div>
-            <div className="text-indigo-100 text-sm mt-1">Passing</div>
+            <div className="text-primary-foreground/70 text-sm mt-1">Passing</div>
           </div>
         </div>
       </div>
@@ -136,9 +136,9 @@ const TeamStyleGuide = ({ rules }) => {
                             disabled={!editMode}
                           />
                         ) : (
-                          <div className="flex-1 bg-slate-200 rounded-full h-2 overflow-hidden">
+                          <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
                             <div
-                              className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"
+                              className="h-full bg-primary rounded-full"
                               style={{ width: `${(rule?.weight / 50) * 100}%` }}
                             />
                           </div>
@@ -153,9 +153,9 @@ const TeamStyleGuide = ({ rules }) => {
                         <div
                           className={`h-full transition-all duration-500 ${
                             rule?.score >= 80
-                              ? 'bg-gradient-to-r from-green-400 to-green-600'
+                              ? 'bg-success'
                               : rule?.score >= 60
-                              ? 'bg-gradient-to-r from-yellow-400 to-yellow-600' :'bg-gradient-to-r from-red-400 to-red-600'
+                              ? 'bg-warning' :'bg-error'
                           }`}
                           style={{ width: `${rule?.score}%` }}
                         />
@@ -215,7 +215,7 @@ const TeamStyleGuide = ({ rules }) => {
             <div className="flex gap-3">
               <button
                 onClick={() => setEditMode(false)}
-                className="px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-slate-200 transition-colors font-medium"
+                className="px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors font-medium"
               >
                 Cancel
               </button>
@@ -224,7 +224,7 @@ const TeamStyleGuide = ({ rules }) => {
                   setEditMode(false);
                   // Save logic here
                 }}
-                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all font-medium"
+                className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all font-medium"
               >
                 Save Changes
               </button>

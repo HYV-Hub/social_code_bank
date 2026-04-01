@@ -255,7 +255,7 @@ const CompanyDashboard = () => {
       <AppShell pageTitle="Company">
         <div className="flex items-center justify-center h-[calc(100vh-56px)]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading company dashboard...</p>
           </div>
         </div>
@@ -271,7 +271,7 @@ const CompanyDashboard = () => {
           <div className="text-center max-w-md">
             <div className="bg-error/10 rounded-lg p-6 border border-error/20">
               <Icon name="AlertCircle" size={48} className="text-error mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-red-900 mb-2">Access Error</h2>
+              <h2 className="text-xl font-semibold text-error mb-2">Access Error</h2>
               <p className="text-error mb-4">{error}</p>
               <p className="text-sm text-error">Redirecting...</p>
             </div>
@@ -309,7 +309,7 @@ const CompanyDashboard = () => {
               <div className="flex gap-3">
                 <Button
                   onClick={handleCreateSnippet}
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                  className="bg-success hover:bg-success/90"
                   iconName="Plus"
                 >
                   Add Snippet
@@ -339,7 +339,7 @@ const CompanyDashboard = () => {
                     out of <span className="font-semibold text-primary">{companyDetails?.user_limit || 10}</span> limit
                   </p>
                   <div className="flex items-center gap-1">
-                    <div className="h-2 w-2 rounded-full bg-success/100 animate-pulse"></div>
+                    <div className="h-2 w-2 rounded-full bg-success animate-pulse"></div>
                     <span className="text-xs text-muted-foreground">Active</span>
                   </div>
                 </div>
@@ -356,9 +356,9 @@ const CompanyDashboard = () => {
                 <p className="text-sm text-muted-foreground">Unique identifier</p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-8 border-2 border-border shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-primary/10 rounded-xl p-8 border-2 border-border shadow-md hover:shadow-lg transition-shadow">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-3 rounded-xl bg-purple-100">
+                  <div className="p-3 rounded-xl bg-primary/10">
                     <Icon name="Calendar" size={28} className="text-primary" />
                   </div>
                   <span className="text-base font-medium text-foreground">Created</span>
@@ -376,7 +376,7 @@ const CompanyDashboard = () => {
             <button
               onClick={() => handleTabChange('overview')}
               className={`px-6 py-3 font-medium text-sm transition-all duration-200 border-b-2 ${
-                activeTab === 'overview' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+                activeTab === 'overview' ?'border-primary text-primary' :'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
               }`}
             >
               <div className="flex items-center gap-2">
@@ -387,7 +387,7 @@ const CompanyDashboard = () => {
             <button
               onClick={() => handleTabChange('feed')}
               className={`px-6 py-3 font-medium text-sm transition-all duration-200 border-b-2 ${
-                activeTab === 'feed' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+                activeTab === 'feed' ?'border-primary text-primary' :'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
               }`}
             >
               <div className="flex items-center gap-2">
@@ -404,7 +404,7 @@ const CompanyDashboard = () => {
             <button
               onClick={() => handleTabChange('teams')}
               className={`px-6 py-3 font-medium text-sm transition-all duration-200 border-b-2 ${
-                activeTab === 'teams' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+                activeTab === 'teams' ?'border-primary text-primary' :'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
               }`}
             >
               <div className="flex items-center gap-2">
@@ -466,7 +466,7 @@ const CompanyDashboard = () => {
                 <h2 className="text-xl font-semibold text-foreground">Company Snippets</h2>
                 <Button
                   onClick={handleCreateSnippet}
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                  className="bg-success hover:bg-success/90"
                   iconName="Plus"
                 >
                   Add Snippet
@@ -483,7 +483,7 @@ const CompanyDashboard = () => {
                 <select
                   value={feedFilters?.language}
                   onChange={(e) => handleFilterChange('language', e?.target?.value)}
-                  className="px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+                  className="px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
                 >
                   <option value="all">All Languages</option>
                   <option value="javascript">JavaScript</option>
@@ -498,7 +498,7 @@ const CompanyDashboard = () => {
                 <select
                   value={feedFilters?.sortBy}
                   onChange={(e) => handleFilterChange('sortBy', e?.target?.value)}
-                  className="px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+                  className="px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
                 >
                   <option value="created_at">Most Recent</option>
                   <option value="likes_count">Most Liked</option>
@@ -519,7 +519,7 @@ const CompanyDashboard = () => {
               {feedLoading && snippets?.length === 0 ? (
                 <div className="flex items-center justify-center py-16">
                   <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
                     <p className="text-muted-foreground">Loading company snippets...</p>
                   </div>
                 </div>
@@ -534,7 +534,7 @@ const CompanyDashboard = () => {
                   </p>
                   <Button
                     onClick={() => navigate('/create-snippet')}
-                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                    className="bg-primary hover:bg-primary/90"
                   >
                     <Icon name="Plus" size={20} className="mr-2" />
                     Create Snippet
@@ -631,7 +631,7 @@ const CompanyDashboard = () => {
                 <h2 className="text-xl font-semibold text-foreground">Company Teams</h2>
                 <Button
                   onClick={handleCreateTeam}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                  className="bg-primary hover:bg-primary/90"
                   iconName="Plus"
                 >
                   Create Team
@@ -642,7 +642,7 @@ const CompanyDashboard = () => {
               {teamsLoading ? (
                 <div className="flex items-center justify-center py-16">
                   <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
                     <p className="text-muted-foreground">Loading company teams...</p>
                   </div>
                 </div>
@@ -672,7 +672,7 @@ const CompanyDashboard = () => {
                   </p>
                   <Button
                     onClick={handleCreateTeam}
-                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                    className="bg-primary hover:bg-primary/90"
                   >
                     <Icon name="Plus" size={20} className="mr-2" />
                     Create Team

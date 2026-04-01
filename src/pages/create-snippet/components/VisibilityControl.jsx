@@ -111,12 +111,12 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
           <Icon name="Layers" size={20} className="text-primary flex-shrink-0 mt-0.5" />
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <span className="font-semibold text-purple-900">{hiveName}</span>
-              <span className="px-2 py-0.5 bg-purple-200 text-purple-800 text-xs rounded-full font-medium">
+              <span className="font-semibold text-primary">{hiveName}</span>
+              <span className="px-2 py-0.5 bg-primary/15 text-primary text-xs rounded-full font-medium">
                 Hive
               </span>
             </div>
-            <p className="text-sm text-purple-800">
+            <p className="text-sm text-primary">
               This snippet will be automatically added to the <strong>{hiveName}</strong> hive and visible to all hive members.
             </p>
           </div>
@@ -143,7 +143,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
             key={option?.value}
             className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all ${
               visibility === option?.value
-                ? 'border-blue-500 bg-primary/10' :'border-border hover:border-border'
+                ? 'border-primary bg-primary/10' :'border-border hover:border-border'
             }`}
           >
             <input
@@ -192,7 +192,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
                 }
               }}
               disabled={loadingTeams}
-              className="flex-1 px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+              className="flex-1 px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary"
             >
               <option value="">
                 {isTeamContext ? 'Select team' : 'No specific team (Company-wide)'}
@@ -225,7 +225,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
       {isTeamContext && (
         <div className="mt-4 p-3 bg-primary/10 rounded-lg flex items-start gap-2">
           <Icon name="Info" size={16} className="text-primary flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-purple-800">
+          <p className="text-xs text-primary">
             This snippet will be automatically posted to the team feed.
           </p>
         </div>

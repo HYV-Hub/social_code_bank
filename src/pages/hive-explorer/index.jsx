@@ -370,8 +370,8 @@ export default function HiveExplorer() {
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative">
-              <div className="animate-spin rounded-full h-16 w-16 border-4 border-border border-t-purple-600 mx-auto mb-4"></div>
-              <div className="absolute inset-0 rounded-full h-16 w-16 border-4 border-transparent border-t-indigo-600 mx-auto animate-ping opacity-20"></div>
+              <div className="animate-spin rounded-full h-16 w-16 border-4 border-border border-t-primary mx-auto mb-4"></div>
+              <div className="absolute inset-0 rounded-full h-16 w-16 border-4 border-transparent border-t-accent mx-auto animate-ping opacity-20"></div>
             </div>
             <p className="text-foreground font-medium animate-pulse">Loading hive experience...</p>
           </div>
@@ -397,7 +397,7 @@ export default function HiveExplorer() {
             </p>
             <Button
               onClick={() => navigate('/hives')}
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transform hover:scale-105 transition-all shadow-lg hover:shadow-xl"
+              className="bg-primary hover:bg-primary/90 transform hover:scale-105 transition-all shadow-lg hover:shadow-xl"
             >
               <Icon name="ArrowLeft" size={18} className="mr-2" />
               Back to Hives
@@ -428,7 +428,7 @@ export default function HiveExplorer() {
         <main className={isCompanyContext ? 'flex-1 overflow-y-auto pt-6' : ''}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Enhanced Hive Header with Gradient */}
-            <div className="relative bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 rounded-xl shadow-2xl overflow-hidden mb-8">
+            <div className="relative bg-gradient-to-br from-primary via-secondary to-accent rounded-xl shadow-2xl overflow-hidden mb-8">
               {/* Decorative Background Elements */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-card rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
@@ -454,7 +454,7 @@ export default function HiveExplorer() {
                         </span>
                       )}
                     </div>
-                    <p className="text-purple-100 mb-6 text-lg leading-relaxed max-w-3xl">
+                    <p className="text-white/80 mb-6 text-lg leading-relaxed max-w-3xl">
                       {hive?.description}
                     </p>
                     
@@ -528,7 +528,7 @@ export default function HiveExplorer() {
                   <button
                     onClick={() => setActiveTab('overview')}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                      activeTab === 'overview' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      activeTab === 'overview' ?'bg-primary text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     <Icon name="Home" size={18} />
@@ -537,7 +537,7 @@ export default function HiveExplorer() {
                   <button
                     onClick={() => setActiveTab('snippets')}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                      activeTab === 'snippets' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      activeTab === 'snippets' ?'bg-primary text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     <Icon name="Code" size={18} />
@@ -551,7 +551,7 @@ export default function HiveExplorer() {
                   <button
                     onClick={() => setActiveTab('collections')}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                      activeTab === 'collections' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      activeTab === 'collections' ?'bg-primary text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     <Icon name="FolderOpen" size={18} />
@@ -565,7 +565,7 @@ export default function HiveExplorer() {
                   <button
                     onClick={() => setActiveTab('members')}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                      activeTab === 'members' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      activeTab === 'members' ?'bg-primary text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     <Icon name="Users" size={18} />
@@ -578,7 +578,7 @@ export default function HiveExplorer() {
                     <button
                       onClick={() => setActiveTab('settings')}
                       className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all whitespace-nowrap ${
-                        activeTab === 'settings' ?'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
+                        activeTab === 'settings' ?'bg-primary text-white shadow-lg transform scale-105' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                       }`}
                     >
                       <Icon name="Settings" size={18} />
@@ -605,7 +605,7 @@ export default function HiveExplorer() {
                     <div className="bg-card rounded-xl shadow-lg border border-border p-6">
                       <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
                         <div>
-                          <h2 className="text-2xl font-bold text-foreground bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                          <h2 className="text-2xl font-bold text-foreground text-primary">
                             Code Snippets
                           </h2>
                           <p className="text-muted-foreground text-sm mt-1">
@@ -637,7 +637,7 @@ export default function HiveExplorer() {
                       <div className="bg-card rounded-xl shadow-lg border border-border p-12 text-center">
                         <div className="relative inline-block mb-6">
                           <div className="absolute inset-0 bg-primary opacity-10 blur-2xl rounded-full"></div>
-                          <Icon name="Code" size={64} className="mx-auto text-purple-400 relative z-10" />
+                          <Icon name="Code" size={64} className="mx-auto text-primary/60 relative z-10" />
                         </div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">No snippets found</h3>
                         <p className="text-muted-foreground mb-6">
@@ -647,7 +647,7 @@ export default function HiveExplorer() {
                         {hive?.userRole && (
                           <Button
                             onClick={() => navigate(`/hive-snippet-editor?hive=${hiveId}`)}
-                            className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+                            className="bg-primary hover:bg-primary/90"
                           >
                             <Icon name="Plus" size={18} className="mr-2" />
                             Create Snippet
@@ -717,7 +717,7 @@ export default function HiveExplorer() {
                   <div className="space-y-6">
                     <div className="bg-card rounded-xl shadow-lg border border-border p-6">
                       <div className="mb-6">
-                        <h2 className="text-2xl font-bold text-foreground bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                        <h2 className="text-2xl font-bold text-foreground text-primary">
                           Hive Members
                         </h2>
                         <p className="text-muted-foreground text-sm mt-1">
@@ -744,8 +744,8 @@ export default function HiveExplorer() {
                       {members?.length === 0 ? (
                         <div className="text-center py-12">
                           <div className="relative inline-block mb-6">
-                            <div className="absolute inset-0 bg-indigo-500 opacity-10 blur-2xl rounded-full"></div>
-                            <Icon name="Users" size={64} className="mx-auto text-indigo-400 relative z-10" />
+                            <div className="absolute inset-0 bg-primary opacity-10 blur-2xl rounded-full"></div>
+                            <Icon name="Users" size={64} className="mx-auto text-primary/60 relative z-10" />
                           </div>
                           <h3 className="text-xl font-semibold text-foreground mb-2">No members yet</h3>
                           <p className="text-muted-foreground">Be the first to join this hive!</p>
@@ -765,7 +765,7 @@ export default function HiveExplorer() {
                                   className="w-14 h-14 rounded-full ring-2 ring-border group-hover:ring-primary/40 transition-all flex-shrink-0"
                                 />
                               ) : (
-                                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center ring-2 ring-border group-hover:ring-primary/40 transition-all flex-shrink-0">
+                                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center ring-2 ring-border group-hover:ring-primary/40 transition-all flex-shrink-0">
                                   <Icon name="User" size={24} className="text-white" />
                                 </div>
                               )}
@@ -789,10 +789,10 @@ export default function HiveExplorer() {
                                 />
                               ) : (
                                 <span className={`px-3 py-1.5 text-xs font-semibold rounded-lg whitespace-nowrap ${
-                                  member?.role === 'owner' ?'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md'
-                                    : member?.role === 'admin' ?'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md'
-                                    : member?.role === 'editor' ?'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-md'
-                                    : member?.role === 'viewer' ?'bg-gradient-to-r from-purple-400 to-pink-400 text-white shadow-md' :'bg-muted text-foreground'
+                                  member?.role === 'owner' ?'bg-primary text-white shadow-md'
+                                    : member?.role === 'admin' ?'bg-accent text-white shadow-md'
+                                    : member?.role === 'editor' ?'bg-success text-white shadow-md'
+                                    : member?.role === 'viewer' ?'bg-secondary text-white shadow-md' :'bg-muted text-foreground'
                                 }`}>
                                   {member?.role === 'owner' && '👑 '}
                                   {member?.role === 'admin' && '⭐ '}
@@ -948,11 +948,11 @@ export default function HiveExplorer() {
       {/* Enhanced Real-time Notification Toast - Keep for both contexts */}
       {realtimeNotification && (
         <div className="fixed top-20 right-4 z-50 animate-slide-in-right">
-          <div className="bg-card border-l-4 border-purple-600 rounded-xl shadow-2xl p-5 max-w-sm backdrop-blur-sm">
+          <div className="bg-card border-l-4 border-primary rounded-xl shadow-2xl p-5 max-w-sm backdrop-blur-sm">
             <div className="flex items-start gap-3">
               <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${
-                realtimeNotification?.type === 'member' ? 'bg-gradient-to-br from-green-400 to-emerald-500' :
-                realtimeNotification?.type === 'snippet'? 'bg-gradient-to-br from-blue-400 to-indigo-500' : 'bg-gradient-to-br from-purple-400 to-pink-500'
+                realtimeNotification?.type === 'member' ? 'bg-success' :
+                realtimeNotification?.type === 'snippet'? 'bg-accent' : 'bg-primary'
               }`}>
                 <Icon 
                   name={

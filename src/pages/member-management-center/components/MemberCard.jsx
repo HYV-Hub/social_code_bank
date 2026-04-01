@@ -18,7 +18,7 @@ export default function MemberCard({
   const getRoleBadgeColor = (role) => {
     switch (role) {
       case 'company_admin':
-        return 'bg-purple-100 text-purple-800';
+        return 'bg-primary/10 text-primary';
       case 'team_admin':
         return 'bg-primary/15 text-foreground';
       case 'team_member':
@@ -48,7 +48,7 @@ export default function MemberCard({
       beginner: { color: 'bg-muted text-foreground', label: 'Beginner' },
       intermediate: { color: 'bg-primary/15 text-primary', label: 'Intermediate' },
       advanced: { color: 'bg-success/15 text-success', label: 'Advanced' },
-      expert: { color: 'bg-purple-100 text-primary', label: 'Expert' },
+      expert: { color: 'bg-primary/10 text-primary', label: 'Expert' },
       master: { color: 'bg-warning/15 text-warning', label: 'Master' }
     };
     return badges?.[level] || badges?.beginner;
@@ -74,7 +74,7 @@ export default function MemberCard({
   const teamName = teams?.find(t => t?.id === member?.teamId)?.name || 'No Team';
 
   return (
-    <div className={`bg-card rounded-lg shadow-md hover:shadow-lg transition-all ${isSelected ? 'ring-2 ring-slate-700' : ''} ${!member?.isActive ? 'opacity-60' : ''}`}>
+    <div className={`bg-card rounded-lg shadow-md hover:shadow-lg transition-all ${isSelected ? 'ring-2 ring-primary' : ''} ${!member?.isActive ? 'opacity-60' : ''}`}>
       {/* Card Header with Selection */}
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
@@ -84,7 +84,7 @@ export default function MemberCard({
               checked={isSelected}
               onChange={() => onSelect(member?.id)}
               disabled={isCurrentUser}
-              className="mt-1 w-5 h-5 text-muted-foreground rounded focus:ring-slate-700 disabled:opacity-50"
+              className="mt-1 w-5 h-5 text-muted-foreground rounded focus:ring-primary disabled:opacity-50"
             />
             
             <div className="flex-1">
@@ -97,7 +97,7 @@ export default function MemberCard({
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
                     <User className="w-6 h-6 text-white" />
                   </div>
                 )}
@@ -163,7 +163,7 @@ export default function MemberCard({
                           onDeactivate(member?.id);
                           setShowActions(false);
                         }}
-                        className="w-full px-4 py-2 text-left text-sm text-orange-600 hover:bg-orange-50 flex items-center gap-2"
+                        className="w-full px-4 py-2 text-left text-sm text-warning hover:bg-warning/10 flex items-center gap-2"
                       >
                         <X className="w-4 h-4" />
                         Deactivate
@@ -239,7 +239,7 @@ export default function MemberCard({
             <select
               value={member?.teamId || ''}
               onChange={(e) => onUpdateTeam(member?.id, e?.target?.value || null)}
-              className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent text-sm"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
             >
               <option value="">No Team</option>
               {teams?.map(team => (

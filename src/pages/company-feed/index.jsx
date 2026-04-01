@@ -128,7 +128,7 @@ export default function CompanyFeed() {
           <div className="flex items-start gap-3">
             <Icon name="AlertCircle" className="text-warning flex-shrink-0" size={24} />
             <div>
-              <h3 className="text-lg font-semibold text-yellow-900 mb-2">No Company Association</h3>
+              <h3 className="text-lg font-semibold text-warning mb-2">No Company Association</h3>
               <p className="text-warning">You are not associated with any company. Please join or create a company first.</p>
               <Button
                 className="mt-4"
@@ -184,7 +184,7 @@ export default function CompanyFeed() {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e?.target?.value)}
-                    className="px-3 py-1 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-blue-500"
+                    className="px-3 py-1 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-primary"
                   >
                     <option value="recent">Most Recent</option>
                     <option value="popular">Most Popular</option>
@@ -197,7 +197,7 @@ export default function CompanyFeed() {
                   <select
                     value={filterLanguage}
                     onChange={(e) => setFilterLanguage(e?.target?.value)}
-                    className="px-3 py-1 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-blue-500"
+                    className="px-3 py-1 border border-border rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-primary"
                   >
                     <option value="all">All Languages</option>
                     <option value="javascript">JavaScript</option>
@@ -227,7 +227,7 @@ export default function CompanyFeed() {
               <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
                 <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-red-900">Error loading feed</p>
+                  <p className="text-sm font-medium text-error">Error loading feed</p>
                   <p className="text-sm text-error mt-1">{error}</p>
                 </div>
                 <button
@@ -243,7 +243,7 @@ export default function CompanyFeed() {
             {loading ? (
               <div className="flex items-center justify-center py-16">
                 <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
                   <p className="text-muted-foreground">Loading company feed...</p>
                 </div>
               </div>
@@ -267,7 +267,7 @@ export default function CompanyFeed() {
                     <div
                       key={snippet?.id}
                       onClick={() => handleSnippetClick(snippet?.id)}
-                      className="bg-card rounded-lg border border-border hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer overflow-hidden"
+                      className="bg-card rounded-lg border border-border hover:border-primary hover:shadow-lg transition-all cursor-pointer overflow-hidden"
                     >
                       {/* Header */}
                       <div className="p-4 border-b border-border">
@@ -344,7 +344,7 @@ export default function CompanyFeed() {
                             {snippet?.ai_tags?.slice(0, 3)?.map((tag, idx) => (
                               <span
                                 key={idx}
-                                className="text-xs px-2 py-0.5 bg-purple-100 text-primary rounded-full"
+                                className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full"
                               >
                                 {tag}
                               </span>

@@ -16,7 +16,7 @@ const CategoryTabs = ({ categories, activeCategory, onCategoryChange }) => {
             className={`
               relative p-6 rounded-xl transition-all duration-300
               ${isActive
-                ? 'bg-card shadow-xl scale-105 border-2 border-blue-500'
+                ? 'bg-card shadow-xl scale-105 border-2 border-primary'
                 : 'bg-card shadow-sm hover:shadow-md border-2 border-transparent'
               }
             `}

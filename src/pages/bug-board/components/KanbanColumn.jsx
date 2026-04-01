@@ -11,7 +11,7 @@ export default function KanbanColumn({ status, title, bugs, onDrop, onDragOver, 
     if (isBugFix) {
       switch (status) {
         case 'open': return 'bg-primary/15 text-foreground';
-        case 'in_progress': return 'bg-purple-100 text-purple-800';
+        case 'in_progress': return 'bg-primary/15 text-primary';
         case 'resolved': return 'bg-success/15 text-success';
         case 'closed': return 'bg-muted text-foreground';
         default: return 'bg-muted text-foreground';

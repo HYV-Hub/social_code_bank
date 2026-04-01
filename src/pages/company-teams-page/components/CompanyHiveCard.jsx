@@ -8,7 +8,7 @@ const CompanyHiveCard = ({ hive, onClick, userRole }) => {
   return (
     <div
       onClick={onClick}
-      className="bg-card rounded-xl border border-border hover:border-blue-400 hover:shadow-lg transition-all duration-200 cursor-pointer group"
+      className="bg-card rounded-xl border border-border hover:border-primary hover:shadow-lg transition-all duration-200 cursor-pointer group"
     >
       {/* Card Header */}
       <div className="p-6 border-b border-border">
@@ -93,7 +93,7 @@ const CompanyHiveCard = ({ hive, onClick, userRole }) => {
         </div>
       </div>
       {/* Hover Effect Indicator */}
-      <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-b-xl" />
+      <div className="h-1 bg-primary opacity-0 group-hover:opacity-100 transition-opacity rounded-b-xl" />
     </div>
   );
 };

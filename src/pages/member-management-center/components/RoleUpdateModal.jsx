@@ -58,9 +58,9 @@ export default function RoleUpdateModal({ member, onUpdate, onClose }) {
   const getRoleColor = (color) => {
     const colors = {
       gray: 'bg-muted text-foreground border-border',
-      green: 'bg-success/15 text-success border-green-300',
-      blue: 'bg-primary/15 text-foreground border-blue-300',
-      purple: 'bg-purple-100 text-purple-800 border-border'
+      green: 'bg-success/15 text-success border-success',
+      blue: 'bg-primary/15 text-foreground border-primary',
+      purple: 'bg-primary/10 text-primary border-border'
     };
     return colors?.[color] || colors?.gray;
   };
@@ -108,7 +108,7 @@ export default function RoleUpdateModal({ member, onUpdate, onClose }) {
               key={role?.value}
               className={`block p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 hover:shadow-md ${
                 selectedRole === role?.value
-                  ? 'border-blue-500 bg-primary/10 shadow-lg'
+                  ? 'border-primary bg-primary/10 shadow-lg'
                   : 'border-border hover:border-border'
               }`}
             >

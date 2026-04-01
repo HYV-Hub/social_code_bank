@@ -54,7 +54,7 @@ const AITagsDisplay = ({ aiAnalysis, snippetId, code, language }) => {
       <div className="bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 border-2 border-border rounded-xl overflow-hidden shadow-lg">
         <div className="relative px-5 py-4 bg-gradient-to-r from-primary via-secondary to-accent text-white overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-card/10 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-400/20 rounded-full blur-xl"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/20 rounded-full blur-xl"></div>
           
           <div className="relative z-10 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -74,14 +74,14 @@ const AITagsDisplay = ({ aiAnalysis, snippetId, code, language }) => {
 
         <div className="p-5 space-y-5">
           <div className="text-center py-8 bg-card rounded-xl shadow-md border border-border">
-            <div className="p-4 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+            <div className="p-4 bg-primary/10 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <Icon name="Sparkles" size={40} className="text-primary animate-pulse" />
             </div>
             <p className="text-sm font-semibold text-foreground mb-2">No AI Analysis Available</p>
             <p className="text-xs text-muted-foreground mb-4">
               Get instant insights about your code quality, style, and potential bugs
             </p>
-            <button className="px-4 py-2 bg-gradient-to-r from-primary to-secondary hover:from-purple-700 hover:to-blue-700 text-white text-sm font-medium rounded-lg transition-all transform hover:scale-105 shadow-lg">
+            <button className="px-4 py-2 bg-primary hover:bg-primary text-white text-sm font-medium rounded-lg transition-all transform hover:scale-105 shadow-lg">
               Analyze Now
             </button>
           </div>
@@ -94,7 +94,7 @@ const AITagsDisplay = ({ aiAnalysis, snippetId, code, language }) => {
     <div className="bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 border-2 border-border rounded-xl overflow-hidden shadow-lg">
       <div className="relative px-5 py-4 bg-gradient-to-r from-primary via-secondary to-accent text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-card/10 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-400/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/20 rounded-full blur-xl"></div>
         
         <div className="relative z-10 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -122,7 +122,7 @@ const AITagsDisplay = ({ aiAnalysis, snippetId, code, language }) => {
                   <Icon name="Award" size={18} className="text-primary" />
                   <span className="text-sm font-bold text-foreground">Quality Score</span>
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <span className="text-2xl font-bold text-primary">
                   {qualityScore}%
                 </span>
               </div>
@@ -145,13 +145,13 @@ const AITagsDisplay = ({ aiAnalysis, snippetId, code, language }) => {
                     <Icon name="Palette" size={18} className="text-primary" />
                     <span className="text-sm font-bold text-foreground">Style Match</span>
                   </div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                  <span className="text-2xl font-bold text-accent">
                     {styleMatchScore}%
                   </span>
                 </div>
                 <div className="relative w-full bg-muted rounded-full h-3 overflow-hidden">
                   <div
-                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full transition-all duration-1000 ease-out"
+                    className="absolute inset-y-0 left-0 bg-accent rounded-full transition-all duration-1000 ease-out"
                     style={{ width: `${styleMatchScore}%` }}
                   />
                 </div>
@@ -160,8 +160,8 @@ const AITagsDisplay = ({ aiAnalysis, snippetId, code, language }) => {
 
             {/* Enhanced Bug Risk */}
             <div className={`relative bg-card rounded-xl p-4 shadow-md border-2 overflow-hidden ${
-              riskInfo?.bg === 'bg-success/10' ? 'border-green-300' :
-              riskInfo?.bg === 'bg-warning/10'? 'border-yellow-300' : 'border-red-300'
+              riskInfo?.bg === 'bg-success/10' ? 'border-success/30' :
+              riskInfo?.bg === 'bg-warning/10'? 'border-warning/30' : 'border-error/30'
             }`}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -196,7 +196,7 @@ const AITagsDisplay = ({ aiAnalysis, snippetId, code, language }) => {
                 </button>
                 {isExpanded && (
                   <div className="px-4 pb-4 border-t border-border">
-                    <p className="mt-3 text-sm text-foreground leading-relaxed bg-gradient-to-r from-purple-50 to-blue-50 p-3 rounded-lg">
+                    <p className="mt-3 text-sm text-foreground leading-relaxed bg-primary/10 p-3 rounded-lg">
                       {aiAnalysis?.summary}
                     </p>
                   </div>
@@ -215,7 +215,7 @@ const AITagsDisplay = ({ aiAnalysis, snippetId, code, language }) => {
                   {aiAnalysis?.tags?.slice(0, 6)?.map((tag, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1.5 bg-gradient-to-r from-purple-100 to-blue-100 border border-border text-sm text-primary font-medium rounded-lg hover:from-purple-200 hover:to-blue-200 transition-all cursor-pointer transform hover:scale-105 shadow-sm"
+                      className="px-3 py-1.5 bg-primary/10 border border-border text-sm text-primary font-medium rounded-lg hover:bg-primary/15 transition-all cursor-pointer transform hover:scale-105 shadow-sm"
                     >
                       #{tag}
                     </span>

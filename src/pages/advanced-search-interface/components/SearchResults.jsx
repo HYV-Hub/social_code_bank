@@ -10,7 +10,7 @@ export default function SearchResults({ results, loading }) {
     return (
       <div className="flex items-center justify-center py-16">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-muted-foreground">Searching...</p>
         </div>
       </div>
@@ -20,7 +20,7 @@ export default function SearchResults({ results, loading }) {
   if (!results || results?.totalResults === 0) {
     return (
       <div className="text-center py-16 bg-card rounded-lg border border-border">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-purple-100 mb-6">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
           <Icon name="Search" size={40} className="text-primary" />
         </div>
         <h3 className="text-xl font-semibold text-foreground mb-2">

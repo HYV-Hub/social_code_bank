@@ -34,7 +34,7 @@ export default function CodeReviewWorkflow() {
       <AppShell pageTitle="Code Review">
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading reviews...</p>
           </div>
         </div>

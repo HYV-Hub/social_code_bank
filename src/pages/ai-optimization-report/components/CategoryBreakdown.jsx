@@ -5,7 +5,7 @@ export default function CategoryBreakdown({ categories, securityAnalysis, bugRev
   const getSeverityColor = (severity) => {
     const colors = {
       critical: 'text-error bg-error/10 border-error/20',
-      high: 'text-orange-600 bg-orange-50 border-orange-200',
+      high: 'text-warning bg-warning/10 border-warning/20',
       medium: 'text-warning bg-warning/10 border-warning/20',
       low: 'text-primary bg-primary/10 border-primary/20'
     };
@@ -44,7 +44,7 @@ export default function CategoryBreakdown({ categories, securityAnalysis, bugRev
                     </p>
                   )}
                   <div className="bg-success/10 border border-success/20 rounded p-2 mt-2">
-                    <p className="text-xs text-green-900">
+                    <p className="text-xs text-success">
                       <strong>Fix:</strong> {vuln?.fix}
                     </p>
                   </div>
@@ -64,7 +64,7 @@ export default function CategoryBreakdown({ categories, securityAnalysis, bugRev
       {bugReview && (
         <div className="bg-card rounded-lg shadow-lg p-4">
           <div className="flex items-center space-x-2 mb-3">
-            <AlertCircle className="w-4 h-4 text-orange-600" />
+            <AlertCircle className="w-4 h-4 text-warning" />
             <h3 className="text-base font-bold text-foreground">Bug Risk Review</h3>
             <span className={`px-2 py-0.5 rounded text-xs font-medium ${getSeverityColor(bugReview?.riskLevel)}`}>
               {bugReview?.riskLevel?.toUpperCase()} RISK
@@ -74,7 +74,7 @@ export default function CategoryBreakdown({ categories, securityAnalysis, bugRev
           {bugReview?.potentialBugs?.length > 0 ? (
             <div className="space-y-2">
               {bugReview?.potentialBugs?.map((bug, index) => (
-                <div key={index} className="border rounded-lg p-3 bg-orange-50 border-orange-200">
+                <div key={index} className="border rounded-lg p-3 bg-warning/10 border-warning/20">
                   <h4 className="font-semibold text-sm text-foreground mb-2">{bug?.type}</h4>
                   <p className="text-xs text-foreground mb-2">{bug?.description}</p>
                   {bug?.location && (
@@ -135,13 +135,13 @@ export default function CategoryBreakdown({ categories, securityAnalysis, bugRev
           
           <div className="space-y-2">
             {performanceDiagnostics?.bottlenecks?.map((bottleneck, index) => (
-              <div key={index} className="border rounded-lg p-3 bg-indigo-50 border-indigo-200">
+              <div key={index} className="border rounded-lg p-3 bg-primary/10 border-primary/20">
                 <h4 className="font-semibold text-sm text-foreground mb-2">{bottleneck?.issue}</h4>
                 <p className="text-xs text-foreground mb-2">
                   <strong>Impact:</strong> {bottleneck?.impact}
                 </p>
                 <div className="bg-success/10 border border-success/20 rounded p-2 mt-2">
-                  <p className="text-xs text-green-900">
+                  <p className="text-xs text-success">
                     <strong>Solution:</strong> {bottleneck?.solution}
                   </p>
                 </div>
@@ -155,13 +155,13 @@ export default function CategoryBreakdown({ categories, securityAnalysis, bugRev
       {architecturalReview?.concerns?.length > 0 && (
         <div className="bg-card rounded-lg shadow-lg p-4">
           <div className="flex items-center space-x-2 mb-3">
-            <AlertCircle className="w-4 h-4 text-teal-600" />
+            <AlertCircle className="w-4 h-4 text-accent" />
             <h3 className="text-base font-bold text-foreground">Architectural Review</h3>
           </div>
           
           <div className="space-y-2">
             {architecturalReview?.concerns?.map((concern, index) => (
-              <div key={index} className="border rounded-lg p-3 bg-teal-50 border-teal-200">
+              <div key={index} className="border rounded-lg p-3 bg-accent/10 border-accent/20">
                 <h4 className="font-semibold text-sm text-foreground mb-2">{concern?.concern}</h4>
                 <p className="text-xs text-foreground">
                   <strong>Recommendation:</strong> {concern?.recommendation}

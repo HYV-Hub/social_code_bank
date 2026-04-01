@@ -70,7 +70,7 @@ export default function HiveInsightsSidebar({
         {/* AI Insights Toggle */}
         <button
           onClick={toggleAIInsights}
-          className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all text-xs font-medium"
+          className="flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-primary transition-all text-xs font-medium"
         >
           <Icon name="Sparkles" size={14} />
           AI Insights
@@ -82,7 +82,7 @@ export default function HiveInsightsSidebar({
         <div className="mb-6 pb-6 border-b border-border">
           {isLoadingAI && (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600" />
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
             </div>
           )}
 
@@ -102,10 +102,10 @@ export default function HiveInsightsSidebar({
             <div className="space-y-4">
               {/* AI Summary */}
               {aiInsights?.summary && (
-                <div className="p-3 bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg border border-border">
+                <div className="p-3 bg-primary/10 rounded-lg border border-border">
                   <div className="flex items-center gap-2 mb-2">
                     <Icon name="Sparkles" size={14} className="text-primary" />
-                    <h5 className="text-xs font-semibold text-purple-900">AI Summary</h5>
+                    <h5 className="text-xs font-semibold text-primary">AI Summary</h5>
                   </div>
                   <p className="text-xs text-foreground leading-relaxed mb-2">
                     {aiInsights?.summary?.summary}
@@ -121,7 +121,7 @@ export default function HiveInsightsSidebar({
                   {aiInsights?.summary?.focusAreas?.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-1">
                       {aiInsights?.summary?.focusAreas?.map((area, idx) => (
-                        <span key={idx} className="px-2 py-0.5 bg-purple-100 text-primary rounded text-xs">
+                        <span key={idx} className="px-2 py-0.5 bg-primary/10 text-primary rounded text-xs">
                           {area}
                         </span>
                       ))}
@@ -132,14 +132,14 @@ export default function HiveInsightsSidebar({
 
               {/* Trending Analysis */}
               {aiInsights?.trendingAnalysis && (
-                <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                <div className="p-3 bg-warning/10 rounded-lg border border-warning/20">
                   <div className="flex items-center gap-2 mb-2">
-                    <Icon name="TrendingUp" size={14} className="text-orange-600" />
-                    <h5 className="text-xs font-semibold text-orange-900">Trending Topics</h5>
+                    <Icon name="TrendingUp" size={14} className="text-warning" />
+                    <h5 className="text-xs font-semibold text-warning">Trending Topics</h5>
                   </div>
                   <div className="flex flex-wrap gap-1 mb-2">
                     {aiInsights?.trendingAnalysis?.trendingTopics?.map((topic, idx) => (
-                      <span key={idx} className="px-2 py-0.5 bg-orange-100 text-orange-700 rounded text-xs font-medium">
+                      <span key={idx} className="px-2 py-0.5 bg-warning/10 text-warning rounded text-xs font-medium">
                         🔥 {topic}
                       </span>
                     ))}
@@ -155,11 +155,11 @@ export default function HiveInsightsSidebar({
                 <div className="p-3 bg-success/10 rounded-lg border border-success/20">
                   <div className="flex items-center gap-2 mb-2">
                     <Icon name="Lightbulb" size={14} className="text-success" />
-                    <h5 className="text-xs font-semibold text-green-900">Recommended Actions</h5>
+                    <h5 className="text-xs font-semibold text-success">Recommended Actions</h5>
                   </div>
                   <div className="space-y-2">
                     {aiInsights?.recommendations?.topRecommendations?.slice(0, 3)?.map((rec, idx) => (
-                      <div key={idx} className="p-2 bg-card rounded border border-green-100">
+                      <div key={idx} className="p-2 bg-card rounded border border-success/10">
                         <div className="flex items-center justify-between mb-1">
                           <p className="text-xs font-medium text-foreground">{rec?.action}</p>
                           <span className={`px-1.5 py-0.5 rounded text-xs ${
@@ -222,7 +222,7 @@ export default function HiveInsightsSidebar({
         <div className="mb-6 pb-6 border-b border-border">
           <div className="flex items-center justify-between mb-2">
             <h4 className="text-xs font-semibold text-foreground">Trending Snippets</h4>
-            <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">
+            <span className="text-xs bg-warning/10 text-warning px-2 py-0.5 rounded-full">
               🔥 Hot
             </span>
           </div>
@@ -264,8 +264,8 @@ export default function HiveInsightsSidebar({
               <div key={idx} className="flex gap-2">
                 <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${
                   activity?.type === 'snippet' ? 'bg-primary' :
-                  activity?.type === 'member' ? 'bg-success/100' :
-                  activity?.type === 'collection'? 'bg-primary/100' : 'bg-background0'
+                  activity?.type === 'member' ? 'bg-success' :
+                  activity?.type === 'collection'? 'bg-primary' : 'bg-muted'
                 }`} />
                 <div className="flex-1 min-w-0">
                   <p className="text-xs text-foreground leading-relaxed">

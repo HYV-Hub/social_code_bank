@@ -4,7 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 const CollectionHeader = ({ collection, canManage, onBack, onEdit }) => {
   return (
-    <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white">
+    <div className="bg-primary text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <button
@@ -27,7 +27,7 @@ const CollectionHeader = ({ collection, canManage, onBack, onEdit }) => {
                 <h1 className="text-3xl md:text-4xl font-bold mb-2">
                   {collection?.name}
                 </h1>
-                <div className="flex items-center gap-3 text-blue-100">
+                <div className="flex items-center gap-3 text-white/80">
                   {/* Hive Name */}
                   <span className="flex items-center gap-1">
                     {collection?.hives?.privacy === 'private' ? (
@@ -45,13 +45,13 @@ const CollectionHeader = ({ collection, canManage, onBack, onEdit }) => {
 
             {/* Description */}
             {collection?.description && (
-              <p className="text-lg text-blue-50 mb-6 max-w-3xl">
+              <p className="text-lg text-white/90 mb-6 max-w-3xl">
                 {collection?.description}
               </p>
             )}
 
             {/* Metadata */}
-            <div className="flex flex-wrap gap-4 text-sm text-blue-100">
+            <div className="flex flex-wrap gap-4 text-sm text-white/80">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 <span>
