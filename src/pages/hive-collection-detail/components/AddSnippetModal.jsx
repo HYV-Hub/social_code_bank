@@ -22,7 +22,7 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
       console.log('🔍 Loading hive snippets for hive:', hiveId, 'collection:', collectionId);
       
       // Import supabase client
-      const { supabase } = await import('../../../services/supabaseClient');
+      const { supabase } = await import('../../../lib/supabase');
       
       // FIXED: Query through hive_snippets junction table with proper joins to get actual snippet data
       const { data: hiveSnippetsData, error: snippetsError } = await supabase
