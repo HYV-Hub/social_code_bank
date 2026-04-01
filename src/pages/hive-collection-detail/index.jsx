@@ -12,7 +12,7 @@ import {
   removeSnippetFromCollection,
   updateHiveCollection
 } from '../../services/hiveCollectionService';
-import { useAuth } from '../../components/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 const HiveCollectionDetail = () => {
   const { collectionId } = useParams();

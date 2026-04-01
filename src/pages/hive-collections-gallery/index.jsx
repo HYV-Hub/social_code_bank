@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Search, Filter, Grid, List, TrendingUp, Clock, Users, Eye, Bookmark, Share2, ChevronDown, X, ArrowLeft, ArrowUp } from 'lucide-react';
 import { hiveCollectionService } from '../../services/hiveCollectionService';
-import { useAuth } from '../../components/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import Icon from '../../components/ui/Icon';
 
 const HiveCollectionsGallery = () => {

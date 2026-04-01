@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useRef } from 'react';
-import { supabase } from '../services/supabaseClient';
+import { supabase } from '../lib/supabase';
 
 /**
  * Custom hook for Supabase real-time subscriptions in Global Hives

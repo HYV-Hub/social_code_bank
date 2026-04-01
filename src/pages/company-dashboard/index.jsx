@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useAuth } from '../../components/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import AppNavigation from '../../components/AppNavigation';
 import Button from '../../components/ui/Button';
 

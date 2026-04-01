@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../components/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import AppNavigation from '../../components/AppNavigation';
 import PublicNavigation from '../../components/PublicNavigation';
 import Button from '../../components/ui/Button';

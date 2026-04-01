@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Search, Lock, Globe, Trash2, FolderOpen } from 'lucide-react';
 import { getHiveCollections, deleteHiveCollection } from '../../../services/hiveCollectionService';
-import { useAuth } from '../../../components/AuthContext';
+import { useAuth } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const HiveCollectionsTab = ({ hiveId, hiveRole }) => {

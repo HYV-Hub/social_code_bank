@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../components/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { Plus, Users, Globe, Search, Filter, TrendingUp, Grid, List, ArrowUpDown, ChevronRight } from 'lucide-react';
 import { hiveService } from '../../services/hiveService';
 import CreateCompanyHiveModal from './components/CreateCompanyHiveModal';
