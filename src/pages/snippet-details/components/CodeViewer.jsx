@@ -466,7 +466,7 @@ const CodeViewer = ({ snippet }) => {
         </div>
       )}
       {/* Content */}
-      <div className="relative">
+      <div className="relative max-h-[70vh] overflow-auto">
         {viewMode === 'code' ? (
           // Code View
           (<CodeBlock code={snippet?.code} language={snippet?.language} showLineNumbers showCopy />)

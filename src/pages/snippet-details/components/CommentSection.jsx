@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../contexts/AuthContext';
 import Button from '../../../components/ui/Button';
 
 const CommentSection = ({ comments = [], onAddComment }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [newComment, setNewComment] = useState('');
   const [replyingTo, setReplyingTo] = useState(null);
   const [replyText, setReplyText] = useState('');
@@ -86,7 +88,13 @@ const CommentSection = ({ comments = [], onAddComment }) => {
               <span className="text-xs text-muted-foreground">@{comment?.user?.username}</span>
               <span className="text-xs text-muted-foreground">{formatDate(comment?.createdAt)}</span>
             </div>
-            <p className="text-sm text-foreground">{comment?.content}</p>
+            <p className="text-sm text-foreground">
+              {comment?.content?.split(/(@[\w]+)/g).map((part, i) =>
+                part.match(/^@[\w]+$/) ? (
+                  <button key={i} onClick={() => navigate(`/search-results?q=${part.slice(1)}`)} className="text-primary hover:underline font-medium">{part}</button>
+                ) : part
+              )}
+            </p>
           </div>
           {!isReply && (
             <button

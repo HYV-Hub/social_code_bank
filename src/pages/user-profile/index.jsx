@@ -681,6 +681,12 @@ const UserProfile = () => {
                       </>
                     )}
                   </button>
+                  <button
+                    onClick={() => navigate(`/inbox?user=${userId}`)}
+                    className="flex items-center space-x-2 px-6 py-2 bg-card text-foreground border border-border rounded-lg hover:bg-muted transition-colors">
+                    <Icon name="MessageCircle" size={20} />
+                    <span>Message</span>
+                  </button>
                 </>
               )}
             </div>

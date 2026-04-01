@@ -7,7 +7,9 @@ import { notificationService } from '../services/notificationService';
 const NAV_ITEMS = [
   { section: 'MAIN', items: [
     { name: 'My Library', icon: 'Library', path: '/user-dashboard' },
+    { name: 'Feed', icon: 'Rss', path: '/feed' },
     { name: 'Explore', icon: 'Compass', path: '/global-explore-feed' },
+    { name: 'Trending', icon: 'TrendingUp', path: '/trending' },
     { name: 'Hives', icon: 'Hexagon', path: '/hives' },
     { name: 'Collections', icon: 'FolderOpen', path: '/snippet-collections' },
   ]},
@@ -19,6 +21,7 @@ const NAV_ITEMS = [
     { name: 'Style Match', icon: 'Palette', path: '/ai-style-match-page' },
   ]},
   { section: 'ACCOUNT', items: [
+    { name: 'Messages', icon: 'MessageCircle', path: '/inbox' },
     { name: 'Notifications', icon: 'Bell', path: '/notifications', badge: true },
     { name: 'Settings', icon: 'Settings', path: '/settings' },
   ]},

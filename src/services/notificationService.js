@@ -113,6 +113,29 @@ class NotificationService {
       supabase?.removeChannel(channel);
     }
   }
+
+  async createNotification(userId, type, title, message, metadata = {}) {
+    try {
+      if (!userId) return null;
+      const { data, error } = await supabase
+        .from('notifications')
+        .insert({
+          user_id: userId,
+          type,
+          title,
+          message,
+          priority: metadata?.priority || 'medium',
+          metadata: JSON.stringify(metadata),
+        })
+        .select()
+        .single();
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.warn('Failed to create notification:', error);
+      return null;
+    }
+  }
 }
 
 // Create single instance

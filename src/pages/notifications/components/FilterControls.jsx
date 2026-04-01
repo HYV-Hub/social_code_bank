@@ -21,7 +21,7 @@ export function FilterControls({ activeFilter, onFilterChange, notifications, sh
   };
 
   const getUnreadCount = () => {
-    return notifications?.filter(n => !n?.isRead)?.length;
+    return notifications?.filter(n => !n?.is_read && !n?.isRead)?.length;
   };
 
   return (

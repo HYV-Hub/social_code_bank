@@ -93,9 +93,9 @@ export default function NotificationsPage() {
       filtered = filtered?.filter(n => n?.type === activeFilter);
     }
 
-    // Apply unread filter
+    // Apply unread filter (DB returns is_read, not isRead)
     if (showUnreadOnly) {
-      filtered = filtered?.filter(n => !n?.isRead);
+      filtered = filtered?.filter(n => !n?.is_read && !n?.isRead);
     }
 
     // Apply search
@@ -104,7 +104,7 @@ export default function NotificationsPage() {
       filtered = filtered?.filter(n =>
         n?.title?.toLowerCase()?.includes(term) ||
         n?.message?.toLowerCase()?.includes(term) ||
-        n?.actorName?.toLowerCase()?.includes(term)
+        (n?.actorName || n?.actor_name || '')?.toLowerCase()?.includes(term)
       );
     }
 
@@ -113,7 +113,7 @@ export default function NotificationsPage() {
       const start = new Date(dateRange.start);
       const end = new Date(dateRange.end);
       filtered = filtered?.filter(n => {
-        const date = new Date(n.createdAt);
+        const date = new Date(n?.created_at || n?.createdAt);
         return date >= start && date <= end;
       });
     }

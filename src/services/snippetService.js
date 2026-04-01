@@ -842,6 +842,91 @@ export const snippetService = {
       } : null
     }));
   },
+
+  async forkSnippet(snippetId) {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Must be logged in to fork');
+
+      // Get original snippet
+      const { data: original, error: fetchError } = await supabase
+        .from('snippets')
+        .select('*')
+        .eq('id', snippetId)
+        .single();
+      if (fetchError) throw fetchError;
+
+      // Create forked copy
+      const { data: forked, error: forkError } = await supabase
+        .from('snippets')
+        .insert({
+          user_id: user.id,
+          title: `${original.title} (fork)`,
+          description: original.description,
+          code: original.code,
+          language: original.language,
+          snippet_type: original.snippet_type,
+          visibility: 'public',
+          forked_from: snippetId,
+          ai_tags: original.ai_tags,
+          version: 1,
+        })
+        .select()
+        .single();
+      if (forkError) throw forkError;
+
+      // Log reuse
+      this.logReuse(snippetId, 'fork');
+
+      // Notify original author
+      if (original.user_id !== user.id) {
+        try {
+          const { data: profile } = await supabase.from('user_profiles').select('username').eq('id', user.id).single();
+          await supabase.from('notifications').insert({
+            user_id: original.user_id,
+            type: 'fork',
+            title: 'Your snippet was forked',
+            message: `@${profile?.username || 'Someone'} forked your snippet "${original.title}"`,
+            priority: 'medium',
+            metadata: JSON.stringify({ snippet_id: snippetId, forked_id: forked.id, actor_id: user.id }),
+          });
+        } catch (e) { console.warn('Fork notification failed:', e); }
+      }
+
+      return { id: forked.id, title: forked.title, forkedFrom: snippetId };
+    } catch (error) {
+      console.error('Error forking snippet:', error);
+      throw error;
+    }
+  },
+
+  async getSimilarSnippets(snippetId, limit = 5) {
+    try {
+      // Get the target snippet's tags
+      const { data: target } = await supabase
+        .from('snippets')
+        .select('ai_tags, language')
+        .eq('id', snippetId)
+        .single();
+
+      if (!target?.ai_tags?.length) return [];
+
+      // Find snippets with overlapping tags
+      const { data: similar } = await supabase
+        .from('snippets')
+        .select('id, title, language, ai_tags, ai_quality_score, likes_count, views_count, user_id, author:user_profiles!snippets_user_id_fkey(id, username, full_name, avatar_url)')
+        .eq('visibility', 'public')
+        .neq('id', snippetId)
+        .overlaps('ai_tags', target.ai_tags)
+        .order('likes_count', { ascending: false })
+        .limit(limit);
+
+      return similar || [];
+    } catch (error) {
+      console.error('Error getting similar snippets:', error);
+      return [];
+    }
+  },
 };
 
 export default snippetService;

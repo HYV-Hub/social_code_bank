@@ -16,6 +16,7 @@ import { supabase } from '../../lib/supabase';
 import Button from '../../components/ui/Button';
 import { useAuth } from '../../contexts/AuthContext';
 import { snippetService } from '../../services/snippetService';
+import { hiveService } from '../../services/hiveService';
 import aiTaggingService from '../../services/aiTaggingService';
 import AIReportButton from '../../components/AIReportButton';
 import Icon from '../../components/AppIcon';
@@ -45,6 +46,9 @@ const SnippetDetails = () => {
   const [selectedCollections, setSelectedCollections] = useState([]);
   const [loadingCollections, setLoadingCollections] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showShareToHiveModal, setShowShareToHiveModal] = useState(false);
+  const [userHives, setUserHives] = useState([]);
+  const [sharingToHive, setSharingToHive] = useState(false);
   const [errors, setErrors] = useState({});
   const [retryAttempt, setRetryAttempt] = useState(0);
   const [retryDelay, setRetryDelay] = useState(0);
@@ -140,6 +144,13 @@ const SnippetDetails = () => {
         };
 
         setSnippet(transformedSnippet);
+
+        // Load similar snippets
+        try {
+          const { default: svc } = await import('../../services/snippetService');
+          const similar = await svc.getSimilarSnippets(id, 5);
+          setRelatedSnippets(similar);
+        } catch (e) { console.warn('Failed to load similar:', e); }
 
         // Increment view count if not author
         if (user?.id && user?.id !== data?.user_id) {
@@ -475,6 +486,40 @@ const SnippetDetails = () => {
       throw err;
     }
   };
+
+  const handleFork = async () => {
+    if (!user) { navigate('/login'); return; }
+    try {
+      const { snippetService } = await import('../../services/snippetService');
+      const result = await snippetService.default.forkSnippet(snippet?.id);
+      navigate(`/create-snippet?edit=${result.id}`);
+    } catch (error) {
+      console.error('Error forking snippet:', error);
+      alert(error?.message || 'Failed to fork snippet');
+    }
+  };
+
+  const handleShareToHive = async (hiveId) => {
+    try {
+      setSharingToHive(true);
+      const { hiveService } = await import('../../services/hiveService');
+      await hiveService.shareSnippetToHive(snippet?.id, hiveId);
+      alert('Snippet shared to hive!');
+      setShowShareToHiveModal(false);
+    } catch (error) {
+      console.error('Error sharing to hive:', error);
+      alert(error?.message || 'Failed to share');
+    } finally {
+      setSharingToHive(false);
+    }
+  };
+
+  // Load user hives when share modal opens
+  useEffect(() => {
+    if (showShareToHiveModal && user) {
+      hiveService.getUserHives(user.id).then(setUserHives).catch(() => setUserHives([]));
+    }
+  }, [showShareToHiveModal, user]);
 
   // NEW: Load user's hive collections
   const loadUserCollections = async () => {
@@ -897,6 +942,23 @@ const SnippetDetails = () => {
                 <Icon name="Sparkles" size={18} />
                 <span>View Full AI Report</span>
               </button>
+
+              <button
+                onClick={handleFork}
+                disabled={!snippet?.code}
+                className="flex items-center gap-2 px-5 py-2.5 bg-card hover:bg-background border-2 border-accent text-accent rounded-lg font-medium transition-all transform hover:scale-105 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Icon name="GitFork" size={18} />
+                <span>Fork</span>
+              </button>
+
+              <button
+                onClick={() => setShowShareToHiveModal(true)}
+                className="flex items-center gap-2 px-5 py-2.5 bg-card hover:bg-background border-2 border-primary text-primary rounded-lg font-medium transition-all transform hover:scale-105 shadow-md"
+              >
+                <Icon name="Share2" size={18} />
+                <span>Share to Hive</span>
+              </button>
             </div>
 
             <div className="flex items-center gap-2 text-sm text-muted-foreground bg-background px-4 py-2 rounded-lg">
@@ -1034,6 +1096,47 @@ const SnippetDetails = () => {
               >
                 Done
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Share to Hive Modal */}
+      {showShareToHiveModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-card rounded-lg shadow-xl max-w-md w-full max-h-[80vh] flex flex-col border border-border">
+            <div className="flex items-center justify-between p-6 border-b border-border">
+              <h3 className="text-lg font-semibold text-foreground">Share to Hive</h3>
+              <button onClick={() => setShowShareToHiveModal(false)} className="p-1 hover:bg-muted rounded-md transition-colors">
+                <Icon name="X" size={20} className="text-muted-foreground" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-6">
+              {userHives?.length === 0 ? (
+                <div className="text-center py-8">
+                  <Icon name="Hexagon" size={48} className="mx-auto text-muted-foreground mb-3" />
+                  <p className="text-muted-foreground">No hives found</p>
+                  <p className="text-sm text-muted-foreground mt-1">Join a hive first to share snippets</p>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {userHives.map(hive => (
+                    <button
+                      key={hive?.id}
+                      onClick={() => handleShareToHive(hive?.id)}
+                      disabled={sharingToHive}
+                      className="w-full flex items-center gap-3 p-4 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-all text-left"
+                    >
+                      <Icon name="Hexagon" size={20} className="text-primary flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-foreground truncate">{hive?.name}</p>
+                        <p className="text-xs text-muted-foreground truncate">{hive?.description || 'No description'}</p>
+                      </div>
+                      <Icon name="ChevronRight" size={16} className="text-muted-foreground" />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

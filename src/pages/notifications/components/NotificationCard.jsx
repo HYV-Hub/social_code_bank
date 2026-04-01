@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Bell, MessageCircle, Heart, UserPlus, AtSign, AlertCircle, Users, Code, Check, X } from 'lucide-react';
 import { notificationService } from '../../../services/notificationService';
-import Icon from '../../../components/AppIcon';
 import { formatTimeAgo as formatTimeAgoUtil } from '../../../utils/formatTime';
 
 
@@ -14,7 +13,8 @@ const getNotificationIcon = (type) => {
     mention: AtSign,
     bug_assignment: AlertCircle,
     team_update: Users,
-    snippet_share: Code
+    snippet_share: Code,
+    fork: Code,
   };
   return icons?.[type] || Bell;
 };
@@ -23,6 +23,7 @@ const getPriorityColor = (priority) => {
   const colors = {
     low: 'text-muted-foreground',
     normal: 'text-primary',
+    medium: 'text-primary',
     high: 'text-warning',
     urgent: 'text-error'
   };
@@ -37,7 +38,8 @@ const getTypeColor = (type) => {
     mention: 'bg-primary/15 text-primary',
     bug_assignment: 'bg-error/15 text-error',
     team_update: 'bg-secondary/15 text-secondary',
-    snippet_share: 'bg-warning/15 text-warning'
+    snippet_share: 'bg-warning/15 text-warning',
+    fork: 'bg-accent/15 text-accent',
   };
   return colors?.[type] || 'bg-muted text-muted-foreground';
 };
@@ -46,10 +48,16 @@ const formatTimeAgo = formatTimeAgoUtil;
 
 export function NotificationCard({ notification, onUpdate, onDelete }) {
   const navigate = useNavigate();
-  const Icon = getNotificationIcon(notification?.type);
+  const IconComponent = getNotificationIcon(notification?.type);
+
+  // Handle both camelCase and snake_case field names from DB
+  const isRead = notification?.is_read ?? notification?.isRead ?? false;
+  const createdAt = notification?.created_at || notification?.createdAt;
+  const actorName = notification?.actor_name || notification?.actorName;
+  const actionUrl = notification?.action_url || notification?.actionUrl;
 
   const handleClick = async () => {
-    if (!notification?.isRead) {
+    if (!isRead) {
       try {
         await notificationService?.markAsRead(notification?.id);
         onUpdate?.();
@@ -57,8 +65,8 @@ export function NotificationCard({ notification, onUpdate, onDelete }) {
         console.error('Error marking notification as read:', error);
       }
     }
-    if (notification?.actionUrl) {
-      navigate(notification?.actionUrl);
+    if (actionUrl) {
+      navigate(actionUrl);
     }
   };
 
@@ -74,25 +82,20 @@ export function NotificationCard({ notification, onUpdate, onDelete }) {
 
   const handleDelete = async (e) => {
     e?.stopPropagation();
-    try {
-      await notificationService?.delete(notification?.id);
-      onDelete?.(notification?.id);
-    } catch (error) {
-      console.error('Error deleting notification:', error);
-    }
+    onDelete?.(notification?.id);
   };
 
   return (
     <div
       onClick={handleClick}
-      className={`p-4 border-b border-border hover:bg-background cursor-pointer transition-colors ${
-        !notification?.isRead ? 'bg-primary/10' : 'bg-card'
+      className={`relative p-4 border-b border-border hover:bg-background cursor-pointer transition-colors ${
+        !isRead ? 'bg-primary/5' : 'bg-card'
       }`}
     >
       <div className="flex items-start gap-3">
-        {/* Avatar/Icon */}
+        {/* Icon */}
         <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${getTypeColor(notification?.type)}`}>
-          <Icon className="w-5 h-5" />
+          <IconComponent className="w-5 h-5" />
         </div>
 
         {/* Content */}
@@ -103,7 +106,7 @@ export function NotificationCard({ notification, onUpdate, onDelete }) {
                 <h3 className="text-sm font-semibold text-foreground truncate">
                   {notification?.title}
                 </h3>
-                {notification?.priority !== 'normal' && (
+                {notification?.priority && notification?.priority !== 'normal' && notification?.priority !== 'medium' && (
                   <span className={`text-xs font-medium ${getPriorityColor(notification?.priority)}`}>
                     {notification?.priority?.toUpperCase()}
                   </span>
@@ -113,17 +116,19 @@ export function NotificationCard({ notification, onUpdate, onDelete }) {
                 {notification?.message}
               </p>
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                {notification?.actorName && (
-                  <span className="font-medium text-foreground">{notification?.actorName}</span>
+                {actorName && (
+                  <>
+                    <span className="font-medium text-foreground">{actorName}</span>
+                    <span>·</span>
+                  </>
                 )}
-                <span>•</span>
-                <span>{formatTimeAgo(notification?.createdAt)}</span>
+                <span>{formatTimeAgo(createdAt)}</span>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-2">
-              {!notification?.isRead && (
+            <div className="flex items-center gap-1">
+              {!isRead && (
                 <button
                   onClick={handleMarkAsRead}
                   className="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded transition-colors"
@@ -144,7 +149,7 @@ export function NotificationCard({ notification, onUpdate, onDelete }) {
         </div>
       </div>
       {/* Unread indicator */}
-      {!notification?.isRead && (
+      {!isRead && (
         <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-primary rounded-r"></div>
       )}
     </div>

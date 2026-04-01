@@ -527,7 +527,7 @@ export const hiveService = {
       if (contentType === 'all' || contentType === 'snippets') {
         let query = supabase
           ?.from('snippets')
-          ?.select('*, author:user_profiles!snippets_user_id_fkey(id, username, full_name, avatar_url), hive:hives!snippets_team_id_fkey(id, name)')
+          ?.select('*, author:user_profiles!snippets_user_id_fkey(id, username, full_name, avatar_url)')
           ?.eq('visibility', 'public');
 
         // Tag filter
@@ -1212,5 +1212,41 @@ export const hiveService = {
       console.error('Error fetching user profile:', error);
       throw error;
     }
-  }
+  },
+
+  async shareSnippetToHive(snippetId, hiveId) {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Must be logged in');
+
+      // Check membership
+      const { data: membership } = await supabase
+        .from('hive_members')
+        .select('id')
+        .eq('hive_id', hiveId)
+        .eq('user_id', user.id)
+        .maybeSingle();
+      if (!membership) throw new Error('You must be a member of this hive');
+
+      // Check if already shared
+      const { data: existing } = await supabase
+        .from('hive_snippets')
+        .select('id')
+        .eq('hive_id', hiveId)
+        .eq('snippet_id', snippetId)
+        .maybeSingle();
+      if (existing) throw new Error('Snippet already shared to this hive');
+
+      const { data, error } = await supabase
+        .from('hive_snippets')
+        .insert({ hive_id: hiveId, snippet_id: snippetId, added_by: user.id })
+        .select()
+        .single();
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error sharing snippet to hive:', error);
+      throw error;
+    }
+  },
 };

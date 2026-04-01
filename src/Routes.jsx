@@ -59,6 +59,9 @@ import HiveCollectionsGallery from "pages/hive-collections-gallery";
 import HiveSnippetEditor from './pages/hive-snippet-editor';
 import CompanyCreation from './pages/company-creation';
 import SessionManagement from './pages/session-management';
+import InboxPage from './pages/inbox';
+import ForYouFeed from './pages/feed';
+import TrendingPage from './pages/trending';
 
 const BillingSubscriptionPage = React.lazy(() => import("pages/billing-subscription"));
 
@@ -102,6 +105,9 @@ export default function AppRoutes() {
           <Route path="/user-profile" element={<P><UserProfile /></P>} />
           <Route path="/profile-editor" element={<P><ProfileEditor /></P>} />
           <Route path="/notifications" element={<P><Notifications /></P>} />
+          <Route path="/inbox" element={<P><InboxPage /></P>} />
+          <Route path="/feed" element={<P><ForYouFeed /></P>} />
+          <Route path="/trending" element={<P><TrendingPage /></P>} />
           <Route path="/ai-optimization-report" element={<P><AIOptimizationReport /></P>} />
           <Route path="/ai-style-match-page" element={<P><AIStyleMatchPage /></P>} />
           <Route path="/snippet-collections" element={<P><SnippetCollections /></P>} />
