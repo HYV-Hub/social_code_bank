@@ -5,6 +5,7 @@ import { supabase } from '../../lib/supabase';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Icon from '../../components/AppIcon';
+import PageShell from '../../components/PageShell';
 
 const OnboardingPage = () => {
   const navigate = useNavigate();
@@ -440,7 +441,7 @@ const OnboardingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    <PageShell>
       <div className="max-w-3xl mx-auto">
         {/* Progress Bar */}
         <div className="bg-card rounded-lg shadow-lg p-8 mb-6">
@@ -474,7 +475,7 @@ const OnboardingPage = () => {
         <div className="bg-card rounded-lg shadow-lg p-8">
           {error && (
             <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg">
-              <p className="text-red-800 text-sm">{error}</p>
+              <p className="text-error text-sm">{error}</p>
             </div>
           )}
 
@@ -507,7 +508,7 @@ const OnboardingPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </PageShell>
   );
 };
 

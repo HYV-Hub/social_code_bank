@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import { hiveService } from '../../services/hiveService';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Icon from '../../components/AppIcon';
@@ -608,9 +608,7 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppNavigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground">Settings</h1>
           <p className="text-muted-foreground mt-2">Manage your account settings and preferences</p>
@@ -618,7 +616,7 @@ const SettingsPage = () => {
 
         {message?.text && (
           <div className={`mb-6 p-4 rounded-lg ${
-            message?.type === 'success' ? 'bg-success/10 text-success' : 'bg-error/10 text-red-800'
+            message?.type === 'success' ? 'bg-success/10 text-success' : 'bg-error/10 text-error'
           }`}>
             {message?.text}
           </div>
@@ -653,8 +651,7 @@ const SettingsPage = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </PageShell>
   );
 };
 

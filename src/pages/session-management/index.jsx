@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Icon from '../../components/AppIcon';
 import { sessionService } from '../../services/sessionService';
 import { useAuth } from '../../contexts/AuthContext';
+import PageShell from '../../components/PageShell';
 
 const SessionManagement = () => {
   const navigate = useNavigate();
@@ -160,39 +161,39 @@ const SessionManagement = () => {
       case 'success': return 'text-success bg-success/10';
       case 'failed': return 'text-error bg-error/10';
       case 'blocked': return 'text-orange-600 bg-orange-50';
-      default: return 'text-slate-600 bg-slate-50';
+      default: return 'text-muted-foreground bg-muted';
     }
   };
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-slate-50">
-        <div className="flex flex-col items-center gap-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-800"></div>
-          <p className="text-slate-600">Loading session data...</p>
+      <PageShell>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="flex flex-col items-center gap-4">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-800"></div>
+            <p className="text-muted-foreground">Loading session data...</p>
+          </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <>
+    <PageShell>
       <Helmet>
         <title>Session Management - Social Code Bank</title>
         <meta name="description" content="Manage your active sessions, review login history, and configure security preferences for your Social Code Bank account." />
       </Helmet>
-      <div className="min-h-screen bg-slate-50 py-8 px-4">
-        <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">Session Management</h1>
-                <p className="text-slate-600 mt-2">Monitor your account activity and manage security settings</p>
+                <h1 className="text-3xl font-bold text-foreground">Session Management</h1>
+                <p className="text-muted-foreground mt-2">Monitor your account activity and manage security settings</p>
               </div>
               <button
                 onClick={() => navigate('/user-dashboard')}
-                className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-card rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-card rounded-lg transition-colors"
               >
                 <Icon name="ArrowLeft" size={20} />
                 <span>Back to Dashboard</span>
@@ -205,19 +206,19 @@ const SessionManagement = () => {
             <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
               <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-red-800 font-medium">Error</p>
+                <p className="text-error font-medium">Error</p>
                 <p className="text-error text-sm">{error}</p>
               </div>
             </div>
           )}
 
           {/* Tab Navigation */}
-          <div className="bg-card rounded-lg shadow-sm border border-slate-200 mb-6">
-            <div className="flex border-b border-slate-200">
+          <div className="bg-card rounded-lg shadow-sm border border-border mb-6">
+            <div className="flex border-b border-border">
               <button
                 onClick={() => setActiveTab('sessions')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'sessions' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
+                  activeTab === 'sessions' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -233,7 +234,7 @@ const SessionManagement = () => {
               <button
                 onClick={() => setActiveTab('history')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'history' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
+                  activeTab === 'history' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -244,7 +245,7 @@ const SessionManagement = () => {
               <button
                 onClick={() => setActiveTab('preferences')}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === 'preferences' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
+                  activeTab === 'preferences' ?'text-foreground border-b-2 border-blue-800 bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -259,7 +260,7 @@ const SessionManagement = () => {
           {activeTab === 'sessions' && (
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-slate-900">Your Active Sessions</h2>
+                <h2 className="text-xl font-semibold text-foreground">Your Active Sessions</h2>
                 {sessions?.length > 1 && (
                   <button
                     onClick={handleRevokeAllOther}
@@ -276,14 +277,14 @@ const SessionManagement = () => {
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-800 mx-auto"></div>
                 </div>
               ) : sessions?.length === 0 ? (
-                <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-12 text-center">
+                <div className="bg-card rounded-lg shadow-sm border border-border p-12 text-center">
                   <Icon name="Monitor" size={48} className="mx-auto text-slate-300 mb-4" />
-                  <p className="text-slate-600">No active sessions found</p>
+                  <p className="text-muted-foreground">No active sessions found</p>
                 </div>
               ) : (
                 <div className="grid gap-4">
                   {sessions?.map((session) => (
-                    <div key={session?.id} className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
+                    <div key={session?.id} className="bg-card rounded-lg shadow-sm border border-border p-6">
                       <div className="flex items-start justify-between">
                         <div className="flex items-start gap-4 flex-1">
                           <div className="p-3 bg-primary/10 rounded-lg">
@@ -291,7 +292,7 @@ const SessionManagement = () => {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2">
-                              <h3 className="text-lg font-semibold text-slate-900">{session?.deviceName || 'Unknown Device'}</h3>
+                              <h3 className="text-lg font-semibold text-foreground">{session?.deviceName || 'Unknown Device'}</h3>
                               {session?.isTrustedDevice && (
                                 <span className="px-2 py-0.5 text-xs font-medium text-success bg-success/15 rounded-full flex items-center gap-1">
                                   <Icon name="Shield" size={12} />
@@ -299,7 +300,7 @@ const SessionManagement = () => {
                                 </span>
                               )}
                             </div>
-                            <div className="space-y-1 text-sm text-slate-600">
+                            <div className="space-y-1 text-sm text-muted-foreground">
                               <div className="flex items-center gap-2">
                                 <Icon name="Globe" size={14} />
                                 <span>{session?.browserName} {session?.browserVersion} on {session?.osName} {session?.osVersion}</span>
@@ -348,33 +349,33 @@ const SessionManagement = () => {
           {/* Login History Tab */}
           {activeTab === 'history' && (
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-slate-900 mb-4">Recent Login Activity</h2>
+              <h2 className="text-xl font-semibold text-foreground mb-4">Recent Login Activity</h2>
 
               {attemptsLoading ? (
                 <div className="text-center py-12">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-800 mx-auto"></div>
                 </div>
               ) : loginAttempts?.length === 0 ? (
-                <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-12 text-center">
+                <div className="bg-card rounded-lg shadow-sm border border-border p-12 text-center">
                   <Icon name="Clock" size={48} className="mx-auto text-slate-300 mb-4" />
-                  <p className="text-slate-600">No login history available</p>
+                  <p className="text-muted-foreground">No login history available</p>
                 </div>
               ) : (
-                <div className="bg-card rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <div className="bg-card rounded-lg shadow-sm border border-border overflow-hidden">
                   <div className="overflow-x-auto">
                     <table className="w-full">
-                      <thead className="bg-slate-50 border-b border-slate-200">
+                      <thead className="bg-muted border-b border-border">
                         <tr>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">Status</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">Date & Time</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">Device</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">Location</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">IP Address</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Date & Time</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Device</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Location</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">IP Address</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-200">
                         {loginAttempts?.map((attempt) => (
-                          <tr key={attempt?.id} className="hover:bg-slate-50">
+                          <tr key={attempt?.id} className="hover:bg-muted">
                             <td className="px-6 py-4 whitespace-nowrap">
                               <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${getStatusColor(attempt?.attemptStatus)}`}>
                                 {attempt?.attemptStatus === 'success' && <Icon name="CheckCircle" size={14} />}
@@ -389,17 +390,17 @@ const SessionManagement = () => {
                                 </span>
                               )}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-900">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">
                               {formatDate(attempt?.createdAt)}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                               <div>{attempt?.deviceName || 'Unknown'}</div>
-                              <div className="text-xs text-slate-500">{attempt?.browserName} on {attempt?.osName}</div>
+                              <div className="text-xs text-muted-foreground">{attempt?.browserName} on {attempt?.osName}</div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                               {attempt?.locationCity}, {attempt?.locationCountry}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                               {attempt?.ipAddress}
                             </td>
                           </tr>
@@ -415,7 +416,7 @@ const SessionManagement = () => {
           {/* Preferences Tab */}
           {activeTab === 'preferences' && (
             <div className="space-y-6">
-              <h2 className="text-xl font-semibold text-slate-900 mb-4">Security Preferences</h2>
+              <h2 className="text-xl font-semibold text-foreground mb-4">Security Preferences</h2>
 
               {preferencesLoading ? (
                 <div className="text-center py-12">
@@ -424,16 +425,16 @@ const SessionManagement = () => {
               ) : (
                 <form onSubmit={handleUpdatePreferences} className="space-y-6">
                   {/* Session Settings */}
-                  <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                  <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                       <Icon name="Clock" size={20} />
                       Session Settings
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <label className="text-sm font-medium text-slate-900">Remember Device</label>
-                          <p className="text-xs text-slate-600">Stay logged in on this device</p>
+                          <label className="text-sm font-medium text-foreground">Remember Device</label>
+                          <p className="text-xs text-muted-foreground">Stay logged in on this device</p>
                         </div>
                         <button
                           type="button"
@@ -448,7 +449,7 @@ const SessionManagement = () => {
                         </button>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-slate-900 block mb-2">
+                        <label className="text-sm font-medium text-foreground block mb-2">
                           Auto Logout Timer (minutes)
                         </label>
                         <input
@@ -457,23 +458,23 @@ const SessionManagement = () => {
                           onChange={(e) => setPreferences({ ...preferences, autoLogoutMinutes: parseInt(e?.target?.value) || 120 })}
                           min="5"
                           max="1440"
-                          className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
+                          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800"
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* Security Settings */}
-                  <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                  <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                       <Icon name="Shield" size={20} />
                       Security Settings
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <label className="text-sm font-medium text-slate-900">Require MFA for New Devices</label>
-                          <p className="text-xs text-slate-600">Extra security when logging in from new devices</p>
+                          <label className="text-sm font-medium text-foreground">Require MFA for New Devices</label>
+                          <p className="text-xs text-muted-foreground">Extra security when logging in from new devices</p>
                         </div>
                         <button
                           type="button"
@@ -491,16 +492,16 @@ const SessionManagement = () => {
                   </div>
 
                   {/* Notification Settings */}
-                  <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                  <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                       <Icon name="Bell" size={20} />
                       Email Notifications
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <label className="text-sm font-medium text-slate-900">New Login Alerts</label>
-                          <p className="text-xs text-slate-600">Get notified when you login from a new device</p>
+                          <label className="text-sm font-medium text-foreground">New Login Alerts</label>
+                          <p className="text-xs text-muted-foreground">Get notified when you login from a new device</p>
                         </div>
                         <button
                           type="button"
@@ -516,8 +517,8 @@ const SessionManagement = () => {
                       </div>
                       <div className="flex items-center justify-between">
                         <div>
-                          <label className="text-sm font-medium text-slate-900">Suspicious Activity Alerts</label>
-                          <p className="text-xs text-slate-600">Get notified about unusual account activity</p>
+                          <label className="text-sm font-medium text-foreground">Suspicious Activity Alerts</label>
+                          <p className="text-xs text-muted-foreground">Get notified about unusual account activity</p>
                         </div>
                         <button
                           type="button"
@@ -539,7 +540,7 @@ const SessionManagement = () => {
                     <button
                       type="button"
                       onClick={loadPreferences}
-                      className="px-6 py-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+                      className="px-6 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
                     >
                       Reset
                     </button>
@@ -565,9 +566,7 @@ const SessionManagement = () => {
               )}
             </div>
           )}
-        </div>
-      </div>
-    </>
+    </PageShell>
   );
 };
 

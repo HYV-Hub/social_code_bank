@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams, useParams, useLocation } from 'react-rout
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
 import { useHiveRealtime } from '../../hooks/useHiveRealtime';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -366,48 +366,50 @@ export default function HiveExplorer() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="relative">
-            <div className="animate-spin rounded-full h-16 w-16 border-4 border-border border-t-purple-600 mx-auto mb-4"></div>
-            <div className="absolute inset-0 rounded-full h-16 w-16 border-4 border-transparent border-t-indigo-600 mx-auto animate-ping opacity-20"></div>
+      <PageShell noPadding>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="relative">
+              <div className="animate-spin rounded-full h-16 w-16 border-4 border-border border-t-purple-600 mx-auto mb-4"></div>
+              <div className="absolute inset-0 rounded-full h-16 w-16 border-4 border-transparent border-t-indigo-600 mx-auto animate-ping opacity-20"></div>
+            </div>
+            <p className="text-foreground font-medium animate-pulse">Loading hive experience...</p>
           </div>
-          <p className="text-foreground font-medium animate-pulse">Loading hive experience...</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error || !hive) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 flex items-center justify-center p-4">
-        <div className="text-center max-w-md">
-          <div className="mb-6 relative">
-            <div className="absolute inset-0 bg-error/100 opacity-10 blur-3xl rounded-full"></div>
-            <Icon name="AlertCircle" size={80} className="mx-auto text-error relative z-10" />
+      <PageShell noPadding>
+        <div className="flex items-center justify-center min-h-[60vh] p-4">
+          <div className="text-center max-w-md">
+            <div className="mb-6 relative">
+              <div className="absolute inset-0 bg-error/100 opacity-10 blur-3xl rounded-full"></div>
+              <Icon name="AlertCircle" size={80} className="mx-auto text-error relative z-10" />
+            </div>
+            <h2 className="text-3xl font-bold text-foreground mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              Hive Not Found
+            </h2>
+            <p className="text-muted-foreground mb-8 leading-relaxed">
+              {error || 'This hive does not exist or you do not have access to view it.'}
+            </p>
+            <Button
+              onClick={() => navigate('/hives')}
+              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transform hover:scale-105 transition-all shadow-lg hover:shadow-xl"
+            >
+              <Icon name="ArrowLeft" size={18} className="mr-2" />
+              Back to Hives
+            </Button>
           </div>
-          <h2 className="text-3xl font-bold text-foreground mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Hive Not Found
-          </h2>
-          <p className="text-muted-foreground mb-8 leading-relaxed">
-            {error || 'This hive does not exist or you do not have access to view it.'}
-          </p>
-          <Button 
-            onClick={() => navigate('/hives')}
-            className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transform hover:scale-105 transition-all shadow-lg hover:shadow-xl"
-          >
-            <Icon name="ArrowLeft" size={18} className="mr-2" />
-            Back to Hives
-          </Button>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50 pb-20 lg:pb-24">
-      {/* UPDATED: Conditionally render navigation based on context */}
-      {!isCompanyContext && <AppNavigation />}
+    <PageShell noPadding>
       
       <div className={isCompanyContext ? 'flex' : 'pt-16'}>
         {/* NEW: Show CompanySidebar for company hives */}
@@ -980,7 +982,7 @@ export default function HiveExplorer() {
           </div>
         </div>
       )}
-    </div>
+    </PageShell>
   );
 
   function calculateGrowthRate() {

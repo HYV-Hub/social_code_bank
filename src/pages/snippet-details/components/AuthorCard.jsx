@@ -74,7 +74,7 @@ const AuthorCard = ({ author }) => {
             <p className="text-xs text-muted-foreground font-medium">Followers</p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-success/20 text-center">
+          <div className="bg-background rounded-lg p-3 border border-success/20 text-center">
             <Icon name="Heart" size={18} className="text-success mx-auto mb-1" />
             <p className="text-xl font-bold text-success">3.4K</p>
             <p className="text-xs text-muted-foreground font-medium">Likes</p>

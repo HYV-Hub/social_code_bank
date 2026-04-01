@@ -1,14 +1,9 @@
-import OpenAI from 'openai';
+import openai, { isOpenAIAvailable } from '../lib/openaiClient';
 
 /**
  * AI Report Service
  * Generates AI-powered analysis reports for bugs and code snippets
  */
-
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
 
 export const aiReportService = {
   /**
@@ -16,6 +11,11 @@ export const aiReportService = {
    */
   async generateBugReport(bug) {
     try {
+      const availability = isOpenAIAvailable();
+      if (!availability.isAvailable) {
+        throw new Error(availability.message);
+      }
+
       const prompt = `Analyze this bug report and provide a comprehensive analysis:
 
 Title: ${bug?.title}
@@ -36,7 +36,7 @@ Please provide:
 6. Best practices violations (if any)`;
 
       const response = await openai?.chat?.completions?.create({
-        model: 'gpt-5-mini',
+        model: 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
@@ -119,6 +119,11 @@ Please provide:
    */
   async generateSnippetReport(snippet) {
     try {
+      const availability = isOpenAIAvailable();
+      if (!availability.isAvailable) {
+        throw new Error(availability.message);
+      }
+
       const prompt = `Analyze this code snippet and provide a comprehensive report:
 
 Title: ${snippet?.title}
@@ -138,7 +143,7 @@ Please provide:
 6. Refactoring recommendations`;
 
       const response = await openai?.chat?.completions?.create({
-        model: 'gpt-5-mini',
+        model: 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
@@ -246,7 +251,7 @@ Please provide:
    * Check if OpenAI is configured
    */
   isConfigured() {
-    return !!import.meta.env?.VITE_OPENAI_API_KEY;
+    return isOpenAIAvailable().isAvailable;
   },
 };
 

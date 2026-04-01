@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import AppIcon from '../../components/AppIcon';
@@ -141,7 +141,7 @@ const CompanyCreationPage = () => {
   // UPDATED: Show loading state while auth is loading OR checking company
   if (authLoading || checkingExistingCompany || userHasCompany) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-muted-foreground">
@@ -457,9 +457,8 @@ const CompanyCreationPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <AppNavigation />
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <PageShell>
+      <div className="max-w-3xl mx-auto py-6">
         {/* Progress Indicator */}
         <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
           <div className="flex items-center justify-between">
@@ -496,7 +495,7 @@ const CompanyCreationPage = () => {
             <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg">
               <div className="flex items-start gap-2">
                 <AppIcon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
-                <p className="text-red-800 text-sm">{error}</p>
+                <p className="text-error text-sm">{error}</p>
               </div>
             </div>
           )}
@@ -555,7 +554,7 @@ const CompanyCreationPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </PageShell>
   );
 };
 

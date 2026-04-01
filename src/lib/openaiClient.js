@@ -40,14 +40,14 @@ export function isOpenAIAvailable() {
   if (!apiKey) {
     return {
       isAvailable: false,
-      message: 'OpenAI API key is not configured. Please add VITE_OPENAI_API_KEY to your .env file.'
+      message: 'OpenAI API key is not configured. Set VITE_OPENAI_API_KEY in your environment variables.'
     };
   }
   
   if (apiKey === 'your-openai-api-key-here') {
     return {
       isAvailable: false,
-      message: 'OpenAI API key is not set. Please replace the placeholder with your actual API key in .env file.'
+      message: 'OpenAI API key placeholder detected. Replace with your actual API key in environment variables.'
     };
   }
   
@@ -97,7 +97,7 @@ export async function safeOpenAICall(apiCall, operationName = 'OpenAI operation'
     let isConfigError = false;
     
     if (error?.status === 401) {
-      errorMessage = 'Invalid OpenAI API key. Please check your VITE_OPENAI_API_KEY in .env file.';
+      errorMessage = 'Invalid OpenAI API key. Check VITE_OPENAI_API_KEY in your environment variables.';
       isConfigError = true;
     } else if (error?.status === 429) {
       errorMessage = 'OpenAI API rate limit exceeded. Please try again later.';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -65,21 +65,22 @@ export default function HiveCreationWizard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
-        <div className="text-center">
-          <Icon name="Lock" size={64} className="mx-auto text-muted-foreground mb-4" />
-          <h2 className="text-2xl font-bold text-foreground mb-2">Sign in required</h2>
-          <p className="text-muted-foreground mb-6">You need to be signed in to create a hive</p>
-          <Button onClick={() => navigate('/login')}>Sign In</Button>
+      <PageShell>
+        <div className="flex items-center justify-center py-12">
+          <div className="text-center">
+            <Icon name="Lock" size={64} className="mx-auto text-muted-foreground mb-4" />
+            <h2 className="text-2xl font-bold text-foreground mb-2">Sign in required</h2>
+            <p className="text-muted-foreground mb-6">You need to be signed in to create a hive</p>
+            <Button onClick={() => navigate('/login')}>Sign In</Button>
+          </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
-      <AppNavigation />
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <PageShell>
+      <div className="max-w-3xl mx-auto">
         <div className="bg-card rounded-lg shadow-xl p-8">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-foreground mb-2">Create a New Hive</h1>
@@ -212,6 +213,6 @@ export default function HiveCreationWizard() {
           </form>
         </div>
       </div>
-    </div>
+    </PageShell>
   );
 }

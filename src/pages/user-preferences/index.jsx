@@ -5,7 +5,7 @@ import Button from '../../components/ui/Button';
 import { useAuth } from '../../contexts/AuthContext';
 import { profileService } from '../../services/profileService';
 import { notificationService } from '../../services/notificationService';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 
 const UserPreferences = () => {
   const navigate = useNavigate();
@@ -174,22 +174,19 @@ const UserPreferences = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
+      <PageShell>
         <div className="flex items-center justify-center h-[calc(100vh-80px)]">
           <div className="text-center">
             <Icon name="Loader2" size={48} className="animate-spin text-primary mx-auto mb-4" />
             <p className="text-muted-foreground">Loading preferences...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppNavigation />
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <PageShell>
         {/* Header */}
         <div className="mb-8">
           <button
@@ -427,8 +424,7 @@ const UserPreferences = () => {
             </Button>
           </div>
         </div>
-      </div>
-    </div>
+    </PageShell>
   );
 };
 

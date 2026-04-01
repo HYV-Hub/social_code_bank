@@ -159,7 +159,7 @@ const Features = () => {
         <title>Features - HyvHub | AI-Powered Code Collaboration Platform</title>
         <meta name="description" content="Explore HyvHub's comprehensive features including AI code optimization, real-time collaboration, enterprise security, and seamless integrations." />
       </Helmet>
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-background">
         <NavigationBar />
 
         {/* Hero Section */}
@@ -186,7 +186,7 @@ const Features = () => {
         </section>
 
         {/* Category Navigation */}
-        <section className="bg-card border-b border-slate-200 sticky top-16 z-40">
+        <section className="bg-card border-b border-border sticky top-16 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex overflow-x-auto gap-2 py-4 scrollbar-hide">
               {categories?.map((category) => (
@@ -196,7 +196,7 @@ const Features = () => {
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all whitespace-nowrap ${
                     activeCategory === category?.id
                       ? 'bg-primary text-white shadow-md'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      : 'bg-muted text-muted-foreground hover:bg-slate-200'
                   }`}
                 >
                   <Icon name={category?.icon} size={20} />
@@ -220,10 +220,10 @@ const Features = () => {
                 >
                   <div className="flex-1">
                     <div className="bg-card rounded-xl shadow-lg p-8">
-                      <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
                         {feature?.title}
                       </h3>
-                      <p className="text-lg text-slate-600 mb-6">
+                      <p className="text-lg text-muted-foreground mb-6">
                         {feature?.description}
                       </p>
                       
@@ -237,7 +237,7 @@ const Features = () => {
                         {feature?.benefits?.map((benefit, idx) => (
                           <div key={idx} className="flex items-start gap-3">
                             <Icon name="Check" className="text-success flex-shrink-0 mt-1" size={20} />
-                            <span className="text-slate-700">{benefit}</span>
+                            <span className="text-muted-foreground">{benefit}</span>
                           </div>
                         ))}
                       </div>
@@ -268,10 +268,10 @@ const Features = () => {
         <section className="py-20 bg-card">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
                 Seamless Integrations
               </h2>
-              <p className="text-xl text-slate-600">
+              <p className="text-xl text-muted-foreground">
                 Connect with your favorite development tools
               </p>
             </div>
@@ -280,15 +280,15 @@ const Features = () => {
               {integrations?.map((integration, index) => (
                 <div 
                   key={index}
-                  className="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
+                  className="bg-muted rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
                 >
                   <div className="w-16 h-16 bg-primary/15 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Icon name={integration?.icon} className="text-primary" size={32} />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  <h3 className="text-xl font-bold text-foreground mb-2">
                     {integration?.name}
                   </h3>
-                  <p className="text-slate-600">
+                  <p className="text-muted-foreground">
                     {integration?.description}
                   </p>
                 </div>
@@ -298,13 +298,13 @@ const Features = () => {
         </section>
 
         {/* Pricing Tiers */}
-        <section className="py-20 bg-slate-50">
+        <section className="py-20 bg-muted">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
                 Feature Availability by Plan
               </h2>
-              <p className="text-xl text-slate-600">
+              <p className="text-xl text-muted-foreground">
                 Choose the plan that fits your needs
               </p>
             </div>
@@ -315,14 +315,14 @@ const Features = () => {
                   key={index}
                   className="bg-card rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow"
                 >
-                  <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-6">
                     {plan?.tier}
                   </h3>
                   <ul className="space-y-4 mb-8">
                     {plan?.features?.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
                         <Icon name="Check" className="text-success flex-shrink-0 mt-1" size={20} />
-                        <span className="text-slate-700">{feature}</span>
+                        <span className="text-muted-foreground">{feature}</span>
                       </li>
                     ))}
                   </ul>

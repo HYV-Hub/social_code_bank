@@ -2,20 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, Users, Gift } from 'lucide-react';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Button from '../../components/ui/Button';
 
 const BillingSubscriptionPage = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <PageShell>
       <Helmet>
         <title>Subscription - HyvHub</title>
       </Helmet>
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-foreground">Your Subscription</h1>
             <p className="mt-2 text-muted-foreground">Currently enjoying full access to HyvHub</p>
@@ -155,9 +152,7 @@ const BillingSubscriptionPage = () => {
               Learn More About Plans
             </Button>
           </div>
-        </div>
-      </div>
-    </>
+    </PageShell>
   );
 };
 

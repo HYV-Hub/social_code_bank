@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
 import { profileService } from '../../services/profileService';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import { User, Mail, AtSign, FileText, Upload, Loader2, Check, X, Camera } from 'lucide-react';
 
 export default function ProfileEditor() {
@@ -204,26 +204,23 @@ export default function ProfileEditor() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <PageShell>
         <Helmet>
           <title>Loading Profile - HYVhub</title>
         </Helmet>
-        <AppNavigation />
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <PageShell>
       <Helmet>
         <title>Edit Profile - HYVhub</title>
         <meta name="description" content="Edit your profile information and settings" />
       </Helmet>
-      <AppNavigation />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground">Edit Profile</h1>
@@ -235,7 +232,7 @@ export default function ProfileEditor() {
           <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
             <X className="w-5 h-5 text-error flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-red-800 font-medium">Error</p>
+              <p className="text-error font-medium">Error</p>
               <p className="text-error text-sm">{error}</p>
             </div>
           </div>
@@ -453,7 +450,6 @@ export default function ProfileEditor() {
             </p>
           )}
         </form>
-      </div>
-    </div>
+    </PageShell>
   );
 }

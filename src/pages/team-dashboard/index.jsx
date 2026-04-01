@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Icon from "../../components/AppIcon";
 import Button from "../../components/ui/Button";
 
-import AppNavigation from "../../components/AppNavigation";
+import PageShell from '../../components/PageShell';
 import { useAuth } from "../../contexts/AuthContext";
 
 import MetricCard from "../company-dashboard/components/MetricCard";
@@ -335,40 +335,42 @@ const TeamDashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-          <p className="text-muted-foreground">Loading team dashboard...</p>
-          <p className="text-sm text-muted-foreground mt-2">Fetching team snippets and activity...</p>
+      <PageShell>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+            <p className="text-muted-foreground">Loading team dashboard...</p>
+            <p className="text-sm text-muted-foreground mt-2">Fetching team snippets and activity...</p>
+          </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center max-w-md px-4">
-          <Icon name="AlertCircle" size={48} color="var(--color-error)" className="mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-foreground mb-2">Dashboard Error</h2>
-          <p className="text-muted-foreground mb-6">{error}</p>
-          <div className="flex gap-3 justify-center flex-wrap">
-            <Button onClick={() => navigate('/teams-landing-page')} variant="outline">
-              Back to Teams
-            </Button>
-            <Button onClick={loadTeamDashboardData}>
-              Try Again
-            </Button>
+      <PageShell>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center max-w-md px-4">
+            <Icon name="AlertCircle" size={48} color="var(--color-error)" className="mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-foreground mb-2">Dashboard Error</h2>
+            <p className="text-muted-foreground mb-6">{error}</p>
+            <div className="flex gap-3 justify-center flex-wrap">
+              <Button onClick={() => navigate('/teams-landing-page')} variant="outline">
+                Back to Teams
+              </Button>
+              <Button onClick={loadTeamDashboardData}>
+                Try Again
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <AppNavigation />
-      
+    <PageShell noPadding>
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -431,8 +433,8 @@ const TeamDashboard = () => {
         <section className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">Team Snippets</h2>
-              <p className="text-slate-600 mt-1">
+              <h2 className="text-2xl font-bold text-foreground">Team Snippets</h2>
+              <p className="text-muted-foreground mt-1">
                 All snippets shared with this team
               </p>
             </div>
@@ -442,7 +444,7 @@ const TeamDashboard = () => {
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-                <p className="mt-4 text-slate-600">Loading team snippets...</p>
+                <p className="mt-4 text-muted-foreground">Loading team snippets...</p>
               </div>
             </div>
           ) : snippets?.length > 0 ? (
@@ -456,13 +458,13 @@ const TeamDashboard = () => {
               ))}
             </div>
           ) : (
-            <div className="bg-card rounded-lg border border-slate-200 p-12 text-center">
+            <div className="bg-card rounded-lg border border-border p-12 text-center">
               <div className="flex flex-col items-center">
-                <Icon name="Code2" size={48} className="text-slate-400 mb-4" />
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <Icon name="Code2" size={48} className="text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   No Team Snippets Yet
                 </h3>
-                <p className="text-slate-600 mb-6">
+                <p className="text-muted-foreground mb-6">
                   Be the first to share a code snippet with your team
                 </p>
                 <Button
@@ -515,7 +517,7 @@ const TeamDashboard = () => {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
                             <span className={`px-2 py-1 rounded text-xs font-medium ${
-                              bug?.priority === 'critical' ? 'bg-error/15 text-red-800' : 'bg-orange-100 text-orange-800'
+                              bug?.priority === 'critical' ? 'bg-error/15 text-error' : 'bg-orange-100 text-orange-800'
                             }`}>
                               {bug?.priority?.toUpperCase()}
                             </span>
@@ -657,9 +659,9 @@ const TeamDashboard = () => {
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <span className={`px-2 py-1 rounded text-xs font-medium ${
-                        bug?.priority === 'critical' ? 'bg-error/15 text-red-800' :
+                        bug?.priority === 'critical' ? 'bg-error/15 text-error' :
                         bug?.priority === 'high' ? 'bg-orange-100 text-orange-800' :
-                        bug?.priority === 'medium'? 'bg-warning/15 text-yellow-800' : 'bg-primary/15 text-foreground'
+                        bug?.priority === 'medium'? 'bg-warning/15 text-warning' : 'bg-primary/15 text-foreground'
                       }`}>
                         {bug?.priority?.toUpperCase()}
                       </span>
@@ -703,7 +705,7 @@ const TeamDashboard = () => {
           </div>
         )}
       </main>
-    </div>
+    </PageShell>
   );
 };
 

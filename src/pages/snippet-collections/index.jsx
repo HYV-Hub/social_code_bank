@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
-import AppNavigation from "../../components/AppNavigation";
+import PageShell from '../../components/PageShell';
 import { Helmet } from 'react-helmet';
 import { Search, Plus, Edit, Trash2, Eye, Globe, Lock, Users, Building, FolderPlus, Filter } from 'lucide-react';
 import Select from '../../components/ui/Select';
@@ -297,12 +297,10 @@ export default function MySnippetsPage() {
   };
 
   return (
-    <>
+    <PageShell noPadding>
       <Helmet>
         <title>My Snippets - HyvHub</title>
       </Helmet>
-      <AppNavigation />
-      <div className="min-h-screen bg-background">
         {/* Header */}
         <div className="bg-card shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -935,7 +933,6 @@ export default function MySnippetsPage() {
             </div>
           </div>
         )}
-      </div>
-    </>
+    </PageShell>
   );
 }

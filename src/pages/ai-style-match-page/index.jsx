@@ -8,7 +8,7 @@ import ViolationsList from './components/ViolationsList';
 import TeamStyleGuide from './components/TeamStyleGuide';
 import HistoricalTrends from './components/HistoricalTrends';
 import BatchProcessor from './components/BatchProcessor';
-import AppNavigation from "../../components/AppNavigation";
+import PageShell from "../../components/PageShell";
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../components/AppIcon';
@@ -157,19 +157,18 @@ import Button from '../../components/ui/Button';
   // Show access denied if no company
   if (!userProfile?.company_id) {
     return (
-      <>
+      <PageShell>
         <Helmet>
           <title>Access Denied - AI Style Match</title>
         </Helmet>
-        <AppNavigation />
-        <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="flex items-center justify-center py-12">
           <div className="text-center max-w-md">
             <div className="p-4 bg-warning/10 rounded-full inline-block mb-4">
               <Icon name="Lock" size={48} className="text-warning" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 mb-2">Company Feature</h2>
-            <p className="text-slate-600 mb-6">
-              AI Style Match is available for company members only. 
+            <h2 className="text-2xl font-bold text-foreground mb-2">Company Feature</h2>
+            <p className="text-muted-foreground mb-6">
+              AI Style Match is available for company members only.
               Join or create a company to access this feature.
             </p>
             <Button onClick={() => navigate('/user-dashboard')}>
@@ -177,30 +176,27 @@ import Button from '../../components/ui/Button';
             </Button>
           </div>
         </div>
-      </>
+      </PageShell>
     );
   }
 
   return (
-    <>
+    <PageShell noPadding>
       <Helmet>
         <title>AI Style Match - HyvHub</title>
       </Helmet>
-      {/* Add Navigation */}
-      <AppNavigation />
-      <div className="min-h-screen bg-background">
         {/* Header */}
-        <div className="bg-card border-b border-slate-200">
+        <div className="bg-card border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
                   <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg">
                     <Code className="w-8 h-8 text-white" />
                   </div>
                   AI Style Match
                 </h1>
-                <p className="mt-2 text-slate-600">
+                <p className="mt-2 text-muted-foreground">
                   Analyze code against team style guidelines with AI-powered insights
                 </p>
               </div>
@@ -221,8 +217,8 @@ import Button from '../../components/ui/Button';
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Tabs */}
-          <div className="bg-card rounded-lg shadow-sm border border-slate-200 mb-6">
-            <div className="flex border-b border-slate-200">
+          <div className="bg-card rounded-lg shadow-sm border border-border mb-6">
+            <div className="flex border-b border-border">
               {[
                 { id: 'comparison', label: 'Code Comparison', icon: Code },
                 { id: 'metrics', label: 'Style Metrics', icon: TrendingUp },
@@ -236,7 +232,7 @@ import Button from '../../components/ui/Button';
                   onClick={() => setActiveTab(tab?.id)}
                   className={`flex-1 px-6 py-4 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
                     activeTab === tab?.id
-                      ? 'text-primary border-b-2 border-blue-600 bg-primary/10' :'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                      ? 'text-primary border-b-2 border-blue-600 bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                 >
                   <tab.icon className="w-4 h-4" />
@@ -289,8 +285,7 @@ import Button from '../../components/ui/Button';
             )}
           </div>
         </div>
-      </div>
-    </>
+    </PageShell>
   );
 };
 

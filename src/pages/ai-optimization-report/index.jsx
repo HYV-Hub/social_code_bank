@@ -10,7 +10,7 @@ import { analyzeSnippetWithAI } from '../../services/aiTaggingService';
 import RecommendationCard from './components/RecommendationCard';
 import TagCloud from './components/TagCloud';
 import Icon from '../../components/AppIcon';
-import AppNavigation from "../../components/AppNavigation";
+import PageShell from "../../components/PageShell";
 import CategoryBreakdown from './components/CategoryBreakdown';
 
 
@@ -371,164 +371,145 @@ export default function AIOptimizationReportPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
+      <PageShell>
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-text-secondary">Loading report...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   // Show analyzing state with progress message
   if (analyzing && !reportData) {
     return (
-      <>
+      <PageShell>
         <Helmet>
           <title>AI Optimization Report - HyvHub</title>
         </Helmet>
-        <AppNavigation />
-        <div className="min-h-screen bg-background">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="mb-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Snippet
-            </Button>
+        <Button
+          variant="ghost"
+          onClick={() => navigate(-1)}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Snippet
+        </Button>
 
-            <div className="bg-card rounded-lg shadow-lg p-8 text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-6"></div>
-              <h2 className="text-2xl font-bold text-foreground mb-4">
-                Generating Comprehensive AI Report
-              </h2>
-              <p className="text-muted-foreground mb-2">
-                Analyzing your code with OpenAI GPT-4...
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                This includes performance analysis, security review, bug detection, and optimization recommendations.
-              </p>
-              <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 text-left max-w-md mx-auto">
-                <p className="text-sm text-foreground font-medium mb-2">What's being analyzed:</p>
-                <ul className="text-xs text-foreground space-y-1">
-                  <li>✓ Automatic language detection and tagging</li>
-                  <li>✓ Performance bottlenecks and optimization opportunities</li>
-                  <li>✓ Security vulnerabilities and best practices</li>
-                  <li>✓ Code quality, readability, and maintainability</li>
-                  <li>✓ Bug detection and edge case analysis</li>
-                  <li>✓ Architectural patterns and recommendations</li>
-                </ul>
-              </div>
-              <p className="text-xs text-muted-foreground mt-4">
-                Please wait - comprehensive analysis takes 10-30 seconds
-              </p>
-            </div>
+        <div className="bg-card rounded-lg shadow-lg p-8 text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-6"></div>
+          <h2 className="text-2xl font-bold text-foreground mb-4">
+            Generating Comprehensive AI Report
+          </h2>
+          <p className="text-muted-foreground mb-2">
+            Analyzing your code with OpenAI GPT-4...
+          </p>
+          <p className="text-sm text-muted-foreground mb-4">
+            This includes performance analysis, security review, bug detection, and optimization recommendations.
+          </p>
+          <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 text-left max-w-md mx-auto">
+            <p className="text-sm text-foreground font-medium mb-2">What's being analyzed:</p>
+            <ul className="text-xs text-foreground space-y-1">
+              <li>✓ Automatic language detection and tagging</li>
+              <li>✓ Performance bottlenecks and optimization opportunities</li>
+              <li>✓ Security vulnerabilities and best practices</li>
+              <li>✓ Code quality, readability, and maintainability</li>
+              <li>✓ Bug detection and edge case analysis</li>
+              <li>✓ Architectural patterns and recommendations</li>
+            </ul>
           </div>
+          <p className="text-xs text-muted-foreground mt-4">
+            Please wait - comprehensive analysis takes 10-30 seconds
+          </p>
         </div>
-      </>
+      </PageShell>
     );
   }
 
   if (error && !reportData) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Button
-            variant="ghost"
-            onClick={() => navigate(-1)}
-            className="mb-4"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Snippet
-          </Button>
-          <div className="bg-error/100/10 border border-error rounded-lg p-4">
-            <p className="text-error mb-4">{error}</p>
-            <div className="flex gap-2">
-              <Button onClick={() => navigate(-1)}>
-                Go Back
-              </Button>
-              <Button variant="outline" onClick={handleReanalyze} disabled={analyzing}>
-                {analyzing ? 'Analyzing...' : 'Retry Analysis'}
-              </Button>
-            </div>
+      <PageShell>
+        <Button
+          variant="ghost"
+          onClick={() => navigate(-1)}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Snippet
+        </Button>
+        <div className="bg-error/100/10 border border-error rounded-lg p-4">
+          <p className="text-error mb-4">{error}</p>
+          <div className="flex gap-2">
+            <Button onClick={() => navigate(-1)}>
+              Go Back
+            </Button>
+            <Button variant="outline" onClick={handleReanalyze} disabled={analyzing}>
+              {analyzing ? 'Analyzing...' : 'Retry Analysis'}
+            </Button>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   // Show "needs analysis" state only if auto-analysis failed
   if (reportData?.needsAnalysis) {
     return (
-      <>
+      <PageShell>
         <Helmet>
           <title>AI Optimization Report - HyvHub</title>
         </Helmet>
-        <AppNavigation />
-        <div className="min-h-screen bg-background">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="mb-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Snippet
-            </Button>
+        <Button
+          variant="ghost"
+          onClick={() => navigate(-1)}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Snippet
+        </Button>
 
-            <div className="bg-card rounded-lg shadow-lg p-8 text-center">
-              <Icon name="Sparkles" size={64} className="mx-auto text-primary mb-4" />
-              <h2 className="text-2xl font-bold text-foreground mb-4">
-                AI Analysis Failed
-              </h2>
-              <p className="text-muted-foreground mb-6">
-                The automatic analysis didn't complete. Click below to try again.
-              </p>
-              {error && (
-                <div className="bg-error/10 border border-error/20 rounded-lg p-4 mb-6 text-left">
-                  <p className="text-sm text-error">{error}</p>
-                </div>
-              )}
-              <Button 
-                onClick={handleReanalyze}
-                disabled={analyzing}
-                size="lg"
-              >
-                {analyzing ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Analyzing...
-                  </>
-                ) : (
-                  <>
-                    <Zap className="w-5 h-5 mr-2" />
-                    Retry AI Analysis
-                  </>
-                )}
-              </Button>
+        <div className="bg-card rounded-lg shadow-lg p-8 text-center">
+          <Icon name="Sparkles" size={64} className="mx-auto text-primary mb-4" />
+          <h2 className="text-2xl font-bold text-foreground mb-4">
+            AI Analysis Failed
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            The automatic analysis didn't complete. Click below to try again.
+          </p>
+          {error && (
+            <div className="bg-error/10 border border-error/20 rounded-lg p-4 mb-6 text-left">
+              <p className="text-sm text-error">{error}</p>
             </div>
-          </div>
+          )}
+          <Button
+            onClick={handleReanalyze}
+            disabled={analyzing}
+            size="lg"
+          >
+            {analyzing ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Analyzing...
+              </>
+            ) : (
+              <>
+                <Zap className="w-5 h-5 mr-2" />
+                Retry AI Analysis
+              </>
+            )}
+          </Button>
         </div>
-      </>
+      </PageShell>
     );
   }
 
   return (
-    <>
+    <PageShell>
       <Helmet>
         <title>AI Optimization Report - HyvHub</title>
       </Helmet>
-
-      <AppNavigation />
-
-      <div className="min-h-screen bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="mb-6">
             <Button
@@ -583,7 +564,7 @@ export default function AIOptimizationReportPage() {
 
               {/* Compact Overall Score */}
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3">
+                <div className="bg-muted rounded-lg p-3">
                   <p className="text-xs text-muted-foreground mb-1">Optimization</p>
                   <div className="flex items-baseline">
                     <span className={`text-2xl font-bold ${getScoreColor(reportData?.overallScore)}`}>
@@ -592,7 +573,7 @@ export default function AIOptimizationReportPage() {
                     <span className="text-xs text-muted-foreground ml-1">/100</span>
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3">
+                <div className="bg-background rounded-lg p-3">
                   <p className="text-xs text-muted-foreground mb-1">Readability</p>
                   <div className="flex items-baseline">
                     <span className={`text-2xl font-bold ${getScoreColor(reportData?.readabilityScore)}`}>
@@ -658,8 +639,6 @@ export default function AIOptimizationReportPage() {
               <RecommendationCard key={index} recommendation={rec} />
             ))}
           </div>
-        </div>
-      </div>
-    </>
+    </PageShell>
   );
 }

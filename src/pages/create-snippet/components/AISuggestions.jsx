@@ -77,11 +77,11 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
   };
 
   return (
-    <div className="bg-card rounded-lg border border-slate-200 p-6">
-      <h2 className="text-lg font-semibold text-slate-800 mb-4">
+    <div className="bg-card rounded-lg border border-border p-6">
+      <h2 className="text-lg font-semibold text-foreground mb-4">
         AI Suggestions
       </h2>
-      <p className="text-sm text-slate-600 mb-4">
+      <p className="text-sm text-muted-foreground mb-4">
         AI will analyze your code and automatically detect the programming language along with generating comprehensive tags.
       </p>
       
@@ -89,10 +89,10 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Icon name="Sparkles" size={20} className="text-primary" />
-          <h2 className="text-lg font-semibold text-slate-800">AI Insights</h2>
+          <h2 className="text-lg font-semibold text-foreground">AI Insights</h2>
         </div>
         {analyzing && (
-          <div className="flex items-center gap-2 text-sm text-slate-600">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <div className="w-4 h-4 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
             <span>Analyzing...</span>
           </div>
@@ -103,7 +103,7 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
       {analysis?.qualityScore !== null && (
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-medium text-slate-700">Code Quality Score</span>
+            <span className="text-sm font-medium text-muted-foreground">Code Quality Score</span>
             <span className={`text-2xl font-bold ${getQualityColor(analysis?.qualityScore)}`}>
               {analysis?.qualityScore}%
             </span>
@@ -118,9 +118,9 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
 
           <div className="grid grid-cols-2 gap-3 mt-4">
             {Object.entries(analysis?.qualityMetrics || {})?.map(([key, value]) => (
-              <div key={key} className="p-3 bg-slate-50 rounded-lg">
+              <div key={key} className="p-3 bg-muted rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-600 capitalize">{key}</span>
+                  <span className="text-xs text-muted-foreground capitalize">{key}</span>
                   <span className={`text-sm font-semibold ${getQualityColor(value)}`}>
                     {value}%
                   </span>
@@ -135,7 +135,7 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
       {analysis?.tags?.length > 0 && (
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-medium text-slate-700">AI-Suggested Tags</h3>
+            <h3 className="text-sm font-medium text-muted-foreground">AI-Suggested Tags</h3>
             <Button
               variant="ghost"
               size="sm"
@@ -165,13 +165,13 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Icon name="Lightbulb" size={16} className="text-primary" />
-            <h3 className="text-sm font-medium text-slate-700">AI-Suggested Improvements</h3>
+            <h3 className="text-sm font-medium text-muted-foreground">AI-Suggested Improvements</h3>
           </div>
           <div className="space-y-2">
             {analysis?.improvements?.map((improvement, index) => (
               <div key={index} className="flex items-start gap-2 p-3 bg-primary/10 rounded-lg">
                 <Icon name="CheckCircle2" size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-xs text-slate-700">{improvement}</p>
+                <p className="text-xs text-muted-foreground">{improvement}</p>
               </div>
             ))}
           </div>
@@ -181,11 +181,11 @@ const AISuggestions = ({ code, tags, setTags, language }) => {
       {/* Empty State - Now shows prompt to manually trigger analysis */}
       {!analyzing && analysis?.qualityScore === null && (
         <div className="text-center py-8">
-          <Icon name="Code2" size={32} className="text-slate-400 mx-auto mb-3" />
-          <p className="text-sm text-slate-600 mb-4">
+          <Icon name="Code2" size={32} className="text-muted-foreground mx-auto mb-3" />
+          <p className="text-sm text-muted-foreground mb-4">
             Click "Re-analyze Code" below to get AI-powered insights
           </p>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted-foreground">
             Manual analysis prevents automatic errors
           </p>
         </div>

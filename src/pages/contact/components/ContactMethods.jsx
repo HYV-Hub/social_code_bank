@@ -50,7 +50,7 @@ const ContactMethods = () => {
       {contactMethods?.map((method, index) => (
         <div
           key={index}
-          className="bg-card dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow"
+          className="bg-card dark:bg-slate-800 rounded-xl p-6 border border-border dark:border-slate-700 hover:shadow-lg transition-shadow"
         >
           <div className="w-12 h-12 bg-primary/15 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
             <Icon name={method?.icon} size={24} className="text-primary dark:text-blue-400" />

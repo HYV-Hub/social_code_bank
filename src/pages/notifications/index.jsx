@@ -9,7 +9,7 @@ import { FilterControls } from './components/FilterControls';
 import { BulkActions } from './components/BulkActions';
 import { PreferencesPanel } from './components/PreferencesPanel';
 import { SearchPanel } from './components/SearchPanel';
-import AppNavigation from "../../components/AppNavigation";
+import PageShell from '../../components/PageShell';
 
 export default function NotificationsPage() {
   const navigate = useNavigate();
@@ -162,12 +162,14 @@ export default function NotificationsPage() {
   // Show loading state during authentication check
   if (authLoading || loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
-        <div className="text-center">
-          <Loader className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading notifications...</p>
+      <PageShell>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <Loader className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
+            <p className="text-muted-foreground">Loading notifications...</p>
+          </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
@@ -177,15 +179,10 @@ export default function NotificationsPage() {
   }
 
   return (
-    <>
+    <PageShell noPadding>
       <Helmet>
         <title>Notifications - HyvHub</title>
       </Helmet>
-
-      {/* Add Navigation */}
-      <AppNavigation />
-
-      <div className="min-h-screen bg-background">
         {/* Header */}
         <div className="bg-card border-b border-border sticky top-0 z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -285,11 +282,11 @@ export default function NotificationsPage() {
         </div>
 
         {/* Preferences Panel */}
+        {/* Preferences Panel */}
         <PreferencesPanel
           isOpen={showPreferences}
           onClose={() => setShowPreferences(false)}
         />
-      </div>
-    </>
+    </PageShell>
   );
 }

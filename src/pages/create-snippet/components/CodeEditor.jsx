@@ -41,19 +41,19 @@ const CodeEditor = ({
   };
 
   return (
-    <div className="bg-card rounded-lg border border-slate-200 p-6">
+    <div className="bg-card rounded-lg border border-border p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-slate-800">Code</h2>
-        <p className="text-sm text-slate-600">
+        <h2 className="text-lg font-semibold text-foreground">Code</h2>
+        <p className="text-sm text-muted-foreground">
           Write your code below. AI will automatically detect the programming language.
         </p>
       </div>
       
       <div className="relative">
         {lineNumbers && (
-          <div className="absolute left-0 top-0 bottom-0 w-12 bg-slate-50 border-r border-slate-200 py-4 text-right pr-2 select-none">
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-muted border-r border-border py-4 text-right pr-2 select-none">
             {Array.from({ length: getLineCount() }, (_, i) => (
-              <div key={i} className="text-xs text-slate-400 leading-6 font-mono">
+              <div key={i} className="text-xs text-muted-foreground leading-6 font-mono">
                 {i + 1}
               </div>
             ))}
@@ -61,7 +61,7 @@ const CodeEditor = ({
         )}
         
         <textarea
-          className={`w-full min-h-[500px] p-4 ${lineNumbers ? 'pl-16' : 'pl-4'} font-mono text-sm text-slate-800 focus:outline-none resize-none bg-card`}
+          className={`w-full min-h-[500px] p-4 ${lineNumbers ? 'pl-16' : 'pl-4'} font-mono text-sm text-foreground focus:outline-none resize-none bg-card`}
           placeholder="// Start typing or paste your code here...\n\nfunction example() {\n  return 'Hello World';\n}"
           value={code}
           onChange={handleCodeChange}
@@ -73,8 +73,8 @@ const CodeEditor = ({
           <p className="text-sm text-error">{errors?.code}</p>
         </div>
       )}
-      <div className="px-4 py-2 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
-        <div className="flex items-center gap-4 text-xs text-slate-500">
+      <div className="px-4 py-2 bg-muted border-t border-border flex items-center justify-between">
+        <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <span>{getLineCount()} lines</span>
           <span>{code?.length} characters</span>
           <span>{code?.split(/\s+/)?.filter(w => w?.length > 0)?.length} words</span>

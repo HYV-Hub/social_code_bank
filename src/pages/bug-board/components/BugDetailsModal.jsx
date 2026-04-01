@@ -59,17 +59,17 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
   };
 
   const priorityColors = {
-    critical: 'bg-error/15 text-red-800',
+    critical: 'bg-error/15 text-error',
     high: 'bg-orange-100 text-orange-800',
-    medium: 'bg-warning/15 text-yellow-800',
+    medium: 'bg-warning/15 text-warning',
     low: 'bg-primary/15 text-foreground'
   };
 
   const statusColors = {
-    open: 'bg-error/15 text-red-800',
-    in_progress: 'bg-warning/15 text-yellow-800',
+    open: 'bg-error/15 text-error',
+    in_progress: 'bg-warning/15 text-warning',
     resolved: 'bg-success/15 text-success',
-    closed: 'bg-slate-100 text-slate-800',
+    closed: 'bg-muted text-foreground',
     reopened: 'bg-orange-100 text-orange-800'
   };
 
@@ -77,9 +77,9 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-card border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+        <div className="bg-card border-b border-border px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-bold text-slate-800">{bug?.title}</h2>
+            <h2 className="text-xl font-bold text-foreground">{bug?.title}</h2>
             <span className={`px-3 py-1 rounded text-xs font-medium ${priorityColors?.[bug?.priority]}`}>
               {bug?.priority}
             </span>
@@ -89,19 +89,19 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-muted rounded-lg transition-colors"
           >
             <Icon name="X" size={24} />
           </button>
         </div>
 
         {/* Tabs */}
-        <div className="border-b border-slate-200">
+        <div className="border-b border-border">
           <div className="flex gap-4 px-6">
             <button
               onClick={() => setActiveTab('details')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'details' ?'border-blue-600 text-primary' :'border-transparent text-slate-600 hover:text-slate-800'
+                activeTab === 'details' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               <Icon name="FileText" size={16} className="inline mr-2" />
@@ -110,7 +110,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <button
               onClick={() => setActiveTab('comments')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'comments' ?'border-blue-600 text-primary' :'border-transparent text-slate-600 hover:text-slate-800'
+                activeTab === 'comments' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               <Icon name="MessageSquare" size={16} className="inline mr-2" />
@@ -119,7 +119,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <button
               onClick={() => setActiveTab('history')}
               className={`py-3 px-4 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'history' ?'border-blue-600 text-primary' :'border-transparent text-slate-600 hover:text-slate-800'
+                activeTab === 'history' ?'border-blue-600 text-primary' :'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               <Icon name="Clock" size={16} className="inline mr-2" />
@@ -134,14 +134,14 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
             <div className="space-y-6">
               {/* Description */}
               <div>
-                <h3 className="text-sm font-semibold text-slate-700 mb-2">Description</h3>
-                <p className="text-slate-600">{bug?.description}</p>
+                <h3 className="text-sm font-semibold text-muted-foreground mb-2">Description</h3>
+                <p className="text-muted-foreground">{bug?.description}</p>
               </div>
 
               {/* Code Snippet */}
               {bug?.code && (
                 <div>
-                  <h3 className="text-sm font-semibold text-slate-700 mb-2">Code</h3>
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-2">Code</h3>
                   <pre className="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto text-sm">
                     <code>{bug?.code}</code>
                   </pre>
@@ -151,22 +151,22 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
               {/* Metadata */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <h3 className="text-sm font-semibold text-slate-700 mb-2">Language</h3>
-                  <p className="text-slate-600">{bug?.language || 'Not specified'}</p>
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-2">Language</h3>
+                  <p className="text-muted-foreground">{bug?.language || 'Not specified'}</p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-slate-700 mb-2">Author</h3>
-                  <p className="text-slate-600">{bug?.author?.name || 'Unknown'}</p>
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-2">Author</h3>
+                  <p className="text-muted-foreground">{bug?.author?.name || 'Unknown'}</p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-slate-700 mb-2">Created</h3>
-                  <p className="text-slate-600">
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-2">Created</h3>
+                  <p className="text-muted-foreground">
                     {bug?.createdAt ? new Date(bug?.createdAt)?.toLocaleString() : 'N/A'}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-slate-700 mb-2">Visibility</h3>
-                  <p className="text-slate-600 capitalize">{bug?.visibility || 'public'}</p>
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-2">Visibility</h3>
+                  <p className="text-muted-foreground capitalize">{bug?.visibility || 'public'}</p>
                 </div>
               </div>
             </div>
@@ -175,13 +175,13 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
           {activeTab === 'comments' && (
             <div className="space-y-4">
               {/* Add Comment */}
-              <div className="bg-slate-50 rounded-lg p-4">
+              <div className="bg-muted rounded-lg p-4">
                 <textarea
                   value={newComment}
                   onChange={(e) => setNewComment(e?.target?.value)}
                   placeholder="Add a comment..."
                   rows={3}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                  className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                 />
                 <div className="mt-2 flex justify-end">
                   <Button
@@ -204,7 +204,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
               ) : comments?.length > 0 ? (
                 <div className="space-y-4">
                   {comments?.map((comment) => (
-                    <div key={comment?.id} className="bg-card border border-slate-200 rounded-lg p-4">
+                    <div key={comment?.id} className="bg-card border border-border rounded-lg p-4">
                       <div className="flex items-start gap-3">
                         <img
                           src={comment?.user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(comment?.user?.name || 'User')}&background=random`}
@@ -213,21 +213,21 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
                         />
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="text-sm font-medium text-slate-800">
+                            <span className="text-sm font-medium text-foreground">
                               {comment?.user?.name || 'Anonymous'}
                             </span>
-                            <span className="text-xs text-slate-500">
+                            <span className="text-xs text-muted-foreground">
                               {new Date(comment?.created_at)?.toLocaleString()}
                             </span>
                           </div>
-                          <p className="text-sm text-slate-600">{comment?.content}</p>
+                          <p className="text-sm text-muted-foreground">{comment?.content}</p>
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8 text-slate-500">
+                <div className="text-center py-8 text-muted-foreground">
                   <Icon name="MessageSquare" size={48} className="mx-auto mb-2 text-slate-300" />
                   <p>No comments yet</p>
                 </div>
@@ -236,7 +236,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
           )}
 
           {activeTab === 'history' && (
-            <div className="text-center py-8 text-slate-500">
+            <div className="text-center py-8 text-muted-foreground">
               <Icon name="Clock" size={48} className="mx-auto mb-2 text-slate-300" />
               <p>Bug history coming soon</p>
             </div>
@@ -255,7 +255,7 @@ const BugDetailsModal = ({ bug, onClose, onStatusChange }) => {
         </div>
 
         {/* Footer Actions */}
-        <div className="border-t border-slate-200 px-6 py-4 flex items-center justify-between">
+        <div className="border-t border-border px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Button
               variant="outline"

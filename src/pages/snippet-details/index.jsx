@@ -11,7 +11,7 @@ import AuthorCard from './components/AuthorCard';
 import RecentEngagement from './components/RecentEngagement';
 import AITagsDisplay from './components/AITagsDisplay';
 import AISnippetSharing from './components/AISnippetSharing';
-import AppNavigation from "../../components/AppNavigation";
+import PageShell from "../../components/PageShell";
 import { supabase } from '../../lib/supabase';
 
 import Button from '../../components/ui/Button';
@@ -539,8 +539,7 @@ const SnippetDetails = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-        <AppNavigation />
+      <PageShell noPadding>
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative">
@@ -553,14 +552,13 @@ const SnippetDetails = () => {
             <p className="text-sm text-muted-foreground mt-1">Preparing your code experience</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-        <AppNavigation />
+      <PageShell noPadding>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="bg-card rounded-xl shadow-lg border-l-4 border-error p-6">
             <div className="flex items-start gap-4">
@@ -570,7 +568,7 @@ const SnippetDetails = () => {
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-foreground mb-2">Unable to Load Snippet</h3>
                 <p className="text-error mb-4">{error}</p>
-                <Button 
+                <Button
                   onClick={() => navigate(-1)}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                 >
@@ -581,14 +579,13 @@ const SnippetDetails = () => {
             </div>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (!snippet) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-        <AppNavigation />
+      <PageShell noPadding>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="bg-card rounded-xl shadow-lg border-l-4 border-yellow-500 p-6">
             <div className="flex items-start gap-4">
@@ -598,7 +595,7 @@ const SnippetDetails = () => {
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-foreground mb-2">Snippet Not Found</h3>
                 <p className="text-muted-foreground mb-4">The snippet you're looking for doesn't exist or has been removed.</p>
-                <Button 
+                <Button
                   onClick={() => navigate('/user-dashboard')}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                 >
@@ -609,7 +606,7 @@ const SnippetDetails = () => {
             </div>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
@@ -635,9 +632,7 @@ const SnippetDetails = () => {
   const versionHistory = [];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-      <AppNavigation />
-      
+    <PageShell noPadding>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Enhanced Hero Header Section */}
         <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-xl shadow-2xl p-8 mb-8 relative overflow-hidden">
@@ -954,7 +949,7 @@ const SnippetDetails = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-success/20">
+                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-success/5 to-success/10 rounded-lg border border-success/20">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-success/100 rounded-lg">
                       <Icon name="MessageSquare" size={18} className="text-white" />
@@ -1077,7 +1072,7 @@ const SnippetDetails = () => {
           </div>
         </div>
       )}
-    </div>
+    </PageShell>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Plus } from 'lucide-react';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import CollectionHeader from './components/CollectionHeader';
 import FilterPanel from './components/FilterPanel';
 import SnippetCard from './components/SnippetCard';
@@ -113,9 +113,8 @@ const HiveCollectionDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
-        <AppNavigation />
-        <div className="pt-16 flex items-center justify-center min-h-[60vh]">
+      <PageShell>
+        <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative w-16 h-16 mx-auto mb-6">
               <div className="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
@@ -124,15 +123,14 @@ const HiveCollectionDetail = () => {
             <p className="text-foreground font-medium text-lg">Loading collection...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error || !collection) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-red-50 to-orange-50">
-        <AppNavigation />
-        <div className="pt-16 flex items-center justify-center min-h-[60vh]">
+      <PageShell>
+        <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center max-w-md mx-auto px-4">
             <div className="w-24 h-24 bg-gradient-to-br from-red-100 to-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <ArrowLeft className="w-12 h-12 text-error" />
@@ -154,15 +152,12 @@ const HiveCollectionDetail = () => {
             </button>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
-      <AppNavigation />
-      <div className="pt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <PageShell>
           {/* Enhanced Back Button */}
           <button
             onClick={() => navigate(`/hives/${collection?.hive?.id}`)}
@@ -246,8 +241,6 @@ const HiveCollectionDetail = () => {
               ))}
             </div>
           )}
-        </div>
-      </div>
 
       {/* Add Snippet Modal */}
       {showAddModal && (
@@ -258,7 +251,7 @@ const HiveCollectionDetail = () => {
           onSuccess={handleSnippetAdded}
         />
       )}
-    </div>
+    </PageShell>
   );
 };
 

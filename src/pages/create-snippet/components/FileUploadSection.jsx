@@ -87,11 +87,11 @@ const FileUploadSection = ({ files, setFiles }) => {
   };
 
   return (
-    <div className="bg-card rounded-lg border border-slate-200 p-6 mb-6">
-      <h2 className="text-lg font-semibold text-slate-800 mb-4">Attachments</h2>
+    <div className="bg-card rounded-lg border border-border p-6 mb-6">
+      <h2 className="text-lg font-semibold text-foreground mb-4">Attachments</h2>
       <div
         className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-          dragActive ? 'border-blue-500 bg-primary/10' : 'border-slate-300 bg-slate-50'
+          dragActive ? 'border-blue-500 bg-primary/10' : 'border-border bg-muted'
         }`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -112,10 +112,10 @@ const FileUploadSection = ({ files, setFiles }) => {
           </div>
           
           <div>
-            <p className="text-sm font-medium text-slate-700 mb-1">
+            <p className="text-sm font-medium text-muted-foreground mb-1">
               Drop files here or click to upload
             </p>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-muted-foreground">
               Support for code files, documents, and archives up to 10MB
             </p>
           </div>
@@ -129,23 +129,23 @@ const FileUploadSection = ({ files, setFiles }) => {
       </div>
       {files?.length > 0 && (
         <div className="mt-4 space-y-2">
-          <h3 className="text-sm font-medium text-slate-700 mb-2">
+          <h3 className="text-sm font-medium text-muted-foreground mb-2">
             Uploaded Files ({files?.length})
           </h3>
           {files?.map((file) => (
             <div
               key={file?.id}
-              className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200"
+              className="flex items-center justify-between p-3 bg-muted rounded-lg border border-border"
             >
               <div className="flex items-center gap-3 flex-1 min-w-0">
                 <div className="w-10 h-10 rounded bg-primary/15 flex items-center justify-center flex-shrink-0">
                   <Icon name={getFileIcon(file?.name)} size={20} className="text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-slate-700 truncate">
+                  <p className="text-sm font-medium text-muted-foreground truncate">
                     {file?.name}
                   </p>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     {formatFileSize(file?.size)}
                   </p>
                 </div>

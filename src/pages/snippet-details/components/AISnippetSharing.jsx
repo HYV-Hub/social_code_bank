@@ -99,7 +99,7 @@ const AISnippetSharing = ({ snippet }) => {
         <div className="flex items-start gap-3">
           <Icon name="AlertCircle" size={20} className="text-error mt-0.5 flex-shrink-0" />
           <div className="flex-1">
-            <h3 className="text-sm font-medium text-red-800 mb-2">Failed to generate sharing content</h3>
+            <h3 className="text-sm font-medium text-error mb-2">Failed to generate sharing content</h3>
             <p className="text-sm text-error mb-3">{error}</p>
             <div className="bg-error/10 border border-error/20 rounded-md p-3 mt-2">
               <p className="text-xs text-error font-medium mb-2">Troubleshooting steps:</p>
@@ -108,7 +108,7 @@ const AISnippetSharing = ({ snippet }) => {
                   <strong>Verify API Key:</strong> Check that <code className="bg-error/15 px-1 rounded">VITE_OPENAI_API_KEY</code> is set in your <code className="bg-error/15 px-1 rounded">.env</code> file
                 </li>
                 <li>
-                  <strong>Get API Key:</strong> Visit <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="underline hover:text-red-800 font-medium">platform.openai.com/api-keys</a> to create or copy your API key
+                  <strong>Get API Key:</strong> Visit <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="underline hover:text-error font-medium">platform.openai.com/api-keys</a> to create or copy your API key
                 </li>
                 <li>
                   <strong>Check API Key Format:</strong> Ensure it starts with <code className="bg-error/15 px-1 rounded">sk-</code> and has no extra spaces

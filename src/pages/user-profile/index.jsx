@@ -10,7 +10,7 @@ import ActivityItem from './components/ActivityItem';
 import UserCard from './components/UserCard';
 import AchievementBadge from './components/AchievementBadge';
 import StatsCard from './components/StatsCard';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import friendRequestService from '../../services/friendRequestService';
 
 
@@ -206,7 +206,7 @@ const UserProfile = () => {
         return (
           <button
             onClick={handleCancelFriendRequest}
-            className="flex items-center space-x-2 px-6 py-2 bg-slate-300 text-slate-700 rounded-lg hover:bg-slate-400">
+            className="flex items-center space-x-2 px-6 py-2 bg-slate-300 text-muted-foreground rounded-lg hover:bg-slate-400">
             <Icon name="X" size={20} />
             <span>Cancel Request</span>
           </button>
@@ -586,53 +586,44 @@ const UserProfile = () => {
   // Show loading state
   if (authLoading || isLoading) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
+      <PageShell>
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading profile...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   // Show error state
   if (error) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-error/100/10 border border-error rounded-lg p-4">
-            <p className="text-error">{error}</p>
-          </div>
+      <PageShell>
+        <div className="bg-error/100/10 border border-error rounded-lg p-4">
+          <p className="text-error">{error}</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   // Show not logged in state
   if (!user || !userData) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-warning/10 border border-warning rounded-lg p-4">
-            <p className="text-foreground">Please log in to view your profile.</p>
-            <Button className="mt-4" onClick={() => navigate('/login')}>
-              Go to Login
-            </Button>
-          </div>
+      <PageShell>
+        <div className="bg-warning/10 border border-warning rounded-lg p-4">
+          <p className="text-foreground">Please log in to view your profile.</p>
+          <Button className="mt-4" onClick={() => navigate('/login')}>
+            Go to Login
+          </Button>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppNavigation />
-
+    <PageShell noPadding>
       {/* Profile Header */}
       <div className="bg-card shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -952,7 +943,7 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-    </div>
+    </PageShell>
   );
 };
 

@@ -145,12 +145,12 @@ export default function OAuthLoginPage() {
         
         <PublicNavigation />
         
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
           <div className="w-full max-w-md">
-            <div className="bg-card rounded-xl shadow-2xl border border-slate-200 p-8 text-center">
+            <div className="bg-card rounded-xl shadow-2xl border border-border p-8 text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <h2 className="text-xl font-semibold text-slate-800 mb-2">Processing Sign In</h2>
-              <p className="text-slate-600">Setting up your account...</p>
+              <h2 className="text-xl font-semibold text-foreground mb-2">Processing Sign In</h2>
+              <p className="text-muted-foreground">Setting up your account...</p>
             </div>
           </div>
         </div>
@@ -164,14 +164,14 @@ export default function OAuthLoginPage() {
         <title>OAuth Login - HYVhub</title>
       </Helmet>
       <PublicNavigation />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-slate-800 mb-2">Sign In with OAuth</h1>
-            <p className="text-slate-600">Continue with your preferred provider</p>
+            <h1 className="text-4xl font-bold text-foreground mb-2">Sign In with OAuth</h1>
+            <p className="text-muted-foreground">Continue with your preferred provider</p>
           </div>
 
-          <div className="bg-card rounded-xl shadow-2xl border border-slate-200 p-8">
+          <div className="bg-card rounded-xl shadow-2xl border border-border p-8">
             {error && (
               <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg">
                 <div className="flex items-start gap-3">
@@ -194,7 +194,7 @@ export default function OAuthLoginPage() {
               <button
                 onClick={handleGoogleSignIn}
                 disabled={loading}
-                className="w-full py-3 px-4 bg-card hover:bg-slate-50 text-slate-900 font-medium rounded-lg flex items-center justify-center gap-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed border-2 border-slate-300 hover:border-slate-400"
+                className="w-full py-3 px-4 bg-card hover:bg-muted text-foreground font-medium rounded-lg flex items-center justify-center gap-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed border-2 border-border hover:border-slate-400"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
@@ -230,7 +230,7 @@ export default function OAuthLoginPage() {
             </div>
 
             <div className="mt-6 text-center">
-              <p className="text-slate-500 text-sm">
+              <p className="text-muted-foreground text-sm">
                 By signing in, you agree to our{" "}
                 <a href="/terms-of-service" className="text-primary hover:text-primary underline">
                   Terms of Service
@@ -242,10 +242,10 @@ export default function OAuthLoginPage() {
               </p>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-slate-200">
+            <div className="mt-6 pt-6 border-t border-border">
               <button
                 onClick={() => navigate("/login")}
-                className="w-full text-center text-sm text-slate-600 hover:text-slate-800"
+                className="w-full text-center text-sm text-muted-foreground hover:text-foreground"
               >
                 ← Back to Login
               </button>

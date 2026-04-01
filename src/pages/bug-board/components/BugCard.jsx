@@ -4,9 +4,9 @@ import Image from '../../../components/AppImage';
 
 const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }) => {
   const priorityColors = {
-    critical: 'bg-error/15 text-red-800 border-red-300',
+    critical: 'bg-error/15 text-error border-red-300',
     high: 'bg-orange-100 text-orange-800 border-orange-300',
-    medium: 'bg-warning/15 text-yellow-800 border-yellow-300',
+    medium: 'bg-warning/15 text-warning border-yellow-300',
     low: 'bg-primary/15 text-foreground border-blue-300'
   };
 
@@ -21,10 +21,10 @@ const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }
     <div
       draggable
       onDragStart={(e) => onDragStart(e, bug)}
-      className="bg-card rounded-lg border border-slate-200 p-4 mb-3 cursor-move hover:shadow-md transition-shadow"
+      className="bg-card rounded-lg border border-border p-4 mb-3 cursor-move hover:shadow-md transition-shadow"
     >
       <div className="flex items-start justify-between mb-3">
-        <h4 className="text-sm font-semibold text-slate-800 flex-1 pr-2 line-clamp-2">
+        <h4 className="text-sm font-semibold text-foreground flex-1 pr-2 line-clamp-2">
           {bug?.title}
         </h4>
         <span className={`px-2 py-1 rounded text-xs font-medium border ${priorityColors?.[bug?.priority]}`}>
@@ -38,11 +38,11 @@ const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }
           alt={bug?.assignee?.avatarAlt || bug?.author?.avatarAlt || 'User avatar'}
           className="w-6 h-6 rounded-full object-cover"
         />
-        <span className="text-xs text-slate-600">
+        <span className="text-xs text-muted-foreground">
           {bug?.assignee?.name || bug?.author?.name || 'Unassigned'}
         </span>
       </div>
-      <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
+      <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
         <span className="flex items-center gap-1">
           <Icon name="Calendar" size={14} />
           {bug?.createdAt ? new Date(bug?.createdAt)?.toLocaleDateString() : bug?.createdDate || 'N/A'}
@@ -57,14 +57,14 @@ const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }
           {bug?.tags?.map((tag, index) => (
             <span
               key={index}
-              className="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs"
+              className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs"
             >
               {tag}
             </span>
           ))}
         </div>
       )}
-      <div className="flex items-center gap-2 pt-3 border-t border-slate-100">
+      <div className="flex items-center gap-2 pt-3 border-t border-border">
         <button
           onClick={() => onViewDetails(bug)}
           className="flex-1 flex items-center justify-center gap-1 px-3 py-1.5 bg-primary/10 text-primary rounded text-xs font-medium hover:bg-primary/15 transition-colors"
@@ -74,13 +74,13 @@ const BugCard = ({ bug, onDragStart, onViewDetails, onAssign, onPriorityChange }
         </button>
         <button
           onClick={() => onAssign(bug)}
-          className="flex items-center justify-center gap-1 px-3 py-1.5 bg-slate-50 text-slate-700 rounded text-xs font-medium hover:bg-slate-100 transition-colors"
+          className="flex items-center justify-center gap-1 px-3 py-1.5 bg-muted text-muted-foreground rounded text-xs font-medium hover:bg-muted transition-colors"
         >
           <Icon name="UserPlus" size={14} />
         </button>
         <button
           onClick={() => onPriorityChange(bug)}
-          className="flex items-center justify-center gap-1 px-3 py-1.5 bg-slate-50 text-slate-700 rounded text-xs font-medium hover:bg-slate-100 transition-colors"
+          className="flex items-center justify-center gap-1 px-3 py-1.5 bg-muted text-muted-foreground rounded text-xs font-medium hover:bg-muted transition-colors"
         >
           <Icon name="Flag" size={14} />
         </button>

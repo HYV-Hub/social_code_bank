@@ -61,7 +61,7 @@ const AnalyticsPanel = () => {
     <div className="space-y-4 sm:space-y-6">
       {/* User Analytics Summary */}
       {userAnalytics && (
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-sm p-4 sm:p-6 border border-primary/20">
+        <div className="bg-muted rounded-lg shadow-sm p-4 sm:p-6 border border-primary/20">
           <h3 className="text-base sm:text-lg font-bold text-foreground mb-3 sm:mb-4 flex items-center gap-2">
             <Icon name="TrendingUp" size={18} className="text-primary flex-shrink-0" />
             <span className="truncate">Your Activity</span>

@@ -85,8 +85,8 @@ const TeamStyleGuide = ({ rules }) => {
       </div>
 
       {/* Rules List */}
-      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
-        <h3 className="text-xl font-semibold text-slate-900 mb-6">Style Rules & Weights</h3>
+      <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+        <h3 className="text-xl font-semibold text-foreground mb-6">Style Rules & Weights</h3>
         <div className="space-y-4">
           {rules?.map((rule, index) => {
             const statusConfig = getStatusConfig(rule?.status);
@@ -105,7 +105,7 @@ const TeamStyleGuide = ({ rules }) => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-3">
                       <div>
-                        <h4 className="text-lg font-semibold text-slate-900 mb-1">
+                        <h4 className="text-lg font-semibold text-foreground mb-1">
                           {rule?.category}
                         </h4>
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${statusConfig?.color} bg-card`}>
@@ -113,17 +113,17 @@ const TeamStyleGuide = ({ rules }) => {
                         </span>
                       </div>
                       <div className="text-right">
-                        <div className="text-3xl font-bold text-slate-900">
+                        <div className="text-3xl font-bold text-foreground">
                           {rule?.score}%
                         </div>
-                        <div className="text-sm text-slate-600 mt-1">Current Score</div>
+                        <div className="text-sm text-muted-foreground mt-1">Current Score</div>
                       </div>
                     </div>
 
                     {/* Weight Control */}
                     <div className="space-y-3">
                       <div className="flex items-center gap-4">
-                        <label className="text-sm font-medium text-slate-700 min-w-fit">
+                        <label className="text-sm font-medium text-muted-foreground min-w-fit">
                           Priority Weight:
                         </label>
                         {editMode ? (
@@ -143,13 +143,13 @@ const TeamStyleGuide = ({ rules }) => {
                             />
                           </div>
                         )}
-                        <span className="text-lg font-bold text-slate-900 min-w-fit">
+                        <span className="text-lg font-bold text-foreground min-w-fit">
                           {rule?.weight}%
                         </span>
                       </div>
 
                       {/* Progress Indicator */}
-                      <div className="bg-slate-100 rounded-full h-3 overflow-hidden">
+                      <div className="bg-muted rounded-full h-3 overflow-hidden">
                         <div
                           className={`h-full transition-all duration-500 ${
                             rule?.score >= 80
@@ -172,11 +172,11 @@ const TeamStyleGuide = ({ rules }) => {
                       </button>
 
                       {selectedRule === index && (
-                        <div className="mt-4 p-4 bg-card rounded-lg border border-slate-200">
-                          <h5 className="font-medium text-slate-900 mb-3">
+                        <div className="mt-4 p-4 bg-card rounded-lg border border-border">
+                          <h5 className="font-medium text-foreground mb-3">
                             Rule Guidelines
                           </h5>
-                          <ul className="space-y-2 text-sm text-slate-700">
+                          <ul className="space-y-2 text-sm text-muted-foreground">
                             <li className="flex items-start gap-2">
                               <span className="text-primary">✓</span>
                               <span>Follow team-approved naming patterns</span>
@@ -207,15 +207,15 @@ const TeamStyleGuide = ({ rules }) => {
 
       {/* Save Button */}
       {editMode && (
-        <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
           <div className="flex items-center justify-between">
-            <p className="text-slate-600">
+            <p className="text-muted-foreground">
               Adjust category weights to match your team's priorities
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setEditMode(false)}
-                className="px-6 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors font-medium"
+                className="px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-slate-200 transition-colors font-medium"
               >
                 Cancel
               </button>

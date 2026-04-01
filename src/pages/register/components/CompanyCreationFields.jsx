@@ -35,13 +35,13 @@ const CompanyCreationFields = ({
     <div className="space-y-4 p-6 bg-primary/10 rounded-lg border border-primary/20">
       <div className="flex items-center gap-2 mb-2">
         <div className="w-1 h-5 bg-primary rounded-full" />
-        <h3 className="font-semibold text-slate-800 text-lg">
+        <h3 className="font-semibold text-foreground text-lg">
           Company Information
         </h3>
       </div>
       
       <div>
-        <label htmlFor="companyName" className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor="companyName" className="block text-sm font-medium text-muted-foreground mb-2">
           Company Name <span className="text-error">*</span>
         </label>
         <input
@@ -50,7 +50,7 @@ const CompanyCreationFields = ({
           value={companyName}
           onChange={(e) => handleCompanyNameChange(e?.target?.value)}
           placeholder="Enter your company name"
-          className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+          className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
           required
         />
         {errors?.companyName && (
@@ -59,7 +59,7 @@ const CompanyCreationFields = ({
       </div>
 
       <div>
-        <label htmlFor="companySlug" className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor="companySlug" className="block text-sm font-medium text-muted-foreground mb-2">
           Company Slug <span className="text-error">*</span>
         </label>
         <input
@@ -68,10 +68,10 @@ const CompanyCreationFields = ({
           value={companySlug}
           onChange={(e) => setCompanySlug(generateSlug(e?.target?.value))}
           placeholder="company-slug"
-          className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+          className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
           required
         />
-        <p className="mt-1 text-xs text-slate-500">
+        <p className="mt-1 text-xs text-muted-foreground">
           Used in company URL: hyvhub.com/company/{companySlug || 'your-slug'}
         </p>
         {errors?.companySlug && (
@@ -80,7 +80,7 @@ const CompanyCreationFields = ({
       </div>
 
       <div>
-        <label htmlFor="companyWebsite" className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor="companyWebsite" className="block text-sm font-medium text-muted-foreground mb-2">
           Company Website
         </label>
         <input
@@ -89,16 +89,16 @@ const CompanyCreationFields = ({
           value={companyWebsite}
           onChange={(e) => setCompanyWebsite(e?.target?.value)}
           placeholder="https://www.example.com"
-          className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+          className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
         />
-        <p className="mt-1 text-xs text-slate-500">Optional - Your company's website URL</p>
+        <p className="mt-1 text-xs text-muted-foreground">Optional - Your company's website URL</p>
         {errors?.companyWebsite && (
           <p className="text-sm text-error mt-1">{errors?.companyWebsite}</p>
         )}
       </div>
 
       <div>
-        <label htmlFor="companyDescription" className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor="companyDescription" className="block text-sm font-medium text-muted-foreground mb-2">
           Company Description
         </label>
         <textarea
@@ -107,9 +107,9 @@ const CompanyCreationFields = ({
           onChange={(e) => setCompanyDescription(e?.target?.value)}
           rows={3}
           placeholder="Brief description of your company..."
-          className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
+          className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
         />
-        <p className="mt-1 text-xs text-slate-500">Optional - Tell others about your company</p>
+        <p className="mt-1 text-xs text-muted-foreground">Optional - Tell others about your company</p>
         {errors?.companyDescription && (
           <p className="text-sm text-error mt-1">{errors?.companyDescription}</p>
         )}

@@ -84,7 +84,7 @@ export default function MemberCard({
               checked={isSelected}
               onChange={() => onSelect(member?.id)}
               disabled={isCurrentUser}
-              className="mt-1 w-5 h-5 text-slate-700 rounded focus:ring-slate-700 disabled:opacity-50"
+              className="mt-1 w-5 h-5 text-muted-foreground rounded focus:ring-slate-700 disabled:opacity-50"
             />
             
             <div className="flex-1">
@@ -121,7 +121,7 @@ export default function MemberCard({
                   {contributorBadge?.label}
                 </span>
                 {!member?.isActive && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-error/15 text-red-800">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-error/15 text-error">
                     Inactive
                   </span>
                 )}

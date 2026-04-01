@@ -13,7 +13,7 @@ const Contact = () => {
         <meta name="keywords" content="contact HyvHub, email, support" />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="min-h-screen bg-background dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <NavigationBar />
 
         {/* Minimal Contact Section */}
@@ -32,7 +32,7 @@ const Contact = () => {
             </p>
 
             {/* Email Display */}
-            <div className="bg-card dark:bg-slate-800 rounded-xl shadow-lg p-12 border border-slate-200 dark:border-slate-700">
+            <div className="bg-card dark:bg-slate-800 rounded-xl shadow-lg p-12 border border-border dark:border-slate-700">
               <a 
                 href="mailto:contact@hyvhub.com" 
                 className="group inline-flex items-center gap-4 text-2xl md:text-3xl font-semibold text-primary dark:text-blue-400 hover:text-primary dark:hover:text-blue-300 transition-colors"

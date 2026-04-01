@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, TrendingUp, Activity, UserPlus, Search, Filter, MoreVertical, AlertCircle, Award, Code, MessageSquare, Eye, Heart } from 'lucide-react';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import { companyDashboardService } from '../../services/companyDashboardService';
 import { companyMemberService } from '../../services/companyMemberService';
 import { supabase } from '../../lib/supabase';
@@ -150,40 +150,32 @@ export default function CompanyManagementDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-center py-12">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-muted-foreground">Loading dashboard...</p>
-            </div>
+      <PageShell>
+        <div className="flex items-center justify-center py-12">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-muted-foreground">Loading dashboard...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-error/10 border border-error/20 rounded-lg p-4">
-            <div className="flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-error" />
-              <p className="text-red-800">{error}</p>
-            </div>
+      <PageShell>
+        <div className="bg-error/10 border border-error/20 rounded-lg p-4">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-5 h-5 text-error" />
+            <p className="text-error">{error}</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <AppNavigation />
-      
+    <PageShell noPadding>
       <div className="flex">
         {/* Company Sidebar */}
         <CompanySidebar
@@ -391,7 +383,7 @@ export default function CompanyManagementDashboard() {
                   <div className="text-2xl font-bold text-primary">{teamMetrics?.totalTeams}</div>
                   <div className="text-sm text-muted-foreground">Active Teams</div>
                 </div>
-                <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg">
+                <div className="p-4 bg-gradient-to-r from-success/5 to-success/10 rounded-lg">
                   <div className="text-2xl font-bold text-success">{teamMetrics?.totalMembers}</div>
                   <div className="text-sm text-muted-foreground">Total Members</div>
                 </div>
@@ -608,6 +600,6 @@ export default function CompanyManagementDashboard() {
           </div>
         </main>
       </div>
-    </div>
+    </PageShell>
   );
 }

@@ -120,7 +120,7 @@ const SearchHeader = ({ query, searchQuery, setSearchQuery, onSearch, resultCoun
                             {suggestion?.tag}
                           </span>
                           {suggestion?.isSuggested && (
-                            <span className="text-xs bg-warning/15 text-yellow-800 px-2 py-0.5 rounded-full">
+                            <span className="text-xs bg-warning/15 text-warning px-2 py-0.5 rounded-full">
                               AI Suggested
                             </span>
                           )}

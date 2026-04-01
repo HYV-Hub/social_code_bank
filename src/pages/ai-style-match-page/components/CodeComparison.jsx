@@ -26,17 +26,17 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
   return (
     <div className="space-y-6">
       {/* Overview Card */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+      <div className="bg-muted rounded-xl p-6 border border-blue-100">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-xl font-semibold text-slate-900">Code Style Analysis</h3>
-            <p className="text-slate-600 mt-1">
+            <h3 className="text-xl font-semibold text-foreground">Code Style Analysis</h3>
+            <p className="text-muted-foreground mt-1">
               Comparing your code against team style guidelines
             </p>
           </div>
           <div className="text-right">
             <div className="text-3xl font-bold text-primary">76%</div>
-            <div className="text-sm text-slate-600">Style Match</div>
+            <div className="text-sm text-muted-foreground">Style Match</div>
           </div>
         </div>
 
@@ -44,15 +44,15 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-card rounded-lg p-4 border border-blue-100">
             <div className="text-2xl font-bold text-success">+32%</div>
-            <div className="text-sm text-slate-600 mt-1">Error Handling</div>
+            <div className="text-sm text-muted-foreground mt-1">Error Handling</div>
           </div>
           <div className="bg-card rounded-lg p-4 border border-blue-100">
             <div className="text-2xl font-bold text-success">+45%</div>
-            <div className="text-sm text-slate-600 mt-1">Documentation</div>
+            <div className="text-sm text-muted-foreground mt-1">Documentation</div>
           </div>
           <div className="bg-card rounded-lg p-4 border border-blue-100">
             <div className="text-2xl font-bold text-success">+18%</div>
-            <div className="text-sm text-slate-600 mt-1">Best Practices</div>
+            <div className="text-sm text-muted-foreground mt-1">Best Practices</div>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
       {/* Code Editors */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Original Code */}
-        <div className="bg-card rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
           <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Code2 className="w-5 h-5 text-slate-300" />
@@ -87,14 +87,14 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
             <textarea
               value={originalCode}
               onChange={onCodeChange}
-              className="w-full h-96 font-mono text-sm bg-slate-50 border border-slate-200 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+              className="w-full h-96 font-mono text-sm bg-muted border border-border rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-ring resize-none"
               placeholder="Paste your code here..."
             />
           </div>
         </div>
 
         {/* Improved Code */}
-        <div className="bg-card rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
           <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Code2 className="w-5 h-5 text-white" />
@@ -118,7 +118,7 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
             </button>
           </div>
           <div className="p-6">
-            <pre className="h-96 font-mono text-sm bg-slate-50 border border-slate-200 rounded-lg p-4 overflow-auto">
+            <pre className="h-96 font-mono text-sm bg-muted border border-border rounded-lg p-4 overflow-auto">
               <code>{improvedCode}</code>
             </pre>
           </div>
@@ -126,8 +126,8 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
       </div>
 
       {/* Differences Highlight */}
-      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
-        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+        <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
           <ArrowRight className="w-5 h-5 text-primary" />
           Key Changes Applied
         </h3>
@@ -147,7 +147,7 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
                 Line {diff?.line}
               </div>
               <div className="flex-1">
-                <p className="text-slate-700 font-medium">{diff?.description}</p>
+                <p className="text-muted-foreground font-medium">{diff?.description}</p>
               </div>
             </div>
           ))}
@@ -156,37 +156,37 @@ const CodeComparison = ({ originalCode, improvedCode, onCodeChange, analysis }) 
 
       {/* AI Analysis Result */}
       {analysis && (
-        <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
-          <h3 className="text-lg font-semibold text-slate-900 mb-4">AI Analysis Results</h3>
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <h3 className="text-lg font-semibold text-foreground mb-4">AI Analysis Results</h3>
           <div className="space-y-4">
             <div>
-              <h4 className="font-medium text-slate-700 mb-2">Summary</h4>
-              <p className="text-slate-600">{analysis?.summary}</p>
+              <h4 className="font-medium text-muted-foreground mb-2">Summary</h4>
+              <p className="text-muted-foreground">{analysis?.summary}</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-slate-50 rounded-lg p-4">
+              <div className="bg-muted rounded-lg p-4">
                 <div className="text-2xl font-bold text-primary">
                   {analysis?.qualityScore}%
                 </div>
-                <div className="text-sm text-slate-600 mt-1">Optimization</div>
+                <div className="text-sm text-muted-foreground mt-1">Optimization</div>
               </div>
-              <div className="bg-slate-50 rounded-lg p-4">
+              <div className="bg-muted rounded-lg p-4">
                 <div className="text-2xl font-bold text-secondary">
                   {analysis?.style_match_score}%
                 </div>
-                <div className="text-sm text-slate-600 mt-1">Style Match</div>
+                <div className="text-sm text-muted-foreground mt-1">Style Match</div>
               </div>
-              <div className="bg-slate-50 rounded-lg p-4">
+              <div className="bg-muted rounded-lg p-4">
                 <div className="text-2xl font-bold text-success capitalize">
                   {analysis?.bug_risk}
                 </div>
-                <div className="text-sm text-slate-600 mt-1">Bug Risk</div>
+                <div className="text-sm text-muted-foreground mt-1">Bug Risk</div>
               </div>
-              <div className="bg-slate-50 rounded-lg p-4">
+              <div className="bg-muted rounded-lg p-4">
                 <div className="text-2xl font-bold text-primary capitalize">
                   {analysis?.metadata?.complexity}
                 </div>
-                <div className="text-sm text-slate-600 mt-1">Complexity</div>
+                <div className="text-sm text-muted-foreground mt-1">Complexity</div>
               </div>
             </div>
           </div>

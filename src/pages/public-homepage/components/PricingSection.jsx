@@ -65,10 +65,10 @@ const PricingSection = () => {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-card">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             Simple, Transparent Pricing
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Choose the plan that fits your needs. All plans include a 14-day free trial.
           </p>
         </div>
@@ -80,7 +80,7 @@ const PricingSection = () => {
               className={`relative bg-card border-2 rounded-xl p-8 ${
                 plan?.popular 
                   ? 'border-blue-600 shadow-xl scale-105' 
-                  : 'border-slate-200 hover:shadow-lg'
+                  : 'border-border hover:shadow-lg'
               } transition-all duration-300`}
             >
               {plan?.popular && (
@@ -92,21 +92,21 @@ const PricingSection = () => {
               )}
 
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                <h3 className="text-2xl font-bold text-foreground mb-2">
                   {plan?.name}
                 </h3>
                 <div className="mb-2">
-                  <span className="text-5xl font-bold text-slate-900">
+                  <span className="text-5xl font-bold text-foreground">
                     {plan?.price}
                   </span>
                   {plan?.price !== "Free" && plan?.price !== "Custom" && (
-                    <span className="text-slate-600 ml-2">/{plan?.period}</span>
+                    <span className="text-muted-foreground ml-2">/{plan?.period}</span>
                   )}
                   {plan?.price === "Custom" && (
-                    <span className="text-slate-600 ml-2 text-lg">{plan?.period}</span>
+                    <span className="text-muted-foreground ml-2 text-lg">{plan?.period}</span>
                   )}
                 </div>
-                <p className="text-slate-600">
+                <p className="text-muted-foreground">
                   {plan?.description}
                 </p>
               </div>
@@ -119,7 +119,7 @@ const PricingSection = () => {
                       size={20} 
                       className="text-success flex-shrink-0 mt-0.5"
                     />
-                    <span className="text-slate-700">{feature}</span>
+                    <span className="text-muted-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -138,10 +138,10 @@ const PricingSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-slate-600 mb-4">
+          <p className="text-muted-foreground mb-4">
             Need help choosing? <a href="#" className="text-primary hover:underline">Compare all features</a>
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-slate-600">
+          <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Icon name="Shield" size={16} className="text-success" />
               <span>Secure payments</span>

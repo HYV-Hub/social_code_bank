@@ -104,8 +104,8 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
   // NEW: If in hive context, show hive indicator instead of visibility controls
   if (isHiveContext) {
     return (
-      <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
-        <h2 className="text-lg font-semibold text-slate-900 mb-4">Posting to Hive</h2>
+      <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+        <h2 className="text-lg font-semibold text-foreground mb-4">Posting to Hive</h2>
         
         <div className="p-4 bg-primary/10 rounded-lg flex items-start gap-3 border-2 border-border">
           <Icon name="Layers" size={20} className="text-primary flex-shrink-0 mt-0.5" />
@@ -133,8 +133,8 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
   }
 
   return (
-    <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
-      <h2 className="text-lg font-semibold text-slate-900 mb-4">Visibility & Sharing</h2>
+    <div className="bg-card rounded-lg shadow-sm border border-border p-6">
+      <h2 className="text-lg font-semibold text-foreground mb-4">Visibility & Sharing</h2>
       
       {/* FIXED: Context-aware visibility options */}
       <div className="space-y-3 mb-4">
@@ -143,7 +143,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
             key={option?.value}
             className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all ${
               visibility === option?.value
-                ? 'border-blue-500 bg-primary/10' :'border-slate-200 hover:border-slate-300'
+                ? 'border-blue-500 bg-primary/10' :'border-border hover:border-border'
             }`}
           >
             <input
@@ -161,10 +161,10 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
             />
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <Icon name={option?.icon} size={18} className={visibility === option?.value ? 'text-primary' : 'text-slate-600'} />
-                <span className="font-medium text-slate-900">{option?.label}</span>
+                <Icon name={option?.icon} size={18} className={visibility === option?.value ? 'text-primary' : 'text-muted-foreground'} />
+                <span className="font-medium text-foreground">{option?.label}</span>
               </div>
-              <p className="text-sm text-slate-600">{option?.description}</p>
+              <p className="text-sm text-muted-foreground">{option?.description}</p>
             </div>
           </label>
         ))}
@@ -177,11 +177,11 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
       */}
       {(visibility === 'company' || visibility === 'team') && teams?.length > 0 && (
         <div className="mt-4">
-          <label className="block text-sm font-medium text-slate-700 mb-2">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
             {isTeamContext ? 'Team' : 'Assign to Team (Optional)'}
           </label>
           <div className="flex items-center gap-3">
-            <Icon name="Users" className="text-slate-500" />
+            <Icon name="Users" className="text-muted-foreground" />
             <select
               value={team}
               onChange={(e) => {
@@ -192,7 +192,7 @@ const VisibilityControl = ({ visibility, setVisibility, team, setTeam }) => {
                 }
               }}
               disabled={loadingTeams}
-              className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+              className="flex-1 px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
             >
               <option value="">
                 {isTeamContext ? 'Select team' : 'No specific team (Company-wide)'}

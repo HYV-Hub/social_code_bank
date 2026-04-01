@@ -117,13 +117,13 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-card rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-card border-b border-slate-200 px-6 py-4 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-slate-800">
+        <div className="sticky top-0 bg-card border-b border-border px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-foreground">
             {step === 1 ? 'Report a Bug' : (isBugFix ? 'Submit Bug Fix' : 'Report Bug')}
           </h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-muted rounded-lg transition-colors"
           >
             <Icon name="X" size={24} />
           </button>
@@ -133,10 +133,10 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
         {step === 1 ? (
           <div className="p-6 space-y-6">
             <div className="text-center mb-6">
-              <h3 className="text-lg font-semibold text-slate-800 mb-2">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 What would you like to report?
               </h3>
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-muted-foreground">
                 Choose whether you are reporting a new bug or submitting a fix
               </p>
             </div>
@@ -145,16 +145,16 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
               {/* Ongoing Bug Option */}
               <button
                 onClick={() => handleBugTypeSelection(false)}
-                className="p-6 border-2 border-slate-200 rounded-lg hover:border-blue-500 hover:bg-primary/10 transition-all group"
+                className="p-6 border-2 border-border rounded-lg hover:border-blue-500 hover:bg-primary/10 transition-all group"
               >
                 <div className="flex flex-col items-center text-center">
                   <div className="w-16 h-16 bg-error/15 rounded-full flex items-center justify-center mb-4 group-hover:bg-red-200 transition-colors">
                     <Icon name="Bug" size={32} className="text-error" />
                   </div>
-                  <h4 className="font-semibold text-lg text-slate-800 mb-2">
+                  <h4 className="font-semibold text-lg text-foreground mb-2">
                     Report Bug
                   </h4>
-                  <p className="text-sm text-slate-600">
+                  <p className="text-sm text-muted-foreground">
                     Report a new bug or issue that needs attention
                   </p>
                 </div>
@@ -163,16 +163,16 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
               {/* Bug Fix Option */}
               <button
                 onClick={() => handleBugTypeSelection(true)}
-                className="p-6 border-2 border-slate-200 rounded-lg hover:border-green-500 hover:bg-success/10 transition-all group"
+                className="p-6 border-2 border-border rounded-lg hover:border-green-500 hover:bg-success/10 transition-all group"
               >
                 <div className="flex flex-col items-center text-center">
                   <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
                     <Icon name="CheckCircle" size={32} className="text-success" />
                   </div>
-                  <h4 className="font-semibold text-lg text-slate-800 mb-2">
+                  <h4 className="font-semibold text-lg text-foreground mb-2">
                     Submit Bug Fix
                   </h4>
-                  <p className="text-sm text-slate-600">
+                  <p className="text-sm text-muted-foreground">
                     Share a fix for an existing bug with before/after code
                   </p>
                 </div>
@@ -186,7 +186,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
                 <div className="flex items-start gap-3">
                   <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
-                    <p className="text-sm text-red-800">{error}</p>
+                    <p className="text-sm text-error">{error}</p>
                   </div>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
             <button
               type="button"
               onClick={() => setStep(1)}
-              className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-800"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
             >
               <Icon name="ArrowLeft" size={16} />
               Change bug type
@@ -204,7 +204,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
 
             {/* Title */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 {isBugFix ? 'Bug Fix Title' : 'Bug Title'} *
               </label>
               <Input
@@ -218,7 +218,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
 
             {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 Description *
               </label>
               <textarea
@@ -227,7 +227,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
                 placeholder={isBugFix ? 'Explain what was broken and how you fixed it' : 'Describe the bug in detail'}
                 rows={4}
                 required
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
 
@@ -236,7 +236,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
               <>
                 {/* Previous Code */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     Previous Code (Before Fix) *
                   </label>
                   <textarea
@@ -245,13 +245,13 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
                     placeholder="Paste the buggy code here"
                     rows={6}
                     required
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
+                    className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
                   />
                 </div>
 
                 {/* Fixed Code */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
                     Fixed Code (After Fix) *
                   </label>
                   <textarea
@@ -260,7 +260,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
                     placeholder="Paste the fixed code here"
                     rows={6}
                     required
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
+                    className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
                   />
                 </div>
 
@@ -281,7 +281,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
             {/* Ongoing Bug Code Field */}
             {!isBugFix && (
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   Code Snippet (Optional)
                 </label>
                 <textarea
@@ -289,20 +289,20 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
                   onChange={(e) => handleChange('code', e?.target?.value)}
                   placeholder="Paste relevant code here"
                   rows={6}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
+                  className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring font-mono text-sm"
                 />
               </div>
             )}
 
             {/* Priority - Changed from grid to single column */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
                 Priority
               </label>
               <select
                 value={formData?.priority}
                 onChange={(e) => handleChange('priority', e?.target?.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 <option value="critical">Critical</option>
                 <option value="high">High</option>
@@ -359,7 +359,7 @@ export default function CreateBugModal({ isOpen, onClose, onSuccess, teamId, com
             )}
 
             {/* Action Buttons */}
-            <div className="flex items-center justify-end gap-3 pt-6 border-t border-slate-200">
+            <div className="flex items-center justify-end gap-3 pt-6 border-t border-border">
               <Button
                 type="button"
                 variant="outline"

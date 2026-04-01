@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import CompanySidebar from '../../components/CompanySidebar';
@@ -123,33 +123,28 @@ export default function CompanyFeed() {
 
   if (!userProfile?.company_id) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-warning/10 border border-warning/20 rounded-lg p-6">
-            <div className="flex items-start gap-3">
-              <Icon name="AlertCircle" className="text-warning flex-shrink-0" size={24} />
-              <div>
-                <h3 className="text-lg font-semibold text-yellow-900 mb-2">No Company Association</h3>
-                <p className="text-yellow-800">You are not associated with any company. Please join or create a company first.</p>
-                <Button 
-                  className="mt-4"
-                  onClick={() => navigate('/company-creation')}
-                >
-                  Create Company
-                </Button>
-              </div>
+      <PageShell>
+        <div className="bg-warning/10 border border-warning/20 rounded-lg p-6">
+          <div className="flex items-start gap-3">
+            <Icon name="AlertCircle" className="text-warning flex-shrink-0" size={24} />
+            <div>
+              <h3 className="text-lg font-semibold text-yellow-900 mb-2">No Company Association</h3>
+              <p className="text-warning">You are not associated with any company. Please join or create a company first.</p>
+              <Button
+                className="mt-4"
+                onClick={() => navigate('/company-creation')}
+              >
+                Create Company
+              </Button>
             </div>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <AppNavigation />
-      
+    <PageShell noPadding>
       <div className="flex">
         {/* Company Sidebar */}
         <CompanySidebar
@@ -416,6 +411,6 @@ export default function CompanyFeed() {
           </div>
         </main>
       </div>
-    </div>
+    </PageShell>
   );
 }

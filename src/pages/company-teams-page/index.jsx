@@ -5,7 +5,7 @@ import { Plus, Users, Globe, Search, Filter, TrendingUp, Grid, List, ArrowUpDown
 import { hiveService } from '../../services/hiveService';
 import CreateCompanyHiveModal from './components/CreateCompanyHiveModal';
 import CompanyHiveCard from './components/CompanyHiveCard';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import CompanySidebar from '../../components/CompanySidebar';
 
 const CompanyTeamsPage = () => {
@@ -118,19 +118,19 @@ const CompanyTeamsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Loading company hives...</p>
+      <PageShell>
+        <div className="flex items-center justify-center py-12">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-muted-foreground">Loading company hives...</p>
+          </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Top Navigation */}
-      <AppNavigation />
+    <PageShell noPadding>
 
       <div className="flex">
         {/* Reusable Company Sidebar */}
@@ -184,7 +184,7 @@ const CompanyTeamsPage = () => {
 
               {/* Stats Section */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border border-primary/20">
+                <div className="bg-muted rounded-lg p-4 border border-primary/20">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-primary font-medium">Total Hives</p>
@@ -193,7 +193,7 @@ const CompanyTeamsPage = () => {
                     <Users className="w-8 h-8 text-primary" />
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border border-success/20">
+                <div className="bg-muted rounded-lg p-4 border border-success/20">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-success font-medium">Active Members</p>
@@ -418,7 +418,7 @@ const CompanyTeamsPage = () => {
           companyId={companyInfo?.id}
         />
       )}
-    </div>
+    </PageShell>
   );
 };
 

@@ -67,10 +67,10 @@ const ForgotPassword = () => {
           <meta name="description" content="Password reset instructions sent" />
         </Helmet>
 
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
           <div className="w-full max-w-md">
             {/* Success Card */}
-            <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
+            <div className="bg-card rounded-lg shadow-xl border border-border p-8">
               {/* Success Icon */}
               <div className="flex justify-center mb-6">
                 <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center">
@@ -79,10 +79,10 @@ const ForgotPassword = () => {
               </div>
 
               {/* Success Message */}
-              <h1 className="text-2xl font-bold text-slate-900 text-center mb-3">
+              <h1 className="text-2xl font-bold text-foreground text-center mb-3">
                 Check Your Email
               </h1>
-              <p className="text-slate-600 text-center mb-6">
+              <p className="text-muted-foreground text-center mb-6">
                 We've sent password reset instructions to:
               </p>
               <p className="text-foreground font-semibold text-center mb-6 bg-primary/10 py-3 px-4 rounded-lg">
@@ -95,19 +95,19 @@ const ForgotPassword = () => {
                   <div className="w-6 h-6 bg-primary/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-foreground text-xs font-bold">1</span>
                   </div>
-                  <p className="text-sm text-slate-700">Check your email inbox (and spam folder)</p>
+                  <p className="text-sm text-muted-foreground">Check your email inbox (and spam folder)</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 bg-primary/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-foreground text-xs font-bold">2</span>
                   </div>
-                  <p className="text-sm text-slate-700">Click the password reset link in the email</p>
+                  <p className="text-sm text-muted-foreground">Click the password reset link in the email</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 bg-primary/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-foreground text-xs font-bold">3</span>
                   </div>
-                  <p className="text-sm text-slate-700">Set your new password</p>
+                  <p className="text-sm text-muted-foreground">Set your new password</p>
                 </div>
               </div>
 
@@ -134,10 +134,10 @@ const ForgotPassword = () => {
               </div>
 
               {/* Help Note */}
-              <div className="mt-6 p-4 bg-slate-50 border border-slate-200 rounded-lg">
+              <div className="mt-6 p-4 bg-muted border border-border rounded-lg">
                 <div className="flex items-start gap-2">
                   <Icon name="Info" size={16} color="#64748b" className="flex-shrink-0 mt-0.5" />
-                  <p className="text-xs text-slate-600">
+                  <p className="text-xs text-muted-foreground">
                     The reset link will expire in 1 hour. If you don't receive the email within 5 minutes, please check your spam folder or request a new link.
                   </p>
                 </div>
@@ -158,7 +158,7 @@ const ForgotPassword = () => {
       {/* Add Navigation */}
       <PublicNavigation />
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="text-center mb-8">
@@ -166,21 +166,21 @@ const ForgotPassword = () => {
               <div className="w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center">
                 <Icon name="Code2" size={24} color="#ffffff" />
               </div>
-              <span className="text-2xl font-bold text-slate-900">Social Code Bank</span>
+              <span className="text-2xl font-bold text-foreground">Social Code Bank</span>
             </div>
           </div>
 
           {/* Main Card */}
-          <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-xl border border-border p-8">
             {/* Header */}
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-primary/15 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Icon name="KeyRound" size={32} color="#1e40af" />
               </div>
-              <h1 className="text-2xl font-bold text-slate-900 mb-2">
+              <h1 className="text-2xl font-bold text-foreground mb-2">
                 Forgot Password?
               </h1>
-              <p className="text-slate-600 text-sm">
+              <p className="text-muted-foreground text-sm">
                 No worries! Enter your email address and we'll send you instructions to reset your password.
               </p>
             </div>
@@ -192,7 +192,7 @@ const ForgotPassword = () => {
                 <div className="bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
                   <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
-                    <p className="text-sm text-red-800 font-medium">Error</p>
+                    <p className="text-sm text-error font-medium">Error</p>
                     <p className="text-sm text-error mt-1">{error}</p>
                   </div>
                 </div>
@@ -230,7 +230,7 @@ const ForgotPassword = () => {
                 <button
                   type="button"
                   onClick={() => navigate("/login")}
-                  className="text-sm text-slate-600 hover:text-slate-800 inline-flex items-center gap-2"
+                  className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-2"
                 >
                   <Icon name="ArrowLeft" size={16} />
                   <span>Back to Login</span>
@@ -241,7 +241,7 @@ const ForgotPassword = () => {
 
           {/* Security Note */}
           <div className="mt-6 text-center">
-            <div className="inline-flex items-center gap-2 text-xs text-slate-500">
+            <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
               <Icon name="Shield" size={14} />
               <span>Your security is our priority</span>
             </div>

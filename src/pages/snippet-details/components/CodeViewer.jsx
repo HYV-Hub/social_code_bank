@@ -424,7 +424,7 @@ const CodeViewer = ({ snippet }) => {
             <div className="flex items-start gap-2 mb-2">
               <Icon name="AlertTriangle" size={18} className="text-warning dark:text-yellow-500 mt-0.5 flex-shrink-0" />
               <div className="flex-1">
-                <h4 className="text-sm font-semibold text-yellow-800 dark:text-yellow-400 mb-2">
+                <h4 className="text-sm font-semibold text-warning dark:text-yellow-400 mb-2">
                   Preview Visibility Issues Detected ({validationWarnings?.length})
                 </h4>
                 <div className="space-y-2">

@@ -105,18 +105,18 @@ const EmailVerification = () => {
           <title>Email Verified - HYVhub</title>
         </Helmet>
 
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
           <div className="w-full max-w-md">
-            <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
+            <div className="bg-card rounded-lg shadow-xl border border-border p-8">
               <div className="flex justify-center mb-6">
                 <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center">
                   <Icon name="CheckCircle2" size={32} color="#16a34a" />
                 </div>
               </div>
-              <h1 className="text-2xl font-bold text-slate-900 text-center mb-3">
+              <h1 className="text-2xl font-bold text-foreground text-center mb-3">
                 Email Verified!
               </h1>
-              <p className="text-slate-600 text-center mb-8">
+              <p className="text-muted-foreground text-center mb-8">
                 Your email has been successfully verified. You will be redirected to your dashboard shortly.
               </p>
               <Button
@@ -143,7 +143,7 @@ const EmailVerification = () => {
 
       <PublicNavigation />
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="text-center mb-8">
@@ -151,21 +151,21 @@ const EmailVerification = () => {
               <div className="w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center">
                 <Icon name="Code2" size={24} color="#ffffff" />
               </div>
-              <span className="text-2xl font-bold text-slate-900">HYVhub</span>
+              <span className="text-2xl font-bold text-foreground">HYVhub</span>
             </div>
           </div>
 
           {/* Main Card */}
-          <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-xl border border-border p-8">
             {/* Header */}
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-primary/15 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Icon name="Mail" size={32} color="#1e40af" />
               </div>
-              <h1 className="text-2xl font-bold text-slate-900 mb-2">
+              <h1 className="text-2xl font-bold text-foreground mb-2">
                 Check Your Email
               </h1>
-              <p className="text-slate-600 text-sm">
+              <p className="text-muted-foreground text-sm">
                 We've sent a verification link to your email address. Click the link in the email to verify your account.
               </p>
             </div>
@@ -188,7 +188,7 @@ const EmailVerification = () => {
               <div className="mb-6 bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
                 <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-sm text-red-800 font-medium">Verification Error</p>
+                  <p className="text-sm text-error font-medium">Verification Error</p>
                   <p className="text-sm text-error mt-1">{errorMessage}</p>
                 </div>
               </div>
@@ -221,10 +221,10 @@ const EmailVerification = () => {
             <div className="space-y-4">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-slate-200"></div>
+                  <div className="w-full border-t border-border"></div>
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-slate-500">Didn't receive the email?</span>
+                  <span className="bg-card px-2 text-muted-foreground">Didn't receive the email?</span>
                 </div>
               </div>
 
@@ -255,9 +255,9 @@ const EmailVerification = () => {
             </div>
 
             {/* Troubleshooting */}
-            <div className="mt-6 p-4 bg-slate-50 border border-slate-200 rounded-lg">
-              <p className="text-xs font-medium text-slate-700 mb-2">Can't find the email?</p>
-              <ul className="space-y-1 text-xs text-slate-600">
+            <div className="mt-6 p-4 bg-muted border border-border rounded-lg">
+              <p className="text-xs font-medium text-muted-foreground mb-2">Can't find the email?</p>
+              <ul className="space-y-1 text-xs text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <Icon name="Check" size={12} className="mt-0.5 flex-shrink-0" />
                   <span>Check your spam or junk folder</span>
@@ -281,7 +281,7 @@ const EmailVerification = () => {
             <div className="mt-6 text-center">
               <button
                 onClick={() => navigate("/login")}
-                className="text-sm text-slate-600 hover:text-slate-800 inline-flex items-center gap-2 transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-2 transition-colors"
               >
                 <Icon name="ArrowLeft" size={16} />
                 <span>Back to Login</span>
@@ -291,7 +291,7 @@ const EmailVerification = () => {
 
           {/* Security Note */}
           <div className="mt-6 text-center">
-            <div className="inline-flex items-center gap-2 text-xs text-slate-500">
+            <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
               <Icon name="Shield" size={14} />
               <span>Verification link expires in 24 hours</span>
             </div>

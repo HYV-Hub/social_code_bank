@@ -486,10 +486,6 @@ const AppNavigation = () => {
         className="bg-card/80 backdrop-blur-lg border-b border-border/50 sticky top-0 z-50 shadow-sm"
         role="navigation"
         aria-label="Main navigation"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
-          backdropFilter: 'blur(12px)',
-        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-14">
@@ -517,33 +513,6 @@ const AppNavigation = () => {
               </button>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1" role="menubar">
-              {navigation?.map((item) => (
-                <button
-                  key={item?.name}
-                  onClick={() => {
-                    navigate(item?.path || item?.href);
-                  }}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-150 focus:outline-none ${
-                    isActive(item?.path || item?.href)
-                      ? 'bg-primary/15 text-primary'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                  }`}
-                  role="menuitem"
-                  aria-label={`Navigate to ${item?.name}`}
-                  aria-current={isActive(item?.path || item?.href) ? 'page' : undefined}
-                >
-                  <Icon
-                    name={item?.icon}
-                    size={18}
-                    aria-hidden="true"
-                  />
-                  <span>{item?.name}</span>
-                </button>
-              ))}
-            </div>
-
             {/* Right Side Actions */}
             <div className="flex items-center gap-2">
               {user ? (
@@ -556,7 +525,7 @@ const AppNavigation = () => {
                       aria-label="Find and add friends"
                       title="Find Friends"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <Icon 
                         name="UserPlus" 
                         size={20} 
@@ -663,10 +632,6 @@ const AppNavigation = () => {
             className="md:hidden border-t border-border/50 bg-card/95 backdrop-blur-xl shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto animate-in slide-in-from-top duration-300"
             role="menu"
             aria-label="Mobile navigation menu"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95))',
-              backdropFilter: 'blur(12px)',
-            }}
           >
             <div className="px-4 py-4 space-y-1">
               {/* Add Friends Button in Mobile - HIDDEN on company pages */}

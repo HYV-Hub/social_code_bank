@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Button from '../../components/ui/Button';
 
 import Icon from '../../components/AppIcon';
@@ -252,24 +252,22 @@ const CompanyDashboard = () => {
   // Show loading state
   if (authLoading || loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-        <AppNavigation />
-        <div className="flex items-center justify-center h-[calc(100vh-64px)]">
+      <PageShell noPadding>
+        <div className="flex items-center justify-center h-[calc(100vh-56px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading company dashboard...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   // Show error state with redirect message
   if (error && !companyDetails) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-        <AppNavigation />
-        <div className="flex items-center justify-center h-[calc(100vh-64px)]">
+      <PageShell noPadding>
+        <div className="flex items-center justify-center h-[calc(100vh-56px)]">
           <div className="text-center max-w-md">
             <div className="bg-error/10 rounded-lg p-6 border border-error/20">
               <Icon name="AlertCircle" size={48} className="text-error mx-auto mb-4" />
@@ -279,15 +277,13 @@ const CompanyDashboard = () => {
             </div>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   // Show company dashboard
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <AppNavigation />
-      
+    <PageShell noPadding>
       <div className="flex">
         {/* Company Sidebar */}
         <CompanySidebar
@@ -330,7 +326,7 @@ const CompanyDashboard = () => {
             {/* UPDATED: Increased size of Company Stats boxes for better visibility */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* ENHANCED: Team Members box with larger sizing and better visual hierarchy */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 border-2 border-primary/20 shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-muted rounded-xl p-8 border-2 border-primary/20 shadow-md hover:shadow-lg transition-shadow">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-3 rounded-xl bg-primary/15">
                     <Icon name="Users" size={28} className="text-primary" />
@@ -349,7 +345,7 @@ const CompanyDashboard = () => {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8 border-2 border-success/20 shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-background rounded-xl p-8 border-2 border-success/20 shadow-md hover:shadow-lg transition-shadow">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-3 rounded-xl bg-success/15">
                     <Icon name="Building" size={28} className="text-success" />
@@ -763,7 +759,7 @@ const CompanyDashboard = () => {
         onClose={() => setShowCreateSnippetModal(false)}
         companyId={companyDetails?.id}
       />
-    </div>
+    </PageShell>
   );
 };
 

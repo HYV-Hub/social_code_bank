@@ -13,8 +13,8 @@ const MetadataSection = ({
   // REMOVED: language and setLanguage props - AI will auto-detect language
   
   return (
-    <div className="bg-card rounded-lg border border-slate-200 p-6 mb-6">
-      <h2 className="text-lg font-semibold text-slate-800 mb-4">Snippet Information</h2>
+    <div className="bg-card rounded-lg border border-border p-6 mb-6">
+      <h2 className="text-lg font-semibold text-foreground mb-4">Snippet Information</h2>
       <div className="space-y-4">
         <Input
           label="Title"
@@ -27,11 +27,11 @@ const MetadataSection = ({
         />
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
             Description
           </label>
           <textarea
-            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
+            className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
             rows="3"
             placeholder="Describe what this snippet does and how to use it"
             value={description}
@@ -46,8 +46,8 @@ const MetadataSection = ({
         
         {/* Tags field - AI-suggested with language auto-detection */}
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
-            Tags <span className="text-slate-500 text-xs">(AI will suggest tags and detect language automatically)</span>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">
+            Tags <span className="text-muted-foreground text-xs">(AI will suggest tags and detect language automatically)</span>
           </label>
           <Input
             type="text"

@@ -6,7 +6,7 @@ import ChannelList from './components/ChannelList';
 import MessageThread from './components/MessageThread';
 import MemberPanel from './components/MemberPanel';
 import { useAuth } from '../../contexts/AuthContext';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import { teamChatService } from '../../services/teamChatService';
 import { profileService } from '../../services/profileService';
 
@@ -362,22 +362,19 @@ const TeamChat = () => {
   // Loading state
   if (!user) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="flex items-center justify-center h-[calc(100vh-64px)]">
+      <PageShell noPadding>
+        <div className="flex items-center justify-center h-[calc(100vh-56px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppNavigation />
-      <div className="min-h-screen bg-background">
+    <PageShell noPadding>
         {/* Error display */}
         {error && (
           <div className="flex items-center justify-center p-8">
@@ -393,7 +390,7 @@ const TeamChat = () => {
         )}
 
         {/* Main Chat Interface */}
-        <div className="flex h-[calc(100vh-64px)]">
+        <div className="flex h-[calc(100vh-56px)]">
           {/* Channel List - Desktop */}
           <div className="hidden lg:block">
             <ChannelList
@@ -557,8 +554,7 @@ const TeamChat = () => {
             </div>
           </div>
         )}
-      </div>
-    </div>
+    </PageShell>
   );
 };
 

@@ -229,7 +229,7 @@ const InviteAcceptance = () => {
         <title>Accept Team Invite - Social Code Bank</title>
         <meta name="description" content="Accept your team invitation and join your organization on Social Code Bank" />
       </Helmet>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Company Information Card */}
           <div className="bg-card rounded-lg shadow-lg p-6 sm:p-8 mb-6">
@@ -261,7 +261,7 @@ const InviteAcceptance = () => {
             <div className="bg-warning/10 border border-warning/20 rounded-lg p-4 flex items-start space-x-3">
               <Clock className="w-5 h-5 text-warning flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <p className="text-sm text-yellow-800">
+                <p className="text-sm text-warning">
                   <strong>This invite expires on:</strong> {new Date(inviteData?.inviteDetails?.expiresAt)?.toLocaleDateString('en-US', {
                     month: 'long',
                     day: 'numeric',
@@ -377,7 +377,7 @@ const InviteAcceptance = () => {
                 {formErrors?.submit &&
                 <div className="bg-error/10 border border-error/20 rounded-lg p-4 flex items-start space-x-3">
                     <AlertCircle className="w-5 h-5 text-error flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-red-800">{formErrors?.submit}</p>
+                    <p className="text-sm text-error">{formErrors?.submit}</p>
                   </div>
                 }
 
@@ -452,7 +452,7 @@ const InviteAcceptance = () => {
               </div>
 
               {/* Security Badge */}
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg shadow p-6">
+              <div className="bg-background rounded-lg shadow p-6">
                 <div className="flex items-center space-x-3 mb-3">
                   <Shield className="w-6 h-6 text-success" />
                   <h3 className="font-semibold text-foreground">Secure Invite</h3>

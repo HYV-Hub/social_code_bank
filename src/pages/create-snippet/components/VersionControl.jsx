@@ -35,10 +35,10 @@ const VersionControl = ({ commitMessage, setCommitMessage }) => {
   };
 
   return (
-    <div className="bg-card rounded-lg border border-slate-200 p-6 mb-6">
+    <div className="bg-card rounded-lg border border-border p-6 mb-6">
       <div className="flex items-center gap-2 mb-4">
-        <Icon name="GitBranch" size={20} className="text-slate-600" />
-        <h2 className="text-lg font-semibold text-slate-800">Version Control</h2>
+        <Icon name="GitBranch" size={20} className="text-muted-foreground" />
+        <h2 className="text-lg font-semibold text-foreground">Version Control</h2>
       </div>
       <div className="mb-6">
         <Input
@@ -52,19 +52,19 @@ const VersionControl = ({ commitMessage, setCommitMessage }) => {
       </div>
       {versions?.length > 0 && (
         <div>
-          <h3 className="text-sm font-medium text-slate-700 mb-3">Version History</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-3">Version History</h3>
           <div className="space-y-3">
             {versions?.map((version) => (
               <div
                 key={version?.id}
-                className="p-4 bg-slate-50 rounded-lg border border-slate-200 hover:border-slate-300 transition-colors"
+                className="p-4 bg-muted rounded-lg border border-border hover:border-border transition-colors"
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-1 text-xs font-semibold bg-primary/15 text-primary rounded">
                       {version?.version}
                     </span>
-                    <span className="text-xs text-slate-500">{formatDate(version?.date)}</span>
+                    <span className="text-xs text-muted-foreground">{formatDate(version?.date)}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Button variant="ghost" size="sm" iconName="Eye">
@@ -76,9 +76,9 @@ const VersionControl = ({ commitMessage, setCommitMessage }) => {
                   </div>
                 </div>
                 
-                <p className="text-sm text-slate-700 mb-2">{version?.message}</p>
+                <p className="text-sm text-muted-foreground mb-2">{version?.message}</p>
                 
-                <div className="flex items-center gap-3 text-xs text-slate-500">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <Icon name="User" size={12} />
                     {version?.author}

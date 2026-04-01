@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -215,8 +215,7 @@ export default function HivesBrowsePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
-      <AppNavigation />
+    <PageShell noPadding>
       {/* Keyboard Shortcuts Modal */}
       {showShortcuts && (
         <div 
@@ -436,7 +435,7 @@ export default function HivesBrowsePage() {
                         {activity?.label}
                       </span>
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        hive?.privacy === 'public' ? 'bg-success/15 text-success' : 'bg-warning/15 text-yellow-800'
+                        hive?.privacy === 'public' ? 'bg-success/15 text-success' : 'bg-warning/15 text-warning'
                       }`}>
                         {hive?.privacy === 'public' ? '🌍' : '🔒'}
                       </span>
@@ -649,7 +648,7 @@ export default function HivesBrowsePage() {
                             </span>
                           </div>
                           <span className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0 shadow-sm ${
-                            hive?.privacy === 'public' ?'bg-success/15 text-success border border-success/20' :'bg-warning/15 text-yellow-800 border border-warning/20'
+                            hive?.privacy === 'public' ?'bg-success/15 text-success border border-success/20' :'bg-warning/15 text-warning border border-warning/20'
                           }`}>
                             {hive?.privacy === 'public' ? '🌍 Public' : '🔒 Private'}
                           </span>
@@ -739,7 +738,7 @@ export default function HivesBrowsePage() {
                               {hive?.name}
                             </h3>
                             <span className={`px-2 py-0.5 rounded-full text-xs font-medium flex-shrink-0 ${
-                              hive?.privacy === 'public' ?'bg-success/15 text-success' :'bg-warning/15 text-yellow-800'
+                              hive?.privacy === 'public' ?'bg-success/15 text-success' :'bg-warning/15 text-warning'
                             }`}>
                               {hive?.privacy === 'public' ? '🌍' : '🔒'}
                             </span>
@@ -902,7 +901,7 @@ export default function HivesBrowsePage() {
           </span>
         </button>
       </div>
-    </div>
+    </PageShell>
   );
 }
 

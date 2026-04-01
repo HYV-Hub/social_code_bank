@@ -107,9 +107,9 @@ export default function TagCloud({ tags }) {
 
   const getCategoryColor = (category) => {
     const colorMap = {
-      language: 'from-blue-50 to-blue-100 text-primary border-primary/20',
+      language: 'bg-muted text-primary border-primary/20',
       framework: 'from-purple-50 to-purple-100 text-primary border-border',
-      purpose: 'from-green-50 to-green-100 text-success border-success/20',
+      purpose: 'bg-muted text-success border-success/20',
       behavioral: 'from-orange-50 to-orange-100 text-orange-700 border-orange-200',
       difficulty: 'from-yellow-50 to-yellow-100 text-warning border-warning/20',
       ui: 'from-pink-50 to-pink-100 text-pink-700 border-pink-200',

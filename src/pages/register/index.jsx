@@ -175,16 +175,16 @@ export default function RegisterPage() {
 
       <PublicNavigation />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="w-full max-w-2xl">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-slate-800 mb-2">Join HYVhub</h1>
-            <p className="text-slate-600">Start sharing and discovering code snippets</p>
+            <h1 className="text-4xl font-bold text-foreground mb-2">Join HYVhub</h1>
+            <p className="text-muted-foreground">Start sharing and discovering code snippets</p>
           </div>
 
           {/* Registration Form */}
-          <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-xl border border-border p-8">
             {/* Error/Success Messages */}
             {error && (
               <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg">
@@ -201,7 +201,7 @@ export default function RegisterPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Account Type Selection */}
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-3">
+                <label className="block text-sm font-medium text-muted-foreground mb-3">
                   Select Account Type *
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -227,7 +227,7 @@ export default function RegisterPage() {
               {/* Basic Information */}
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="fullName" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="fullName" className="block text-sm font-medium text-muted-foreground mb-2">
                     Full Name *
                   </label>
                   <input
@@ -236,14 +236,14 @@ export default function RegisterPage() {
                     name="fullName"
                     value={formData?.fullName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="John Doe"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="username" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="username" className="block text-sm font-medium text-muted-foreground mb-2">
                     Username
                   </label>
                   <input
@@ -252,14 +252,14 @@ export default function RegisterPage() {
                     name="username"
                     value={formData?.username}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="johndoe"
                   />
-                  <p className="mt-1 text-xs text-slate-500">Optional - If not provided, will be generated from your email</p>
+                  <p className="mt-1 text-xs text-muted-foreground">Optional - If not provided, will be generated from your email</p>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
                     Email Address *
                   </label>
                   <input
@@ -268,14 +268,14 @@ export default function RegisterPage() {
                     name="email"
                     value={formData?.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="john@example.com"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="bio" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="bio" className="block text-sm font-medium text-muted-foreground mb-2">
                     Bio
                   </label>
                   <textarea
@@ -284,14 +284,14 @@ export default function RegisterPage() {
                     value={formData?.bio}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
                     placeholder="Tell us about yourself..."
                   />
-                  <p className="mt-1 text-xs text-slate-500">Optional - Share a brief description about yourself</p>
+                  <p className="mt-1 text-xs text-muted-foreground">Optional - Share a brief description about yourself</p>
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="password" className="block text-sm font-medium text-muted-foreground mb-2">
                     Password *
                   </label>
                   <input
@@ -300,7 +300,7 @@ export default function RegisterPage() {
                     name="password"
                     value={formData?.password}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="••••••••"
                     required
                   />
@@ -308,7 +308,7 @@ export default function RegisterPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-muted-foreground mb-2">
                     Confirm Password *
                   </label>
                   <input
@@ -317,7 +317,7 @@ export default function RegisterPage() {
                     name="confirmPassword"
                     value={formData?.confirmPassword}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-card border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                    className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     placeholder="••••••••"
                     required
                   />
@@ -346,7 +346,7 @@ export default function RegisterPage() {
                 disabled={loading || !formData?.role}
                 className={`w-full py-3 px-4 rounded-lg font-medium transition-all ${
                   loading || !formData?.role
-                    ? "bg-slate-300 text-slate-500 cursor-not-allowed" :"bg-primary text-white hover:bg-primary shadow-sm"
+                    ? "bg-slate-300 text-muted-foreground cursor-not-allowed" :"bg-primary text-white hover:bg-primary shadow-sm"
                 }`}
               >
                 {loading ? (
@@ -365,7 +365,7 @@ export default function RegisterPage() {
 
             {/* Login Link */}
             <div className="mt-6 text-center">
-              <p className="text-slate-600">
+              <p className="text-muted-foreground">
                 Already have an account?{" "}
                 <Link to="/login" className="text-primary hover:text-primary font-medium">
                   Sign In

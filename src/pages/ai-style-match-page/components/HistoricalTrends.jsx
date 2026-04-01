@@ -62,16 +62,16 @@ const HistoricalTrends = () => {
       </div>
 
       {/* Trend Chart */}
-      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
-        <h3 className="text-xl font-semibold text-slate-900 mb-6">
+      <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+        <h3 className="text-xl font-semibold text-foreground mb-6">
           Style Score Evolution
         </h3>
         
         <div className="space-y-4">
           {/* Chart */}
-          <div className="relative h-64 border-l-2 border-b-2 border-slate-200 pl-4 pb-4">
+          <div className="relative h-64 border-l-2 border-b-2 border-border pl-4 pb-4">
             {/* Y-axis labels */}
-            <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-xs text-slate-500 -translate-x-8">
+            <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-xs text-muted-foreground -translate-x-8">
               <span>100%</span>
               <span>75%</span>
               <span>50%</span>
@@ -82,7 +82,7 @@ const HistoricalTrends = () => {
             {/* Grid lines */}
             <div className="absolute inset-0 flex flex-col justify-between">
               {[0, 1, 2, 3, 4]?.map((i) => (
-                <div key={i} className="border-t border-slate-100" />
+                <div key={i} className="border-t border-border" />
               ))}
             </div>
 
@@ -104,17 +104,17 @@ const HistoricalTrends = () => {
                     </div>
                   </div>
                   {/* Month label */}
-                  <span className="text-xs font-medium text-slate-600">{data?.month}</span>
+                  <span className="text-xs font-medium text-muted-foreground">{data?.month}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Legend */}
-          <div className="flex items-center justify-center gap-6 pt-4 border-t border-slate-200">
+          <div className="flex items-center justify-center gap-6 pt-4 border-t border-border">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded" />
-              <span className="text-sm text-slate-600">Style Match Score</span>
+              <span className="text-sm text-muted-foreground">Style Match Score</span>
             </div>
           </div>
         </div>
@@ -122,19 +122,19 @@ const HistoricalTrends = () => {
 
       {/* Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
-          <h4 className="text-lg font-semibold text-slate-900 mb-4">Key Statistics</h4>
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <h4 className="text-lg font-semibold text-foreground mb-4">Key Statistics</h4>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-slate-600">Highest Score</span>
+              <span className="text-muted-foreground">Highest Score</span>
               <span className="text-xl font-bold text-success">{getMaxScore()}%</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-600">Lowest Score</span>
-              <span className="text-xl font-bold text-slate-900">{getMinScore()}%</span>
+              <span className="text-muted-foreground">Lowest Score</span>
+              <span className="text-xl font-bold text-foreground">{getMinScore()}%</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-600">Average Score</span>
+              <span className="text-muted-foreground">Average Score</span>
               <span className="text-xl font-bold text-primary">
                 {Math.round(
                   trendData?.reduce((sum, d) => sum + d?.score, 0) / trendData?.length
@@ -142,7 +142,7 @@ const HistoricalTrends = () => {
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-600">Total Contributions</span>
+              <span className="text-muted-foreground">Total Contributions</span>
               <span className="text-xl font-bold text-primary">
                 {trendData?.reduce((sum, d) => sum + d?.contributions, 0)}
               </span>
@@ -150,27 +150,27 @@ const HistoricalTrends = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-success/20 p-6">
-          <h4 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+        <div className="bg-background rounded-xl border border-success/20 p-6">
+          <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-success" />
             Growth Insights
           </h4>
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
               <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
-              <p className="text-slate-700">
+              <p className="text-muted-foreground">
                 Consistent improvement over the past 6 months with <span className="font-semibold">14% growth</span>
               </p>
             </li>
             <li className="flex items-start gap-3">
               <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
-              <p className="text-slate-700">
+              <p className="text-muted-foreground">
                 Documentation quality increased by <span className="font-semibold">31%</span> since April
               </p>
             </li>
             <li className="flex items-start gap-3">
               <div className="w-2 h-2 bg-success/100 rounded-full mt-2 flex-shrink-0" />
-              <p className="text-slate-700">
+              <p className="text-muted-foreground">
                 Error handling patterns improved by <span className="font-semibold">21%</span>
               </p>
             </li>
@@ -179,8 +179,8 @@ const HistoricalTrends = () => {
       </div>
 
       {/* Milestones Timeline */}
-      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
-        <h3 className="text-xl font-semibold text-slate-900 mb-6">Milestones & Achievements</h3>
+      <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+        <h3 className="text-xl font-semibold text-foreground mb-6">Milestones & Achievements</h3>
         <div className="space-y-4">
           {milestones?.map((milestone, index) => (
             <div key={index} className="flex gap-4 items-start">
@@ -202,9 +202,9 @@ const HistoricalTrends = () => {
                 )}
               </div>
               <div className="flex-1 pb-6">
-                <div className="text-sm text-slate-500 mb-1">{milestone?.date}</div>
-                <h4 className="font-semibold text-slate-900 mb-1">{milestone?.title}</h4>
-                <p className="text-slate-600 text-sm">{milestone?.description}</p>
+                <div className="text-sm text-muted-foreground mb-1">{milestone?.date}</div>
+                <h4 className="font-semibold text-foreground mb-1">{milestone?.title}</h4>
+                <p className="text-muted-foreground text-sm">{milestone?.description}</p>
               </div>
             </div>
           ))}

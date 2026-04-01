@@ -9,7 +9,7 @@ import FilterToolbar from './components/FilterToolbar';
 import BugDetailsModal from './components/BugDetailsModal';
 import CreateBugModal from './components/CreateBugModal';
 import { useAuth } from '../../contexts/AuthContext';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import { bugService } from '../../services/bugService';
 import { supabase } from '../../lib/supabase';
 import { Helmet } from 'react-helmet';
@@ -303,15 +303,14 @@ const BugBoardPage = () => {
   // Show loading state
   if (loading && bugs?.length === 0) {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <AppNavigation />
+      <PageShell>
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-slate-600">Loading bugs...</p>
+            <p className="mt-4 text-muted-foreground">Loading bugs...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
@@ -332,12 +331,10 @@ const BugBoardPage = () => {
   ];
 
   return (
-    <>
+    <PageShell noPadding>
       <Helmet>
         <title>{getContextTitle()} - HyvHub</title>
       </Helmet>
-      <AppNavigation />
-      <div className="min-h-screen bg-background">
         <header className="bg-card border-b border-border sticky top-0 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
@@ -384,10 +381,10 @@ const BugBoardPage = () => {
                 <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <h3 className="font-semibold text-red-900 mb-1">Error Loading Bugs</h3>
-                  <p className="text-sm text-red-800">{error}</p>
+                  <p className="text-sm text-error">{error}</p>
                   <button
                     onClick={() => window.location?.reload()}
-                    className="mt-2 text-sm text-error underline hover:text-red-800"
+                    className="mt-2 text-sm text-error underline hover:text-error"
                   >
                     Retry
                   </button>
@@ -398,43 +395,43 @@ const BugBoardPage = () => {
 
           {/* Stats Overview */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-            <div className="bg-card rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-slate-600">Total Bugs</span>
-                <Icon name="Bug" size={20} className="text-slate-400" />
+                <span className="text-sm text-muted-foreground">Total Bugs</span>
+                <Icon name="Bug" size={20} className="text-muted-foreground" />
               </div>
-              <div className="text-2xl font-bold text-slate-800">{bugs?.length}</div>
+              <div className="text-2xl font-bold text-foreground">{bugs?.length}</div>
             </div>
-            <div className="bg-card rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-slate-600">Open</span>
+                <span className="text-sm text-muted-foreground">Open</span>
                 <Icon name="AlertCircle" size={20} className="text-error" />
               </div>
               <div className="text-2xl font-bold text-error">
                 {getBugsByStatus('open')?.length}
               </div>
             </div>
-            <div className="bg-card rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-slate-600">In Progress</span>
+                <span className="text-sm text-muted-foreground">In Progress</span>
                 <Icon name="Clock" size={20} className="text-yellow-500" />
               </div>
               <div className="text-2xl font-bold text-warning">
                 {getBugsByStatus('in_progress')?.length}
               </div>
             </div>
-            <div className="bg-card rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-slate-600">Resolved</span>
+                <span className="text-sm text-muted-foreground">Resolved</span>
                 <Icon name="CheckCircle" size={20} className="text-green-500" />
               </div>
               <div className="text-2xl font-bold text-success">
                 {getBugsByStatus('resolved')?.length}
               </div>
             </div>
-            <div className="bg-card rounded-lg border border-slate-200 p-4">
+            <div className="bg-card rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-slate-600">Bug Fixes</span>
+                <span className="text-sm text-muted-foreground">Bug Fixes</span>
                 <Icon name="Wrench" size={20} className="text-primary" />
               </div>
               <div className="text-2xl font-bold text-primary">
@@ -455,7 +452,7 @@ const BugBoardPage = () => {
           {/* Ongoing Bugs Section */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-slate-800">Ongoing Bugs</h2>
+              <h2 className="text-xl font-bold text-foreground">Ongoing Bugs</h2>
             </div>
             <div className="flex gap-4 overflow-x-auto pb-6">
               {ongoingColumns?.map((column) =>
@@ -477,7 +474,7 @@ const BugBoardPage = () => {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <h2 className="text-xl font-bold text-slate-800">Bug Fixes</h2>
+                <h2 className="text-xl font-bold text-foreground">Bug Fixes</h2>
                 <div className="bg-primary/15 text-foreground text-xs font-semibold px-2.5 py-0.5 rounded">
                   {bugFixes?.length} fixes
                 </div>
@@ -537,8 +534,7 @@ const BugBoardPage = () => {
             context={currentContext}
           />
         }
-      </div>
-    </>
+    </PageShell>
   );
 };
 

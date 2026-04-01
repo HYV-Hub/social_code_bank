@@ -31,12 +31,12 @@ export default function CodeReviewWorkflow() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-background">
         <AppNavigation />
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-slate-600">Loading reviews...</p>
+            <p className="mt-4 text-muted-foreground">Loading reviews...</p>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ export default function CodeReviewWorkflow() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       <AppNavigation />
       {/* ... keep existing UI structure ... */}
     </div>

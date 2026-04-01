@@ -354,7 +354,7 @@ const SnippetResultCard = ({ snippet }) => {
         </div>
 
         {/* Right Side: AI Overview (1/3 width on large screens) */}
-        <div className="lg:col-span-1 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-100">
+        <div className="lg:col-span-1 bg-muted rounded-lg p-4 border border-blue-100">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Icon name="Sparkles" size={16} className="text-white" />

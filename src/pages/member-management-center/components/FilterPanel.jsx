@@ -23,8 +23,8 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-slate-100 rounded-lg">
-              <Filter className="w-5 h-5 text-slate-700" />
+            <div className="p-2 bg-muted rounded-lg">
+              <Filter className="w-5 h-5 text-muted-foreground" />
             </div>
             <h2 className="text-xl font-semibold text-foreground">Advanced Filters</h2>
           </div>
@@ -55,7 +55,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                         : (filters?.roles || [])?.filter(r => r !== role?.value);
                       onFilterChange({ ...filters, roles: newRoles });
                     }}
-                    className="w-4 h-4 text-slate-700 rounded focus:ring-slate-700"
+                    className="w-4 h-4 text-muted-foreground rounded focus:ring-slate-700"
                   />
                   <span className="text-sm text-foreground">{role?.label}</span>
                 </label>
@@ -80,7 +80,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                         : (filters?.levels || [])?.filter(l => l !== level?.value);
                       onFilterChange({ ...filters, levels: newLevels });
                     }}
-                    className="w-4 h-4 text-slate-700 rounded focus:ring-slate-700"
+                    className="w-4 h-4 text-muted-foreground rounded focus:ring-slate-700"
                   />
                   <span className="text-sm text-foreground">{level?.label}</span>
                 </label>
@@ -100,7 +100,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   name="activityStatus"
                   checked={filters?.activityStatus === 'all' || !filters?.activityStatus}
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'all' })}
-                  className="w-4 h-4 text-slate-700 focus:ring-slate-700"
+                  className="w-4 h-4 text-muted-foreground focus:ring-slate-700"
                 />
                 <span className="text-sm text-foreground">All Members</span>
               </label>
@@ -110,7 +110,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   name="activityStatus"
                   checked={filters?.activityStatus === 'active'}
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'active' })}
-                  className="w-4 h-4 text-slate-700 focus:ring-slate-700"
+                  className="w-4 h-4 text-muted-foreground focus:ring-slate-700"
                 />
                 <span className="text-sm text-foreground">Active Only</span>
               </label>
@@ -120,7 +120,7 @@ export default function FilterPanel({ filters, onFilterChange, onClose }) {
                   name="activityStatus"
                   checked={filters?.activityStatus === 'inactive'}
                   onChange={() => onFilterChange({ ...filters, activityStatus: 'inactive' })}
-                  className="w-4 h-4 text-slate-700 focus:ring-slate-700"
+                  className="w-4 h-4 text-muted-foreground focus:ring-slate-700"
                 />
                 <span className="text-sm text-foreground">Inactive Only</span>
               </label>

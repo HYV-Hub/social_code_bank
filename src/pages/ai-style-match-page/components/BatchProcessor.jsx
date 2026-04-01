@@ -92,12 +92,12 @@ const BatchProcessor = () => {
   return (
     <div className="space-y-6">
       {/* Upload Section */}
-      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-8">
-        <h3 className="text-xl font-semibold text-slate-900 mb-6">
+      <div className="bg-card rounded-xl shadow-sm border border-border p-8">
+        <h3 className="text-xl font-semibold text-foreground mb-6">
           Batch Style Analysis
         </h3>
         
-        <div className="border-2 border-dashed border-slate-300 rounded-xl p-12 text-center hover:border-blue-500 transition-colors">
+        <div className="border-2 border-dashed border-border rounded-xl p-12 text-center hover:border-blue-500 transition-colors">
           <input
             type="file"
             multiple
@@ -114,10 +114,10 @@ const BatchProcessor = () => {
               <Upload className="w-8 h-8 text-primary" />
             </div>
             <div>
-              <p className="text-lg font-medium text-slate-900 mb-1">
+              <p className="text-lg font-medium text-foreground mb-1">
                 Click to upload or drag and drop
               </p>
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-muted-foreground">
                 JavaScript, TypeScript, JSX, or TSX files
               </p>
             </div>
@@ -127,18 +127,18 @@ const BatchProcessor = () => {
         {/* Selected Files */}
         {files?.length > 0 && (
           <div className="mt-6 space-y-3">
-            <h4 className="font-medium text-slate-900">
+            <h4 className="font-medium text-foreground">
               Selected Files ({files?.length})
             </h4>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {files?.map((file, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200"
+                  className="flex items-center gap-3 p-3 bg-muted rounded-lg border border-border"
                 >
                   <FileCode className="w-5 h-5 text-primary" />
-                  <span className="flex-1 text-sm text-slate-700">{file?.name}</span>
-                  <span className="text-xs text-slate-500">
+                  <span className="flex-1 text-sm text-muted-foreground">{file?.name}</span>
+                  <span className="text-xs text-muted-foreground">
                     {(file?.size / 1024)?.toFixed(2)} KB
                   </span>
                 </div>
@@ -171,9 +171,9 @@ const BatchProcessor = () => {
         <>
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
-              <div className="text-3xl font-bold text-slate-900">{results?.length}</div>
-              <div className="text-sm text-slate-600 mt-1">Files Analyzed</div>
+            <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+              <div className="text-3xl font-bold text-foreground">{results?.length}</div>
+              <div className="text-sm text-muted-foreground mt-1">Files Analyzed</div>
             </div>
             <div className="bg-success/10 rounded-xl border border-success/20 p-6">
               <div className="text-3xl font-bold text-success">
@@ -198,18 +198,18 @@ const BatchProcessor = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
+          <div className="bg-card rounded-xl shadow-sm border border-border p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="font-semibold text-slate-900">Batch Actions</h4>
-                <p className="text-sm text-slate-600 mt-1">
+                <h4 className="font-semibold text-foreground">Batch Actions</h4>
+                <p className="text-sm text-muted-foreground mt-1">
                   Apply fixes or export detailed report
                 </p>
               </div>
               <div className="flex gap-3">
                 <button
                   onClick={handleExportReport}
-                  className="px-6 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2 font-medium"
+                  className="px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2 font-medium"
                 >
                   <Download className="w-4 h-4" />
                   Export Report
@@ -226,27 +226,27 @@ const BatchProcessor = () => {
           </div>
 
           {/* Results Table */}
-          <div className="bg-card rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-slate-50 border-b border-slate-200">
+                <thead className="bg-muted border-b border-border">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
                       File
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
                       Status
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
                       Score
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
                       Issues
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
                       Auto-Fixable
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
                       Actions
                     </th>
                   </tr>
@@ -257,11 +257,11 @@ const BatchProcessor = () => {
                     const StatusIcon = statusConfig?.icon;
 
                     return (
-                      <tr key={result?.id} className="hover:bg-slate-50 transition-colors">
+                      <tr key={result?.id} className="hover:bg-muted transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <FileCode className="w-5 h-5 text-slate-400" />
-                            <span className="font-medium text-slate-900">
+                            <FileCode className="w-5 h-5 text-muted-foreground" />
+                            <span className="font-medium text-foreground">
                               {result?.filename}
                             </span>
                           </div>
@@ -276,13 +276,13 @@ const BatchProcessor = () => {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
-                            <div className="text-lg font-bold text-slate-900">
+                            <div className="text-lg font-bold text-foreground">
                               {result?.score}%
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">
+                          <span className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-sm font-medium">
                             {result?.issues}
                           </span>
                         </td>

@@ -128,7 +128,7 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
         <div className="mt-2 bg-error/10 border border-error/20 rounded-lg p-3">
           <div className="flex items-start gap-2">
             <Icon name="AlertCircle" size={16} className="text-error flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-red-800">{error}</p>
+            <p className="text-sm text-error">{error}</p>
           </div>
         </div>
       )}
@@ -168,9 +168,9 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                 <div className="mb-4">
                   <h4 className="font-semibold text-purple-900 mb-2">Severity</h4>
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                    report?.analysis?.severity === 'critical' ? 'bg-error/15 text-red-800' :
+                    report?.analysis?.severity === 'critical' ? 'bg-error/15 text-error' :
                     report?.analysis?.severity === 'high' ? 'bg-orange-100 text-orange-800' :
-                    report?.analysis?.severity === 'medium'? 'bg-warning/15 text-yellow-800' : 'bg-success/15 text-success'
+                    report?.analysis?.severity === 'medium'? 'bg-warning/15 text-warning' : 'bg-success/15 text-success'
                   }`}>
                     {report?.analysis?.severity?.toUpperCase()}
                   </span>
@@ -213,7 +213,7 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                   </h4>
                   <ul className="list-disc list-inside space-y-1">
                     {report?.analysis?.security_implications?.map((issue, index) => (
-                      <li key={index} className="text-sm text-red-800">{issue}</li>
+                      <li key={index} className="text-sm text-error">{issue}</li>
                     ))}
                   </ul>
                 </div>
@@ -262,7 +262,7 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                   <h4 className="font-semibold text-purple-900 mb-2">Complexity</h4>
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
                     report?.analysis?.complexity?.level === 'low' ? 'bg-success/15 text-success' :
-                    report?.analysis?.complexity?.level === 'medium'? 'bg-warning/15 text-yellow-800' : 'bg-error/15 text-red-800'
+                    report?.analysis?.complexity?.level === 'medium'? 'bg-warning/15 text-warning' : 'bg-error/15 text-error'
                   }`}>
                     {report?.analysis?.complexity?.level?.toUpperCase()}
                   </span>
@@ -288,7 +288,7 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                       <p className="text-xs font-medium text-error mb-1">✗ Violations:</p>
                       <ul className="list-disc list-inside space-y-1">
                         {report?.analysis?.best_practices?.violations?.map((item, index) => (
-                          <li key={index} className="text-sm text-red-800">{item}</li>
+                          <li key={index} className="text-sm text-error">{item}</li>
                         ))}
                       </ul>
                     </div>
@@ -308,7 +308,7 @@ export default function AIReportButton({ entity, entityType, onReportGenerated }
                       <p className="text-xs font-medium text-error mb-1">⚠ Vulnerabilities:</p>
                       <ul className="list-disc list-inside space-y-1">
                         {report?.analysis?.security?.vulnerabilities?.map((item, index) => (
-                          <li key={index} className="text-sm text-red-800">{item}</li>
+                          <li key={index} className="text-sm text-error">{item}</li>
                         ))}
                       </ul>
                     </div>

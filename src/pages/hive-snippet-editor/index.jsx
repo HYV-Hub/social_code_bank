@@ -7,7 +7,7 @@ import MetadataSection from '../create-snippet/components/MetadataSection';
 import CodeEditor from '../create-snippet/components/CodeEditor';
 import FileUploadSection from '../create-snippet/components/FileUploadSection';
 import AISuggestions from '../create-snippet/components/AISuggestions';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import { snippetService } from '../../services/snippetService';
@@ -182,17 +182,16 @@ const HiveSnippetEditor = () => {
   // Loading state
   if (loading || !user || !hiveIdFromUrl) {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <AppNavigation />
-        <div className="flex items-center justify-center h-[calc(100vh-64px)]">
+      <PageShell>
+        <div className="flex items-center justify-center h-[calc(100vh-120px)]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-slate-600">
+            <p className="mt-4 text-muted-foreground">
               {loading ? 'Loading...' : 'Initializing editor...'}
             </p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
@@ -606,9 +605,7 @@ const HiveSnippetEditor = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <AppNavigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <PageShell>
         <div className="bg-card rounded-lg shadow-lg p-8">
           {/* Hive Context Indicator */}
           {hiveDetails && (
@@ -628,7 +625,7 @@ const HiveSnippetEditor = () => {
           )}
 
           {/* Header */}
-          <header className="bg-card border-b border-slate-200 sticky top-0 z-50 -mx-8 -mt-8 px-8 py-4 mb-6">
+          <header className="bg-card border-b border-border sticky top-0 z-50 -mx-8 -mt-8 px-8 py-4 mb-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Button
@@ -640,10 +637,10 @@ const HiveSnippetEditor = () => {
                   Back to Hive
                 </Button>
                 <div>
-                  <h1 className="text-xl font-semibold text-slate-800">
+                  <h1 className="text-xl font-semibold text-foreground">
                     {isEditMode ? 'Edit Hive Snippet' : 'Create Hive Snippet'}
                   </h1>
-                  <p className="text-sm text-slate-600">
+                  <p className="text-sm text-muted-foreground">
                     {isEditMode ? 'Update your code snippet' : 'Share code with your hive'}
                   </p>
                 </div>
@@ -719,13 +716,13 @@ const HiveSnippetEditor = () => {
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
                 {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-6">
+                <div className="bg-card rounded-lg shadow-sm border border-border p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <h2 className="text-lg font-semibold text-slate-900">
+                      <h2 className="text-lg font-semibold text-foreground">
                         AI Insights
                       </h2>
-                      <p className="text-sm text-slate-600">
+                      <p className="text-sm text-muted-foreground">
                         Get AI-powered code analysis
                       </p>
                     </div>
@@ -785,9 +782,9 @@ const HiveSnippetEditor = () => {
                         </div>
                       )}
 
-                      <div className="bg-slate-50 rounded-lg p-4">
+                      <div className="bg-muted rounded-lg p-4">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-slate-700">
+                          <span className="text-sm font-medium text-muted-foreground">
                             Code Quality
                           </span>
                           <span className="text-2xl font-bold text-primary">
@@ -804,7 +801,7 @@ const HiveSnippetEditor = () => {
 
                       {aiResults?.tags && aiResults?.tags?.length > 0 && (
                         <div>
-                          <h3 className="text-sm font-medium text-slate-700 mb-2">
+                          <h3 className="text-sm font-medium text-muted-foreground mb-2">
                             Suggested Tags
                           </h3>
                           <div className="flex flex-wrap gap-2">
@@ -833,14 +830,13 @@ const HiveSnippetEditor = () => {
             </div>
           </div>
         </div>
-      </div>
 
       {/* Preview Modal */}
       {showPreview && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-6">
           <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-            <div className="flex items-center justify-between p-6 border-b border-slate-200">
-              <h2 className="text-xl font-semibold text-slate-800">Preview</h2>
+            <div className="flex items-center justify-between p-6 border-b border-border">
+              <h2 className="text-xl font-semibold text-foreground">Preview</h2>
               <Button
                 variant="ghost"
                 size="sm"
@@ -852,18 +848,18 @@ const HiveSnippetEditor = () => {
             <div className="flex-1 overflow-y-auto p-6">
               <div className="space-y-6">
                 <div>
-                  <h1 className="text-2xl font-bold text-slate-800 mb-2">
+                  <h1 className="text-2xl font-bold text-foreground mb-2">
                     {title || 'Untitled Snippet'}
                   </h1>
-                  <p className="text-slate-600">
+                  <p className="text-muted-foreground">
                     {description || 'No description provided'}
                   </p>
                 </div>
 
                 {aiResults?.detectedLanguage && (
                   <div className="flex items-center gap-2">
-                    <Icon name="Code2" size={16} className="text-slate-600" />
-                    <span className="text-sm text-slate-600 font-medium uppercase">
+                    <Icon name="Code2" size={16} className="text-muted-foreground" />
+                    <span className="text-sm text-muted-foreground font-medium uppercase">
                       {aiResults?.detectedLanguage}
                     </span>
                     <span
@@ -902,7 +898,7 @@ const HiveSnippetEditor = () => {
       )}
 
       {/* Mobile Bottom Actions */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-card border-t border-slate-200 p-4 flex gap-3">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 flex gap-3">
         <Button
           variant="outline"
           size="default"
@@ -924,7 +920,7 @@ const HiveSnippetEditor = () => {
           Publish
         </Button>
       </div>
-    </div>
+    </PageShell>
   );
 };
 

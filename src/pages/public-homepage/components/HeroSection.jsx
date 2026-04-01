@@ -6,7 +6,7 @@ import { AppImage } from '../../../components/AppImage';
 
 const HeroSection = () => {
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 pt-20 pb-24 overflow-hidden">
+    <section className="relative bg-background pt-20 pb-24 overflow-hidden">
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl" />
@@ -22,7 +22,7 @@ const HeroSection = () => {
               className="w-24 h-24 object-contain animate-bounce-slow"
             />
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
             Welcome to <span className="text-primary">HyvHub</span>
           </h1>
         </div>

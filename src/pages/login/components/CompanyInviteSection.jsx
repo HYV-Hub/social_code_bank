@@ -108,12 +108,12 @@ const CompanyInviteSection = () => {
       </form>
 
       {/* Help Section */}
-      <div className="mt-6 p-4 bg-slate-50 border border-slate-200 rounded-lg">
+      <div className="mt-6 p-4 bg-muted border border-border rounded-lg">
         <div className="flex items-start gap-2">
           <Icon name="HelpCircle" size={18} color="#64748b" className="flex-shrink-0 mt-0.5" />
-          <div className="text-xs text-slate-700">
+          <div className="text-xs text-muted-foreground">
             <p className="font-medium mb-2">Need help with your invite code?</p>
-            <ul className="space-y-1 list-disc list-inside text-slate-600">
+            <ul className="space-y-1 list-disc list-inside text-muted-foreground">
               <li>Contact your company administrator for a valid invite code</li>
               <li>Ensure you're using the most recent code provided</li>
               <li>Invite codes are case-sensitive and must be entered exactly</li>

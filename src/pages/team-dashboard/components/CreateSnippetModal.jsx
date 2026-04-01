@@ -122,7 +122,7 @@ export default function CreateSnippetModal({ isOpen, onClose, teamId, onSuccess 
             <div className="bg-error/10 border border-error/20 rounded-lg p-4">
               <div className="flex items-center gap-2">
                 <Icon name="AlertCircle" size={20} className="text-error" />
-                <p className="text-sm text-red-800">{error}</p>
+                <p className="text-sm text-error">{error}</p>
               </div>
             </div>
           )}

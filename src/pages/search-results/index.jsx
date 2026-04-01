@@ -12,7 +12,7 @@ import UserResultCard from './components/UserResultCard';
 import TeamResultCard from './components/TeamResultCard';
 import EmptyState from './components/EmptyState';
 import LoadingState from './components/LoadingState';
-import AppNavigation from "../../components/AppNavigation";
+import PageShell from '../../components/PageShell';
 import { exploreService } from '../../services/exploreService';
 import { bugService } from '../../services/bugService';
 import AdvancedFilterPanel from './components/AdvancedFilterPanel';
@@ -319,12 +319,10 @@ const SearchResultsPage = () => {
   );
 
   return (
-    <>
+    <PageShell noPadding>
       <Helmet>
         <title>{query ? `Search: ${query}` : viewMode === 'bug-board' ? 'Global Bug Board' : 'Explore'} - HyvHub</title>
       </Helmet>
-      <AppNavigation />
-      <div className="min-h-screen bg-background">
         {/* Search Header */}
         <SearchHeader
           query={query}
@@ -620,8 +618,7 @@ const SearchResultsPage = () => {
           isMobile={true}
           isOpen={isMobileFilterOpen}
           onClose={() => setIsMobileFilterOpen(false)} />
-      </div>
-    </>
+    </PageShell>
   );
 };
 

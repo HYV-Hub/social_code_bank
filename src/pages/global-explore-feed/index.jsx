@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import FeedItemCard from './components/FeedItemCard';
@@ -93,8 +93,7 @@ export default function GlobalExploreFeed() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
-      <AppNavigation />
+    <PageShell noPadding>
       <div className="flex">
         {/* Global Hives Sidebar */}
         <GlobalHivesSidebar />
@@ -186,6 +185,6 @@ export default function GlobalExploreFeed() {
           </div>
         </main>
       </div>
-    </div>
+    </PageShell>
   );
 }

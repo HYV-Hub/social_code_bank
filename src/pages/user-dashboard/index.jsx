@@ -10,7 +10,7 @@ import SnippetCard from './components/SnippetCard';
 import SavedItemCard from './components/SavedItemCard';
 import ActivityItem from './components/ActivityItem';
 import AchievementBadge from './components/AchievementBadge';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import InviteTeamModal from '../../components/InviteTeamModal';
 import { snippetService } from '../../services/snippetService';
 import AdvancedFilterPanel from './components/AdvancedFilterPanel';
@@ -213,46 +213,39 @@ const UserDashboard = () => {
   // Show loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
+      <PageShell>
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading dashboard...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   // Show error state
   if (error) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-error/100/10 border border-error rounded-lg p-4">
-            <p className="text-error">{error}</p>
-          </div>
+      <PageShell>
+        <div className="bg-error/100/10 border border-error rounded-lg p-4">
+          <p className="text-error">{error}</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   // Show not logged in state
   if (!user) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-warning/10 border border-warning rounded-lg p-4">
-            <p className="text-foreground">Please log in to view your dashboard.</p>
-            <Button className="mt-4" onClick={() => navigate('/login')}>
-              Go to Login
-            </Button>
-          </div>
+      <PageShell>
+        <div className="bg-warning/10 border border-warning rounded-lg p-4">
+          <p className="text-foreground">Please log in to view your dashboard.</p>
+          <Button className="mt-4" onClick={() => navigate('/login')}>
+            Go to Login
+          </Button>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
@@ -410,10 +403,8 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppNavigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
+    <PageShell>
+      {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
             Welcome back, {userProfile?.full_name || user?.email?.split('@')?.[0]}! 👋
@@ -952,7 +943,6 @@ const UserDashboard = () => {
             </div>
           )}
         </div>
-      </div>
       {/* Delete Confirmation Modal */}
       {showDeleteModal && snippetToDelete && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -1011,7 +1001,7 @@ const UserDashboard = () => {
         teamId={selectedTeam?.id}
         teamName={selectedTeam?.name}
       />
-    </div>
+    </PageShell>
   );
 };
 

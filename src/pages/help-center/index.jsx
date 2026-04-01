@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Icon from '../../components/AppIcon';
@@ -101,9 +101,7 @@ const HelpCenterPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppNavigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <PageShell>
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">Help Center</h1>
@@ -231,8 +229,7 @@ const HelpCenterPage = () => {
             </Button>
           </div>
         </div>
-      </div>
-    </div>
+    </PageShell>
   );
 };
 

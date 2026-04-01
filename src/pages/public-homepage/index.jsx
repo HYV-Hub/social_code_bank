@@ -35,7 +35,7 @@ const PublicHomepage = () => {
         <link rel="canonical" href="https://hyvhub.com" />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="min-h-screen bg-background dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <NavigationBar />
 
         {/* Main Content */}

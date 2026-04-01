@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
@@ -120,8 +120,7 @@ export default function GlobalHivesLanding() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
-      <AppNavigation />
+    <PageShell noPadding>
       <div className="flex">
         {/* Persistent Sidebar */}
         <aside className="hidden lg:block w-80 bg-card border-r border-border h-screen sticky top-0 overflow-y-auto">
@@ -484,6 +483,6 @@ export default function GlobalHivesLanding() {
           </div>
         </div>
       )}
-    </div>
+    </PageShell>
   );
 }

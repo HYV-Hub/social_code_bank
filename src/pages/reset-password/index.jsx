@@ -134,9 +134,9 @@ const ResetPassword = () => {
           <meta name="description" content="Your password has been reset successfully" />
         </Helmet>
 
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
           <div className="w-full max-w-md">
-            <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
+            <div className="bg-card rounded-lg shadow-xl border border-border p-8">
               {/* Success Icon */}
               <div className="flex justify-center mb-6">
                 <div className="w-16 h-16 bg-success/15 rounded-full flex items-center justify-center">
@@ -145,10 +145,10 @@ const ResetPassword = () => {
               </div>
 
               {/* Success Message */}
-              <h1 className="text-2xl font-bold text-slate-900 text-center mb-3">
+              <h1 className="text-2xl font-bold text-foreground text-center mb-3">
                 Password Reset Successful!
               </h1>
-              <p className="text-slate-600 text-center mb-8">
+              <p className="text-muted-foreground text-center mb-8">
                 Your password has been updated successfully. You can now log in with your new password.
               </p>
 
@@ -188,7 +188,7 @@ const ResetPassword = () => {
       {/* Add Navigation */}
       <PublicNavigation />
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="text-center mb-8">
@@ -196,21 +196,21 @@ const ResetPassword = () => {
               <div className="w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center">
                 <Icon name="Code2" size={24} color="#ffffff" />
               </div>
-              <span className="text-2xl font-bold text-slate-900">Social Code Bank</span>
+              <span className="text-2xl font-bold text-foreground">Social Code Bank</span>
             </div>
           </div>
 
           {/* Main Card */}
-          <div className="bg-card rounded-lg shadow-xl border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-xl border border-border p-8">
             {/* Header */}
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-primary/15 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Icon name="Lock" size={32} color="#1e40af" />
               </div>
-              <h1 className="text-2xl font-bold text-slate-900 mb-2">
+              <h1 className="text-2xl font-bold text-foreground mb-2">
                 Set New Password
               </h1>
-              <p className="text-slate-600 text-sm">
+              <p className="text-muted-foreground text-sm">
                 Choose a strong password to secure your account.
               </p>
             </div>
@@ -222,7 +222,7 @@ const ResetPassword = () => {
                 <div className="bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
                   <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
-                    <p className="text-sm text-red-800 font-medium">Error</p>
+                    <p className="text-sm text-error font-medium">Error</p>
                     <p className="text-sm text-error mt-1">{globalError}</p>
                   </div>
                 </div>
@@ -244,7 +244,7 @@ const ResetPassword = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-9 text-slate-500 hover:text-slate-700"
+                    className="absolute right-3 top-9 text-muted-foreground hover:text-muted-foreground"
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     <Icon name={showPassword ? "EyeOff" : "Eye"} size={20} />
@@ -255,7 +255,7 @@ const ResetPassword = () => {
                 {formData?.password && (
                   <div className="mt-2">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-slate-600">Password Strength</span>
+                      <span className="text-xs text-muted-foreground">Password Strength</span>
                       <span className={`text-xs font-medium ${
                         passwordStrength >= 80 ? "text-success" :
                         passwordStrength >= 50 ? "text-warning": "text-error"
@@ -288,7 +288,7 @@ const ResetPassword = () => {
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-9 text-slate-500 hover:text-slate-700"
+                  className="absolute right-3 top-9 text-muted-foreground hover:text-muted-foreground"
                   aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                 >
                   <Icon name={showConfirmPassword ? "EyeOff" : "Eye"} size={20} />
@@ -296,10 +296,10 @@ const ResetPassword = () => {
               </div>
 
               {/* Password Requirements */}
-              <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
-                <p className="text-xs font-medium text-slate-700 mb-2">Password must contain:</p>
+              <div className="p-4 bg-muted border border-border rounded-lg">
+                <p className="text-xs font-medium text-muted-foreground mb-2">Password must contain:</p>
                 <ul className="space-y-1">
-                  <li className="flex items-center gap-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Icon 
                       name={formData?.password?.length >= 8 ? "CheckCircle2" : "Circle"} 
                       size={14} 
@@ -307,7 +307,7 @@ const ResetPassword = () => {
                     />
                     <span>At least 8 characters</span>
                   </li>
-                  <li className="flex items-center gap-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Icon 
                       name={/[A-Z]/?.test(formData?.password) ? "CheckCircle2" : "Circle"} 
                       size={14} 
@@ -315,7 +315,7 @@ const ResetPassword = () => {
                     />
                     <span>One uppercase letter</span>
                   </li>
-                  <li className="flex items-center gap-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Icon 
                       name={/[a-z]/?.test(formData?.password) ? "CheckCircle2" : "Circle"} 
                       size={14} 
@@ -323,7 +323,7 @@ const ResetPassword = () => {
                     />
                     <span>One lowercase letter</span>
                   </li>
-                  <li className="flex items-center gap-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Icon 
                       name={/\d/?.test(formData?.password) ? "CheckCircle2" : "Circle"} 
                       size={14} 
@@ -351,7 +351,7 @@ const ResetPassword = () => {
                 <button
                   type="button"
                   onClick={() => navigate("/login")}
-                  className="text-sm text-slate-600 hover:text-slate-800 inline-flex items-center gap-2"
+                  className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-2"
                 >
                   <Icon name="ArrowLeft" size={16} />
                   <span>Back to Login</span>
@@ -362,7 +362,7 @@ const ResetPassword = () => {
 
           {/* Security Note */}
           <div className="mt-6 text-center">
-            <div className="inline-flex items-center gap-2 text-xs text-slate-500">
+            <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
               <Icon name="Shield" size={14} />
               <span>Your data is encrypted and secure</span>
             </div>

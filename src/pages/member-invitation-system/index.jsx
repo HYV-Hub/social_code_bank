@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Send, X, CheckCircle, XCircle, Clock, RefreshCw, AlertCircle } from 'lucide-react';
-import AppNavigation from '../../components/AppNavigation';
+import PageShell from '../../components/PageShell';
 import { companyMemberService } from '../../services/companyMemberService';
 import { companyDashboardService } from '../../services/companyDashboardService';
 import { supabase } from '../../lib/supabase';
@@ -191,40 +191,32 @@ export default function MemberInvitationSystem() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-center py-12">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-muted-foreground">Loading invitation system...</p>
-            </div>
+      <PageShell>
+        <div className="flex items-center justify-center py-12">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-muted-foreground">Loading invitation system...</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background">
-        <AppNavigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-error/10 border border-error/20 rounded-lg p-4">
-            <div className="flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-error" />
-              <p className="text-red-800">{error}</p>
-            </div>
+      <PageShell>
+        <div className="bg-error/10 border border-error/20 rounded-lg p-4">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-5 h-5 text-error" />
+            <p className="text-error">{error}</p>
           </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <AppNavigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <PageShell>
         {/* Header */}
         <div className="mb-8">
           <button
@@ -469,7 +461,6 @@ export default function MemberInvitationSystem() {
             </li>
           </ul>
         </div>
-      </div>
-    </div>
+    </PageShell>
   );
 }

@@ -7,6 +7,7 @@ import LeaderboardCard from './components/LeaderboardCard';
 import TimeFilterTabs from './components/TimeFilterTabs';
 import CategoryTabs from './components/CategoryTabs';
 import AchievementShowcase from './components/AchievementShowcase';
+import PageShell from '../../components/PageShell';
 
 const CommunityLeaderboards = () => {
   const navigate = useNavigate();
@@ -113,15 +114,14 @@ const CommunityLeaderboards = () => {
   };
 
   return (
-    <>
+    <PageShell noPadding>
       <Helmet>
         <title>Community Leaderboards | Social Code Bank</title>
-        <meta 
-          name="description" 
-          content="View top contributors, trending creators, bug fix champions, and community mentors. Track achievements and compete in the Social Code Bank leaderboard." 
+        <meta
+          name="description"
+          content="View top contributors, trending creators, bug fix champions, and community mentors. Track achievements and compete in the Social Code Bank leaderboard."
         />
       </Helmet>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
         {/* Hero Header */}
         <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -257,8 +257,7 @@ const CommunityLeaderboards = () => {
           {/* Achievement Showcase */}
           <AchievementShowcase />
         </div>
-      </div>
-    </>
+    </PageShell>
   );
 };
 

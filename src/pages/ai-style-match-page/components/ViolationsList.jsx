@@ -14,14 +14,14 @@ const ViolationsList = ({ violations }) => {
         bgColor: 'bg-error/10',
         borderColor: 'border-error/20',
         textColor: 'text-error',
-        badgeColor: 'bg-error/15 text-red-800'
+        badgeColor: 'bg-error/15 text-error'
       },
       medium: {
         icon: AlertCircle,
         bgColor: 'bg-warning/10',
         borderColor: 'border-warning/20',
         textColor: 'text-warning',
-        badgeColor: 'bg-warning/15 text-yellow-800'
+        badgeColor: 'bg-warning/15 text-warning'
       },
       low: {
         icon: Info,
@@ -54,9 +54,9 @@ const ViolationsList = ({ violations }) => {
     <div className="space-y-6">
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-6">
-          <div className="text-3xl font-bold text-slate-900">{violations?.length}</div>
-          <div className="text-sm text-slate-600 mt-1">Total Issues</div>
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <div className="text-3xl font-bold text-foreground">{violations?.length}</div>
+          <div className="text-sm text-muted-foreground mt-1">Total Issues</div>
         </div>
         <div className="bg-error/10 rounded-xl border border-error/20 p-6">
           <div className="text-3xl font-bold text-error">{severityCounts?.high}</div>
@@ -73,16 +73,16 @@ const ViolationsList = ({ violations }) => {
       </div>
 
       {/* Filter Buttons */}
-      <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-4">
+      <div className="bg-card rounded-xl shadow-sm border border-border p-4">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm font-medium text-slate-700">Filter by severity:</span>
+          <span className="text-sm font-medium text-muted-foreground">Filter by severity:</span>
           {['all', 'high', 'medium', 'low']?.map((severity) => (
             <button
               key={severity}
               onClick={() => setFilter(severity)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 filter === severity
-                  ? 'bg-primary text-white' :'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  ? 'bg-primary text-white' :'bg-muted text-muted-foreground hover:bg-slate-200'
               }`}
             >
               {severity?.charAt(0)?.toUpperCase() + severity?.slice(1)}
@@ -121,12 +121,12 @@ const ViolationsList = ({ violations }) => {
                         <span className={`px-3 py-1 rounded-full text-xs font-medium ${config?.badgeColor}`}>
                           {violation?.severity?.toUpperCase()}
                         </span>
-                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-muted text-muted-foreground">
                           {violation?.category}
                         </span>
-                        <span className="text-sm text-slate-500">Line {violation?.line}</span>
+                        <span className="text-sm text-muted-foreground">Line {violation?.line}</span>
                       </div>
-                      <h4 className="text-lg font-semibold text-slate-900 mb-2">
+                      <h4 className="text-lg font-semibold text-foreground mb-2">
                         {violation?.description}
                       </h4>
                     </div>
@@ -142,12 +142,12 @@ const ViolationsList = ({ violations }) => {
                     )}
                   </div>
 
-                  <div className="bg-slate-50 rounded-lg p-4 border border-slate-200 mb-4">
-                    <h5 className="text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
+                  <div className="bg-muted rounded-lg p-4 border border-border mb-4">
+                    <h5 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-success" />
                       Recommendation
                     </h5>
-                    <p className="text-slate-600 text-sm">{violation?.recommendation}</p>
+                    <p className="text-muted-foreground text-sm">{violation?.recommendation}</p>
                   </div>
 
                   {/* Expandable Details */}
@@ -164,8 +164,8 @@ const ViolationsList = ({ violations }) => {
 
                   {selectedViolation === violation?.id && (
                     <div className="mt-4 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                      <h5 className="font-medium text-slate-900 mb-2">Additional Information</h5>
-                      <ul className="space-y-2 text-sm text-slate-700">
+                      <h5 className="font-medium text-foreground mb-2">Additional Information</h5>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
                         <li className="flex items-start gap-2">
                           <span className="text-primary">•</span>
                           <span>Impact: Affects code maintainability and readability</span>
@@ -190,12 +190,12 @@ const ViolationsList = ({ violations }) => {
 
       {/* Empty State */}
       {filteredViolations?.length === 0 && (
-        <div className="bg-card rounded-xl shadow-sm border border-slate-200 p-12 text-center">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-12 text-center">
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-slate-900 mb-2">
+          <h3 className="text-xl font-semibold text-foreground mb-2">
             No {filter !== 'all' ? filter + ' severity' : ''} violations found
           </h3>
-          <p className="text-slate-600">
+          <p className="text-muted-foreground">
             {filter === 'all' ?'Your code meets all style guidelines!'
               : `No ${filter} severity issues detected.`}
           </p>

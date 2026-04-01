@@ -64,7 +64,7 @@ export default function LoginForm() {
         <div className="mb-6 bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
           <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <p className="text-sm text-red-800 font-medium">Authentication Failed</p>
+            <p className="text-sm text-error font-medium">Authentication Failed</p>
             <p className="text-sm text-error mt-1">{error}</p>
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function LoginForm() {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-9 text-slate-500 hover:text-slate-700"
+            className="absolute right-3 top-9 text-muted-foreground hover:text-muted-foreground"
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             <Icon name={showPassword ? "EyeOff" : "Eye"} size={20} />
@@ -108,7 +108,7 @@ export default function LoginForm() {
           <button
             type="button"
             onClick={() => navigate("/forgot-password")}
-            className="text-sm text-slate-600 hover:text-slate-800 hover:underline font-medium"
+            className="text-sm text-muted-foreground hover:text-foreground hover:underline font-medium"
           >
             Forgot Password?
           </button>
@@ -141,9 +141,9 @@ export default function LoginForm() {
       <div className="mt-6 p-4 bg-primary/10 border border-blue-100 rounded-lg">
         <div className="flex items-start gap-2">
           <Icon name="Info" size={18} color="#3b82f6" className="flex-shrink-0 mt-0.5" />
-          <div className="text-xs text-slate-700">
+          <div className="text-xs text-muted-foreground">
             <p className="font-medium mb-1">Need Help?</p>
-            <p className="text-slate-600">If you don't have an account yet, click "Create Account" below to get started.</p>
+            <p className="text-muted-foreground">If you don't have an account yet, click "Create Account" below to get started.</p>
           </div>
         </div>
       </div>
