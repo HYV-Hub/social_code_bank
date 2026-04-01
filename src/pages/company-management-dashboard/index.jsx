@@ -435,7 +435,7 @@ export default function CompanyManagementDashboard() {
                 <button
                   onClick={() => navigate('/member-invitation-system')}
                   disabled={!userLimitInfo?.canAdd}
-                  className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                  className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary disabled:bg-muted disabled:cursor-not-allowed transition-colors"
                 >
                   <UserPlus className="w-5 h-5 mr-2" />
                   Invite Members

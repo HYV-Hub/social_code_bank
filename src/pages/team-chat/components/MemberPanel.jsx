@@ -59,7 +59,7 @@ const MemberPanel = ({ activeChannel, members, sharedFiles, onMemberClick, onlin
                       </span>
                     )}
                     {!isOnline && (
-                      <span className="absolute bottom-0 right-0 w-3 h-3 bg-gray-400 border-2 border-card rounded-full"></span>
+                      <span className="absolute bottom-0 right-0 w-3 h-3 bg-muted-foreground border-2 border-card rounded-full"></span>
                     )}
                   </div>
                   <div className="flex-1 text-left min-w-0">

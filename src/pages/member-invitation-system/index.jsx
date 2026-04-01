@@ -417,7 +417,7 @@ export default function MemberInvitationSystem() {
               <button
                 onClick={handleSendInvitations}
                 disabled={selectedUsers?.length === 0 || sending || !userLimitInfo?.canAdd}
-                className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary disabled:bg-muted disabled:cursor-not-allowed transition-colors"
               >
                 {sending ? (
                   <>

@@ -480,7 +480,7 @@ const SettingsPage = () => {
 
             {loadingHives ? (
               <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
               </div>
             ) : userHives?.length === 0 ? (
               <div className="text-center py-12 bg-background rounded-lg border border-border">
@@ -498,7 +498,7 @@ const SettingsPage = () => {
                           <Icon 
                             name={hive?.privacy === 'public' ? 'Globe' : 'Lock'} 
                             size={20} 
-                            className={hive?.privacy === 'public' ? 'text-success' : 'text-orange-600'}
+                            className={hive?.privacy === 'public' ? 'text-success' : 'text-warning'}
                           />
                           <h4 className="font-semibold text-foreground truncate">{hive?.name}</h4>
                         </div>
@@ -587,7 +587,7 @@ const SettingsPage = () => {
             <h3 className="text-lg font-semibold text-foreground mb-4">Account Management</h3>
             
             <div className="bg-error/10 border border-error/20 rounded-lg p-6">
-              <h4 className="text-lg font-semibold text-red-900 mb-2">Danger Zone</h4>
+              <h4 className="text-lg font-semibold text-error mb-2">Danger Zone</h4>
               <p className="text-error mb-4">
                 Once you delete your account, there is no going back. Please be certain.
               </p>

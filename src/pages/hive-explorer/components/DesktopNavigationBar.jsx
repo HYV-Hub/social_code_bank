@@ -145,7 +145,7 @@ export default function DesktopNavigationBar({
                 {/* Keyboard shortcut badge */}
                 <kbd className={`hidden xl:inline-flex items-center justify-center h-5 w-5 text-xs rounded border ${
                   activeTab === item?.id
-                    ? 'border-white/20 text-white/70' :'border-border text-muted-foreground group-hover:border-gray-400'
+                    ? 'border-white/20 text-white/70' :'border-border text-muted-foreground group-hover:border-muted-foreground'
                 }`}>
                   {item?.shortcut}
                 </kbd>

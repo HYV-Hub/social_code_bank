@@ -418,7 +418,7 @@ export default function ProfileEditor() {
             <button
               type="submit"
               disabled={saving || !hasChanges}
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary transition-colors disabled:bg-muted disabled:cursor-not-allowed"
             >
               {saving ? (
                 <>

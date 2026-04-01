@@ -370,7 +370,7 @@ export default function AIOptimizationReportPage() {
   const getSeverityColor = (severity) => {
     const colors = {
       critical: 'text-error bg-error/10 border-error/20',
-      high: 'text-orange-600 bg-orange-50 border-orange-200',
+      high: 'text-warning bg-warning/10 border-warning/20',
       medium: 'text-warning bg-warning/10 border-warning/20',
       low: 'text-primary bg-primary/10 border-primary/20'
     };
@@ -389,7 +389,7 @@ export default function AIOptimizationReportPage() {
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-text-secondary">Loading report...</p>
+            <p className="text-muted-foreground">Loading report...</p>
           </div>
         </div>
       </AppShell>
@@ -413,7 +413,7 @@ export default function AIOptimizationReportPage() {
         </Button>
 
         <div className="bg-card rounded-lg shadow-lg p-8 text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-6"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary mx-auto mb-6"></div>
           <h2 className="text-2xl font-bold text-foreground mb-4">
             Generating Comprehensive AI Report
           </h2>
@@ -453,7 +453,7 @@ export default function AIOptimizationReportPage() {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Snippet
         </Button>
-        <div className="bg-error/100/10 border border-error rounded-lg p-4">
+        <div className="bg-error/10 border border-error rounded-lg p-4">
           <p className="text-error mb-4">{error}</p>
           <div className="flex gap-2">
             <Button onClick={() => navigate(-1)}>
@@ -555,7 +555,7 @@ export default function AIOptimizationReportPage() {
                   >
                     {analyzing ? (
                       <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary mr-2"></div>
                         Analyzing...
                       </>
                     ) : (

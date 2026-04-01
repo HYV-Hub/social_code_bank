@@ -273,7 +273,7 @@ const AddSnippetModal = ({ collectionId, hiveId, onClose, onSuccess }) => {
         {/* Enhanced Footer */}
         <div className="p-6 border-t-2 border-border bg-background flex items-center justify-between rounded-b-2xl">
           <div className="flex items-center gap-3">
-            <div className={`w-3 h-3 rounded-full ${selectedSnippets?.size > 0 ? 'bg-success/100 animate-pulse' : 'bg-gray-300'}`}></div>
+            <div className={`w-3 h-3 rounded-full ${selectedSnippets?.size > 0 ? 'bg-success/100 animate-pulse' : 'bg-muted'}`}></div>
             <span className="text-sm font-semibold text-foreground">
               {selectedSnippets?.size} snippet{selectedSnippets?.size !== 1 ? 's' : ''} selected
             </span>

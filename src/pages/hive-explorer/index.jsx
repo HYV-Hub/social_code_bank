@@ -386,10 +386,10 @@ export default function HiveExplorer() {
         <div className="flex items-center justify-center min-h-[60vh] p-4">
           <div className="text-center max-w-md">
             <div className="mb-6 relative">
-              <div className="absolute inset-0 bg-error/100 opacity-10 blur-3xl rounded-full"></div>
+              <div className="absolute inset-0 bg-error opacity-10 blur-3xl rounded-full"></div>
               <Icon name="AlertCircle" size={80} className="mx-auto text-error relative z-10" />
             </div>
-            <h2 className="text-3xl font-bold text-foreground mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold text-foreground mb-3">
               Hive Not Found
             </h2>
             <p className="text-muted-foreground mb-8 leading-relaxed">
@@ -443,7 +443,7 @@ export default function HiveExplorer() {
                         {hive?.name}
                       </h1>
                       <span className={`px-4 py-1.5 text-sm font-semibold rounded-full shadow-lg backdrop-blur-sm ${
-                        hive?.privacy === 'public' ?'bg-success/100/90 text-white' :'bg-warning/100/90 text-white'
+                        hive?.privacy === 'public' ?'bg-success/90 text-white' :'bg-warning/90 text-white'
                       }`}>
                         {hive?.privacy === 'public' ? '🌍 Public Hive' : '🔒 Private Hive'}
                       </span>
@@ -620,8 +620,8 @@ export default function HiveExplorer() {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e?.target?.value)}
                             className={`pl-10 pr-4 py-3 border-2 rounded-lg transition-all ${
-                              searchFocused 
-                                ? 'border-purple-500 ring-2 ring-purple-200' :'border-border focus:border-purple-500 focus:ring-2 focus:ring-purple-200'
+                              searchFocused
+                                ? 'border-primary ring-2 ring-ring' :'border-border focus:border-primary focus:ring-2 focus:ring-ring'
                             }`}
                             onFocus={() => setSearchFocused(true)}
                             onBlur={() => setSearchFocused(false)}
@@ -636,7 +636,7 @@ export default function HiveExplorer() {
                     {filteredSnippets?.length === 0 ? (
                       <div className="bg-card rounded-xl shadow-lg border border-border p-12 text-center">
                         <div className="relative inline-block mb-6">
-                          <div className="absolute inset-0 bg-primary/100 opacity-10 blur-2xl rounded-full"></div>
+                          <div className="absolute inset-0 bg-primary opacity-10 blur-2xl rounded-full"></div>
                           <Icon name="Code" size={64} className="mx-auto text-purple-400 relative z-10" />
                         </div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">No snippets found</h3>
@@ -674,7 +674,7 @@ export default function HiveExplorer() {
                                   </p>
                                 )}
                               </div>
-                              <span className="px-3 py-1.5 text-xs font-semibold bg-gradient-to-r from-purple-100 to-indigo-100 text-primary rounded-lg group-hover:from-purple-200 group-hover:to-indigo-200 transition-colors">
+                              <span className="px-3 py-1.5 text-xs font-semibold bg-primary/10 text-primary rounded-lg group-hover:bg-primary/20 transition-colors">
                                 {snippet?.language}
                               </span>
                             </div>
@@ -724,10 +724,10 @@ export default function HiveExplorer() {
                           {members?.length} active member{members?.length !== 1 ? 's' : ''}
                         </p>
                         {canManageHive && (
-                          <div className="mt-3 p-3 bg-gradient-to-r from-purple-50 to-indigo-50 border border-border rounded-lg">
+                          <div className="mt-3 p-3 bg-primary/10 border border-border rounded-lg">
                             <div className="flex items-start gap-2">
                               <Icon name="Info" size={16} className="text-primary mt-0.5" />
-                              <div className="text-xs text-purple-900 leading-relaxed">
+                              <div className="text-xs text-foreground leading-relaxed">
                                 <p className="font-semibold mb-1">Role Management:</p>
                                 <ul className="space-y-1 ml-4 list-disc">
                                   <li><strong>Admin:</strong> Manage members, moderate content, manage settings</li>
@@ -762,10 +762,10 @@ export default function HiveExplorer() {
                                 <img
                                   src={member?.user?.avatar_url}
                                   alt={member?.user?.username}
-                                  className="w-14 h-14 rounded-full ring-2 ring-purple-200 group-hover:ring-purple-400 transition-all flex-shrink-0"
+                                  className="w-14 h-14 rounded-full ring-2 ring-border group-hover:ring-primary/40 transition-all flex-shrink-0"
                                 />
                               ) : (
-                                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center ring-2 ring-purple-200 group-hover:ring-purple-400 transition-all flex-shrink-0">
+                                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center ring-2 ring-border group-hover:ring-primary/40 transition-all flex-shrink-0">
                                   <Icon name="User" size={24} className="text-white" />
                                 </div>
                               )}

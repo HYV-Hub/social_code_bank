@@ -228,7 +228,7 @@ const UserDashboard = () => {
   if (error) {
     return (
       <AppShell pageTitle="My Library">
-        <div className="bg-error/100/10 border border-error rounded-lg p-4">
+        <div className="bg-error/10 border border-error rounded-lg p-4">
           <p className="text-error">{error}</p>
         </div>
       </AppShell>

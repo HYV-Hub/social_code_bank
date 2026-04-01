@@ -123,7 +123,7 @@ export default function GlobalExploreFeed() {
             <div className="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-start gap-3">
               <Icon name="AlertCircle" size={20} className="text-error flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <p className="text-sm font-medium text-red-900">Error</p>
+                <p className="text-sm font-medium text-error">Error</p>
                 <p className="text-sm text-error mt-1">{error}</p>
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function GlobalExploreFeed() {
             </div>
           ) : feedItems?.length === 0 ? (
             <div className="text-center py-16">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-purple-100 mb-6">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/15 mb-6">
                 <Icon name="Search" size={40} className="text-primary" />
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">

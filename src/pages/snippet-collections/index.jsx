@@ -349,7 +349,7 @@ export default function MySnippetsPage() {
                     onClick={() => setVisibilityFilter(tab?.id)}
                     className={`flex items-center gap-2 px-4 py-3 font-medium transition-colors whitespace-nowrap border-b-2 ${
                       visibilityFilter === tab?.id
-                        ? 'text-primary border-blue-600' : 'text-muted-foreground border-transparent hover:text-foreground hover:border-border'
+                        ? 'text-primary border-primary' : 'text-muted-foreground border-transparent hover:text-foreground hover:border-border'
                     }`}
                   >
                     <Icon size={16} />
@@ -563,7 +563,7 @@ export default function MySnippetsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
           {loading ? (
             <div className="text-center py-12">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
               <p className="mt-2 text-muted-foreground">Loading snippets...</p>
             </div>
           ) : filteredSnippets?.length === 0 && collections?.length === 0 ? (
@@ -758,7 +758,7 @@ export default function MySnippetsPage() {
 
                   <button
                     onClick={() => setShowCreateCollectionForm(true)}
-                    className="w-full mb-4 px-4 py-2 border-2 border-dashed border-blue-400 text-primary rounded-md hover:bg-primary/10 transition-colors flex items-center justify-center gap-2"
+                    className="w-full mb-4 px-4 py-2 border-2 border-dashed border-primary/40 text-primary rounded-md hover:bg-primary/10 transition-colors flex items-center justify-center gap-2"
                   >
                     <Plus className="w-5 h-5" />
                     Create New Collection
@@ -778,7 +778,7 @@ export default function MySnippetsPage() {
                     <button
                       onClick={handleOrganizeToCollection}
                       disabled={!selectedCollection}
-                      className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed"
+                      className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-muted disabled:cursor-not-allowed"
                     >
                       Add to Collection
                     </button>
@@ -840,7 +840,7 @@ export default function MySnippetsPage() {
                     <button
                       onClick={handleCreateAndOrganize}
                       disabled={!newCollectionData?.title?.trim()}
-                      className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed"
+                      className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-muted disabled:cursor-not-allowed"
                     >
                       Create &amp; Add Snippets
                     </button>
@@ -924,7 +924,7 @@ export default function MySnippetsPage() {
                 <button
                   onClick={handleCreateStandaloneCollection}
                   disabled={!newCollectionData?.title?.trim()}
-                  className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary disabled:bg-muted disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <Plus className="w-5 h-5" />
                   Create Collection

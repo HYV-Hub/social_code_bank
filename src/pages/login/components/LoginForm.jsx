@@ -62,7 +62,7 @@ export default function LoginForm() {
       {/* Global Error Message */}
       {error && (
         <div className="mb-6 bg-error/10 border border-error/20 rounded-lg p-4 flex items-start gap-3">
-          <Icon name="AlertCircle" size={20} color="#dc2626" className="flex-shrink-0 mt-0.5" />
+          <Icon name="AlertCircle" size={20} className="flex-shrink-0 mt-0.5 text-error" />
           <div className="flex-1">
             <p className="text-sm text-error font-medium">Authentication Failed</p>
             <p className="text-sm text-error mt-1">{error}</p>
@@ -120,7 +120,7 @@ export default function LoginForm() {
           disabled={loading}
           className={`w-full py-3 px-4 rounded-lg font-medium transition-all ${
             loading
-              ? "bg-slate-400 text-slate-200 cursor-not-allowed" :"bg-slate-700 text-white hover:bg-slate-800 shadow-sm"
+              ? "bg-muted text-muted-foreground cursor-not-allowed" :"bg-primary text-white hover:bg-primary/90 shadow-sm"
           }`}
         >
           {loading ? (
@@ -138,9 +138,9 @@ export default function LoginForm() {
       </form>
 
       {/* Help Text */}
-      <div className="mt-6 p-4 bg-primary/10 border border-blue-100 rounded-lg">
+      <div className="mt-6 p-4 bg-primary/10 border border-primary/20 rounded-lg">
         <div className="flex items-start gap-2">
-          <Icon name="Info" size={18} color="#3b82f6" className="flex-shrink-0 mt-0.5" />
+          <Icon name="Info" size={18} className="flex-shrink-0 mt-0.5 text-primary" />
           <div className="text-xs text-muted-foreground">
             <p className="font-medium mb-1">Need Help?</p>
             <p className="text-muted-foreground">If you don't have an account yet, click "Create Account" below to get started.</p>

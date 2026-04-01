@@ -275,7 +275,7 @@ const CreateSnippet = () => {
       <AppShell pageTitle="Create Snippet">
         <div className="flex items-center justify-center h-[calc(100vh-120px)]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto"></div>
             <p className="mt-4 text-muted-foreground">Loading...</p>
           </div>
         </div>
@@ -289,7 +289,7 @@ const CreateSnippet = () => {
       <AppShell pageTitle="Create Snippet">
         <div className="flex items-center justify-center h-[calc(100vh-120px)]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto"></div>
             <p className="mt-4 text-muted-foreground">
               {loading ? 'Loading snippet...' : 'Loading...'}
             </p>
@@ -913,7 +913,7 @@ const CreateSnippet = () => {
                               {aiResults?.qualityScore}/100
                             </span>
                           </div>
-                          <div className="w-full bg-slate-200 rounded-full h-2">
+                          <div className="w-full bg-muted rounded-full h-2">
                             <div
                               className="bg-primary h-2 rounded-full transition-all duration-500"
                               style={{ width: `${aiResults?.qualityScore}%` }}
@@ -929,7 +929,7 @@ const CreateSnippet = () => {
                               {aiResults?.tags?.map((tag, index) => (
                                 <span
                                   key={index}
-                                  className="px-3 py-1 bg-purple-100 text-primary rounded-full text-sm"
+                                  className="px-3 py-1 bg-primary/15 text-primary rounded-full text-sm"
                                 >
                                   {tag}
                                 </span>
@@ -979,7 +979,7 @@ const CreateSnippet = () => {
                         {/* Strengths & Weaknesses - Only show if available in simplified format */}
                         {aiResults?.aiAnalysisData?.strengths && aiResults?.aiAnalysisData?.strengths?.length > 0 && (
                           <div className="bg-success/10 rounded-lg p-4">
-                            <h3 className="text-sm font-medium text-green-900 mb-2 flex items-center">
+                            <h3 className="text-sm font-medium text-success mb-2 flex items-center">
                               <span className="mr-2">✓</span> Strengths
                             </h3>
                             <ul className="space-y-1 text-sm text-success">
@@ -992,7 +992,7 @@ const CreateSnippet = () => {
 
                         {aiResults?.aiAnalysisData?.weaknesses && aiResults?.aiAnalysisData?.weaknesses?.length > 0 && (
                           <div className="bg-warning/10 rounded-lg p-4">
-                            <h3 className="text-sm font-medium text-yellow-900 mb-2 flex items-center">
+                            <h3 className="text-sm font-medium text-warning mb-2 flex items-center">
                               <span className="mr-2">⚠</span> Areas for Improvement
                             </h3>
                             <ul className="space-y-1 text-sm text-warning">
@@ -1055,7 +1055,7 @@ const CreateSnippet = () => {
                     value={formData?.teamId || ''}
                     onChange={(e) => setFormData({ ...formData, teamId: e?.target?.value })}
                     disabled={isSubmitting || success || loadingTeams}
-                    className="flex-1 px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-blue-500"
+                    className="flex-1 px-4 py-3 bg-card border border-border rounded-lg text-foreground focus:ring-2 focus:ring-ring focus:border-transparent"
                   >
                     <option value="">No specific team (Company-wide)</option>
                     {teams?.map(team => (

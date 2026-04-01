@@ -701,9 +701,9 @@ export default function HivesBrowsePage() {
                           }}
                           className={`w-full shadow-md hover:shadow-lg transition-all ${
                             hive?.isMember
-                              ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
+                              ? 'bg-primary hover:bg-primary/90'
                               : hive?.hasPendingRequest
-                                ? 'bg-gray-400 cursor-not-allowed' :'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'
+                                ? 'bg-muted-foreground cursor-not-allowed' :'bg-primary hover:bg-primary/90'
                           }`}
                           disabled={hive?.hasPendingRequest}
                         >

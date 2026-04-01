@@ -346,7 +346,7 @@ export default function RegisterPage() {
                 disabled={loading || !formData?.role}
                 className={`w-full py-3 px-4 rounded-lg font-medium transition-all ${
                   loading || !formData?.role
-                    ? "bg-slate-300 text-muted-foreground cursor-not-allowed" :"bg-primary text-white hover:bg-primary shadow-sm"
+                    ? "bg-muted text-muted-foreground cursor-not-allowed" :"bg-primary text-white hover:bg-primary/90 shadow-sm"
                 }`}
               >
                 {loading ? (

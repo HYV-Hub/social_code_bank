@@ -7,8 +7,8 @@ const RoleCard = ({ role, title, description, icon, isSelected, onSelect }) => {
       onClick={onSelect}
       className={`p-6 rounded-lg border-2 transition-all text-left hover:shadow-md ${
         isSelected
-          ? 'border-blue-600 bg-primary/10 shadow-md'
-          : 'border-border bg-card hover:border-blue-300'
+          ? 'border-primary bg-primary/10 shadow-md'
+          : 'border-border bg-card hover:border-primary/50'
       }`}
     >
       <div className="flex items-center gap-3 mb-2">

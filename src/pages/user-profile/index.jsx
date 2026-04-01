@@ -206,7 +206,7 @@ const UserProfile = () => {
         return (
           <button
             onClick={handleCancelFriendRequest}
-            className="flex items-center space-x-2 px-6 py-2 bg-slate-300 text-muted-foreground rounded-lg hover:bg-slate-400">
+            className="flex items-center space-x-2 px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80">
             <Icon name="X" size={20} />
             <span>Cancel Request</span>
           </button>
@@ -601,7 +601,7 @@ const UserProfile = () => {
   if (error) {
     return (
       <AppShell pageTitle="Profile">
-        <div className="bg-error/100/10 border border-error rounded-lg p-4">
+        <div className="bg-error/10 border border-error rounded-lg p-4">
           <p className="text-error">{error}</p>
         </div>
       </AppShell>

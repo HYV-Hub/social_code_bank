@@ -64,7 +64,7 @@ export function FilterControls({ activeFilter, onFilterChange, notifications, sh
               {type?.label}
               {count > 0 && (
                 <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                  isActive ? 'bg-primary' : 'bg-gray-300'
+                  isActive ? 'bg-primary' : 'bg-muted'
                 }`}>
                   {count}
                 </span>
