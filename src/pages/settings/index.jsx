@@ -24,14 +24,20 @@ const SettingsPage = () => {
     linkedin_url: ''
   });
 
-  // Notification settings
+  // Notification settings - matches DB notification_preferences columns
   const [notifications, setNotifications] = useState({
-    email_notifications: true,
-    push_notifications: true,
-    snippet_likes: true,
-    comments: true,
-    team_invites: true,
-    mentions: true
+    email_comments: true,
+    email_likes: true,
+    email_follows: true,
+    email_mentions: true,
+    email_bug_assignments: true,
+    email_team_updates: true,
+    push_comments: true,
+    push_likes: true,
+    push_follows: true,
+    push_mentions: true,
+    push_bug_assignments: true,
+    push_team_updates: true,
   });
 
   // Privacy settings
@@ -87,12 +93,18 @@ const SettingsPage = () => {
 
       if (prefs) {
         setNotifications({
-          email_notifications: prefs?.email_notifications !== false,
-          push_notifications: prefs?.push_notifications !== false,
-          snippet_likes: prefs?.snippet_likes !== false,
-          comments: prefs?.comments !== false,
-          team_invites: prefs?.team_invites !== false,
-          mentions: prefs?.mentions !== false
+          email_comments: prefs?.email_comments !== false,
+          email_likes: prefs?.email_likes !== false,
+          email_follows: prefs?.email_follows !== false,
+          email_mentions: prefs?.email_mentions !== false,
+          email_bug_assignments: prefs?.email_bug_assignments !== false,
+          email_team_updates: prefs?.email_team_updates !== false,
+          push_comments: prefs?.push_comments !== false,
+          push_likes: prefs?.push_likes !== false,
+          push_follows: prefs?.push_follows !== false,
+          push_mentions: prefs?.push_mentions !== false,
+          push_bug_assignments: prefs?.push_bug_assignments !== false,
+          push_team_updates: prefs?.push_team_updates !== false,
         });
       }
     } catch (error) {
@@ -337,26 +349,69 @@ const SettingsPage = () => {
         return (
           <div className="space-y-6">
             <h3 className="text-lg font-semibold text-foreground mb-4">Notification Preferences</h3>
-            <div className="space-y-4">
-              {Object.entries(notifications)?.map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between p-4 bg-background rounded-lg">
-                  <div>
-                    <h4 className="font-medium text-foreground capitalize">
-                      {key?.replace(/_/g, ' ')}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Receive notifications for {key?.replace(/_/g, ' ')}
-                    </p>
+
+            {/* Email Notifications */}
+            <div>
+              <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                <Icon name="Mail" size={16} />
+                Email Notifications
+              </h4>
+              <div className="space-y-3">
+                {[
+                  { key: 'email_comments', label: 'Comments', desc: 'When someone comments on your snippet' },
+                  { key: 'email_likes', label: 'Likes', desc: 'When someone likes your snippet' },
+                  { key: 'email_follows', label: 'Follows', desc: 'When someone follows you' },
+                  { key: 'email_mentions', label: 'Mentions', desc: 'When someone @mentions you' },
+                  { key: 'email_bug_assignments', label: 'Bug Assignments', desc: 'When a bug is assigned to you' },
+                  { key: 'email_team_updates', label: 'Team Updates', desc: 'Team announcements and updates' },
+                ].map(item => (
+                  <div key={item.key} className="flex items-center justify-between p-3 bg-background rounded-lg">
+                    <div>
+                      <h5 className="text-sm font-medium text-foreground">{item.label}</h5>
+                      <p className="text-xs text-muted-foreground">{item.desc}</p>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={notifications?.[item.key]}
+                      onChange={(e) => setNotifications({ ...notifications, [item.key]: e?.target?.checked })}
+                      className="w-5 h-5 text-primary rounded focus:ring-ring"
+                    />
                   </div>
-                  <input
-                    type="checkbox"
-                    checked={value}
-                    onChange={(e) => setNotifications({ ...notifications, [key]: e?.target?.checked })}
-                    className="w-5 h-5 text-primary rounded focus:ring-ring"
-                  />
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            {/* Push Notifications */}
+            <div>
+              <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                <Icon name="Bell" size={16} />
+                Push Notifications
+              </h4>
+              <div className="space-y-3">
+                {[
+                  { key: 'push_comments', label: 'Comments', desc: 'In-app notification for comments' },
+                  { key: 'push_likes', label: 'Likes', desc: 'In-app notification for likes' },
+                  { key: 'push_follows', label: 'Follows', desc: 'In-app notification for new followers' },
+                  { key: 'push_mentions', label: 'Mentions', desc: 'In-app notification for @mentions' },
+                  { key: 'push_bug_assignments', label: 'Bug Assignments', desc: 'In-app notification for bug assignments' },
+                  { key: 'push_team_updates', label: 'Team Updates', desc: 'In-app notification for team updates' },
+                ].map(item => (
+                  <div key={item.key} className="flex items-center justify-between p-3 bg-background rounded-lg">
+                    <div>
+                      <h5 className="text-sm font-medium text-foreground">{item.label}</h5>
+                      <p className="text-xs text-muted-foreground">{item.desc}</p>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={notifications?.[item.key]}
+                      onChange={(e) => setNotifications({ ...notifications, [item.key]: e?.target?.checked })}
+                      className="w-5 h-5 text-primary rounded focus:ring-ring"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <Button onClick={handleNotificationUpdate} disabled={loading}>
               {loading ? 'Saving...' : 'Save Preferences'}
             </Button>

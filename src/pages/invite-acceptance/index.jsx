@@ -41,12 +41,15 @@ const InviteAcceptance = () => {
       const { supabase } = await import('../../lib/supabase');
 
       // Validate token against database
+      // Join through teams to get company info (team_invites has no direct FK to companies)
       const { data: invite, error: inviteError } = await supabase
         .from('team_invites')
         .select(`
           *,
-          teams(id, name, description),
-          companies(id, name)
+          teams(id, name, description, company_id,
+            companies(id, name)
+          ),
+          inviter:user_profiles!team_invites_inviter_id_fkey(id, full_name, avatar_url)
         `)
         .eq('token', token)
         .eq('status', 'pending')
@@ -67,15 +70,15 @@ const InviteAcceptance = () => {
 
       const invitePayload = {
         company: {
-          name: invite.companies?.name || 'Unknown Company',
+          name: invite.teams?.companies?.name || 'Unknown Company',
           logo: null,
           logoAlt: ''
         },
         invitedBy: {
-          name: invite.inviter_name || 'A team member',
+          name: invite.inviter_name || invite.inviter?.full_name || 'A team member',
           role: '',
-          avatar: null,
-          avatarAlt: ''
+          avatar: invite.inviter?.avatar_url || null,
+          avatarAlt: invite.inviter?.full_name || ''
         },
         role: {
           title: invite.role || 'member',
@@ -93,6 +96,7 @@ const InviteAcceptance = () => {
           usageCount: 0,
           maxUsage: 1
         },
+        teamName: invite.teams?.name || 'Team',
         prefilledEmail: invite.email || '',
         token: token
       };
@@ -155,7 +159,11 @@ const InviteAcceptance = () => {
       // Accept the invite
       const { error: acceptError } = await supabase
         .from('team_invites')
-        .update({ status: 'accepted', accepted_at: new Date().toISOString() })
+        .update({
+          status: 'accepted',
+          accepted_at: new Date().toISOString(),
+          responded_at: new Date().toISOString()
+        })
         .eq('token', inviteData?.token);
 
       if (acceptError) throw acceptError;
