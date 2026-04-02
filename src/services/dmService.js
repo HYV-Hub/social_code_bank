@@ -141,6 +141,29 @@ export const dmService = {
       .subscribe();
   },
 
+  async getUnreadTotal() {
+    try {
+      const conversations = await this.getConversations();
+      return conversations.reduce((sum, c) => sum + (c.unreadCount || 0), 0);
+    } catch (error) {
+      console.warn('Error fetching unread total:', error);
+      return 0;
+    }
+  },
+
+  subscribeToAllMessages(userId, callback) {
+    return supabase
+      .channel('dm_global')
+      .on('postgres_changes', {
+        event: 'INSERT',
+        schema: 'public',
+        table: 'dm_messages',
+      }, (payload) => {
+        if (payload.new?.sender_id !== userId) callback(payload.new);
+      })
+      .subscribe();
+  },
+
   unsubscribe(channel) {
     if (channel) supabase.removeChannel(channel);
   },

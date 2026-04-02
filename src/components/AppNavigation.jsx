@@ -5,6 +5,7 @@ import Icon from './AppIcon';
 import Button from './ui/Button';
 import FriendSearchModal from './FriendSearchModal';
 import { notificationService } from '../services/notificationService';
+import { dmService } from '../services/dmService';
 
 const AppNavigation = () => {
   const { user, signOut, userProfile } = useAuth();
@@ -18,7 +19,9 @@ const AppNavigation = () => {
   
   // ADD: New state for notification count and real-time updates
   const [unreadCount, setUnreadCount] = useState(0);
+  const [unreadMessages, setUnreadMessages] = useState(0);
   const [notificationChannel, setNotificationChannel] = useState(null);
+  const [dmChannel, setDmChannel] = useState(null);
   const [localProfile, setLocalProfile] = useState(null);
   const [userCompany, setUserCompany] = useState(null);
   const [companyLoading, setCompanyLoading] = useState(false);
@@ -225,6 +228,34 @@ const AppNavigation = () => {
     };
   }, [user]);
 
+  // Fetch unread DM count and subscribe to new messages
+  useEffect(() => {
+    if (!user) {
+      setUnreadMessages(0);
+      return;
+    }
+
+    const fetchUnreadMessages = async () => {
+      try {
+        const count = await dmService.getUnreadTotal();
+        setUnreadMessages(count);
+      } catch (err) {
+        console.warn('Error fetching unread messages:', err);
+      }
+    };
+
+    fetchUnreadMessages();
+
+    const channel = dmService.subscribeToAllMessages(user.id, () => {
+      fetchUnreadMessages();
+    });
+    setDmChannel(channel);
+
+    return () => {
+      if (channel) dmService.unsubscribe(channel);
+    };
+  }, [user]);
+
   const handleSignOut = async () => {
     try {
       setIsLoading(true);
@@ -268,7 +299,8 @@ const AppNavigation = () => {
     { name: 'Explore', icon: 'Compass', path: '/search-results' },
     { name: 'My Snippets', icon: 'Code', path: '/snippet-collections' },
     { name: 'My Hives', icon: 'Hexagon', path: '/teams-landing-page' },
-    { name: 'Bugs', icon: 'Bug', path: '/bug-board' } // Personal bug board - no company context
+    { name: 'Messages', icon: 'MessageCircle', path: '/inbox' },
+    { name: 'Bugs', icon: 'Bug', path: '/bug-board' }
   ];
 
   const publicNavigation = [
@@ -550,6 +582,30 @@ const AppNavigation = () => {
                       />
                     </button>
                   )}
+
+                  {/* Messages with unread badge */}
+                  <button
+                    onClick={() => navigate('/inbox')}
+                    className="relative p-2.5 text-muted-foreground hover:text-primary rounded-xl transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-ring overflow-hidden"
+                    aria-label={`Messages ${unreadMessages > 0 ? `(${unreadMessages} unread)` : ''}`}
+                    title={`Messages ${unreadMessages > 0 ? `(${unreadMessages} unread)` : ''}`}
+                  >
+                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <Icon
+                      name="MessageCircle"
+                      size={20}
+                      aria-hidden="true"
+                      className="relative z-10 group-hover:scale-110 transition-transform duration-300"
+                    />
+                    {unreadMessages > 0 && (
+                      <span
+                        className="absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-xs font-bold text-white bg-gradient-to-r from-primary to-accent rounded-full animate-pulse"
+                        aria-label={`${unreadMessages} unread messages`}
+                      >
+                        {unreadMessages > 99 ? '99+' : unreadMessages}
+                      </span>
+                    )}
+                  </button>
 
                   {/* UPDATED: Notifications with badge */}
                   <button
