@@ -3,7 +3,7 @@ import Icon from '../../../components/AppIcon';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
 
-const VersionControl = ({ commitMessage, setCommitMessage }) => {
+const VersionControl = ({ commitMessage, setCommitMessage, onViewVersion, onRestoreVersion }) => {
   const [versions, setVersions] = useState([
     {
       id: 1,
@@ -67,10 +67,14 @@ const VersionControl = ({ commitMessage, setCommitMessage }) => {
                     <span className="text-xs text-muted-foreground">{formatDate(version?.date)}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="sm" iconName="Eye">
+                    <Button variant="ghost" size="sm" iconName="Eye" onClick={() => onViewVersion?.(version)}>
                       View
                     </Button>
-                    <Button variant="ghost" size="sm" iconName="RotateCcw">
+                    <Button variant="ghost" size="sm" iconName="RotateCcw" onClick={() => {
+                      if (window.confirm(`Restore to ${version?.version}? Current unsaved changes will be lost.`)) {
+                        onRestoreVersion?.(version);
+                      }
+                    }}>
                       Restore
                     </Button>
                   </div>

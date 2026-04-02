@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { teamService } from '../../../services/teamService';
+import { notificationService } from '../../../services/notificationService';
+import { useAuth } from '../../../contexts/AuthContext';
 
 import Icon from '../../../components/AppIcon';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
 
 export default function TeamDiscovery() {
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [requestingInvite, setRequestingInvite] = useState({});
+  const [requestedTeams, setRequestedTeams] = useState({});
 
   const handleSearch = async (e) => {
     e?.preventDefault();
@@ -29,17 +33,22 @@ export default function TeamDiscovery() {
     }
   };
 
-  const handleRequestInvite = async (teamId) => {
+  const handleRequestInvite = async (team) => {
     try {
-      setRequestingInvite(prev => ({ ...prev, [teamId]: true }));
-      // Note: This would need a proper invite request flow
-      // For now, we'll just show a success message
-      alert('Invite request functionality will be implemented with team admin approval workflow');
+      setRequestingInvite(prev => ({ ...prev, [team?.id]: true }));
+      await notificationService?.createNotification({
+        user_id: team?.created_by || team?.creator?.id,
+        type: 'team_join_request',
+        title: 'Team Join Request',
+        message: `${user?.user_metadata?.full_name || user?.email} requested to join ${team?.name}`,
+        metadata: { team_id: team?.id, requester_id: user?.id }
+      });
+      setRequestedTeams(prev => ({ ...prev, [team?.id]: true }));
     } catch (err) {
       console.error('Error requesting invite:', err);
-      alert(err?.message || 'Failed to request invite');
+      setError(err?.message || 'Failed to send join request');
     } finally {
-      setRequestingInvite(prev => ({ ...prev, [teamId]: false }));
+      setRequestingInvite(prev => ({ ...prev, [team?.id]: false }));
     }
   };
 
@@ -128,11 +137,16 @@ export default function TeamDiscovery() {
                   )}
 
                   <Button
-                    onClick={() => handleRequestInvite(team?.id)}
-                    disabled={requestingInvite?.[team?.id]}
+                    onClick={() => handleRequestInvite(team)}
+                    disabled={requestingInvite?.[team?.id] || requestedTeams?.[team?.id]}
                     className="w-full bg-primary hover:bg-primary/90"
                   >
-                    {requestingInvite?.[team?.id] ? (
+                    {requestedTeams?.[team?.id] ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <Icon name="Check" size={18} />
+                        <span>Request Sent</span>
+                      </div>
+                    ) : requestingInvite?.[team?.id] ? (
                       <div className="flex items-center justify-center gap-2">
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
                         <span>Requesting...</span>

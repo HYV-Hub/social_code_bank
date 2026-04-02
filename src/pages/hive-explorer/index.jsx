@@ -811,9 +811,10 @@ export default function HiveExplorer() {
 
                 {activeTab === 'settings' && canManageHive && (
                   <div className="bg-card rounded-xl shadow-lg border border-border p-6">
-                    <HiveSettings 
-                      hive={hive} 
+                    <HiveSettings
+                      hive={hive}
                       onUpdate={loadHiveData}
+                      userRole={hive?.userRole}
                     />
                   </div>
                 )}

@@ -105,6 +105,7 @@ export default function AppRoutes() {
           <Route path="/user-dashboard" element={<P><UserDashboard /></P>} />
           <Route path="/snippet-details" element={<P><SnippetDetails /></P>} />
           <Route path="/user-profile" element={<P><UserProfile /></P>} />
+          <Route path="/user-profile/:userId" element={<P><UserProfile /></P>} />
           <Route path="/profile-editor" element={<P><ProfileEditor /></P>} />
           <Route path="/notifications" element={<P><Notifications /></P>} />
           <Route path="/inbox" element={<P><InboxPage /></P>} />

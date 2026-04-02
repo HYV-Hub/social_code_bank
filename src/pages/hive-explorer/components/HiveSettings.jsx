@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/AuthContext';
+import { hiveService } from '../../../services/hiveService';
+import { supabase } from '../../../lib/supabase';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
 import Select from '../../../components/ui/Select';
 
 export default function HiveSettings({ hive, onUpdate, userRole }) {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [name, setName] = useState(hive?.name || '');
   const [description, setDescription] = useState(hive?.description || '');
   const [privacy, setPrivacy] = useState(hive?.privacy || 'public');
@@ -12,6 +18,9 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [transferTarget, setTransferTarget] = useState('');
+  const [showTransfer, setShowTransfer] = useState(false);
 
   const handleSave = async () => {
     try {
@@ -144,9 +153,44 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
               <p className="text-sm text-muted-foreground mb-3">
                 Transfer ownership of this hive to another admin. This action cannot be undone.
               </p>
-              <Button variant="ghost" className="text-warning hover:bg-warning/10">
-                Transfer Ownership
-              </Button>
+              {showTransfer ? (
+                <div className="space-y-2">
+                  <Input
+                    type="text"
+                    placeholder="Enter new owner's user ID"
+                    value={transferTarget}
+                    onChange={(e) => setTransferTarget(e?.target?.value)}
+                  />
+                  <div className="flex gap-2">
+                    <Button
+                      variant="ghost"
+                      className="text-warning hover:bg-warning/10"
+                      disabled={!transferTarget?.trim()}
+                      onClick={async () => {
+                        try {
+                          setError('');
+                          await hiveService?.updateMemberRole(hive?.id, transferTarget?.trim(), 'owner');
+                          await hiveService?.updateMemberRole(hive?.id, user?.id, 'admin');
+                          setSuccess('Ownership transferred successfully.');
+                          setShowTransfer(false);
+                          onUpdate?.();
+                        } catch (err) {
+                          setError(err?.message || 'Failed to transfer ownership');
+                        }
+                      }}
+                    >
+                      Confirm Transfer
+                    </Button>
+                    <Button variant="ghost" onClick={() => setShowTransfer(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <Button variant="ghost" className="text-warning hover:bg-warning/10" onClick={() => setShowTransfer(true)}>
+                  Transfer Ownership
+                </Button>
+              )}
             </div>
 
             <div className="pt-4 border-t border-error/20">
@@ -154,9 +198,34 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
               <p className="text-sm text-muted-foreground mb-3">
                 Permanently delete this hive and all its content. This action cannot be undone.
               </p>
-              <Button variant="ghost" className="text-error hover:bg-error/10">
-                Delete Hive
-              </Button>
+              {confirmDelete ? (
+                <div className="flex gap-2">
+                  <Button
+                    variant="ghost"
+                    className="text-error hover:bg-error/10"
+                    onClick={async () => {
+                      try {
+                        setError('');
+                        const { error: delErr } = await supabase?.from('hives')?.delete()?.eq('id', hive?.id);
+                        if (delErr) throw delErr;
+                        navigate('/hives');
+                      } catch (err) {
+                        setError(err?.message || 'Failed to delete hive');
+                        setConfirmDelete(false);
+                      }
+                    }}
+                  >
+                    Yes, Delete Permanently
+                  </Button>
+                  <Button variant="ghost" onClick={() => setConfirmDelete(false)}>
+                    Cancel
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="ghost" className="text-error hover:bg-error/10" onClick={() => setConfirmDelete(true)}>
+                  Delete Hive
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -169,7 +238,20 @@ export default function HiveSettings({ hive, onUpdate, userRole }) {
           <p className="text-sm text-muted-foreground mb-4">
             Leave this hive. You can rejoin later if it's public or request to join again if it's private.
           </p>
-          <Button variant="ghost" className="text-error hover:bg-error/10">
+          <Button
+            variant="ghost"
+            className="text-error hover:bg-error/10"
+            onClick={async () => {
+              if (!window.confirm('Are you sure you want to leave this hive?')) return;
+              try {
+                setError('');
+                await hiveService?.removeMember(hive?.id, user?.id);
+                navigate('/hives');
+              } catch (err) {
+                setError(err?.message || 'Failed to leave hive');
+              }
+            }}
+          >
             Leave Hive
           </Button>
         </div>

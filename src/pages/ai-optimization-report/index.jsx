@@ -569,7 +569,14 @@ export default function AIOptimizationReportPage() {
                     <Download className="w-4 h-4 mr-2" />
                     Export
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" onClick={() => {
+                    const url = window.location.href;
+                    navigator.clipboard?.writeText(url).then(() => {
+                      alert('Report link copied to clipboard!');
+                    }).catch(() => {
+                      window.prompt('Copy report link:', url);
+                    });
+                  }}>
                     <Share2 className="w-4 h-4 mr-2" />
                     Share
                   </Button>

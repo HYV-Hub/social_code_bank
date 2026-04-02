@@ -355,8 +355,7 @@ const TeamChat = () => {
   };
 
   const handleMemberClick = (member) => {
-    // TODO: Implement direct message functionality
-    console.log('Member clicked:', member);
+    navigate(`/user-profile/${member?.id}`);
   };
 
   // Loading state

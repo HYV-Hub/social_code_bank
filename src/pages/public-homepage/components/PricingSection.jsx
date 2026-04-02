@@ -139,7 +139,7 @@ const PricingSection = () => {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
-            Need help choosing? <a href="#" className="text-primary hover:underline">Compare all features</a>
+            Need help choosing? <a href="/features" className="text-primary hover:underline">Compare all features</a>
           </p>
           <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">

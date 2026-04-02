@@ -102,7 +102,7 @@ const Login = () => {
           {/* Additional Links */}
           <div className="mt-6 text-center space-y-2">
             <button
-              onClick={() => navigate("/public-homepage")}
+              onClick={() => navigate("/")}
               className="text-sm text-muted-foreground hover:text-foreground hover:underline"
             >
               Back to Homepage
