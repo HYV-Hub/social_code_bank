@@ -29,6 +29,16 @@ export default function QuickActionCard({ title, description, icon, iconColor, a
       <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
       <p className="text-sm text-muted-foreground mb-4">{description}</p>
 
+      {stats && (
+        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+          {Object.entries(stats).map(([key, value]) => (
+            <span key={key} className="flex items-center gap-1">
+              <span className="font-semibold text-foreground">{value}</span> {key}
+            </span>
+          ))}
+        </div>
+      )}
+
       <Button variant="outline" size="sm" fullWidth onClick={handleAction}>
         {actionLabel}
       </Button>

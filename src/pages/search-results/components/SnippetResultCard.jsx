@@ -7,6 +7,7 @@ import { formatTimeAgo } from '../../../utils/formatTime';
 const SnippetResultCard = ({ snippet, searchQuery, onLike, onSave }) => {
   const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const handleClick = () => {
     navigate(`/snippet-details?id=${snippet?.id}`);
@@ -108,6 +109,16 @@ const SnippetResultCard = ({ snippet, searchQuery, onLike, onSave }) => {
           <span className="flex items-center gap-1">
             <Icon name="Eye" size={12} /> {snippet?.viewsCount || snippet?.views || 0}
           </span>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setSaved(!saved);
+              onSave?.(snippet?.id);
+            }}
+            className={`ml-auto flex items-center gap-1 transition-colors ${saved ? 'text-primary' : 'hover:text-primary'}`}
+          >
+            <Icon name="Bookmark" size={12} className={saved ? 'fill-current' : ''} />
+          </button>
         </div>
       </div>
     </div>

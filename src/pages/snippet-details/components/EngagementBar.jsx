@@ -99,7 +99,28 @@ export default function EngagementBar({ snippet, onLikeUpdate }) {
       alert('Please login to save snippets');
       return;
     }
-    setSaved(!saved);
+    try {
+      const collections = await collectionService?.getUserCollections();
+      if (!collections?.length) {
+        alert('Create a collection first to save snippets');
+        return;
+      }
+      if (saved) {
+        // Find which collection has this snippet and remove it
+        for (const col of collections) {
+          try {
+            await collectionService?.removeSnippetFromCollection(col?.id, snippet?.id);
+          } catch (_) { /* may not be in this collection */ }
+        }
+        setSaved(false);
+      } else {
+        await collectionService?.addSnippetToCollection(collections[0]?.id, snippet?.id);
+        setSaved(true);
+      }
+    } catch (error) {
+      console.error('Error saving snippet:', error);
+      alert('Failed to save snippet');
+    }
   };
 
   const handleShare = (platform) => {

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
-import Button from '../../../components/ui/Button';
 import { formatTimeAgo } from '../../../utils/formatTime';
 
 export default function FeedItemCard({ item, onLike, onSave, onTagClick }) {
   const navigate = useNavigate();
+
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
+  const [saved, setSaved] = useState(false);
 
   // ─── Snippet Card: Intent-First Design ───
   const renderSnippetCard = () => {
@@ -16,29 +19,51 @@ export default function FeedItemCard({ item, onLike, onSave, onTagClick }) {
     return (
       <div
         onClick={() => navigate(`/snippet-details?id=${snippet?.id}`)}
-        className="hyv-card p-4 cursor-pointer group"
+        className="hyv-card overflow-hidden cursor-pointer group flex flex-col"
       >
-        {/* Purpose tag */}
-        <span className="inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-accent/15 text-accent rounded mb-2">
-          {purposeTag}
-        </span>
+        {/* Top accent bar */}
+        <div className="h-1 bg-gradient-to-r from-primary via-secondary to-accent" />
 
-        {/* Title — the hero */}
-        <h3 className="text-sm font-semibold text-foreground line-clamp-2 mb-2 group-hover:text-primary transition-colors">
-          {snippet?.title}
-        </h3>
-
-        {/* Language + type badges */}
-        <div className="flex items-center gap-1.5 mb-3">
-          <span className="px-2 py-0.5 text-[11px] font-mono bg-muted text-foreground rounded">
-            {snippet?.language}
-          </span>
-          {snippet?.snippet_type && snippet.snippet_type !== 'code' && (
-            <span className="px-2 py-0.5 text-[11px] font-mono bg-muted text-muted-foreground rounded">
-              {snippet.snippet_type}
+        <div className="p-4 flex-1 flex flex-col">
+        {/* Row 1: Purpose + Language + Quality */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1.5">
+            <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-accent/15 text-accent rounded">
+              {purposeTag}
+            </span>
+            <span className="px-2 py-0.5 text-[11px] font-mono bg-muted text-foreground rounded">
+              {snippet?.language}
+            </span>
+            {snippet?.snippet_type && snippet.snippet_type !== 'code' && (
+              <span className="px-2 py-0.5 text-[11px] font-mono bg-muted text-muted-foreground rounded">
+                {snippet.snippet_type}
+              </span>
+            )}
+          </div>
+          {qualityScore > 0 && (
+            <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded flex items-center gap-0.5 ${
+              qualityScore >= 80 ? 'bg-success/15 text-success' :
+              qualityScore >= 50 ? 'bg-warning/15 text-warning' :
+              qualityScore < 40 ? 'bg-error/15 text-error' : 'bg-muted text-muted-foreground'
+            }`}>
+              {qualityScore >= 80 && <Icon name="BadgeCheck" size={10} />}
+              {qualityScore < 40 && <Icon name="AlertTriangle" size={10} />}
+              {qualityScore}
             </span>
           )}
         </div>
+
+        {/* Title — the hero */}
+        <h3 className="text-sm font-semibold text-foreground line-clamp-2 mb-1 group-hover:text-primary transition-colors">
+          {snippet?.title}
+        </h3>
+
+        {/* Description */}
+        {snippet?.description && (
+          <p className="text-xs text-muted-foreground line-clamp-2 mb-2 leading-relaxed">
+            {snippet.description}
+          </p>
+        )}
 
         {/* AI tags — the visual identity */}
         {snippet?.ai_tags?.length > 0 && (
@@ -60,33 +85,44 @@ export default function FeedItemCard({ item, onLike, onSave, onTagClick }) {
           </div>
         )}
 
-        {/* Social proof row */}
-        <div className="flex items-center gap-3 text-[11px] text-muted-foreground mb-3">
-          <span className="flex items-center gap-1">
-            <Icon name="Heart" size={12} /> {snippet?.likes_count || 0}
-          </span>
+        {/* Spacer to push stats to bottom */}
+        <div className="flex-1" />
+
+        {/* Social proof row — interactive */}
+        <div className="flex items-center gap-3 text-[11px] text-muted-foreground pt-2 border-t border-border/50">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLiked(!liked);
+              setLikeCount(prev => liked ? prev - 1 : prev + 1);
+              onLike?.(snippet?.id);
+            }}
+            className={`flex items-center gap-1 transition-colors ${liked ? 'text-error' : 'hover:text-error'}`}
+          >
+            <Icon name="Heart" size={12} className={liked ? 'fill-current' : ''} />
+            {(snippet?.likes_count || 0) + likeCount}
+          </button>
           <span className="flex items-center gap-1">
             <Icon name="GitFork" size={12} /> {snippet?.reuse_count || 0}
           </span>
           <span className="flex items-center gap-1">
             <Icon name="Eye" size={12} /> {snippet?.views_count || 0}
           </span>
-          {qualityScore > 0 && (
-            <span className={`ml-auto px-1.5 py-0.5 text-[10px] font-bold rounded flex items-center gap-0.5 ${
-              qualityScore >= 80 ? 'bg-success/15 text-success' :
-              qualityScore >= 50 ? 'bg-warning/15 text-warning' :
-              qualityScore < 40 ? 'bg-error/15 text-error' :
-              'bg-muted text-muted-foreground'
-            }`}>
-              {qualityScore >= 80 && <Icon name="BadgeCheck" size={10} />}
-              {qualityScore < 40 && <Icon name="AlertTriangle" size={10} />}
-              {qualityScore}
-            </span>
-          )}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setSaved(!saved);
+              onSave?.(snippet?.id);
+            }}
+            className={`ml-auto flex items-center gap-1 transition-colors ${saved ? 'text-primary' : 'hover:text-primary'}`}
+          >
+            <Icon name="Bookmark" size={12} className={saved ? 'fill-current' : ''} />
+            {saved ? 'Saved' : 'Save'}
+          </button>
         </div>
 
         {/* Author + time */}
-        <div className="flex items-center gap-2 pt-2 border-t border-border">
+        <div className="flex items-center gap-2 mt-2 pt-2 border-t border-border">
           <img
             src={snippet?.author?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(snippet?.author?.full_name || 'U')}&background=8b5cf6&color=fff&size=24`}
             alt=""
@@ -98,6 +134,7 @@ export default function FeedItemCard({ item, onLike, onSave, onTagClick }) {
           <span className="text-[11px] text-muted-foreground">
             {formatTimeAgo(snippet?.created_at)}
           </span>
+        </div>
         </div>
       </div>
     );

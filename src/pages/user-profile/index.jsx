@@ -943,7 +943,13 @@ const UserProfile = () => {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {followersData?.map((follower) => (
-                      <UserCard key={follower?.id} user={follower} type="follower" />
+                      <UserCard
+                        key={follower?.id}
+                        user={follower}
+                        type="follower"
+                        onFollow={async (id) => { await friendRequestService?.followUser(id); }}
+                        onUnfollow={async (id) => { await friendRequestService?.unfollowUser(id); }}
+                      />
                     ))}
                   </div>
                 )}
@@ -961,7 +967,13 @@ const UserProfile = () => {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {followingData?.map((followingUser) => (
-                      <UserCard key={followingUser?.id} user={followingUser} type="following" />
+                      <UserCard
+                        key={followingUser?.id}
+                        user={followingUser}
+                        type="following"
+                        onFollow={async (id) => { await friendRequestService?.followUser(id); }}
+                        onUnfollow={async (id) => { await friendRequestService?.unfollowUser(id); }}
+                      />
                     ))}
                   </div>
                 )}

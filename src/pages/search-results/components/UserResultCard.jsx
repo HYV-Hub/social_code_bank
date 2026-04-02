@@ -4,7 +4,7 @@ import Icon from '../../../components/AppIcon';
 import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
 
-const UserResultCard = ({ user, searchQuery }) => {
+const UserResultCard = ({ user, searchQuery, onFollow, onUnfollow }) => {
   const navigate = useNavigate();
 
   const highlightText = (text) => {
@@ -51,6 +51,10 @@ const UserResultCard = ({ user, searchQuery }) => {
               size="sm"
               iconName={user?.isFollowing ? 'UserMinus' : 'UserPlus'}
               iconPosition="left"
+              onClick={(e) => {
+                e.stopPropagation();
+                user?.isFollowing ? onUnfollow?.(user?.id) : onFollow?.(user?.id);
+              }}
             >
               {user?.isFollowing ? 'Following' : 'Follow'}
             </Button>

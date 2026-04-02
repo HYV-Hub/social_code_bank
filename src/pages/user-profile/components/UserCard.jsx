@@ -4,7 +4,7 @@ import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 
-const UserCard = ({ user, type = 'follower' }) => {
+const UserCard = ({ user, type = 'follower', onFollow, onUnfollow }) => {
   const navigate = useNavigate();
 
   const handleViewProfile = () => {
@@ -60,6 +60,10 @@ const UserCard = ({ user, type = 'follower' }) => {
             fullWidth
             iconName={user?.isFollowing ? "UserCheck" : "UserPlus"}
             iconPosition="left"
+            onClick={(e) => {
+              e.stopPropagation();
+              user?.isFollowing ? onUnfollow?.(user?.id) : onFollow?.(user?.id);
+            }}
           >
             {user?.isFollowing ? "Following" : "Follow"}
           </Button>

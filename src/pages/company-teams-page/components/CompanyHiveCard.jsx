@@ -1,7 +1,7 @@
 import React from 'react';
 import { Users, Lock, Globe, FileCode, TrendingUp, MoreVertical } from 'lucide-react';
 
-const CompanyHiveCard = ({ hive, onClick, userRole }) => {
+const CompanyHiveCard = ({ hive, onClick, userRole, onManage }) => {
   const isPrivate = hive?.privacy === 'private';
   const canManage = userRole === 'admin' || userRole === 'director' || hive?.is_owner;
 
@@ -28,9 +28,9 @@ const CompanyHiveCard = ({ hive, onClick, userRole }) => {
               <button
                 onClick={(e) => {
                   e?.stopPropagation();
-                  // Handle menu click
+                  onManage?.(hive);
                 }}
-                className="text-muted-foreground hover:text-muted-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <MoreVertical className="w-4 h-4" />
               </button>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { hiveService } from '../../services/hiveService';
+import { snippetService } from '../../services/snippetService';
+import collectionService from '../../services/collectionService';
 import AppShell from '../../components/AppShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
@@ -118,6 +120,27 @@ export default function GlobalExploreFeed() {
   const handleCategoryClick = (cat) => {
     setActiveCategory(cat);
     setPage(1);
+  };
+
+  const handleLike = async (snippetId) => {
+    if (!user) return;
+    try {
+      await snippetService?.toggleLike(snippetId);
+    } catch (error) {
+      console.error('Error toggling like:', error);
+    }
+  };
+
+  const handleSave = async (snippetId) => {
+    if (!user) return;
+    try {
+      const collections = await collectionService?.getUserCollections();
+      if (collections?.length > 0) {
+        await collectionService?.addSnippetToCollection(collections[0]?.id, snippetId);
+      }
+    } catch (error) {
+      console.error('Error saving snippet:', error);
+    }
   };
 
   const handleTagClick = (tag) => {
@@ -251,8 +274,8 @@ export default function GlobalExploreFeed() {
                   <FeedItemCard
                     key={item?.id}
                     item={item}
-                    onLike={() => {}}
-                    onSave={() => {}}
+                    onLike={handleLike}
+                    onSave={handleSave}
                     onTagClick={handleTagClick}
                   />
                 ))}

@@ -15,6 +15,7 @@ import LoadingState from './components/LoadingState';
 import AppShell from '../../components/AppShell';
 import { exploreService } from '../../services/exploreService';
 import { bugService } from '../../services/bugService';
+import friendRequestService from '../../services/friendRequestService';
 import AdvancedFilterPanel from './components/AdvancedFilterPanel';
 import { useAuth } from '../../contexts/AuthContext';
 import Icon from '../../components/AppIcon';
@@ -556,7 +557,10 @@ const SearchResultsPage = () => {
                             <UserResultCard
                               key={`user-${result?.id}`}
                               user={result}
-                              searchQuery={query} />
+                              searchQuery={query}
+                              onFollow={async (id) => { await friendRequestService?.followUser(id); }}
+                              onUnfollow={async (id) => { await friendRequestService?.unfollowUser(id); }}
+                            />
                           );
                         }
                         if (result?.type === 'team') {
