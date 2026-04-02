@@ -4,7 +4,6 @@ import { ArrowLeft, Plus } from 'lucide-react';
 import AppShell from '../../components/AppShell';
 import CollectionHeader from './components/CollectionHeader';
 import FilterPanel from './components/FilterPanel';
-import SnippetCard from './components/SnippetCard';
 import CompactSnippetCard from '../../components/cards/CompactSnippetCard';
 import AddSnippetModal from './components/AddSnippetModal';
 import { 
