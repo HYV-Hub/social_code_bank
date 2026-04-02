@@ -15,7 +15,8 @@ export const snippetService = {
       
       let query = supabase?.from('snippets')?.select(`
         *,
-        user:user_profiles!snippets_user_id_fkey(id, full_name, username, avatar_url, email)
+        user:user_profiles!snippets_user_id_fkey(id, full_name, username, avatar_url, email),
+        recent_comments:snippet_comments(id, content, created_at, user:user_profiles!snippet_comments_user_id_fkey(id, full_name, username, avatar_url))
       `);
 
       // CRITICAL: Filter by authenticated user if provided
@@ -44,33 +45,48 @@ export const snippetService = {
 
       if (error) throw error;
 
-      return data?.map(snippet => ({
-        id: snippet?.id,
-        title: snippet?.title,
-        description: snippet?.description,
-        code: snippet?.code,
-        language: snippet?.language,
-        snippetType: snippet?.snippet_type,
-        visibility: snippet?.visibility,
-        likesCount: snippet?.likes_count || 0,
-        commentsCount: snippet?.comments_count || 0,
-        viewsCount: snippet?.views_count || 0,
-        reuseCount: snippet?.reuse_count || 0,
-        forkCount: snippet?.fork_count || 0,
-        aiTags: snippet?.ai_tags || [],
-        aiQualityScore: snippet?.ai_quality_score,
-        aiAnalysisData: snippet?.ai_analysis_data,
-        aiReport: snippet?.ai_report,
-        createdAt: snippet?.created_at,
-        updatedAt: snippet?.updated_at,
-        user: {
-          id: snippet?.user?.id,
-          name: snippet?.user?.full_name,
-          username: snippet?.user?.username,
-          avatar: snippet?.user?.avatar_url || '/assets/images/no_image.png',
-          email: snippet?.user?.email
-        }
-      })) || [];
+      return data?.map(snippet => {
+        const latestComment = snippet?.recent_comments
+          ?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))?.[0];
+
+        return {
+          id: snippet?.id,
+          title: snippet?.title,
+          description: snippet?.description,
+          code: snippet?.code,
+          language: snippet?.language,
+          snippetType: snippet?.snippet_type,
+          visibility: snippet?.visibility,
+          likesCount: snippet?.likes_count || 0,
+          commentsCount: snippet?.comments_count || 0,
+          viewsCount: snippet?.views_count || 0,
+          reuseCount: snippet?.reuse_count || 0,
+          forkCount: snippet?.fork_count || 0,
+          aiTags: snippet?.ai_tags || [],
+          aiQualityScore: snippet?.ai_quality_score,
+          aiAnalysisData: snippet?.ai_analysis_data,
+          aiReport: snippet?.ai_report,
+          createdAt: snippet?.created_at,
+          updatedAt: snippet?.updated_at,
+          user: {
+            id: snippet?.user?.id,
+            name: snippet?.user?.full_name,
+            username: snippet?.user?.username,
+            avatar: snippet?.user?.avatar_url || '/assets/images/no_image.png',
+            email: snippet?.user?.email
+          },
+          recentComment: latestComment ? {
+            id: latestComment.id,
+            content: latestComment.content,
+            createdAt: latestComment.created_at,
+            user: {
+              name: latestComment.user?.full_name,
+              username: latestComment.user?.username,
+              avatar: latestComment.user?.avatar_url,
+            }
+          } : null,
+        };
+      }) || [];
     } catch (error) {
       console.error('Error fetching snippets:', error);
       throw error;
@@ -133,35 +149,51 @@ export const snippetService = {
 
       const { data, error } = await supabase?.from('snippets')?.select(`
         *,
-        user:user_profiles!snippets_user_id_fkey(id, full_name, username, avatar_url, email)
+        user:user_profiles!snippets_user_id_fkey(id, full_name, username, avatar_url, email),
+        recent_comments:snippet_comments(id, content, created_at, user:user_profiles!snippet_comments_user_id_fkey(id, full_name, username, avatar_url))
       `)?.eq('user_id', user?.id)?.order('created_at', { ascending: false })?.limit(limit);
 
       if (error) throw error;
 
-      return data?.map(snippet => ({
-        id: snippet?.id,
-        title: snippet?.title,
-        description: snippet?.description,
-        code: snippet?.code,
-        language: snippet?.language,
-        snippetType: snippet?.snippet_type,
-        visibility: snippet?.visibility,
-        likesCount: snippet?.likes_count || 0,
-        commentsCount: snippet?.comments_count || 0,
-        viewsCount: snippet?.views_count || 0,
-        reuseCount: snippet?.reuse_count || 0,
-        aiTags: snippet?.ai_tags || [],
-        aiQualityScore: snippet?.ai_quality_score,
-        aiReport: snippet?.ai_report,
-        createdAt: snippet?.created_at,
-        updatedAt: snippet?.updated_at,
-        user: {
-          id: snippet?.user?.id,
-          name: snippet?.user?.full_name,
-          username: snippet?.user?.username,
-          avatar: snippet?.user?.avatar_url || '/assets/images/no_image.png'
-        }
-      })) || [];
+      return data?.map(snippet => {
+        const latestComment = snippet?.recent_comments
+          ?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))?.[0];
+
+        return {
+          id: snippet?.id,
+          title: snippet?.title,
+          description: snippet?.description,
+          code: snippet?.code,
+          language: snippet?.language,
+          snippetType: snippet?.snippet_type,
+          visibility: snippet?.visibility,
+          likesCount: snippet?.likes_count || 0,
+          commentsCount: snippet?.comments_count || 0,
+          viewsCount: snippet?.views_count || 0,
+          reuseCount: snippet?.reuse_count || 0,
+          aiTags: snippet?.ai_tags || [],
+          aiQualityScore: snippet?.ai_quality_score,
+          aiReport: snippet?.ai_report,
+          createdAt: snippet?.created_at,
+          updatedAt: snippet?.updated_at,
+          user: {
+            id: snippet?.user?.id,
+            name: snippet?.user?.full_name,
+            username: snippet?.user?.username,
+            avatar: snippet?.user?.avatar_url || '/assets/images/no_image.png'
+          },
+          recentComment: latestComment ? {
+            id: latestComment.id,
+            content: latestComment.content,
+            createdAt: latestComment.created_at,
+            user: {
+              name: latestComment.user?.full_name,
+              username: latestComment.user?.username,
+              avatar: latestComment.user?.avatar_url,
+            }
+          } : null,
+        };
+      }) || [];
     } catch (error) {
       console.error('Error fetching user snippets:', error);
       throw error;

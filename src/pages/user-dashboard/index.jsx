@@ -6,6 +6,7 @@ import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 
 import SnippetCard from './components/SnippetCard';
+import ExpandedSnippetCard from '../../components/cards/ExpandedSnippetCard';
 
 import SavedItemCard from './components/SavedItemCard';
 import ActivityItem from './components/ActivityItem';
@@ -258,6 +259,23 @@ const UserDashboard = () => {
       </AppShell>
     );
   }
+
+  const handleLikeToggle = async (snippetId, liked) => {
+    try {
+      await snippetService.toggleLike(snippetId);
+    } catch (err) {
+      console.error('Like toggle failed:', err);
+    }
+  };
+
+  const handleFork = async (snippet) => {
+    try {
+      const result = await snippetService.forkSnippet(snippet.id);
+      if (result?.id) navigate(`/snippet-details?id=${result.id}`);
+    } catch (err) {
+      console.error('Fork failed:', err);
+    }
+  };
 
   const handleEditSnippet = (snippetId) => {
     navigate(`/create-snippet?edit=${snippetId}`);
@@ -688,15 +706,13 @@ const UserDashboard = () => {
                       </Button>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div className="space-y-4">
                       {recentSnippets?.map((snippet) => (
-                        <SnippetCard 
-                          key={snippet?.id} 
+                        <ExpandedSnippetCard
+                          key={snippet?.id}
                           snippet={snippet}
-                          onEdit={handleEditSnippet}
-                          onDelete={handleDeleteSnippet}
-                          onShare={() => {}}
-                          onVisibilityChange={() => {}}
+                          onLike={handleLikeToggle}
+                          onFork={handleFork}
                         />
                       ))}
                     </div>

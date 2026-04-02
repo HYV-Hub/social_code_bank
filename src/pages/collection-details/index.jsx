@@ -6,6 +6,7 @@ import AppShell from '../../components/AppShell';
 
 
 import { ArrowLeft, Plus, Lock, Globe, Edit2, Trash2, Code, Eye, Heart, ExternalLink } from 'lucide-react';
+import CompactSnippetCard from '../../components/cards/CompactSnippetCard';
 
 export default function CollectionDetailsPage() {
   const navigate = useNavigate();
@@ -204,80 +205,13 @@ export default function CollectionDetailsPage() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {snippets?.map((item) => (
-                <div
+                <CompactSnippetCard
                   key={item?.id}
-                  className="bg-card rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 border border-border overflow-hidden group cursor-pointer"
-                  onClick={() => handleViewSnippet(item?.snippetId)}
-                >
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
-                          {item?.snippet?.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2">
-                          {item?.snippet?.description || 'No description'}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Language Badge */}
-                    <div className="mb-4">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border border-primary/20">
-                        <Code className="w-3 h-3 mr-1" />
-                        {item?.snippet?.language}
-                      </span>
-                    </div>
-
-                    {/* Code Preview */}
-                    <div className="bg-background rounded p-3 mb-4 border border-border group-hover:border-primary/20 transition-colors">
-                      <pre className="text-xs text-foreground overflow-x-auto">
-                        <code className="line-clamp-3">{item?.snippet?.code}</code>
-                      </pre>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <button
-                        onClick={(e) => {
-                          e?.stopPropagation();
-                          handleViewSnippet(item?.snippetId);
-                        }}
-                        className="flex-1 inline-flex items-center justify-center px-3 py-2 border border-primary rounded-md text-sm font-medium text-primary bg-card hover:bg-primary/10 transition-colors"
-                      >
-                        <Eye className="w-4 h-4 mr-1" />
-                        View Details
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e?.stopPropagation();
-                          handleRemoveSnippet(item?.snippetId);
-                        }}
-                        className="p-2 text-error hover:bg-error/10 rounded transition-colors border border-error"
-                        title="Remove from collection"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-
-                    {/* Stats */}
-                    <div className="flex items-center justify-between pt-4 border-t border-border">
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Heart className="w-4 h-4" />
-                          {item?.snippet?.likesCount || 0}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Eye className="w-4 h-4" />
-                          {item?.snippet?.viewsCount || 0}
-                        </span>
-                      </div>
-                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                    </div>
-                  </div>
-                </div>
+                  snippet={item?.snippet || item}
+                  onLike={() => {}}
+                />
               ))}
             </div>
           )}

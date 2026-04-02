@@ -17,6 +17,7 @@ import DesktopNavigationBar from './components/DesktopNavigationBar';
 import KeyboardShortcutsModal from './components/KeyboardShortcutsModal';
 import MemberRoleManager from './components/MemberRoleManager';
 import CompanySidebar from '../../components/CompanySidebar';
+import CompactSnippetCard from '../../components/cards/CompactSnippetCard';
 import { companyDashboardService } from '../../services/companyDashboardService';
 
 export default function HiveExplorer() {
@@ -655,49 +656,13 @@ export default function HiveExplorer() {
                         )}
                       </div>
                     ) : (
-                      <div className="space-y-4">
-                        {filteredSnippets?.map((snippet, idx) => (
-                          <div
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                        {filteredSnippets?.map((snippet) => (
+                          <CompactSnippetCard
                             key={snippet?.id}
-                            className="group bg-card border-2 border-border rounded-xl p-6 hover:shadow-2xl hover:border-border transition-all cursor-pointer transform hover:-translate-y-1"
-                            onClick={() => navigate(`/snippet-details?id=${snippet?.id}`)}
-                            style={{ animationDelay: `${idx * 50}ms` }}
-                          >
-                            <div className="flex items-start justify-between mb-3">
-                              <div className="flex-1">
-                                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-2">
-                                  {snippet?.title}
-                                </h3>
-                                {snippet?.description && (
-                                  <p className="text-muted-foreground text-sm line-clamp-2 leading-relaxed">
-                                    {snippet?.description}
-                                  </p>
-                                )}
-                              </div>
-                              <span className="px-3 py-1.5 text-xs font-semibold bg-primary/10 text-primary rounded-lg group-hover:bg-primary/20 transition-colors">
-                                {snippet?.language}
-                              </span>
-                            </div>
-                            
-                            <div className="flex items-center gap-6 text-sm text-muted-foreground pt-4 border-t border-border">
-                              <span className="flex items-center gap-2 hover:text-error transition-colors">
-                                <Icon name="Heart" size={16} />
-                                <span className="font-medium">{snippet?.likes_count || 0}</span>
-                              </span>
-                              <span className="flex items-center gap-2 hover:text-primary transition-colors">
-                                <Icon name="MessageCircle" size={16} />
-                                <span className="font-medium">{snippet?.comments_count || 0}</span>
-                              </span>
-                              <span className="flex items-center gap-2 hover:text-success transition-colors">
-                                <Icon name="Eye" size={16} />
-                                <span className="font-medium">{snippet?.views_count || 0}</span>
-                              </span>
-                              <span className="flex items-center gap-2 ml-auto text-primary">
-                                <Icon name="User" size={16} />
-                                <span className="font-medium">@{snippet?.author?.username}</span>
-                              </span>
-                            </div>
-                          </div>
+                            snippet={snippet}
+                            onLike={() => {}}
+                          />
                         ))}
                       </div>
                     )}

@@ -5,6 +5,7 @@ import AppShell from '../../components/AppShell';
 import CollectionHeader from './components/CollectionHeader';
 import FilterPanel from './components/FilterPanel';
 import SnippetCard from './components/SnippetCard';
+import CompactSnippetCard from '../../components/cards/CompactSnippetCard';
 import AddSnippetModal from './components/AddSnippetModal';
 import { 
   getHiveCollectionById, 
@@ -227,16 +228,12 @@ const HiveCollectionDetail = () => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {snippets?.map((snippet) => (
-                <SnippetCard
+                <CompactSnippetCard
                   key={snippet?.id}
                   snippet={snippet}
-                  onRemove={isOwner ? () => handleRemoveSnippet(snippet?.id) : null}
-                  addedBy={snippet?.addedBy}
-                  addedAt={snippet?.addedAt}
-                  canManage={isOwner}
-                  onClick={() => navigate(`/snippets/${snippet?.id}`)}
+                  onLike={() => {}}
                 />
               ))}
             </div>

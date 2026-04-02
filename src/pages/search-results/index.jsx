@@ -7,6 +7,7 @@ import SearchHeader from './components/SearchHeader';
 import FilterPanel from './components/FilterPanel';
 import SortControls from './components/SortControls';
 import SnippetResultCard from './components/SnippetResultCard';
+import CompactSnippetCard from '../../components/cards/CompactSnippetCard';
 import BugResultCard from './components/BugResultCard';
 import UserResultCard from './components/UserResultCard';
 import TeamResultCard from './components/TeamResultCard';
@@ -537,10 +538,11 @@ const SearchResultsPage = () => {
                       {paginatedResults?.map((result) => {
                         if (result?.type === 'snippet') {
                           return (
-                            <SnippetResultCard
+                            <CompactSnippetCard
                               key={`snippet-${result?.id}`}
                               snippet={result}
-                              searchQuery={query} />
+                              onLike={() => {}}
+                            />
                           );
                         }
                         if (result?.type === 'bug') {

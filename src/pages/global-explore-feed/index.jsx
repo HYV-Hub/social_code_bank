@@ -6,6 +6,7 @@ import AppShell from '../../components/AppShell';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
 import FeedItemCard from './components/FeedItemCard';
+import CompactSnippetCard from '../../components/cards/CompactSnippetCard';
 import FilterControls from './components/FilterControls';
 import CompactListItem from './components/CompactListItem';
 import ExploreSidebar from './components/ExploreSidebar';
@@ -238,14 +239,12 @@ export default function GlobalExploreFeed() {
           <>
             {/* Grid view */}
             {viewMode === 'grid' && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {feedItems.map((item) => (
-                  <FeedItemCard
+                  <CompactSnippetCard
                     key={item?.id}
-                    item={item}
+                    snippet={item}
                     onLike={() => {}}
-                    onSave={() => {}}
-                    onTagClick={handleTagClick}
                   />
                 ))}
               </div>
